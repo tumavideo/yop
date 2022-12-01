@@ -96,7 +96,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="relative pt-6 pb-16 sm:pb-24">
+                <div className="relative pt-6 pb-16 sm:pb-12">
                   {!session && <UnLoggedIn />}
 
                   {!session && (

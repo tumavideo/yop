@@ -1,22 +1,5 @@
-import { Fragment, useState } from 'react'
 import { useSession } from 'next-auth/react'
 
-import { Dialog, Switch, Transition } from '@headlessui/react'
-import {
-  ArrowLeftOnRectangleIcon,
-  Bars3BottomLeftIcon,
-  BellIcon,
-  BriefcaseIcon,
-  ChatBubbleOvalLeftEllipsisIcon,
-  CogIcon,
-  DocumentMagnifyingGlassIcon,
-  HomeIcon,
-  QuestionMarkCircleIcon,
-  UsersIcon,
-  XMarkIcon,
-} from '@heroicons/react/outline'
-import { MagnifyingGlassIcon } from '@heroicons/react/solid'
-import Sidebar from '@/components/Sidebar'
 import Image from 'next/image'
 import Link from 'next/link'
 

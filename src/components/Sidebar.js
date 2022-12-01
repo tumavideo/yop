@@ -5,6 +5,7 @@ import { Dialog, Transition } from '@headlessui/react'
 
 import { classNames } from '@/lib/utils'
 import { sidebarNav } from '@/utils/navigation'
+import Image from 'next/image'
 
 export default function Sidebar({ activeIndex }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -83,10 +84,14 @@ export default function Sidebar({ activeIndex }) {
                           'group flex items-center rounded-md px-2 py-2 text-base font-medium'
                         )}
                       >
-                        {/* <item.icon
+                        <Image
+                          width={24}
+                          height={24}
                           className="mr-4 h-6 w-6 flex-shrink-0 text-indigo-300"
+                          src={item.icon}
+                          alt={item.name}
                           aria-hidden="true"
-                        /> */}
+                        />
                         {item.name}
                       </a>
                     ))}
@@ -125,11 +130,15 @@ export default function Sidebar({ activeIndex }) {
                     'group flex items-center rounded-md px-2 py-2 text-sm font-medium'
                   )}
                 >
-                  {/* <item.icon
+                  <Image
+                    width={24}
+                    height={24}
                     className="mr-3 h-6 w-6 flex-shrink-0 text-indigo-300"
+                    src={item.icon}
+                    alt={item.name}
                     aria-hidden="true"
-                  /> */}
-                  {item.name}
+                  />
+                  <span className="px-4">{item.name}</span>
                 </a>
               ))}
             </nav>

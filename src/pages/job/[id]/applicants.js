@@ -89,8 +89,6 @@ export const getStaticProps = async ({ params: { id, tab } }) => {
   const opportunity = await client.fetch(query)
   const users = await client.fetch(usersQuery)
 
-  console.log(id)
-
   return {
     props: { opportunity, users },
   }

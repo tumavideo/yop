@@ -1,5 +1,4 @@
 import Header from '@/components/Header'
-import Sidebar from '@/components/Sidebar'
 import TwoColwAvatar from '@/components/TwoColwAvatar'
 import { client } from '@/lib/client'
 import { getFunding } from '@/utils/queries'

@@ -17,6 +17,7 @@
     "@tailwindcss/forms": "^0.5.3",
     "autoprefixer": "^10.4.8",
     "clsx": "^1.2.1",
+    "dayjs": "^1.11.6",
     "focus-visible": "^5.2.0",
     "framer-motion": "^6.5.1",
     "jspdf": "^2.5.1",

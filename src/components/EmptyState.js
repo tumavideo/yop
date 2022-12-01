@@ -3,6 +3,7 @@ import React from 'react'
 import { classNames } from '@/lib/utils'
 import { sidebarNav } from '@/utils/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function EmptyState() {
   return (
@@ -29,10 +30,14 @@ export default function EmptyState() {
                       'inline-flex h-10 w-10 items-center justify-center rounded-lg'
                     )}
                   >
-                    {/* <item.icon
+                    <Image
+                      width={24}
+                      height={24}
                       className="h-6 w-6 text-white"
+                      src={item.icon}
+                      alt={item.name}
                       aria-hidden="true"
-                    /> */}
+                    />
                   </span>
                 </div>
                 <div className="min-w-0 flex-1">

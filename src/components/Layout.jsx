@@ -5,7 +5,7 @@ import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 
 import { classNames } from '@/lib/utils'
-import { secondaryNavigation, sidebarNav } from '@/utils/navigation'
+import { secondaryNavigation } from '@/utils/navigation'
 import { signOut, useSession } from 'next-auth/react'
 import Sidebar from './Sidebar'
 

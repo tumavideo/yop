@@ -1,5 +1,4 @@
 export default function OppApplication({ user }) {
-  console.log(user)
   const handleSubmit = (e) => {
     e.preventDefault()
 

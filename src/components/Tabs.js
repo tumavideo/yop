@@ -1,6 +1,6 @@
 import { classNames } from '@/lib/utils'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Tabs({ count, opportunity, tabs }) {
   const [activeTab, setActiveTab] = useState(tabs.find((tab) => tab.current))

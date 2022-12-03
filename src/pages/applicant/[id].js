@@ -1,12 +1,9 @@
-import Sidebar from '@/components/Sidebar'
 import { client } from '@/lib/client'
 import { PaperClipIcon } from '@heroicons/react/solid'
 
 export default function Applicant({ applicant }) {
   return (
     <>
-      <Sidebar activeIndex={2} />
-
       <div className="bg-gray-100">
         <div className="mx-auto max-w-5xl py-12 sm:px-6 lg:px-8">
           <div className="overflow-hidden bg-white shadow sm:rounded-lg">

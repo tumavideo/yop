@@ -6,8 +6,10 @@ import { Dialog, Transition } from '@headlessui/react'
 import { classNames } from '@/lib/utils'
 import { sidebarNav } from '@/utils/navigation'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
-export default function Sidebar({ activeIndex }) {
+export default function Sidebar() {
+  const router = useRouter()
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -78,7 +80,7 @@ export default function Sidebar({ activeIndex }) {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current
+                          router.pathname == item.href
                             ? 'bg-indigo-800 text-white'
                             : 'text-indigo-100 hover:bg-indigo-600',
                           'group flex items-center rounded-md px-2 py-2 text-base font-medium'
@@ -124,7 +126,7 @@ export default function Sidebar({ activeIndex }) {
                   key={item.name}
                   href={item.href}
                   className={classNames(
-                    item.current
+                    router.pathname == item.href
                       ? 'bg-indigo-800 text-white'
                       : 'text-indigo-100 hover:bg-indigo-600',
                     'group flex items-center rounded-md px-2 py-2 text-sm font-medium'

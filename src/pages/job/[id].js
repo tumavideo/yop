@@ -7,6 +7,7 @@ import Pagination from '@/components/Pagination'
 import PageHeading from '@/components/PageHeading'
 import { useSession } from 'next-auth/react'
 import OppApplication from '@/components/OppApplication'
+import Header from '@/components/Header'
 
 const tabs = [
   {
@@ -50,6 +51,7 @@ export default function Listing({ opportunity, users }) {
   return (
     <>
       <div className="min-h-full">
+        <Header title="Application" />
         <PageHeading opportunity={opportunity} />
         <main className="pt-8 pb-16">
           <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">

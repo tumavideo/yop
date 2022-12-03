@@ -5,7 +5,6 @@ import React from 'react'
 export default function Jobs({ applications }) {
   return (
     <div className="h-screen bg-gray-100">
-      <Sidebar activeIndex={2} />
       <div className="mx-auto flex max-w-4xl flex-col md:px-8 xl:px-0">
         <main className="flex-1">
           <div className="relative mx-auto max-w-4xl md:px-8 xl:px-0">
@@ -17,7 +16,7 @@ export default function Jobs({ applications }) {
               </div>
 
               <ul role="list" className="divide-y divide-gray-200">
-                {[].map((app) => (
+                {['', '', ''].map((app) => (
                   <li>
                     <a href="#" className="block hover:bg-gray-50">
                       <div className="px-4 py-4 sm:px-6">

@@ -62,7 +62,7 @@ export default function OppApplication({ user }) {
                   id="username"
                   autoComplete="username"
                   className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  defaultValue={user.name.split(' ').join('').toLowerCase()}
+                  defaultValue={user?.name?.split(' ').join('').toLowerCase()}
                 />
               </div>
             </div>
@@ -185,7 +185,7 @@ export default function OppApplication({ user }) {
                   id="first-name"
                   autoComplete="given-name"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  defaultValue={user.name.split(' ')[0]}
+                  defaultValue={user?.name?.split(' ')[0]}
                 />
               </div>
             </div>
@@ -204,7 +204,7 @@ export default function OppApplication({ user }) {
                   id="last-name"
                   autoComplete="family-name"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  defaultValue={user.name.split(' ')[1]}
+                  defaultValue={user?.name?.split(' ')[1]}
                 />
               </div>
             </div>

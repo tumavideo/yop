@@ -33,7 +33,10 @@ export default function Layout({ children }) {
       <div>
         {session && (
           <>
-            <Sidebar />
+            <Sidebar
+              setSidebarOpen={setSidebarOpen}
+              sidebarOpen={sidebarOpen}
+            />
           </>
         )}
         {session ? (
@@ -45,7 +48,13 @@ export default function Layout({ children }) {
                 onClick={() => setSidebarOpen(true)}
               >
                 <span className="sr-only">Open sidebar</span>
-                {/* <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" /> */}
+                <Image
+                  width={24}
+                  height={24}
+                  className="h-6 w-6"
+                  src={assets.Burger}
+                  alt="Menu icon"
+                />
               </button>
               <div className="flex flex-1 justify-between px-4">
                 <div className="flex flex-1"></div>

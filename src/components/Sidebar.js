@@ -7,10 +7,10 @@ import { classNames } from '@/lib/utils'
 import { sidebarNav } from '@/utils/navigation'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import assets from '@/images/assets'
 
-export default function Sidebar() {
+export default function Sidebar({ setSidebarOpen, sidebarOpen }) {
   const router = useRouter()
-  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <>
@@ -59,10 +59,14 @@ export default function Sidebar() {
                       onClick={() => setSidebarOpen(false)}
                     >
                       <span className="sr-only">Close sidebar</span>
-                      {/* <XMarkIcon
+                      <Image
+                        width={24}
+                        height={24}
                         className="h-6 w-6 text-white"
+                        src={assets.Close}
+                        alt="Close sidebar"
                         aria-hidden="true"
-                      /> */}
+                      />
                     </button>
                   </div>
                 </Transition.Child>

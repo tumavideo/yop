@@ -60,6 +60,39 @@ export default function PageHeading({ opportunity }) {
                   /> */}
                 Closing on {opportunity.closingDate}
               </div>
+              {opportunity.bio && (
+                <div className="mt-2 flex items-center text-sm text-gray-500">
+                  Company info: {opportunity.bio}
+                </div>
+              )}
+              {opportunity.link && (
+                <div className="mt-2 flex items-center text-sm text-gray-500">
+                  Link:{' '}
+                  <a href={`http://${opportunity.link}`} target="_blank">
+                    {opportunity.link}
+                  </a>
+                </div>
+              )}
+              {opportunity.role && (
+                <div className="mt-2 flex items-center text-sm text-gray-500">
+                  Role: {opportunity.role}
+                </div>
+              )}
+              {opportunity.position && (
+                <div className="mt-2 flex items-center text-sm text-gray-500">
+                  Position: {opportunity.position}
+                </div>
+              )}
+              {opportunity.description && (
+                <div className="mt-2 flex items-center text-sm text-gray-500">
+                  Description: {opportunity.description}
+                </div>
+              )}
+              {opportunity.responsibilites && (
+                <div className="mt-2 flex items-center text-sm text-gray-500">
+                  Responsibilites: {opportunity.responsibilites}
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -16,10 +16,16 @@ export default function Layout({ children }) {
   return (
     <div className="layout">
       <Head>
-        <title>Youth Opportunities Portal - Some Tagline Over Here.</title>
+        <title>
+          Youth Opportunities Portal - Your one-stop platform for accessing
+          skills, job opportunites, market access, funding, business and career
+          development services.
+        </title>
         <meta
           name="description"
-          content="Brief description about what the YOP does"
+          content="Your one-stop platform for accessing skills, job
+          opportunites, market access, funding, business and
+          career development services."
         />
       </Head>
       <div>

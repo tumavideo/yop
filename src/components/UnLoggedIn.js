@@ -3,6 +3,8 @@ import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/outline'
 import { sidebarNav } from '@/utils/navigation'
 import { signIn } from 'next-auth/react'
+import Image from 'next/image'
+import assets from '@/images/assets'
 
 export default function UnLoggedIn() {
   return (
@@ -26,7 +28,13 @@ export default function UnLoggedIn() {
                 <div className="-mr-2 flex items-center md:hidden">
                   <Popover.Button className="inline-flex items-center justify-center rounded-md bg-gray-50 p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                     <span className="sr-only">Open main menu</span>
-                    {/* <Bars3Icon className="h-6 w-6" aria-hidden="true" /> */}
+                    <Image
+                      width={24}
+                      height={24}
+                      className="h-6 w-6"
+                      src={assets.Burger}
+                      alt="Menu icon"
+                    />
                   </Popover.Button>
                 </div>
               </div>
@@ -89,6 +97,7 @@ export default function UnLoggedIn() {
               <a
                 href="#"
                 className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-indigo-600 hover:bg-gray-100 hover:text-indigo-700"
+                onClick={signIn}
               >
                 Log in
               </a>

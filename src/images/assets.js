@@ -3,13 +3,18 @@ import Market from './icons/market.svg'
 import Money from './icons/money.svg'
 import Skills from './icons/skills.svg'
 import Vector from './icons/vector.svg'
+import Burger from './icons/menu-icon.svg'
 
 import Labour from './logos/labour_security.svg'
 import Smart from './logos/smart_zambia.svg'
 import Tech from './logos/tech_science.svg'
 import Youth from './logos/youth_sport_art.svg'
 
+import DashboardPreview from './dashboard-preview.png'
+
 export default {
+  Burger,
+  DashboardPreview,
   Jobs,
   Market,
   Money,

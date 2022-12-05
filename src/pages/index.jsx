@@ -9,6 +9,8 @@ import { sidebarNav } from '@/utils/navigation'
 import { classNames } from '@/lib/utils'
 import UnLoggedIn from '@/components/UnLoggedIn'
 // import { Bars3Icon, XMarkIcon } from '@heroicons/react/outline'
+import assets from '../images/assets'
+import Image from 'next/image'
 
 export default function Home() {
   const { data: session } = useSession()
@@ -128,9 +130,11 @@ export default function Home() {
                       <div className="w-full flex-1 bg-gray-800" />
                     </div>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6">
-                      <img
+                      <Image
+                        width={1859}
+                        height={1347}
                         className="relative rounded-lg shadow-lg"
-                        src="https://tailwindui.com/img/component-images/top-nav-with-multi-column-layout-screenshot.jpg"
+                        src={assets.DashboardPreview}
                         alt="App screenshot"
                       />
                     </div>

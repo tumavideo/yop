@@ -79,7 +79,14 @@ export default function UnLoggedIn() {
                 <div className="-mr-2">
                   <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                     <span className="sr-only">Close main menu</span>
-                    {/* <XMarkIcon className="h-6 w-6" aria-hidden="true" /> */}
+                    <Image
+                      width={24}
+                      height={24}
+                      className="h-6 w-6"
+                      src={assets.Close}
+                      alt="Menu icon"
+                      aria-hidden="true"
+                    />
                   </Popover.Button>
                 </div>
               </div>

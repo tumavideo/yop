@@ -4,6 +4,7 @@ import Money from './icons/money.svg'
 import Skills from './icons/skills.svg'
 import Vector from './icons/vector.svg'
 import Burger from './icons/menu-icon.svg'
+import Close from './icons/close.svg'
 
 import Labour from './logos/labour_security.svg'
 import Smart from './logos/smart_zambia.svg'
@@ -14,6 +15,7 @@ import DashboardPreview from './dashboard-preview.png'
 
 export default {
   Burger,
+  Close,
   DashboardPreview,
   Jobs,
   Market,

@@ -68,7 +68,7 @@ export default function PageHeading({ opportunity }) {
               {opportunity.link && (
                 <div className="mt-2 flex items-center text-sm text-gray-500">
                   Link:{' '}
-                  <a href={`http://${opportunity.link}`} target="_blank">
+                  <a href={`${opportunity.link}`} target="_blank">
                     {opportunity.link}
                   </a>
                 </div>

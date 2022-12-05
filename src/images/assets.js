@@ -11,9 +11,11 @@ import Smart from './logos/smart_zambia.svg'
 import Tech from './logos/tech_science.svg'
 import Youth from './logos/youth_sport_art.svg'
 
+import Avatar from './avatar.png'
 import DashboardPreview from './dashboard-preview.png'
 
 export default {
+  Avatar,
   Burger,
   Close,
   DashboardPreview,

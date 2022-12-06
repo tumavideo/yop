@@ -1,14 +1,14 @@
 import { urlFor } from '@/lib/client'
 import { classNames, convertDate } from '@/lib/utils'
 
-export default function TwoColwAvatar({ opportunities }) {
+export default function TwoColwAvatar({ opportunities, opType = 'job' }) {
   return (
     <div className="TwoColwAvatar">
       <ul role="list" className="divide-y divide-gray-200">
         {opportunities.map((opportunity) => (
           <li key={opportunity._id}>
             <a
-              href={`/job/${opportunity._id}`}
+              href={`/${opType}/${opportunity._id}`}
               className="block hover:bg-gray-50"
             >
               <div className="flex items-center px-4 py-4 sm:px-6">

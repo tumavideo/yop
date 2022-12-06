@@ -34,18 +34,20 @@ export default function JobInfo({ job }) {
             <img
               className="h-32 w-full object-cover lg:h-48"
               src={
-                'https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'
+                job.companyRef.feature
+                  ? urlFor(job.companyRef.feature.asset)
+                  : 'https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'
               }
               alt=""
             />
           </div>
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <div className="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
-              {job?.logo && (
+              {job?.companyRef.logo && (
                 <div className="flex">
                   <img
                     className="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
-                    src={urlFor(job.logo.asset)}
+                    src={urlFor(job.companyRef.logo.asset)}
                     alt=""
                   />
                 </div>
@@ -53,14 +55,14 @@ export default function JobInfo({ job }) {
               <div className="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
                 <div className="mt-6 min-w-0 flex-1 sm:hidden 2xl:block">
                   <h1 className="truncate text-2xl font-bold text-gray-900">
-                    {job.company}
+                    {job.company || job.title}
                   </h1>
                 </div>
               </div>
             </div>
             <div className="mt-6 hidden min-w-0 flex-1 sm:block 2xl:hidden">
               <h1 className="truncate text-2xl font-bold text-gray-900">
-                {job.company}
+                {job.company || job.title}
               </h1>
             </div>
           </div>
@@ -102,6 +104,7 @@ export default function JobInfo({ job }) {
                 className="mt-1 max-w-prose space-y-5 text-sm text-gray-900"
                 dangerouslySetInnerHTML={{
                   __html:
+                    job.brief ||
                     "Under the direct supervision of the Chief of Health, the incumbent will be responsible for supporting the government in the assessment, designing, planning, adaptation, and deployment of scalable digital health technologies in Zambia's context in alignment with national digital strategies, focusing on addressing bottlenecks in health services delivery. In close collaboration with the UNICEF ESARO, and Digital Health Centre of Excellence (DICE), the incumbent will coordinate and collaborate with in-country digital health partners in Zambia to support the MoH on implementation, monitoring, evaluation, and reporting of Zambia’s Digital Health Strategic Plan 2022–2026. The incumbent will provide technical assistance to map out what are the different areas that digital solutions that could strengthen the health system, facilitate prioritization exercises with government and key stakeholders, and then support the planning and roll-out of one of these interventions based on needs identified, requirements gathered and strong evidence of replicability and scalability.",
                 }}
               />

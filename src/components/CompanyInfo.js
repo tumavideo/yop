@@ -25,8 +25,6 @@ const profile = {
 }
 
 export default function CompanyInfo({ company }) {
-  console.log(company)
-
   return (
     <div className="CompanyInfo">
       <article>

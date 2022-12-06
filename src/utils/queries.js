@@ -1,14 +1,38 @@
 export const getCareers = () =>
-  `*[_type == "opportunity" && opportunityType == "career-development"  && !(_id in path('drafts.**'))]`
+  `*[_type == "career" && !(_id in path('drafts.**'))]{
+    _id,
+    _createdAt,
+    title,
+    companyRef->{company,logo}
+  }`
 
 export const getEducation = () =>
-  `*[_type == "opportunity" && opportunityType == "skills"  && !(_id in path('drafts.**'))]`
+  `*[_type == "skill" && !(_id in path('drafts.**'))]{
+    _id,
+    _createdAt,
+    title,
+    companyRef->{company,logo}
+  }`
 
 export const findMarketplace = () =>
-  `*[_type == "opportunity" && opportunityType == "market"  && !(_id in path('drafts.**'))]`
+  `*[_type == "market" && !(_id in path('drafts.**'))]{
+    _id,
+    _createdAt,
+    title,
+    companyRef->{company,logo}
+  }`
 
-export const findJobs = () =>
-  `*[_type == "opportunity" && opportunityType == "jobs" && !(_id in path('drafts.**'))]`
+export const findJobs = () => `*[_type == "job" && !(_id in path('drafts.**'))]{
+  _id,
+  _createdAt,
+  title,
+  companyRef->{company,logo}
+}`
 
 export const getFunding = () =>
-  `*[_type == "opportunity" && opportunityType == "finance" && !(_id in path('drafts.**'))]`
+  `*[_type == "finance" && !(_id in path('drafts.**'))]{
+    _id,
+    _createdAt,
+    title,
+    companyRef->{company,logo}
+  }`

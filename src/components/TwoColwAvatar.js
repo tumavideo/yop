@@ -6,31 +6,35 @@ export default function TwoColwAvatar({ opportunities }) {
     <div className="TwoColwAvatar">
       <ul role="list" className="divide-y divide-gray-200">
         {opportunities.map((opportunity) => (
-          <li key={opportunity.company}>
+          <li key={opportunity._id}>
             <a
               href={`/job/${opportunity._id}`}
               className="block hover:bg-gray-50"
             >
               <div className="flex items-center px-4 py-4 sm:px-6">
                 <div className="flex min-w-0 flex-1 items-center">
-                  <div className="flex-shrink-0">
-                    <img
-                      src={urlFor(opportunity.logo.asset)}
-                      className="h-12 w-12 rounded-full"
-                      alt="mugshot"
-                    />
-                  </div>
+                  {opportunity.companyRef.logo && (
+                    <div className="flex-shrink-0">
+                      <img
+                        src={urlFor(opportunity.companyRef.logo.asset)}
+                        className="h-12 w-12 rounded-full"
+                        alt="mugshot"
+                      />
+                    </div>
+                  )}
                   <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                     <div>
                       <p className="truncate text-sm font-medium text-indigo-600">
-                        {opportunity.company}
+                        {opportunity.title}
                       </p>
                       <p className="mt-2 flex items-center text-sm text-gray-500">
                         {/* <EnvelopeIcon
                           className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                           aria-hidden="true"
                         /> */}
-                        <span className="truncate">{opportunity.role}</span>
+                        <span className="truncate">
+                          {opportunity.companyRef.company}
+                        </span>
                       </p>
                     </div>
                     <div className="hidden md:block">

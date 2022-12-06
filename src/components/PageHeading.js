@@ -58,14 +58,14 @@ export default function PageHeading({ opportunity }) {
                     className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                     aria-hidden="true"
                   /> */}
-                Closing on {opportunity.closingDate}
+                Closing on {opportunity?.closingDate}
               </div>
-              {opportunity.bio && (
+              {opportunity?.bio && (
                 <div className="mt-2 flex items-center text-sm text-gray-500">
                   Company info: {opportunity.bio}
                 </div>
               )}
-              {opportunity.link && (
+              {opportunity?.link && (
                 <div className="mt-2 flex items-center text-sm text-gray-500">
                   Link:{' '}
                   <a href={`${opportunity.link}`} target="_blank">
@@ -73,22 +73,22 @@ export default function PageHeading({ opportunity }) {
                   </a>
                 </div>
               )}
-              {opportunity.role && (
+              {opportunity?.role && (
                 <div className="mt-2 flex items-center text-sm text-gray-500">
                   Role: {opportunity.role}
                 </div>
               )}
-              {opportunity.position && (
+              {opportunity?.position && (
                 <div className="mt-2 flex items-center text-sm text-gray-500">
                   Position: {opportunity.position}
                 </div>
               )}
-              {opportunity.description && (
+              {opportunity?.description && (
                 <div className="mt-2 flex items-center text-sm text-gray-500">
                   Description: {opportunity.description}
                 </div>
               )}
-              {opportunity.responsibilites && (
+              {opportunity?.responsibilites && (
                 <div className="mt-2 flex items-center text-sm text-gray-500">
                   Responsibilites: {opportunity.responsibilites}
                 </div>

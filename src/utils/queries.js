@@ -25,6 +25,8 @@ export const findMarketplace = () =>
 export const findJobs = () => `*[_type == "job" && !(_id in path('drafts.**'))]{
   _id,
   _createdAt,
+  position,
+  role,
   title,
   companyRef->{company,logo}
 }`

@@ -25,7 +25,9 @@ export default function TwoColwAvatar({ opportunities }) {
                   <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                     <div>
                       <p className="truncate text-sm font-medium text-indigo-600">
-                        {opportunity.title}
+                        {opportunity.title ||
+                          opportunity.position ||
+                          opportunity.role}
                       </p>
                       <p className="mt-2 flex items-center text-sm text-gray-500">
                         {/* <EnvelopeIcon

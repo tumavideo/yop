@@ -1,3 +1,4 @@
+import Company from './icons/company.svg'
 import Jobs from './icons/jobs.svg'
 import Market from './icons/market.svg'
 import Money from './icons/money.svg'
@@ -18,6 +19,7 @@ export default {
   Avatar,
   Burger,
   Close,
+  Company,
   DashboardPreview,
   Jobs,
   Market,

@@ -45,8 +45,6 @@ export default function Listing({ career }) {
   const [activeJob, setActiveJob] = useState({})
   const { data: session } = useSession()
 
-  console.log(career)
-
   return (
     <>
       <div className="flex h-full">

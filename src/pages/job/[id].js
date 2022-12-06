@@ -1,13 +1,9 @@
 import { client } from '@/lib/client'
-import React from 'react'
+import React, { useState } from 'react'
 
-import Tabs from '@/components/Tabs'
-import StackedList from '@/components/StackedList'
-import Pagination from '@/components/Pagination'
-import PageHeading from '@/components/PageHeading'
 import { useSession } from 'next-auth/react'
 import OppApplication from '@/components/OppApplication'
-import Header from '@/components/Header'
+import JobInfo from '@/components/JobInfo'
 
 const tabs = [
   {
@@ -45,34 +41,32 @@ const tabs = [
   },
 ]
 
-export default function Listing({ opportunity, users }) {
+export default function Listing({ job }) {
+  const [activeJob, setActiveJob] = useState({
+  })
   const { data: session } = useSession()
 
   return (
     <>
-      <div className="min-h-full">
-        <Header title="Application" />
-        <PageHeading opportunity={opportunity} />
-        <main className="pt-8 pb-16">
-          <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            {session?.user?.isAdmin ? (
-              <>
-                <Tabs count={5} opportunity={opportunity} tabs={tabs} />
-                <StackedList users={users} />
-                <Pagination />
-              </>
-            ) : (
-              session?.user && <OppApplication user={session.user} />
-            )}
+      <div className="flex h-full">
+        <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
+          <div className="relative z-0 flex flex-1 overflow-hidden">
+            <JobInfo
+              job={{
+                company: 'Nutrition Specialist (P3), Lusaka, Zambia',
+                bio: 'bio',
+              }}
+            />
+            {session && <OppApplication user={session.user} />}
           </div>
-        </main>
+        </div>
       </div>
     </>
   )
 }
 
 export const getStaticPaths = async () => {
-  const query = `*[_type == "opportunity"] {
+  const query = `*[_type == "job"] {
     _id
   }
   `
@@ -90,12 +84,10 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params: { id } }) => {
-  const query = `*[_type == "opportunity" && _id == '${id}'][0]`
-  const usersQuery = '*[_type == "user"]'
-  const opportunity = await client.fetch(query)
-  const users = await client.fetch(usersQuery)
+  const query = `*[_type == "job" && _id == '${id}'][0]`
+  const job = await client.fetch(query)
 
   return {
-    props: { opportunity, users },
+    props: { job },
   }
 }

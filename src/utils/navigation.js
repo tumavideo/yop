@@ -62,9 +62,19 @@ export const sidebarNav = [
     iconColor: 'bg-blue-500',
     current: false,
   },
-  // { name: 'Profile', href: '/settings', icon: CogIcon, current: false },
+  {
+    name: 'Companies',
+    alt: 'Companies',
+    description:
+      'Find companies and employees. Match interests, work values and skills with the world of work, as well as, hire people that fit your criteria.',
+    href: '/companies',
+    icon: assets.Jobs,
+    iconColor: 'bg-blue-500',
+    current: false,
+  },
+  // { name: 'Profile', href: '/settings', icon: assets.CogIcon, current: false },
 ]
 
 export const secondaryNavigation = [
-  { name: 'Help', href: '#', icon: QuestionMarkCircleIcon },
+  { name: 'Help', href: '#', icon: assets.QuestionMarkCircleIcon },
 ]

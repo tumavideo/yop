@@ -29,7 +29,7 @@ export default function OppApplication({ user }) {
 
   return (
     <form
-      className="space-y-8 divide-y divide-gray-200"
+      className="space-y-8 divide-y divide-gray-200 p-8"
       onSubmit={handleSubmit}
     >
       <div className="space-y-8 divide-y divide-gray-200">

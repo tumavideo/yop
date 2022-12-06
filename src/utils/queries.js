@@ -31,6 +31,14 @@ export const findJobs = () => `*[_type == "job" && !(_id in path('drafts.**'))]{
   companyRef->{company,logo}
 }`
 
+export const findCompanies = () =>
+  `*[_type == "company" && !(_id in path('drafts.**'))]{
+    _id,
+    logo,
+    company,
+    bio,
+  }`
+
 export const getFunding = () =>
   `*[_type == "finance" && !(_id in path('drafts.**'))]{
     _id,

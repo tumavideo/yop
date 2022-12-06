@@ -1,10 +1,10 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/outline'
+
 import { sidebarNav } from '@/utils/navigation'
 import { signIn } from 'next-auth/react'
-import Image from 'next/image'
 import assets from '@/images/assets'
+import Image from 'next/image'
 
 export default function UnLoggedIn() {
   return (

@@ -20,14 +20,12 @@ export default function Layout({ children }) {
       <Head>
         <title>
           Youth Opportunities Portal - Your one-stop platform for accessing
-          skills, job opportunites, market access, funding, business and career
-          development services.
+          skills, job opportunities, market access, funding, and business and
+          career development services.
         </title>
         <meta
           name="description"
-          content="Your one-stop platform for accessing skills, job
-          opportunites, market access, funding, business and
-          career development services."
+          content="Youth Opportunities Portal - Your one-stop platform for accessing skills, job opportunities, market access, funding, and business and career development services."
         />
       </Head>
       <div>

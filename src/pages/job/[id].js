@@ -84,6 +84,11 @@ export const getStaticProps = async ({ params: { id } }) => {
     _type,
     brief,
     description,
+    feature,
+    link,
+    role,
+    position,
+    responsibilities,
     title,
     companyRef->{bio,company,feature,logo}
   }`

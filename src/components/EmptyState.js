@@ -62,7 +62,7 @@ export default function EmptyState() {
         <div className="mb-24 mt-6 flex">
           <Link
             href="/partner"
-            className="cursor-pointer text-sm font-medium text-indigo-600 hover:text-indigo-500"
+            className="cursor-pointer text-sm font-medium text-blue-600 hover:text-blue-500"
           >
             Or create a new opportunity for Zambias youth
             <span aria-hidden="true"> &rarr;</span>

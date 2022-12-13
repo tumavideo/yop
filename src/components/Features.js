@@ -2,7 +2,7 @@ export default function Features() {
   return (
     <>
       <div className="mx-auto my-6 mb-12 text-center md:max-w-4xl">
-        <span className="mb-4 inline-block rounded-full bg-indigo-100 py-px px-2 text-xs font-medium uppercase leading-5 text-indigo-500 shadow-sm">
+        <span className="mb-4 inline-block rounded-full bg-blue-100 py-px px-2 text-xs font-medium uppercase leading-5 text-blue-500 shadow-sm">
           Features
         </span>
         <h1 className="mb-4 text-3xl font-bold leading-tight tracking-tighter md:text-4xl">
@@ -15,7 +15,7 @@ export default function Features() {
       <div className="-mx-4 flex flex-wrap">
         <div className="w-full px-4 md:w-1/2 lg:w-1/3">
           <div className="h-full rounded-md p-8 text-center transition duration-200 hover:bg-white hover:shadow-xl">
-            <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-lg bg-indigo-500 text-white">
+            <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-lg bg-blue-500 text-white">
               <svg
                 width="24"
                 height="21"
@@ -39,7 +39,7 @@ export default function Features() {
         </div>
         <div className="w-full px-4 md:w-1/2 lg:w-1/3">
           <div className="h-full rounded-md p-8 text-center transition duration-200 hover:bg-white hover:shadow-xl">
-            <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-lg bg-indigo-500 text-white">
+            <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-lg bg-blue-500 text-white">
               <svg
                 width="22"
                 height="12"
@@ -64,7 +64,7 @@ export default function Features() {
         </div>
         <div className="w-full px-4 md:w-1/2 lg:w-1/3">
           <div className="h-full rounded-md p-8 text-center transition duration-200 hover:bg-white hover:shadow-xl">
-            <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-lg bg-indigo-500 text-white">
+            <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-lg bg-blue-500 text-white">
               <svg
                 width="22"
                 height="18"
@@ -90,7 +90,7 @@ export default function Features() {
         </div>
         <div className="w-full px-4 md:w-1/2 lg:w-1/3">
           <div className="h-full rounded-md p-8 text-center transition duration-200 hover:bg-white hover:shadow-xl">
-            <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-lg bg-indigo-500 text-white">
+            <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-lg bg-blue-500 text-white">
               <svg
                 width="24"
                 height="24"
@@ -114,7 +114,7 @@ export default function Features() {
         </div>
         <div className="w-full px-4 md:w-1/2 lg:w-1/3">
           <div className="h-full rounded-md p-8 text-center transition duration-200 hover:bg-white hover:shadow-xl">
-            <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-lg bg-indigo-500 text-white">
+            <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-lg bg-blue-500 text-white">
               <svg
                 width="20"
                 height="20"

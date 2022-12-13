@@ -23,7 +23,7 @@ export default function Thanks() {
     <main className="bg-white px-4 pt-16 pb-24 sm:px-6 sm:pt-24 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-3xl">
         <div className="max-w-xl">
-          <h1 className="text-base font-medium text-indigo-600">
+          <h1 className="text-base font-medium text-blue-600">
             Thank you for applying!
           </h1>
           <p className="mt-2 text-4xl font-bold tracking-tight">
@@ -35,7 +35,7 @@ export default function Thanks() {
 
           <dl className="mt-12 text-sm font-medium">
             <dt className="text-gray-900">Tracking number</dt>
-            <dd className="mt-2 text-indigo-600">51547878755545848512</dd>
+            <dd className="mt-2 text-blue-600">51547878755545848512</dd>
           </dl>
         </div>
 

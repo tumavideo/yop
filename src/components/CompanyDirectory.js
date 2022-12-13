@@ -25,14 +25,14 @@ export default function CompanyDirectory({ companies, setActiveCompany }) {
                   type="search"
                   name="search"
                   id="search"
-                  className="block w-full rounded-md border-gray-300 pl-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  className="block w-full rounded-md border-gray-300 pl-10 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                   placeholder="Search"
                 />
               </div>
             </div>
             <button
               type="submit"
-              className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-3.5 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-3.5 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               {/* <FunnelIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> */}
               <span className="sr-only">Search</span>
@@ -44,7 +44,7 @@ export default function CompanyDirectory({ companies, setActiveCompany }) {
           {companies.map((company) => (
             <ul role="list" className="relative z-0 divide-y divide-gray-200">
               <li key={company._id}>
-                <div className="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-gray-50">
+                <div className="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 hover:bg-gray-50">
                   <div className="flex-shrink-0">
                     <img
                       className="h-10 w-10 rounded-full"

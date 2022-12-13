@@ -83,14 +83,14 @@ export default function Company({ company }) {
                         <div className="justify-stretch mt-6 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
                           <button
                             type="button"
-                            className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                           >
                             {/* <EnvelopeIcon className="-ml-1 mr-2 h-5 w-5 text-gray-400" aria-hidden="true" /> */}
                             <span>Message</span>
                           </button>
                           <button
                             type="button"
-                            className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                           >
                             {/* <PhoneIcon className="-ml-1 mr-2 h-5 w-5 text-gray-400" aria-hidden="true" /> */}
                             <span>Call</span>
@@ -117,7 +117,7 @@ export default function Company({ company }) {
                             href={tab.href}
                             className={classNames(
                               tab.current
-                                ? 'border-indigo-500 text-gray-900'
+                                ? 'border-blue-500 text-gray-900'
                                 : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
                               'whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium'
                             )}

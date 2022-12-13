@@ -26,7 +26,7 @@ export default function UnLoggedIn() {
                   />
                 </a>
                 <div className="-mr-2 flex items-center md:hidden">
-                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-gray-50 p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-gray-50 p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
                     <span className="sr-only">Open main menu</span>
                     <Image
                       width={24}
@@ -44,7 +44,7 @@ export default function UnLoggedIn() {
               <span className="inline-flex rounded-md shadow">
                 <a
                   href="#"
-                  className="inline-flex items-center rounded-md border border-transparent bg-white px-4 py-2 text-base font-medium text-indigo-600 hover:text-indigo-500"
+                  className="inline-flex items-center rounded-md border border-transparent bg-white px-4 py-2 text-base font-medium text-blue-600 hover:text-blue-500"
                   onClick={signIn}
                 >
                   Log in
@@ -77,7 +77,7 @@ export default function UnLoggedIn() {
                   />
                 </div>
                 <div className="-mr-2">
-                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
                     <span className="sr-only">Close main menu</span>
                     <Image
                       width={24}
@@ -103,7 +103,7 @@ export default function UnLoggedIn() {
               </div>
               <a
                 href="#"
-                className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-indigo-600 hover:bg-gray-100 hover:text-indigo-700"
+                className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-blue-600 hover:bg-gray-100 hover:text-blue-700"
                 onClick={signIn}
               >
                 Log in

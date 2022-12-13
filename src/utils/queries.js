@@ -1,3 +1,6 @@
+export const getPosts = () =>
+  `*[_type == "post" && !(_id in path('drafts.**'))]`
+
 export const getCareers = () =>
   `*[_type == "career" && !(_id in path('drafts.**'))]{
     _id,

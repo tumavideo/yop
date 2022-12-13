@@ -51,7 +51,7 @@ export default function Job({ market }) {
         <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
           <div className="relative z-0 flex flex-1 overflow-hidden">
             <JobInfo job={market} />
-            {session && <OppApplication user={session.user} />}
+            {session && <OppApplication farmer={false} user={session.user} />}
           </div>
         </div>
       </div>

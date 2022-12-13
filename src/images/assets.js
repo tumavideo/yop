@@ -1,9 +1,15 @@
 import Company from './icons/company.svg'
+import CompanyWhite from './icons/company_white.svg'
 import Jobs from './icons/jobs.svg'
+import JobsWhite from './icons/jobs_white.svg'
 import Market from './icons/market.svg'
+import MarketWhite from './icons/market_white.svg'
 import Money from './icons/money.svg'
+import MoneyWhite from './icons/money_white.svg'
 import Skills from './icons/skills.svg'
+import SkillsWhite from './icons/skills_white.svg'
 import Vector from './icons/vector.svg'
+import VectorWhite from './icons/vector_white.svg'
 import Burger from './icons/menu-icon.svg'
 import Close from './icons/close.svg'
 
@@ -20,12 +26,18 @@ export default {
   Burger,
   Close,
   Company,
+  CompanyWhite,
   DashboardPreview,
   Jobs,
+  JobsWhite,
   Market,
+  MarketWhite,
   Money,
+  MoneyWhite,
   Skills,
+  SkillsWhite,
   Vector,
+  VectorWhite,
   Labour,
   Smart,
   Tech,

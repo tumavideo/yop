@@ -34,7 +34,7 @@ export default function EmptyState() {
                       width={24}
                       height={24}
                       className="h-6 w-6 text-white"
-                      src={item.icon}
+                      src={item.altIcon}
                       alt={item.name}
                       aria-hidden="true"
                     />

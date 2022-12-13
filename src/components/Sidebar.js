@@ -71,10 +71,12 @@ export default function Sidebar({ setSidebarOpen, sidebarOpen }) {
                   </div>
                 </Transition.Child>
                 <div className="flex flex-shrink-0 items-center px-4">
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=300"
-                    alt="Your Company"
+                  <Image
+                    width={47}
+                    height={47}
+                    className="h-6 w-6"
+                    src={assets.Logo}
+                    alt="Youth Opportunity Portal Logo"
                   />
                 </div>
                 <div className="mt-5 h-0 flex-1 overflow-y-auto">
@@ -117,10 +119,12 @@ export default function Sidebar({ setSidebarOpen, sidebarOpen }) {
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex flex-grow flex-col overflow-y-auto bg-blue-700 pt-5">
           <div className="flex flex-shrink-0 items-center px-4">
-            <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=300"
-              alt="Your Company"
+            <Image
+              width={47}
+              height={47}
+              className="h-6 w-6"
+              src={assets.Logo}
+              alt="Youth Opportunity Portal Logo"
             />
           </div>
           <div className="mt-5 flex flex-1 flex-col">

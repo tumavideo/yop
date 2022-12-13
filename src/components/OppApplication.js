@@ -1,11 +1,17 @@
+import { useState } from 'react'
+
 export default function OppApplication({ farmer = true, user }) {
+  const [values, setValues] = useState({
+    ...user,
+  })
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
     const mutations = [
       {
         createOrReplace: {
-          ...user,
+          ...values,
           _type: 'user',
         },
       },
@@ -25,6 +31,10 @@ export default function OppApplication({ farmer = true, user }) {
       .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.error(error))
+  }
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value })
   }
 
   return (
@@ -47,17 +57,18 @@ export default function OppApplication({ farmer = true, user }) {
             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
               <div className="sm:col-span-3">
                 <label
-                  htmlFor="first-name"
+                  htmlFor="firstName"
                   className="block text-sm font-medium text-gray-700"
                 >
                   First name
                 </label>
                 <div className="mt-1">
                   <input
+                    onChange={onChange}
                     type="text"
-                    name="first-name"
-                    id="first-name"
-                    autoComplete="given-name"
+                    name="firstName"
+                    id="firstName"
+                    autoComplete="firstName"
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     defaultValue={user?.name?.split(' ')[0]}
                   />
@@ -66,17 +77,18 @@ export default function OppApplication({ farmer = true, user }) {
 
               <div className="sm:col-span-3">
                 <label
-                  htmlFor="last-name"
+                  htmlFor="lastName"
                   className="block text-sm font-medium text-gray-700"
                 >
                   Last name
                 </label>
                 <div className="mt-1">
                   <input
+                    onChange={onChange}
                     type="text"
-                    name="last-name"
-                    id="last-name"
-                    autoComplete="family-name"
+                    name="lastName"
+                    id="lastName"
+                    autoComplete="lastName"
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     defaultValue={user?.name?.split(' ')[1]}
                   />
@@ -112,6 +124,7 @@ export default function OppApplication({ farmer = true, user }) {
                 </label>
                 <div className="mt-1">
                   <input
+                    onChange={onChange}
                     type="text"
                     name="village"
                     id="village"
@@ -130,6 +143,7 @@ export default function OppApplication({ farmer = true, user }) {
                 </label>
                 <div className="mt-1">
                   <input
+                    onChange={onChange}
                     type="text"
                     name="nrc"
                     id="nrc"
@@ -148,6 +162,7 @@ export default function OppApplication({ farmer = true, user }) {
                 </label>
                 <div className="mt-1">
                   <input
+                    onChange={onChange}
                     type="text"
                     name="package"
                     id="package"
@@ -166,6 +181,7 @@ export default function OppApplication({ farmer = true, user }) {
                 </label>
                 <div className="mt-1">
                   <input
+                    onChange={onChange}
                     type="number"
                     name="quantity"
                     id="quantity"
@@ -184,6 +200,7 @@ export default function OppApplication({ farmer = true, user }) {
                 </label>
                 <div className="mt-1">
                   <input
+                    onChange={onChange}
                     type="text"
                     name="paid"
                     id="paid"
@@ -202,6 +219,7 @@ export default function OppApplication({ farmer = true, user }) {
                 </label>
                 <div className="mt-1">
                   <input
+                    onChange={onChange}
                     type="number"
                     name="amount"
                     id="amount"
@@ -240,6 +258,7 @@ export default function OppApplication({ farmer = true, user }) {
                       yop.com/
                     </span>
                     <input
+                      onChange={onChange}
                       type="text"
                       name="username"
                       id="username"
@@ -330,6 +349,7 @@ export default function OppApplication({ farmer = true, user }) {
                         >
                           <span>Upload a file</span>
                           <input
+                            onChange={onChange}
                             id="file-upload"
                             name="file-upload"
                             type="file"
@@ -358,17 +378,18 @@ export default function OppApplication({ farmer = true, user }) {
               <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor="first-name"
+                    htmlFor="firstName"
                     className="block text-sm font-medium text-gray-700"
                   >
                     First name
                   </label>
                   <div className="mt-1">
                     <input
+                      onChange={onChange}
                       type="text"
-                      name="first-name"
-                      id="first-name"
-                      autoComplete="given-name"
+                      name="firstName"
+                      id="firstName"
+                      autoComplete="firstName"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       defaultValue={user?.name?.split(' ')[0]}
                     />
@@ -377,17 +398,18 @@ export default function OppApplication({ farmer = true, user }) {
 
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor="last-name"
+                    htmlFor="lastName"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Last name
                   </label>
                   <div className="mt-1">
                     <input
+                      onChange={onChange}
                       type="text"
-                      name="last-name"
-                      id="last-name"
-                      autoComplete="family-name"
+                      name="lastName"
+                      id="lastName"
+                      autoComplete="lastName"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       defaultValue={user?.name?.split(' ')[1]}
                     />
@@ -403,6 +425,7 @@ export default function OppApplication({ farmer = true, user }) {
                   </label>
                   <div className="mt-1">
                     <input
+                      onChange={onChange}
                       id="email"
                       name="email"
                       type="email"
@@ -441,6 +464,7 @@ export default function OppApplication({ farmer = true, user }) {
                   </label>
                   <div className="mt-1">
                     <input
+                      onChange={onChange}
                       type="text"
                       name="nrc"
                       id="nrc"
@@ -459,6 +483,7 @@ export default function OppApplication({ farmer = true, user }) {
                   </label>
                   <div className="mt-1">
                     <input
+                      onChange={onChange}
                       type="text"
                       name="city"
                       id="city"
@@ -477,6 +502,7 @@ export default function OppApplication({ farmer = true, user }) {
                   </label>
                   <div className="mt-1">
                     <input
+                      onChange={onChange}
                       type="text"
                       name="quantity"
                       id="quantity"
@@ -495,6 +521,7 @@ export default function OppApplication({ farmer = true, user }) {
                   </label>
                   <div className="mt-1">
                     <input
+                      onChange={onChange}
                       type="text"
                       name="paid"
                       id="paid"
@@ -529,6 +556,7 @@ export default function OppApplication({ farmer = true, user }) {
                     <div className="relative flex items-start">
                       <div className="flex h-5 items-center">
                         <input
+                          onChange={onChange}
                           id="candidates"
                           name="candidates"
                           type="checkbox"
@@ -550,6 +578,7 @@ export default function OppApplication({ farmer = true, user }) {
                     <div className="relative flex items-start">
                       <div className="flex h-5 items-center">
                         <input
+                          onChange={onChange}
                           id="offers"
                           name="offers"
                           type="checkbox"
@@ -581,6 +610,7 @@ export default function OppApplication({ farmer = true, user }) {
                   <div className="mt-4 space-y-4">
                     <div className="flex items-center">
                       <input
+                        onChange={onChange}
                         id="push-everything"
                         name="push-notifications"
                         type="radio"
@@ -595,6 +625,7 @@ export default function OppApplication({ farmer = true, user }) {
                     </div>
                     <div className="flex items-center">
                       <input
+                        onChange={onChange}
                         id="push-email"
                         name="push-notifications"
                         type="radio"
@@ -609,6 +640,7 @@ export default function OppApplication({ farmer = true, user }) {
                     </div>
                     <div className="flex items-center">
                       <input
+                        onChange={onChange}
                         id="push-nothing"
                         name="push-notifications"
                         type="radio"

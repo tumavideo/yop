@@ -1,5 +1,20 @@
 export const getPosts = () =>
-  `*[_type == "post" && !(_id in path('drafts.**'))]`
+  `*[_type == "post" && !(_id in path('drafts.**'))]{
+    _id,
+    caption,
+     video{
+      asset->{
+        _id,
+        url
+      }
+    },
+    userId,
+    postedBy->{
+      _id,
+      userName,
+      image
+    },
+}`
 
 export const getCareers = () =>
   `*[_type == "career" && !(_id in path('drafts.**'))]{

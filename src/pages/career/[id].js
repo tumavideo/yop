@@ -54,7 +54,7 @@ export default function Listing({ career }) {
           <JobInfo job={career} setState={() => setState('Company')} />
         ) : (
           <CompanyInfo
-            company={job.companyRef}
+            company={career.companyRef}
             setState={() => setState('Job')}
           />
         )}

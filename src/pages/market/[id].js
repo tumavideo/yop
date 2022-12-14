@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import OppApplication from '@/components/OppApplication'
 import JobInfo from '@/components/JobInfo'
+import CompanyInfo from '@/components/CompanyInfo'
 
 const tabs = [
   {
@@ -42,18 +43,22 @@ const tabs = [
 ]
 
 export default function Job({ market }) {
-  const [activeJob, setActiveJob] = useState({})
+  const [state, setState] = useState('Job')
   const { data: session } = useSession()
 
   return (
     <>
-      <div className="flex h-full">
-        <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
-          <div className="relative z-0 flex flex-1 overflow-hidden">
-            <JobInfo job={market} />
-            {session && <OppApplication farmer={false} user={session.user} />}
-          </div>
-        </div>
+      {/* Background color split screen for large screens */}
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-x-16 lg:grid-cols-2 lg:px-8 xl:gap-x-12">
+        {state === 'Job' ? (
+          <JobInfo job={market} setState={() => setState('Company')} />
+        ) : (
+          <CompanyInfo
+            company={market.companyRef}
+            setState={() => setState('Job')}
+          />
+        )}
+        {session && <OppApplication farmer={true} user={session.user} />}
       </div>
     </>
   )

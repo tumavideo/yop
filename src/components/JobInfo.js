@@ -8,23 +8,14 @@ const tabs = [
 ]
 const profile = {
   name: 'United Nations Development Program',
-  imageUrl:
-    'https://cdn.sanity.io/images/d9p0l1rj/production/f33f7b07f4449668a6f36136217a308a72a2c92d-151x230.png',
-  coverImageUrl:
-    'https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-  about: `
-    <p>Tincidunt quam neque in cursus viverra orci, dapibus nec tristique. Nullam ut sit dolor consectetur urna, dui cras nec sed. Cursus risus congue arcu aenean posuere aliquam.</p>
-    <p>Et vivamus lorem pulvinar nascetur non. Pulvinar a sed platea rhoncus ac mauris amet. Urna, sem pretium sit pretium urna, senectus vitae. Scelerisque fermentum, cursus felis dui suspendisse velit pharetra. Augue et duis cursus maecenas eget quam lectus. Accumsan vitae nascetur pharetra rhoncus praesent dictum risus suspendisse.</p>
-  `,
   fields: {
     Location: 'Lusaka - Oasis, 4th floor',
-    'Company Size': '100',
   },
 }
 
-export default function JobInfo({ job }) {
+export default function JobInfo({ job, setState }) {
   return (
-    <div className="JobInfo p-8">
+    <>
       <article>
         {/* Profile header */}
         <div>
@@ -73,6 +64,7 @@ export default function JobInfo({ job }) {
               <nav className="-mb-px flex space-x-8" aria-label="Tabs">
                 {tabs.map((tab) => (
                   <a
+                    onClick={setState}
                     key={tab.name}
                     href={tab.href}
                     className={classNames(
@@ -135,18 +127,22 @@ export default function JobInfo({ job }) {
                 />
               </div>
             )}
-            <div key={'position'} className="sm:col-span-1">
-              <dt className="text-sm font-medium text-gray-500">Title</dt>
-              <dd className="mt-1 text-sm text-gray-900">{job.position}</dd>
-            </div>
-            <div key={'website'} className="sm:col-span-1">
-              <dt className="text-sm font-medium text-gray-500">Website</dt>
-              <dd className="mt-1 text-sm text-blue-500">
-                <a href={job.link} target="_blank" rel="noopener noreferrer">
-                  {job.link}
-                </a>
-              </dd>
-            </div>
+            {job.position && (
+              <div key={'position'} className="sm:col-span-1">
+                <dt className="text-sm font-medium text-gray-500">Title</dt>
+                <dd className="mt-1 text-sm text-gray-900">{job.position}</dd>
+              </div>
+            )}
+            {job.link && (
+              <div key={'website'} className="sm:col-span-1">
+                <dt className="text-sm font-medium text-gray-500">Website</dt>
+                <dd className="mt-1 text-sm text-blue-500">
+                  <a href={job.link} target="_blank" rel="noopener noreferrer">
+                    {job.link}
+                  </a>
+                </dd>
+              </div>
+            )}
             {Object.keys(profile.fields).map((field) => (
               <div key={field} className="sm:col-span-1">
                 <dt className="text-sm font-medium text-gray-500">{field}</dt>
@@ -158,6 +154,6 @@ export default function JobInfo({ job }) {
           </dl>
         </div>
       </article>
-    </div>
+    </>
   )
 }

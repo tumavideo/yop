@@ -8,25 +8,15 @@ const tabs = [
 ]
 const profile = {
   name: 'United Nations Development Program',
-  imageUrl:
-    'https://cdn.sanity.io/images/d9p0l1rj/production/f33f7b07f4449668a6f36136217a308a72a2c92d-151x230.png',
-  coverImageUrl:
-    'https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-  about: `
-    <p>Tincidunt quam neque in cursus viverra orci, dapibus nec tristique. Nullam ut sit dolor consectetur urna, dui cras nec sed. Cursus risus congue arcu aenean posuere aliquam.</p>
-    <p>Et vivamus lorem pulvinar nascetur non. Pulvinar a sed platea rhoncus ac mauris amet. Urna, sem pretium sit pretium urna, senectus vitae. Scelerisque fermentum, cursus felis dui suspendisse velit pharetra. Augue et duis cursus maecenas eget quam lectus. Accumsan vitae nascetur pharetra rhoncus praesent dictum risus suspendisse.</p>
-  `,
   fields: {
-    Title: 'Senior Front-End Developer',
-    Team: 'Product Development',
     Location: 'Lusaka - Oasis, 4th floor',
     'Company Size': '100',
   },
 }
 
-export default function CompanyInfo({ company }) {
+export default function CompanyInfo({ company, setState }) {
   return (
-    <div className="CompanyInfo">
+    <>
       <article>
         {/* Profile header */}
         <div>
@@ -54,22 +44,6 @@ export default function CompanyInfo({ company }) {
                     {company.company}
                   </h1>
                 </div>
-                <div className="justify-stretch mt-6 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                  >
-                    {/* <EnvelopeIcon className="-ml-1 mr-2 h-5 w-5 text-gray-400" aria-hidden="true" /> */}
-                    <span>Message</span>
-                  </button>
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                  >
-                    {/* <PhoneIcon className="-ml-1 mr-2 h-5 w-5 text-gray-400" aria-hidden="true" /> */}
-                    <span>Call</span>
-                  </button>
-                </div>
               </div>
             </div>
             <div className="mt-6 hidden min-w-0 flex-1 sm:block 2xl:hidden">
@@ -87,6 +61,7 @@ export default function CompanyInfo({ company }) {
               <nav className="-mb-px flex space-x-8" aria-label="Tabs">
                 {tabs.map((tab) => (
                   <a
+                    onClick={setState}
                     key={tab.name}
                     href={tab.href}
                     className={classNames(
@@ -128,6 +103,6 @@ export default function CompanyInfo({ company }) {
           </dl>
         </div>
       </article>
-    </div>
+    </>
   )
 }

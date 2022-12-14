@@ -36,6 +36,7 @@ export const findMarketplace = () =>
   `*[_type == "market" && !(_id in path('drafts.**'))]{
     _id,
     _createdAt,
+    slug,
     title,
     companyRef->{company,logo}
   }`
@@ -45,6 +46,7 @@ export const findJobs = () => `*[_type == "job" && !(_id in path('drafts.**'))]{
   _createdAt,
   position,
   role,
+  slug,
   title,
   companyRef->{company,logo}
 }`

@@ -58,7 +58,7 @@ export default function Job({ market }) {
             setState={() => setState('Job')}
           />
         )}
-        {session && <OppApplication farmer={true} user={session.user} />}
+        {session && <OppApplication user={session.user} />}
       </div>
     </>
   )

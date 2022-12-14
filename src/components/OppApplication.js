@@ -38,7 +38,7 @@ export default function OppApplication({ farmer = false, opportunity, user }) {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
 
-  return user.email !== 'goldroom.afterhours@gmail.com' ? (
+  return false ? (
     <Thanks />
   ) : (
     <>

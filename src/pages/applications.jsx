@@ -21,7 +21,7 @@ export default function Jobs({ applications }) {
                     <a href="#" className="block hover:bg-gray-50">
                       <div className="px-4 py-4 sm:px-6">
                         <div className="flex items-center justify-between">
-                          <div className="truncate text-sm font-medium text-indigo-600">
+                          <div className="truncate text-sm font-medium text-blue-600">
                             Back End Developer
                           </div>
                           <div className="ml-2 flex flex-shrink-0">

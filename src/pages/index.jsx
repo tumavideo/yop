@@ -106,7 +106,7 @@ export default function Home() {
                       <div className="text-center">
                         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
                           <span className="block">The Portal</span>
-                          <span className="block text-indigo-600">
+                          <span className="block text-blue-600">
                             Opportunities for all Zambian Youths
                           </span>
                         </h1>

@@ -24,7 +24,7 @@ export default function TwoColwAvatar({ opportunities, opType = 'job' }) {
                   )}
                   <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                     <div>
-                      <p className="truncate text-sm font-medium text-indigo-600">
+                      <p className="truncate text-sm font-medium text-blue-600">
                         {opportunity.title ||
                           opportunity.position ||
                           opportunity.role}

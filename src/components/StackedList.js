@@ -23,7 +23,7 @@ export default function StackedList({ users }) {
                   </div>
                   <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                     <div>
-                      <p className="truncate text-sm font-medium text-indigo-600">
+                      <p className="truncate text-sm font-medium text-blue-600">
                         {user.userName}
                       </p>
                       <p className="mt-2 flex items-center text-sm text-gray-500">

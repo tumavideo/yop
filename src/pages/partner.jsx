@@ -18,8 +18,7 @@ export default function Partner() {
             </h2>
             <p className="mt-4 text-lg text-gray-500 sm:mt-3">
               We’d love to hear from you! Send us a message using the form
-              opposite, or email us. We’d love to hear from you! Send us a
-              message using the form opposite, or email us.
+              opposite, or email us.
             </p>
             <form
               action="#"
@@ -39,7 +38,7 @@ export default function Partner() {
                     name="first-name"
                     id="first-name"
                     autoComplete="given-name"
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -56,7 +55,7 @@ export default function Partner() {
                     name="last-name"
                     id="last-name"
                     autoComplete="family-name"
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -73,7 +72,7 @@ export default function Partner() {
                     name="email"
                     type="email"
                     autoComplete="email"
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -90,7 +89,7 @@ export default function Partner() {
                     name="company"
                     id="company"
                     autoComplete="organization"
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -116,7 +115,7 @@ export default function Partner() {
                     id="phone"
                     autoComplete="tel"
                     aria-describedby="phone-description"
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -141,7 +140,7 @@ export default function Partner() {
                     name="how-can-we-help"
                     aria-describedby="how-can-we-help-description"
                     rows={4}
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     defaultValue={''}
                   />
                 </div>
@@ -157,7 +156,7 @@ export default function Partner() {
                       name="budget"
                       defaultValue="under_25k"
                       type="radio"
-                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
                     <label htmlFor="budget-under-25k" className="ml-3">
                       <span className="block text-sm text-gray-700">
@@ -171,7 +170,7 @@ export default function Partner() {
                       name="budget"
                       defaultValue="25k-50k"
                       type="radio"
-                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
                     <label htmlFor="budget-25k-50k" className="ml-3">
                       <span className="block text-sm text-gray-700">
@@ -185,7 +184,7 @@ export default function Partner() {
                       name="budget"
                       defaultValue="50k-100k"
                       type="radio"
-                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
                     <label htmlFor="budget-50k-100k" className="ml-3">
                       <span className="block text-sm text-gray-700">
@@ -199,7 +198,7 @@ export default function Partner() {
                       name="budget"
                       defaultValue="over_100k"
                       type="radio"
-                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
                     <label htmlFor="budget-over-100k" className="ml-3">
                       <span className="block text-sm text-gray-700">
@@ -221,14 +220,14 @@ export default function Partner() {
                     type="text"
                     name="how-did-you-hear-about-us"
                     id="how-did-you-hear-about-us"
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                   />
                 </div>
               </div>
               <div className="text-right sm:col-span-2">
                 <button
                   type="submit"
-                  className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   Submit
                 </button>

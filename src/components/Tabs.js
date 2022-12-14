@@ -25,7 +25,7 @@ export default function Tabs({ count, opportunity, tabs }) {
           <select
             id="tabs"
             name="tabs"
-            className="mt-4 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            className="mt-4 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
             defaultValue={activeTab.name}
             onChange={handleTabChange}
           >
@@ -47,7 +47,7 @@ export default function Tabs({ count, opportunity, tabs }) {
                   onClick={() => handleTabChange(tab)}
                   className={classNames(
                     tab.current
-                      ? 'border-indigo-500 text-indigo-600'
+                      ? 'border-blue-500 text-blue-600'
                       : 'border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700',
                     'whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium'
                   )}
@@ -57,7 +57,7 @@ export default function Tabs({ count, opportunity, tabs }) {
                     <span
                       className={classNames(
                         tab.current
-                          ? 'bg-indigo-100 text-indigo-600'
+                          ? 'bg-blue-100 text-blue-600'
                           : 'bg-gray-100 text-gray-900',
                         'ml-2 hidden rounded-full py-0.5 px-2.5 text-xs font-medium md:inline-block'
                       )}

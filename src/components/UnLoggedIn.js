@@ -19,10 +19,12 @@ export default function UnLoggedIn() {
               <div className="flex w-full items-center justify-between md:w-auto">
                 <a href="#">
                   <span className="sr-only">Your Company</span>
-                  <img
-                    className="h-8 w-auto sm:h-10"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt=""
+                  <Image
+                    width={47}
+                    height={47}
+                    className="h-6 w-6"
+                    src={assets.LogoDark}
+                    alt="Youth Opportunity Portal Logo"
                   />
                 </a>
                 <div className="-mr-2 flex items-center md:hidden">

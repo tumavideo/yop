@@ -3,6 +3,7 @@ import CompanyWhite from './icons/company_white.svg'
 import Jobs from './icons/jobs.svg'
 import JobsWhite from './icons/jobs_white.svg'
 import Logo from './logos/logo.svg'
+import LogoDark from './logos/logo_dark.svg'
 import Market from './icons/market.svg'
 import MarketWhite from './icons/market_white.svg'
 import Money from './icons/money.svg'
@@ -32,6 +33,7 @@ export default {
   Jobs,
   JobsWhite,
   Logo,
+  LogoDark,
   Market,
   MarketWhite,
   Money,

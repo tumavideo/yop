@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { classNames } from '@/lib/utils'
+import Image from 'next/image'
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -34,10 +35,12 @@ export default function Navbar() {
               <div className="relative flex h-16 items-center justify-between border-b border-gray-200">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <img
-                      className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=violet&shade=500"
-                      alt="Your Company"
+                    <Image
+                      width={47}
+                      height={47}
+                      className="h-6 w-6"
+                      src={assets.LogoDark}
+                      alt="Youth Opportunity Portal Logo"
                     />
                   </div>
 

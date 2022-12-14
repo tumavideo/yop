@@ -1,13 +1,18 @@
 import { useState } from 'react'
+import Modal from './Modal'
 import Thanks from './Thanks'
 
 export default function OppApplication({ farmer = false, opportunity, user }) {
+  const [applied, setApplied] = useState(false)
+  const [overlay, setOverlay] = useState(false)
   const [values, setValues] = useState({
     ...user,
   })
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    setOverlay(true)
 
     const mutations = [
       {
@@ -32,16 +37,21 @@ export default function OppApplication({ farmer = false, opportunity, user }) {
       .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.error(error))
+      .finally(() => {
+        setApplied(true)
+        setTimeout(setOverlay(false), 3000)
+      })
   }
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
 
-  return false ? (
-    <Thanks />
+  return applied ? (
+    <Thanks opportunity={opportunity} />
   ) : (
     <>
+      {overlay && <Modal />}
       <form
         className="space-y-8 divide-y divide-gray-200 p-8"
         onSubmit={handleSubmit}

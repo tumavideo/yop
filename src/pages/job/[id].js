@@ -58,7 +58,7 @@ export default function Job({ job }) {
             setState={() => setState('Job')}
           />
         )}
-        {session && <OppApplication user={session.user} />}
+        {session && <OppApplication opportunity={job} user={session.user} />}
       </div>
     </>
   )

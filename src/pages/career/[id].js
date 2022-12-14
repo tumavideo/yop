@@ -58,7 +58,7 @@ export default function Listing({ career }) {
             setState={() => setState('Job')}
           />
         )}
-        {session && <OppApplication user={session.user} />}
+        {session && <OppApplication opportunity={career} user={session.user} />}
       </div>
     </>
   )

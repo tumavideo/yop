@@ -4,9 +4,6 @@ const products = [
     name: 'Opportunity Name',
     description: 'Opportunity description.',
     href: '#',
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/confirmation-page-05-product-01.jpg',
-    imageAlt: 'Company logo.',
   },
 ]
 
@@ -18,7 +15,7 @@ const user = {
   email: 'kristinwat@gmail.com',
 }
 
-export default function Thanks() {
+export default function Thanks({ opportunity }) {
   return (
     <main className="bg-white px-4 pt-16 pb-24 sm:px-6 sm:pt-24 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-3xl">
@@ -32,11 +29,6 @@ export default function Thanks() {
           <p className="mt-2 text-base text-gray-500">
             Your application number is #14034056 .
           </p>
-
-          <dl className="mt-12 text-sm font-medium">
-            <dt className="text-gray-900">Tracking number</dt>
-            <dd className="mt-2 text-blue-600">51547878755545848512</dd>
-          </dl>
         </div>
 
         <section
@@ -44,40 +36,33 @@ export default function Thanks() {
           className="mt-10 border-t border-gray-200"
         >
           <h2 id="order-heading" className="sr-only">
-            Your order
+            Your application
           </h2>
 
-          <h3 className="sr-only">Items</h3>
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="flex space-x-6 border-b border-gray-200 py-10"
-            >
-              <img
-                src={product.imageSrc}
-                alt={product.imageAlt}
-                className="h-20 w-20 flex-none rounded-lg bg-gray-100 object-cover object-center sm:h-40 sm:w-40"
-              />
-              <div className="flex flex-auto flex-col">
-                <div>
-                  <h4 className="font-medium text-gray-900">
-                    <a href={product.href}>{product.name}</a>
-                  </h4>
-                  <p className="mt-2 text-sm text-gray-600">
-                    {product.description}
-                  </p>
-                </div>
-                <div className="mt-6 flex flex-1 items-end">
-                  <dl className="flex space-x-4 divide-x divide-gray-200 text-sm sm:space-x-6">
-                    <div className="flex">
-                      <dt className="font-medium text-gray-900">End date</dt>
-                      <dd className="ml-2 text-gray-700">January 4th 2022</dd>
-                    </div>
-                  </dl>
-                </div>
+          <h3 className="sr-only">Details</h3>
+          <div
+            key={opportunity._id}
+            className="flex space-x-6 border-b border-gray-200 py-10"
+          >
+            <div className="flex flex-auto flex-col">
+              <div>
+                <h4 className="font-medium text-gray-900">
+                  {opportunity.role || opportunity.position}
+                </h4>
+                <p className="mt-2 text-sm text-gray-600">
+                  {opportunity.position || opportunity.role}
+                </p>
+              </div>
+              <div className="mt-6 flex flex-1 items-end">
+                <dl className="flex space-x-4 divide-x divide-gray-200 text-sm sm:space-x-6">
+                  <div className="flex">
+                    <dt className="font-medium text-gray-900">End date</dt>
+                    <dd className="ml-2 text-gray-700">January 4th 2022</dd>
+                  </div>
+                </dl>
               </div>
             </div>
-          ))}
+          </div>
 
           <div className="sm:ml-40 sm:pl-6">
             <h3 className="sr-only">Your information</h3>

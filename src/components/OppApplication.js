@@ -1,8 +1,57 @@
+import { inputs } from '@/utils/inputs'
 import { useState } from 'react'
 import Modal from './Modal'
 import Thanks from './Thanks'
 
-export default function OppApplication({ farmer = false, opportunity, user }) {
+const Input = ({ handleChange, props, values }) => {
+  return (
+    <div className={`sm:col-span-${props.className}`}>
+      <label
+        htmlFor={props.name}
+        className="block text-sm font-medium text-gray-700"
+      >
+        {props.label}
+      </label>
+      <div className="mt-1">
+        {props.type === 'textarea' && (
+          <textarea
+            {...props}
+            onChange={handleChange}
+            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            defaultValue={''}
+          />
+        )}
+        {(props.type === 'text' ||
+          props.type === 'email' ||
+          props.type === 'number') && (
+          <input
+            {...props}
+            onChange={handleChange}
+            value={values[props.name]}
+            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            // defaultValue={user[values.name]}
+          />
+        )}
+        {props.type === 'select' && (
+          <select
+            {...props}
+            onChange={handleChange}
+            value={values[props.name]}
+            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+          >
+            {props.options.map((o, i) => (
+              <option key={i}>{o}</option>
+            ))}
+          </select>
+        )}
+      </div>
+      {props.type === 'textarea' && (
+        <p className="mt-2 text-sm text-gray-500">{props.desc}</p>
+      )}
+    </div>
+  )
+}
+
   const [applied, setApplied] = useState(false)
   const [overlay, setOverlay] = useState(false)
   const [values, setValues] = useState({
@@ -47,6 +96,13 @@ export default function OppApplication({ farmer = false, opportunity, user }) {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
 
+  const FormHeading = ({ title, desc }) => (
+    <div>
+      <h3 className="text-lg font-medium leading-6 text-gray-900">{title}</h3>
+      <p className="mt-1 text-sm text-gray-500">{desc}</p>
+    </div>
+  )
+
   return applied ? (
     <Thanks opportunity={opportunity} />
   ) : (
@@ -59,190 +115,21 @@ export default function OppApplication({ farmer = false, opportunity, user }) {
         <div className={'space-y-8 divide-y divide-gray-200'}>
           {farmer && (
             <div>
-              <div>
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Farmer Information
-                </h3>
-                <p className="mt-1 text-sm text-gray-500">
-                  Please ensure that information provided is accurate for best
-                  results.
-                </p>
-              </div>
+              <FormHeading
+                title={'Farmer Information'}
+                desc={
+                  'Please ensure that information provided is accurate for best results.'
+                }
+              />
               <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="firstName"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    First name
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      onChange={onChange}
-                      type="text"
-                      name="firstName"
-                      id="firstName"
-                      autoComplete="firstName"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                      defaultValue={user?.name?.split(' ')[0]}
-                    />
-                  </div>
-                </div>
-
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="lastName"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Last name
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      onChange={onChange}
-                      type="text"
-                      name="lastName"
-                      id="lastName"
-                      autoComplete="lastName"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                      defaultValue={user?.name?.split(' ')[1]}
-                    />
-                  </div>
-                </div>
-
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="gender"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Sex
-                  </label>
-                  <div className="mt-1">
-                    <select
-                      onChange={onChange}
-                      id="gender"
-                      name="gender"
-                      autoComplete="gender"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    >
-                      <option>Male</option>
-                      <option>Female</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="village"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Village
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      onChange={onChange}
-                      type="text"
-                      name="village"
-                      id="village"
-                      autoComplete="village"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    />
-                  </div>
-                </div>
-
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="nrc"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    NRC No.
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      onChange={onChange}
-                      type="text"
-                      name="nrc"
-                      id="nrc"
-                      autoComplete="nrc"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    />
-                  </div>
-                </div>
-
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="package"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Seed Package
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      onChange={onChange}
-                      type="text"
-                      name="package"
-                      id="package"
-                      autoComplete="seed-package"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    />
-                  </div>
-                </div>
-
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="quantity"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Seed Quantity
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      onChange={onChange}
-                      type="number"
-                      name="quantity"
-                      id="quantity"
-                      autoComplete="seed-quantity"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    />
-                  </div>
-                </div>
-
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="paid"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Paid up Cash
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      onChange={onChange}
-                      type="text"
-                      name="paid"
-                      id="paid"
-                      autoComplete="paid"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    />
-                  </div>
-                </div>
-
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="amount"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Loan Amount
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      onChange={onChange}
-                      type="number"
-                      name="amount"
-                      id="amount"
-                      autoComplete="amount"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                    />
-                  </div>
-                </div>
+                {inputs.farmer.map((i) => (
+                  <Input
+                    key={i.id}
+                    props={i}
+                    values={values}
+                    handleChange={onChange}
+                  />
+                ))}
               </div>
             </div>
           )}
@@ -250,75 +137,19 @@ export default function OppApplication({ farmer = false, opportunity, user }) {
           {!farmer && (
             <>
               <div>
-                <div>
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    Personal Information
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-500">
-                    Use a permanent address where you can receive mail.
-                  </p>
-                </div>
+                <FormHeading
+                  title={'Personal Information'}
+                  desc={'Use a permanent address where you can receive mail.'}
+                />
                 <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                  <div className="sm:col-span-3">
-                    <label
-                      htmlFor="firstName"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      First name
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        onChange={onChange}
-                        type="text"
-                        name="firstName"
-                        id="firstName"
-                        autoComplete="firstName"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                        defaultValue={user?.name?.split(' ')[0]}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="sm:col-span-3">
-                    <label
-                      htmlFor="lastName"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Last name
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        onChange={onChange}
-                        type="text"
-                        name="lastName"
-                        id="lastName"
-                        autoComplete="lastName"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                        defaultValue={user?.name?.split(' ')[1]}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="sm:col-span-6">
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Email address
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        onChange={onChange}
-                        id="email"
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                        defaultValue={user.email}
-                      />
-                    </div>
-                  </div>
-
+                  {inputs.personal.map((i) => (
+                    <Input
+                      key={i.id}
+                      props={i}
+                      values={values}
+                      handleChange={onChange}
+                    />
+                  ))}
                   <div className="sm:col-span-6">
                     <label
                       htmlFor="cover-photo"
@@ -345,7 +176,7 @@ export default function OppApplication({ farmer = false, opportunity, user }) {
                         <div className="flex text-sm text-gray-600">
                           <label
                             htmlFor="file-upload"
-                            className="relative cursor-pointer rounded-md bg-white font-medium text-blue-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 hover:text-blue-500"
+                            className="relative cursor-pointer rounded-md font-medium text-blue-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 hover:text-blue-500"
                           >
                             <span>Upload a file</span>
                             <input
@@ -364,155 +195,39 @@ export default function OppApplication({ farmer = false, opportunity, user }) {
                       </div>
                     </div>
                   </div>
-
-                  <div className="sm:col-span-6">
-                    <label
-                      htmlFor="linkedIn"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Linked In
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        onChange={onChange}
-                        type="text"
-                        name="linkedIn"
-                        id="linkedIn"
-                        autoComplete="linkedIn"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="sm:col-span-3">
-                    <label
-                      htmlFor="country"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Country
-                    </label>
-                    <div className="mt-1">
-                      <select
-                        id="country"
-                        name="country"
-                        autoComplete="country-name"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                      >
-                        <option>Zambia</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="sm:col-span-6">
-                    <label
-                      htmlFor="nrc"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Street address
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        onChange={onChange}
-                        type="text"
-                        name="nrc"
-                        id="nrc"
-                        autoComplete="nrc"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="sm:col-span-2">
-                    <label
-                      htmlFor="city"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      City
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        onChange={onChange}
-                        type="text"
-                        name="city"
-                        id="city"
-                        autoComplete="address-level2"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="sm:col-span-2">
-                    <label
-                      htmlFor="quantity"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      State / Province
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        onChange={onChange}
-                        type="text"
-                        name="quantity"
-                        id="quantity"
-                        autoComplete="address-level1"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="sm:col-span-2">
-                    <label
-                      htmlFor="paid"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      ZIP / Postal code
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        onChange={onChange}
-                        type="text"
-                        name="paid"
-                        id="paid"
-                        autoComplete="paid"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                      />
-                    </div>
-                  </div>
+                  {inputs.address.map((i) => (
+                    <Input
+                      key={i.id}
+                      props={i}
+                      values={values}
+                      handleChange={onChange}
+                    />
+                  ))}
                 </div>
               </div>
-              {user.social && (
+              {user?.social && (
                 <div className="pt-8">
-                  <div>
-                    <h3 className="text-lg font-medium leading-6 text-gray-900">
-                      Profile
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-500">
-                      This information will be displayed publicly so be careful
-                      what you share.
-                    </p>
-                  </div>
-
+                  <FormHeading
+                    title={'Profile'}
+                    desc={
+                      'This information will be displayed publicly so be careful what you share.'
+                    }
+                  />
                   <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                    <div className="sm:col-span-6">
-                      <label
-                        htmlFor="about"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        About
-                      </label>
-                      <div className="mt-1">
-                        <textarea
-                          id="about"
-                          name="about"
-                          rows={3}
-                          className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                          defaultValue={''}
-                        />
-                      </div>
-                      <p className="mt-2 text-sm text-gray-500">
-                        Write a few sentences about yourself.
-                      </p>
-                    </div>
+                    <Input
+                      key={'about'}
+                      desc={'Write a few sentences about yourself.'}
+                      props={{
+                        id: 'about',
+                        name: 'about',
+                        type: 'textarea',
+                        autoComplete: 'about',
+                        label: 'About',
+                        required: true,
+                        rows: 3,
+                        className: '6',
+                      }}
+                    />
 
                     <div className="sm:col-span-6">
                       <label
@@ -543,17 +258,14 @@ export default function OppApplication({ farmer = false, opportunity, user }) {
                 </div>
               )}
 
-              {user.admin && (
+              {user?.admin && (
                 <div className="pt-8">
-                  <div>
-                    <h3 className="text-lg font-medium leading-6 text-gray-900">
-                      Notifications
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-500">
-                      We'll always let you know about important changes, but you
-                      pick what else you want to hear about.
-                    </p>
-                  </div>
+                  <FormHeading
+                    title={'Notifications'}
+                    desc={
+                      "We'll always let you know about important changes, but you pick what else you want to hear about."
+                    }
+                  />
                   <div className="mt-6">
                     <fieldset>
                       <legend className="sr-only">By Email</legend>

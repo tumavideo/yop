@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
+import assets from '@/images/assets'
 import { classNames } from '@/lib/utils'
 import { sidebarNav } from '@/utils/navigation'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import assets from '@/images/assets'
 
 export default function Sidebar({ setSidebarOpen, sidebarOpen }) {
   const router = useRouter()
@@ -95,12 +95,13 @@ export default function Sidebar({ setSidebarOpen, sidebarOpen }) {
                         <Image
                           width={24}
                           height={24}
-                          className="mr-4 h-6 w-6 flex-shrink-0 text-blue-300"
                           src={item.icon}
                           alt={item.name}
                           aria-hidden="true"
                         />
-                        {item.name}
+                        <span className="ml-3 h-6 w-6 flex-shrink-0">
+                          {item.name}
+                        </span>
                       </a>
                     ))}
                   </nav>

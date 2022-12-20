@@ -130,13 +130,15 @@ export default function Home() {
                       <div className="w-full flex-1 bg-gray-800" />
                     </div>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6">
-                      <Image
-                        width={1859}
-                        height={1347}
-                        className="relative rounded-lg shadow-lg"
-                        src={assets.DashboardPreview}
-                        alt="App screenshot"
-                      />
+                      <a href="#" onClick={signIn}>
+                        <Image
+                          width={1859}
+                          height={1347}
+                          className="relative rounded-lg shadow-lg"
+                          src={assets.DashboardPreview}
+                          alt="App screenshot"
+                        />
+                      </a>
                     </div>
                   </div>
                 ) : (

@@ -1,4 +1,77 @@
+import { useState } from 'react'
+
 export default function Partner() {
+  const [applied, setApplied] = useState(false)
+  const [overlay, setOverlay] = useState(false)
+  const [values, setValues] = useState({})
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    setOverlay(true)
+
+    let mutations = [
+      {
+        createOrReplace: {
+          company: values.company,
+          phone: values.phone,
+          companySize: values.companySize,
+          howHelp: values.howHelp,
+          _type: 'company',
+        },
+      },
+    ]
+
+    fetch(
+      `https://${'d9p0l1rj'}.api.sanity.io/v2021-06-07/data/mutate/${'production'}`,
+      {
+        method: 'post',
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SANITY_TOKEN}`,
+        },
+        body: JSON.stringify({ mutations }),
+      }
+    )
+      .then((response) => response.json())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error))
+
+    mutations = [
+      {
+        createOrReplace: {
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          _type: 'user',
+        },
+      },
+    ]
+
+    fetch(
+      `https://${'d9p0l1rj'}.api.sanity.io/v2021-06-07/data/mutate/${'production'}`,
+      {
+        method: 'post',
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SANITY_TOKEN}`,
+        },
+        body: JSON.stringify({ mutations }),
+      }
+    )
+      .then((response) => response.json())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error))
+      .finally(() => {
+        setApplied(true)
+        setTimeout(setOverlay(false), 3000)
+      })
+  }
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value })
+  }
+
   return (
     <div className="relative bg-white">
       <div className="lg:absolute lg:inset-0">
@@ -21,13 +94,12 @@ export default function Partner() {
               opposite, or email us.
             </p>
             <form
-              action="#"
-              method="POST"
               className="mt-9 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
+              onSubmit={handleSubmit}
             >
               <div>
                 <label
-                  htmlFor="first-name"
+                  htmlFor="firstName"
                   className="block text-sm font-medium text-gray-700"
                 >
                   First name
@@ -35,16 +107,17 @@ export default function Partner() {
                 <div className="mt-1">
                   <input
                     type="text"
-                    name="first-name"
-                    id="first-name"
+                    name="firstName"
+                    id="firstName"
                     autoComplete="given-name"
+                    onChange={onChange}
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                   />
                 </div>
               </div>
               <div>
                 <label
-                  htmlFor="last-name"
+                  htmlFor="lastName"
                   className="block text-sm font-medium text-gray-700"
                 >
                   Last name
@@ -52,9 +125,10 @@ export default function Partner() {
                 <div className="mt-1">
                   <input
                     type="text"
-                    name="last-name"
-                    id="last-name"
+                    name="lastName"
+                    id="lastName"
                     autoComplete="family-name"
+                    onChange={onChange}
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                   />
                 </div>
@@ -72,6 +146,7 @@ export default function Partner() {
                     name="email"
                     type="email"
                     autoComplete="email"
+                    onChange={onChange}
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                   />
                 </div>
@@ -89,6 +164,7 @@ export default function Partner() {
                     name="company"
                     id="company"
                     autoComplete="organization"
+                    onChange={onChange}
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                   />
                 </div>
@@ -114,6 +190,7 @@ export default function Partner() {
                     name="phone"
                     id="phone"
                     autoComplete="tel"
+                    onChange={onChange}
                     aria-describedby="phone-description"
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                   />
@@ -137,7 +214,7 @@ export default function Partner() {
                 <div className="mt-1">
                   <textarea
                     id="how-can-we-help"
-                    name="how-can-we-help"
+                    name="howHelp"
                     aria-describedby="how-can-we-help-description"
                     rows={4}
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
@@ -147,63 +224,61 @@ export default function Partner() {
               </div>
               <fieldset className="sm:col-span-2">
                 <legend className="block text-sm font-medium text-gray-700">
-                  Expected budget
+                  Company size
                 </legend>
                 <div className="mt-4 grid grid-cols-1 gap-y-4">
                   <div className="flex items-center">
                     <input
-                      id="budget-under-25k"
-                      name="budget"
-                      defaultValue="under_25k"
+                      id="size-under-10"
+                      name="companySize"
+                      defaultValue="under_10"
                       type="radio"
                       className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
-                    <label htmlFor="budget-under-25k" className="ml-3">
+                    <label htmlFor="size-under-10" className="ml-3">
                       <span className="block text-sm text-gray-700">
-                        Less than $25K
+                        Less than 10
                       </span>
                     </label>
                   </div>
                   <div className="flex items-center">
                     <input
-                      id="budget-25k-50k"
-                      name="budget"
-                      defaultValue="25k-50k"
+                      id="size-25-50"
+                      name="companySize"
+                      defaultValue="50-100"
                       type="radio"
                       className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
-                    <label htmlFor="budget-25k-50k" className="ml-3">
+                    <label htmlFor="size-25-50" className="ml-3">
                       <span className="block text-sm text-gray-700">
-                        $25K – $50K
+                        50 – 100
                       </span>
                     </label>
                   </div>
                   <div className="flex items-center">
                     <input
-                      id="budget-50k-100k"
-                      name="budget"
-                      defaultValue="50k-100k"
+                      id="size-50-100"
+                      name="companySize"
+                      defaultValue="50-100"
                       type="radio"
                       className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
-                    <label htmlFor="budget-50k-100k" className="ml-3">
+                    <label htmlFor="size-50-100" className="ml-3">
                       <span className="block text-sm text-gray-700">
-                        $50K – $100K
+                        100 - 500
                       </span>
                     </label>
                   </div>
                   <div className="flex items-center">
                     <input
-                      id="budget-over-100k"
-                      name="budget"
-                      defaultValue="over_100k"
+                      id="size-over-1000"
+                      name="companySize"
+                      defaultValue="over_1000"
                       type="radio"
                       className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
-                    <label htmlFor="budget-over-100k" className="ml-3">
-                      <span className="block text-sm text-gray-700">
-                        $100K+
-                      </span>
+                    <label htmlFor="size-over-100k" className="ml-3">
+                      <span className="block text-sm text-gray-700">1000+</span>
                     </label>
                   </div>
                 </div>

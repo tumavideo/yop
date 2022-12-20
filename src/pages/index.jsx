@@ -27,7 +27,7 @@ export default function Home() {
             <div className="bg-gray-50">
               <div className="relative overflow-hidden">
                 <div
-                  className="absolute inset-y-0 h-full w-full"
+                  className="absolute inset-y-0 -z-10 h-full w-full"
                   aria-hidden="true"
                 >
                   <div className="relative h-full">

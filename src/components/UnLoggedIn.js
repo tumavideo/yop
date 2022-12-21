@@ -46,7 +46,7 @@ export default function UnLoggedIn() {
               <span className="inline-flex rounded-md shadow">
                 <a
                   href="#"
-                  className="inline-flex items-center rounded-md border border-transparent bg-white px-4 py-2 text-base font-medium text-blue-600 hover:text-blue-500"
+                  className="inline-flex items-center rounded-md border border-transparent bg-blue-700 px-4 py-2 text-base font-medium text-white hover:text-blue-500"
                   onClick={signIn}
                 >
                   Log in

@@ -8,6 +8,7 @@ import { classNames } from '@/lib/utils'
 import { sidebarNav } from '@/utils/navigation'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 export default function Sidebar({ setSidebarOpen, sidebarOpen }) {
   const router = useRouter()
@@ -120,13 +121,15 @@ export default function Sidebar({ setSidebarOpen, sidebarOpen }) {
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex flex-grow flex-col overflow-y-auto bg-blue-700 pt-5">
           <div className="flex flex-shrink-0 items-center px-4">
-            <Image
-              width={47}
-              height={47}
-              className="h-6 w-6"
-              src={assets.Logo}
-              alt="Youth Opportunity Portal Logo"
-            />
+            <Link href={'/'}>
+              <Image
+                width={47}
+                height={47}
+                className="h-6 w-6"
+                src={assets.Logo}
+                alt="Youth Opportunity Portal Logo"
+              />
+            </Link>
           </div>
           <div className="mt-5 flex flex-1 flex-col">
             <nav className="flex-1 space-y-1 px-2 pb-4">

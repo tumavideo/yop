@@ -7,15 +7,7 @@ const products = [
   },
 ]
 
-const user = {
-  name: 'Kristin Watson',
-  addressOne: '7363 Cynthia Pass',
-  addressTwo: 'Toronto, ON N3Y 4H8',
-  phone: '416-223-4123',
-  email: 'kristinwat@gmail.com',
-}
-
-export default function Thanks({ opportunity }) {
+export default function Thanks({ opportunity, user }) {
   return (
     <main className="bg-white px-4 pt-16 pb-24 sm:px-6 sm:pt-24 lg:px-8 lg:py-32">
       <div className="mx-auto max-w-3xl">
@@ -39,54 +31,57 @@ export default function Thanks({ opportunity }) {
             Your application
           </h2>
 
-          <h3 className="sr-only">Details</h3>
-          <div
-            key={opportunity._id}
-            className="flex space-x-6 border-b border-gray-200 py-10"
-          >
-            <div className="flex flex-auto flex-col">
-              <div>
-                <h4 className="font-medium text-gray-900">
-                  {opportunity.role || opportunity.position}
-                </h4>
-                <p className="mt-2 text-sm text-gray-600">
-                  {opportunity.position || opportunity.role}
-                </p>
-              </div>
-              <div className="mt-6 flex flex-1 items-end">
-                <dl className="flex space-x-4 divide-x divide-gray-200 text-sm sm:space-x-6">
-                  <div className="flex">
-                    <dt className="font-medium text-gray-900">End date</dt>
-                    <dd className="ml-2 text-gray-700">January 4th 2022</dd>
+          {opportunity && (
+            <>
+              <h3 className="sr-only">Details</h3>
+              <div
+                key={opportunity._id}
+                className="flex space-x-6 border-b border-gray-200 py-10"
+              >
+                <div className="flex flex-auto flex-col">
+                  <div>
+                    <h4 className="font-medium text-gray-900">
+                      {opportunity.role || opportunity.position}
+                    </h4>
+                    <p className="mt-2 text-sm text-gray-600">
+                      {opportunity.position || opportunity.role}
+                    </p>
                   </div>
-                </dl>
+                  <div className="mt-6 flex flex-1 items-end">
+                    <dl className="flex space-x-4 divide-x divide-gray-200 text-sm sm:space-x-6">
+                      <div className="flex">
+                        <dt className="font-medium text-gray-900">End date</dt>
+                        <dd className="ml-2 text-gray-700">January 4th 2022</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </>
+          )}
 
           <div className="sm:ml-40 sm:pl-6">
             <h3 className="sr-only">Your information</h3>
 
-            <h4 className="sr-only">Addresses</h4>
+            <h4 className="sr-only">Contact information</h4>
             <dl className="grid grid-cols-2 gap-x-6 py-10 text-sm">
-              <div>
-                <dt className="font-medium text-gray-900">Physical address</dt>
-                <dd className="mt-2 text-gray-700">
-                  <address className="not-italic">
-                    <span className="block">{user.name}</span>
-                    <span className="block">{user.addressOne}</span>
-                    <span className="block">{user.addressTwo}</span>
-                  </address>
-                </dd>
-              </div>
               <div>
                 <dt className="font-medium text-gray-900">
                   Contact information
                 </dt>
                 <dd className="mt-2 text-gray-700">
                   <address className="not-italic">
-                    <span className="block">{user.phone}</span>
+                    <span className="block">
+                      {user.name || `${user.firstName + ' ' + user.lastName}`}
+                    </span>
                     <span className="block">{user.email}</span>
+                    <span className="block">
+                      {user.addressOne || user.company}
+                    </span>
+                    <span className="block">
+                      {user.addressTwo || user.phone}
+                    </span>
+                    <span className="block">{user.phone}</span>
                   </address>
                 </dd>
               </div>

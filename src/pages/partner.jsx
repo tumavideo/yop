@@ -1,11 +1,13 @@
 import Modal from '@/components/Modal'
 import Thanks from '@/components/Thanks'
+import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 
 export default function Partner() {
   const [applied, setApplied] = useState(false)
   const [overlay, setOverlay] = useState(false)
   const [values, setValues] = useState({})
+  const { data: session } = useSession()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -77,7 +79,7 @@ export default function Partner() {
 
   return (
     <>
-      {applied && <Thanks opportunity={{}} />}
+      {applied && <Thanks user={session.user} />}
       {overlay && <Modal />}
       {!applied && (
         <div className="relative bg-white">

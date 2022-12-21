@@ -15,7 +15,9 @@ import VectorWhite from './icons/vector_white.svg'
 import Burger from './icons/menu-icon.svg'
 import Close from './icons/close.svg'
 
+import CrowdsourceCreators from './logos/crowdsource_creators.svg'
 import Labour from './logos/labour_security.svg'
+import Prospero from './logos/prospero.svg'
 import Smart from './logos/smart_zambia.svg'
 import Tech from './logos/tech_science.svg'
 import Youth from './logos/youth_sport_art.svg'
@@ -29,6 +31,7 @@ export default {
   Close,
   Company,
   CompanyWhite,
+  CrowdsourceCreators,
   DashboardPreview,
   Jobs,
   JobsWhite,
@@ -38,6 +41,7 @@ export default {
   MarketWhite,
   Money,
   MoneyWhite,
+  Prospero,
   Skills,
   SkillsWhite,
   Vector,

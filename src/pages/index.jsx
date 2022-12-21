@@ -147,6 +147,7 @@ export default function Home() {
               </div>
 
               {!session && <Testimonials />}
+              {!session && <Features />}
             </div>
           </main>
         </div>

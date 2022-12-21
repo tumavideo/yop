@@ -25,6 +25,7 @@ import Youth from './logos/youth_sport_art.svg'
 
 import Avatar from './avatar.png'
 import DashboardPreview from './dashboard-preview.png'
+import YouthOnLaptop from './youth-on-laptop.png'
 
 export default {
   Avatar,
@@ -52,4 +53,5 @@ export default {
   Smart,
   Tech,
   Youth,
+  YouthOnLaptop,
 }

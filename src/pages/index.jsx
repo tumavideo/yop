@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <main className="flex-1">
-      <div className="py-6">
+      <div>
         <div
           className={classNames(
             session ? 'mx-auto max-w-7xl px-4 sm:px-6 md:px-8' : ''
@@ -98,7 +98,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="relative pt-6 pb-16 sm:pb-12">
+                <div className="relative pb-16 sm:pb-12">
                   {!session && <UnLoggedIn />}
 
                   {!session && (

@@ -33,24 +33,26 @@ export default function Story({ post }) {
         <div className="flex cursor-pointer gap-3 rounded p-2 font-semibold ">
           <div className="h-10 w-10 md:h-16 md:w-16">
             <>
-              <Image
-                width={62}
-                height={62}
-                className=" rounded-full"
-                src={post.postedBy?.image}
-                alt="user-profile"
-                layout="responsive"
-              />
+              {post.postedBy && (
+                <Image
+                  width={62}
+                  height={62}
+                  className=" rounded-full"
+                  src={post.postedBy?.image}
+                  alt="user-profile"
+                  layout="responsive"
+                />
+              )}
             </>
           </div>
           <div>
             <div className="flex items-center gap-2">
               <p className="md:text-md text-primary flex items-center gap-2 font-bold">
-                {post.postedBy.userName}{' '}
+                {post.postedBy?.userName}{' '}
                 <GoVerified className="text-md text-blue-400" />
               </p>
               <p className="hidden text-xs font-medium capitalize text-gray-500 md:block">
-                {post.postedBy.userName}
+                {post.postedBy?.userName}
               </p>
             </div>
             <p className="mt-2 font-normal ">{post.caption}</p>

@@ -5,7 +5,6 @@ import React from 'react'
 export default function Testimonials() {
   return (
     <div className="Testimonials">
-      (
       <div className="bg-gray-800">
         <div className="mx-auto max-w-7xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
           <h2 className="text-center text-base font-semibold text-gray-400">
@@ -48,7 +47,6 @@ export default function Testimonials() {
           </div>
         </div>
       </div>
-      )
     </div>
   )
 }

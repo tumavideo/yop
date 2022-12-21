@@ -48,7 +48,7 @@ export default function CompanyDirectory({ companies, setActiveCompany }) {
                   <div className="flex-shrink-0">
                     <img
                       className="h-10 w-10 rounded-full"
-                      src={urlFor(company.logo.asset)}
+                      src={urlFor(company.logo?.asset)}
                       alt=""
                     />
                   </div>

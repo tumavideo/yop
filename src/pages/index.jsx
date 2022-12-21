@@ -100,24 +100,6 @@ export default function Home() {
 
                 <div className="relative pb-16 sm:pb-12">
                   {!session && <UnLoggedIn />}
-
-                  {!session && (
-                    <div className="mx-auto mt-16 max-w-7xl px-4 sm:mt-24 sm:px-6">
-                      <div className="text-center">
-                        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-                          <span className="block">The Portal</span>
-                          <span className="block text-blue-600">
-                            Opportunities for all Zambian Youths
-                          </span>
-                        </h1>
-                        <p className="mx-auto mt-3 max-w-md text-base text-gray-500 sm:text-lg md:mt-5 md:max-w-3xl md:text-xl">
-                          Your one-stop platform for accessing skills, job
-                          opportunites, market access, funding, business and
-                          career development services.
-                        </p>
-                      </div>
-                    </div>
-                  )}
                 </div>
 
                 {!session ? (
@@ -128,17 +110,6 @@ export default function Home() {
                     >
                       <div className="flex-1" />
                       <div className="w-full flex-1 bg-gray-800" />
-                    </div>
-                    <div className="mx-auto max-w-7xl px-4 sm:px-6">
-                      <a href="#" onClick={signIn}>
-                        <Image
-                          width={1859}
-                          height={1347}
-                          className="relative rounded-lg shadow-lg"
-                          src={assets.DashboardPreview}
-                          alt="App screenshot"
-                        />
-                      </a>
                     </div>
                   </div>
                 ) : (

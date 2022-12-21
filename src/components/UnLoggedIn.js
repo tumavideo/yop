@@ -1,9 +1,8 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
-import Image from 'next/image'
+import Image from 'next/future/image'
 import assets from '@/images/assets'
 import { sidebarNav } from '@/utils/navigation'
-import { classNames } from '@/lib/utils'
 import { signIn } from 'next-auth/react'
 
 export default function UnLoggedIn() {
@@ -16,9 +15,9 @@ export default function UnLoggedIn() {
               <a href="#">
                 <span className="sr-only">Youth Opportunities Portal</span>
                 <Image
-                  width={47}
-                  height={47}
-                  className="h-6 w-6"
+                  width={48}
+                  height={48}
+                  className="h-12 w-12"
                   src={assets.LogoDark}
                   alt="Youth Opportunity Portal Logo"
                 />
@@ -27,7 +26,13 @@ export default function UnLoggedIn() {
             <div className="-my-2 -mr-2 md:hidden">
               <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
                 <span className="sr-only">Open menu</span>
-                {/* <Bars3Icon className="h-6 w-6" aria-hidden="true" /> */}
+                <Image
+                  width={24}
+                  height={24}
+                  className="h-6 w-6"
+                  src={assets.Burger}
+                  alt="Menu icon"
+                />
               </Popover.Button>
             </div>
             <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
@@ -60,9 +65,9 @@ export default function UnLoggedIn() {
                   <a href="#">
                     <span className="sr-only">Your Company</span>
                     <Image
-                      width={47}
-                      height={47}
-                      className="h-6 w-6"
+                      width={48}
+                      height={48}
+                      className="h-12 w-12"
                       src={assets.LogoDark}
                       alt="Youth Opportunity Portal Logo"
                     />
@@ -141,11 +146,6 @@ export default function UnLoggedIn() {
           </div>
         </div>
         <div className="relative h-64 w-full sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2">
-          <img
-            className="absolute inset-0 h-full w-full object-cover"
-            src={assets.YouthOnLaptop}
-            alt=""
-          />
           <Image
             className={'absolute inset-0 h-full w-full object-cover'}
             src={assets.YouthOnLaptop}

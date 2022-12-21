@@ -36,9 +36,9 @@ export default function Navbar() {
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <Image
-                      width={47}
-                      height={47}
-                      className="h-6 w-6"
+                      width={48}
+                      height={48}
+                      className="h-12 w-12"
                       src={assets.LogoDark}
                       alt="Youth Opportunity Portal Logo"
                     />

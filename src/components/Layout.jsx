@@ -7,6 +7,7 @@ import { Dialog, Menu, Transition } from '@headlessui/react'
 import { classNames } from '@/lib/utils'
 import { secondaryNavigation } from '@/utils/navigation'
 import { signOut, useSession } from 'next-auth/react'
+import Footer from './Footer'
 import Sidebar from './Sidebar'
 import assets from '@/images/assets'
 import Image from 'next/image'
@@ -127,6 +128,7 @@ export default function Layout({ children }) {
           <>{children}</>
         )}
       </div>
+      <Footer />
     </div>
   )
 }

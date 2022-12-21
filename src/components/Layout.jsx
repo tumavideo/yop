@@ -11,6 +11,7 @@ import Footer from './Footer'
 import Sidebar from './Sidebar'
 import assets from '@/images/assets'
 import Image from 'next/image'
+import Script from 'next/script'
 
 export default function Layout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -28,6 +29,19 @@ export default function Layout({ children }) {
           name="description"
           content="Youth Opportunities Portal - Your one-stop platform for accessing skills, job opportunities, market access, funding, and business and career development services."
         />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-5LMZGHJKTJ" />
+        <Script
+          id="google-analytics"
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-5LMZGHJKTJ');
+        `,
+          }}
+        ></Script>
       </Head>
       <div>
         {session && (

@@ -19,14 +19,14 @@ export default function SuccessStories({ videos }) {
                     'Hear from others, about their experience with our platform.'
                   }
                 </h3>
-              </div>
 
-              {/* list out testimonials */}
-              {videos && videos.length ? (
-                videos.map((video) => <Story key={video._id} post={video} />)
-              ) : (
-                <NoResults />
-              )}
+                {/* list out testimonials */}
+                {videos && videos.length ? (
+                  videos.map((video) => <Story key={video._id} post={video} />)
+                ) : (
+                  <NoResults />
+                )}
+              </div>
             </div>
           </div>
         </main>

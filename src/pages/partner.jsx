@@ -1,5 +1,6 @@
 import Modal from '@/components/Modal'
 import Thanks from '@/components/Thanks'
+import { postSanityObject } from '@/lib/client'
 import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 
@@ -11,63 +12,48 @@ export default function Partner() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    e.target.reset()
 
     setOverlay(true)
+
+    const { company, phone, companySize, howHear, howHelp } = values
 
     let mutations = [
       {
         createOrReplace: {
-          company: values.company,
-          phone: values.phone,
-          companySize: values.companySize,
-          howHelp: values.howHelp,
+          company,
+          phone,
+          companySize,
+          howHear,
+          howHelp,
           _type: 'company',
         },
       },
     ]
 
-    fetch(
-      `https://${'d9p0l1rj'}.api.sanity.io/v2021-06-07/data/mutate/${'production'}`,
-      {
-        method: 'post',
-        headers: {
-          'Content-type': 'application/json',
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SANITY_TOKEN}`,
-        },
-        body: JSON.stringify({ mutations }),
-      }
-    )
+    postSanityObject(mutations)
       .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.error(error))
 
+    const { firstName, lastName, email } = values
+
     mutations = [
       {
         createOrReplace: {
-          firstName: values.firstName,
-          lastName: values.lastName,
-          email: values.email,
+          firstName,
+          lastName,
+          email,
           _type: 'user',
         },
       },
     ]
 
-    fetch(
-      `https://${'d9p0l1rj'}.api.sanity.io/v2021-06-07/data/mutate/${'production'}`,
-      {
-        method: 'post',
-        headers: {
-          'Content-type': 'application/json',
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SANITY_TOKEN}`,
-        },
-        body: JSON.stringify({ mutations }),
-      }
-    )
+    postSanityObject(mutations)
       .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.error(error))
       .finally(() => {
+        e.target.reset()
         setApplied(true)
         setTimeout(setOverlay(false), 3000)
       })

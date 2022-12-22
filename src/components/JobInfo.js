@@ -4,7 +4,7 @@ import React from 'react'
 
 const tabs = [
   { name: 'Profile', href: '#', current: false },
-  { name: 'Jobs', href: '#', current: true },
+  { name: 'Opportunity', href: '#', current: true },
 ]
 const profile = {
   name: 'United Nations Development Program',
@@ -93,25 +93,23 @@ export default function JobInfo({ job, setState }) {
               <dd
                 className="mt-1 max-w-prose space-y-5 text-sm text-gray-900"
                 dangerouslySetInnerHTML={{
-                  __html:
-                    job.brief ||
-                    "Under the direct supervision of the Chief of Health, the incumbent will be responsible for supporting the government in the assessment, designing, planning, adaptation, and deployment of scalable digital health technologies in Zambia's context in alignment with national digital strategies, focusing on addressing bottlenecks in health services delivery. In close collaboration with the UNICEF ESARO, and Digital Health Centre of Excellence (DICE), the incumbent will coordinate and collaborate with in-country digital health partners in Zambia to support the MoH on implementation, monitoring, evaluation, and reporting of Zambia’s Digital Health Strategic Plan 2022–2026. The incumbent will provide technical assistance to map out what are the different areas that digital solutions that could strengthen the health system, facilitate prioritization exercises with government and key stakeholders, and then support the planning and roll-out of one of these interventions based on needs identified, requirements gathered and strong evidence of replicability and scalability.",
+                  __html: job.brief || 'N/A',
                 }}
               />
             </div>
-            <div className="sm:col-span-2">
-              <dt className="text-sm font-medium text-gray-500">
-                Responsibilities
-              </dt>
-              <dd
-                className="mt-1 max-w-prose space-y-5 text-sm text-gray-900"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    job.responsibilities ||
-                    "Under the direct supervision of the Chief of Health, the incumbent will be responsible for supporting the government in the assessment, designing, planning, adaptation, and deployment of scalable digital health technologies in Zambia's context in alignment with national digital strategies, focusing on addressing bottlenecks in health services delivery. In close collaboration with the UNICEF ESARO, and Digital Health Centre of Excellence (DICE), the incumbent will coordinate and collaborate with in-country digital health partners in Zambia to support the MoH on implementation, monitoring, evaluation, and reporting of Zambia’s Digital Health Strategic Plan 2022–2026. The incumbent will provide technical assistance to map out what are the different areas that digital solutions that could strengthen the health system, facilitate prioritization exercises with government and key stakeholders, and then support the planning and roll-out of one of these interventions based on needs identified, requirements gathered and strong evidence of replicability and scalability.",
-                }}
-              />
-            </div>
+            {job.responsibilities && (
+              <div className="sm:col-span-2">
+                <dt className="text-sm font-medium text-gray-500">
+                  Responsibilities
+                </dt>
+                <dd
+                  className="mt-1 max-w-prose space-y-5 text-sm text-gray-900"
+                  dangerouslySetInnerHTML={{
+                    __html: job.responsibilities || 'N/A',
+                  }}
+                />
+              </div>
+            )}
             {job.whyJoin && (
               <div className="sm:col-span-2">
                 <dt className="text-sm font-medium text-gray-500">
@@ -120,9 +118,7 @@ export default function JobInfo({ job, setState }) {
                 <dd
                   className="mt-1 max-w-prose space-y-5 text-sm text-gray-900"
                   dangerouslySetInnerHTML={{
-                    __html:
-                      job.brief ||
-                      "Under the direct supervision of the Chief of Health, the incumbent will be responsible for supporting the government in the assessment, designing, planning, adaptation, and deployment of scalable digital health technologies in Zambia's context in alignment with national digital strategies, focusing on addressing bottlenecks in health services delivery. In close collaboration with the UNICEF ESARO, and Digital Health Centre of Excellence (DICE), the incumbent will coordinate and collaborate with in-country digital health partners in Zambia to support the MoH on implementation, monitoring, evaluation, and reporting of Zambia’s Digital Health Strategic Plan 2022–2026. The incumbent will provide technical assistance to map out what are the different areas that digital solutions that could strengthen the health system, facilitate prioritization exercises with government and key stakeholders, and then support the planning and roll-out of one of these interventions based on needs identified, requirements gathered and strong evidence of replicability and scalability.",
+                    __html: job.brief || 'N/A',
                   }}
                 />
               </div>

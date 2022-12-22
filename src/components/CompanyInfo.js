@@ -4,15 +4,8 @@ import React from 'react'
 
 const tabs = [
   { name: 'Profile', href: '#', current: true },
-  { name: 'Jobs', href: '#', current: false },
+  { name: 'Opportunity', href: '#', current: false },
 ]
-const profile = {
-  name: 'United Nations Development Program',
-  fields: {
-    Location: 'Lusaka - Oasis, 4th floor',
-    'Company Size': '100',
-  },
-}
 
 export default function CompanyInfo({ company, setState }) {
   return (
@@ -92,14 +85,26 @@ export default function CompanyInfo({ company, setState }) {
                 dangerouslySetInnerHTML={{ __html: company.bio }}
               />
             </div>
-            {Object.keys(profile.fields).map((field) => (
-              <div key={field} className="sm:col-span-1">
-                <dt className="text-sm font-medium text-gray-500">{field}</dt>
+            {company.location && (
+              <div key={'companySize'} className="sm:col-span-1">
+                <dt className="text-sm font-medium text-gray-500">
+                  {'Location'}
+                </dt>
                 <dd className="mt-1 text-sm text-gray-900">
-                  {profile.fields[field]}
+                  {company.location}
                 </dd>
               </div>
-            ))}
+            )}
+            {company.companySize && (
+              <div key={'companySize'} className="sm:col-span-1">
+                <dt className="text-sm font-medium text-gray-500">
+                  {'Company Size'}
+                </dt>
+                <dd className="mt-1 text-sm text-gray-900">
+                  {company.companySize}
+                </dd>
+              </div>
+            )}
           </dl>
         </div>
       </article>

@@ -64,5 +64,6 @@ export const getFunding = () =>
     _id,
     _createdAt,
     title,
+    link,
     companyRef->{company,logo}
   }`

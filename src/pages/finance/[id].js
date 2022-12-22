@@ -91,6 +91,7 @@ export const getStaticProps = async ({ params: { id } }) => {
     _type,
     brief,
     description,
+    link,
     title,
     companyRef->{bio,company,feature,logo}
   }`

@@ -21,6 +21,7 @@ export const getCareers = () =>
     _id,
     _createdAt,
     title,
+    link,
     companyRef->{company,logo}
   }`
 
@@ -29,6 +30,7 @@ export const getEducation = () =>
     _id,
     _createdAt,
     title,
+    link,
     companyRef->{company,logo}
   }`
 
@@ -38,6 +40,7 @@ export const findMarketplace = () =>
     _createdAt,
     slug,
     title,
+    link,
     companyRef->{company,logo}
   }`
 
@@ -48,6 +51,7 @@ export const findJobs = () => `*[_type == "job" && !(_id in path('drafts.**'))]{
   role,
   slug,
   title,
+  link,
   companyRef->{company,logo}
 }`
 

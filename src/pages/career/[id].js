@@ -90,6 +90,7 @@ export const getStaticProps = async ({ params: { id } }) => {
     brief,
     description,
     title,
+    link,
     companyRef->{bio,company,feature,logo}
   }`
   const career = await client.fetch(query)

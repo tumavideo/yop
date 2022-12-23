@@ -63,7 +63,7 @@ export default function OppApplication({
       {overlay && <Modal />}
       {!applied && (
         <>
-          <ProfileHeader job={opportunity} />
+          <ProfileHeader handlePress={setState} job={opportunity} />
           <Tabs setState={setState} tabs={tabs} />
           <form
             className="space-y-8 divide-y divide-gray-200 p-8"

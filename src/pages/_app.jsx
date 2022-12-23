@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout'
+import { StateContext } from '@/context/StateContext'
 import '@/styles/tailwind.css'
 import 'focus-visible'
 
@@ -10,9 +11,11 @@ export default function App({
 }) {
   return (
     <SessionProvider session={session}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <StateContext>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </StateContext>
     </SessionProvider>
   )
 }

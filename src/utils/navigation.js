@@ -4,6 +4,8 @@ export const sidebarNav = [
   {
     name: 'Skills',
     alt: 'Acquire Skills',
+    initials: 'AS',
+    members: '16 skill development opportunities',
     description:
       'Once a skill gap has been identifed, develop and hone these skills',
     href: '/education',
@@ -15,6 +17,8 @@ export const sidebarNav = [
   {
     name: 'Finance',
     alt: 'Access Finance',
+    initials: 'AF',
+    members: '16 finance opportunities',
     description:
       'Access to funding for start-ups, business growth, skills and career training bursaries.',
     href: '/finance',
@@ -26,6 +30,8 @@ export const sidebarNav = [
   {
     name: 'Careers',
     alt: 'Business & Career Development',
+    initials: 'BCDS',
+    members: '8 career opportunities',
     description:
       'Provide business support to start-up’s and established MSMEs in form of capacity building and training, on-the-job coaching, mentorship and hands-on advisory services.',
     href: '/careers',
@@ -37,6 +43,8 @@ export const sidebarNav = [
   {
     name: 'Market',
     alt: 'Market Place',
+    initials: 'MP',
+    members: '12 market opportunities',
     description: 'Linking sellers to buyers.',
     href: '/marketplace',
     icon: assets.Market,
@@ -47,6 +55,8 @@ export const sidebarNav = [
   {
     name: 'Jobs',
     alt: 'Jobs',
+    initials: 'J',
+    members: '12 jobs',
     description:
       'Find jobs and employees. Match interests, work values and skills with the world of work, as well as, hire people that fit your criteria.',
     href: '/jobs',
@@ -58,6 +68,7 @@ export const sidebarNav = [
   {
     name: 'Success Stories',
     alt: 'Testimonials',
+    initials: 'SS',
     description: 'Hear from others, about their experience with our platform.',
     href: '/success-stories',
     icon: assets.Company,

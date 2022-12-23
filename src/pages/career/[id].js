@@ -1,64 +1,31 @@
-import { client } from '@/lib/client'
-import React, { useState } from 'react'
-
+import { useState } from 'react'
 import { useSession } from 'next-auth/react'
+
 import OppApplication from '@/components/OppApplication'
 import JobInfo from '@/components/JobInfo'
 import CompanyInfo from '@/components/CompanyInfo'
-
-const tabs = [
-  {
-    name: 'Applied',
-    href: '/career/[id]/applicants/',
-    count: '2',
-    current: false,
-    slug: 'applied',
-  },
-  {
-    name: 'Phone Screening',
-    href: '/career/[id]/applicants/',
-    count: '4',
-    current: false,
-    slug: 'phone-screening',
-  },
-  {
-    name: 'Interview',
-    href: '/career/[id]/applicants/',
-    count: '6',
-    current: true,
-    slug: 'interview',
-  },
-  {
-    name: 'Offer',
-    href: '/career/[id]/applicants/',
-    current: false,
-    slug: 'offer',
-  },
-  {
-    name: 'Disqualified',
-    href: '/career/[id]/applicants/',
-    current: false,
-    slug: 'disqualified',
-  },
-]
+import { client } from '@/lib/client'
 
 export default function Listing({ career }) {
-  const [state, setState] = useState('Job')
+  const [state, setState] = useState('Opportunity')
   const { data: session } = useSession()
 
   return (
     <>
-      {/* Background color split screen for large screens */}
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-x-16 lg:grid-cols-2 lg:px-8 xl:gap-x-12">
-        {state === 'Job' ? (
-          <JobInfo job={career} setState={() => setState('Company')} />
-        ) : (
-          <CompanyInfo
-            company={career.companyRef}
-            setState={() => setState('Job')}
+      <div className="relative grid max-w-7xl grid-cols-1 gap-x-16 lg:grid-cols-1 lg:px-8 xl:gap-x-12">
+        {state === 'Opportunity' && (
+          <JobInfo job={career} setState={setState} />
+        )}
+        {state === 'Application' && (
+          <OppApplication
+            opportunity={career}
+            user={session.user}
+            setState={setState}
           />
         )}
-        {session && <OppApplication opportunity={career} user={session.user} />}
+        {state === 'Company' && (
+          <CompanyInfo company={career.companyRef} setState={setState} />
+        )}
       </div>
     </>
   )

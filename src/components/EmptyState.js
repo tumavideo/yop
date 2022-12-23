@@ -64,7 +64,7 @@ export default function EmptyState() {
             href="/partner"
             className="cursor-pointer text-sm font-medium text-blue-600 hover:text-blue-500"
           >
-            Or create a new opportunity for Zambias youth
+            Or create a new opportunity for Zambia's youth
             <span aria-hidden="true"> &rarr;</span>
           </Link>
         </div>

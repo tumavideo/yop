@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/solid'
 import { Router } from 'next/router'
 
-export default function Modal() {
+export default function Modal({ body, button, title }) {
   const [open, setOpen] = useState(true)
 
   return (
@@ -45,12 +45,12 @@ export default function Modal() {
                       as="h3"
                       className="text-lg font-medium leading-6 text-gray-900"
                     >
-                      Application successful
+                      {title || 'Application successful'}
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Someone from our opportunity success team will be in
-                        touch soon!
+                        {body ||
+                          'Someone from our opportunity success team will be in touch soon!'}
                       </p>
                     </div>
                   </div>
@@ -61,10 +61,9 @@ export default function Modal() {
                     className="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm"
                     onClick={() => {
                       setOpen(false)
-                      Router.push('/')
                     }}
                   >
-                    Go back to the opportunities portal
+                    {button || 'OK'}
                   </button>
                 </div>
               </Dialog.Panel>

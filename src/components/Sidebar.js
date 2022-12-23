@@ -1,16 +1,15 @@
-import React from 'react'
-
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
+import { useStateContext } from '@/context/StateContext'
 import assets from '@/images/assets'
 import { classNames } from '@/lib/utils'
-import { sidebarNav } from '@/utils/navigation'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
 
 export default function Sidebar({ setSidebarOpen, sidebarOpen }) {
+  const { opportunities } = useStateContext()
   const router = useRouter()
 
   return (
@@ -82,29 +81,32 @@ export default function Sidebar({ setSidebarOpen, sidebarOpen }) {
                 </div>
                 <div className="mt-5 h-0 flex-1 overflow-y-auto">
                   <nav className="space-y-1 px-2">
-                    {sidebarNav.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          router.pathname == item.href
-                            ? 'bg-blue-800 text-white'
-                            : 'text-blue-100 hover:bg-blue-600',
-                          'group flex items-center rounded-md px-2 py-2 text-base font-medium'
-                        )}
-                      >
-                        <Image
-                          width={24}
-                          height={24}
-                          src={item.icon}
-                          alt={item.name}
-                          aria-hidden="true"
-                        />
-                        <span className="ml-3 h-6 w-6 flex-shrink-0">
-                          {item.name}
-                        </span>
-                      </a>
-                    ))}
+                    {opportunities.map(
+                      (item) =>
+                        item.selected && (
+                          <a
+                            key={item.name}
+                            href={item.href}
+                            className={classNames(
+                              router.pathname == item.href
+                                ? 'bg-blue-800 text-white'
+                                : 'text-blue-100 hover:bg-blue-600',
+                              'group flex items-center rounded-md px-2 py-2 text-base font-medium'
+                            )}
+                          >
+                            <Image
+                              width={24}
+                              height={24}
+                              src={item.icon}
+                              alt={item.name}
+                              aria-hidden="true"
+                            />
+                            <span className="ml-3 h-6 w-6 flex-shrink-0">
+                              {item.name}
+                            </span>
+                          </a>
+                        )
+                    )}
                   </nav>
                 </div>
               </Dialog.Panel>
@@ -133,28 +135,31 @@ export default function Sidebar({ setSidebarOpen, sidebarOpen }) {
           </div>
           <div className="mt-5 flex flex-1 flex-col">
             <nav className="flex-1 space-y-1 px-2 pb-4">
-              {sidebarNav.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={classNames(
-                    router.pathname == item.href
-                      ? 'bg-blue-800 text-white'
-                      : 'text-blue-100 hover:bg-blue-600',
-                    'group flex items-center rounded-md px-2 py-2 text-sm font-medium'
-                  )}
-                >
-                  <Image
-                    width={24}
-                    height={24}
-                    className="mr-3 h-6 w-6 flex-shrink-0 text-blue-300"
-                    src={item.icon}
-                    alt={item.name}
-                    aria-hidden="true"
-                  />
-                  <span className="px-4">{item.name}</span>
-                </a>
-              ))}
+              {opportunities.map(
+                (item) =>
+                  item.selected && (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className={classNames(
+                        router.pathname == item.href
+                          ? 'bg-blue-800 text-white'
+                          : 'text-blue-100 hover:bg-blue-600',
+                        'group flex items-center rounded-md px-2 py-2 text-sm font-medium'
+                      )}
+                    >
+                      <Image
+                        width={24}
+                        height={24}
+                        className="mr-3 h-6 w-6 flex-shrink-0 text-blue-300"
+                        src={item.icon}
+                        alt={item.name}
+                        aria-hidden="true"
+                      />
+                      <span className="px-4">{item.name}</span>
+                    </a>
+                  )
+              )}
             </nav>
           </div>
         </div>

@@ -1,154 +1,20 @@
-import { urlFor } from '@/lib/client'
-import { classNames } from '@/lib/utils'
-import React from 'react'
+import Meta from './opportunity/Meta'
+import ProfileHeader from './opportunity/ProfileHeader'
+import Tabs from './opportunity/Tabs'
 
 const tabs = [
-  { name: 'Profile', href: '#', current: false },
+  { name: 'Company', href: '#', current: false },
   { name: 'Opportunity', href: '#', current: true },
+  { name: 'Application', href: '#', current: false },
 ]
-const profile = {
-  name: 'United Nations Development Program',
-  fields: {
-    Location: 'Lusaka - Oasis, 4th floor',
-  },
-}
 
 export default function JobInfo({ job, setState }) {
   return (
     <>
       <article>
-        {/* Profile header */}
-        <div>
-          <div>
-            <img
-              className="h-32 w-full object-cover lg:h-48"
-              src={
-                job.companyRef.feature
-                  ? urlFor(job.companyRef.feature.asset)
-                  : 'https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'
-              }
-              alt=""
-            />
-          </div>
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <div className="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
-              {job?.companyRef.logo && (
-                <div className="flex">
-                  <img
-                    className="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
-                    src={urlFor(job.companyRef.logo.asset)}
-                    alt=""
-                  />
-                </div>
-              )}
-              <div className="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
-                <div className="mt-6 min-w-0 flex-1 sm:hidden 2xl:block">
-                  <h1 className="truncate text-2xl font-bold text-gray-900">
-                    {job.position || job.role || job.companyRef.company}
-                  </h1>
-                </div>
-              </div>
-            </div>
-            <div className="mt-6 hidden min-w-0 flex-1 sm:block 2xl:hidden">
-              <h1 className="truncate text-2xl font-bold text-gray-900">
-                {job.company || job.title}
-              </h1>
-            </div>
-          </div>
-        </div>
-
-        {/* Tabs */}
-        <div className="mt-6 sm:mt-2 2xl:mt-5">
-          <div className="border-b border-gray-200">
-            <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-              <nav className="-mb-px flex space-x-8" aria-label="Tabs">
-                {tabs.map((tab) => (
-                  <a
-                    onClick={setState}
-                    key={tab.name}
-                    href={tab.href}
-                    className={classNames(
-                      tab.current
-                        ? 'border-blue-500 text-gray-900'
-                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
-                      'whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium'
-                    )}
-                    aria-current={tab.current ? 'page' : undefined}
-                  >
-                    {tab.name}
-                  </a>
-                ))}
-              </nav>
-            </div>
-          </div>
-        </div>
-
-        {/* Description list */}
-        <div className="mx-auto mt-6 max-w-5xl px-4 sm:px-6 lg:px-8">
-          <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-            <div className="sm:col-span-2">
-              <dt className="text-sm font-medium text-gray-500">
-                About the Role
-              </dt>
-              <dd
-                className="mt-1 max-w-prose space-y-5 text-sm text-gray-900"
-                dangerouslySetInnerHTML={{
-                  __html: job.brief || 'N/A',
-                }}
-              />
-            </div>
-            {job.responsibilities && (
-              <div className="sm:col-span-2">
-                <dt className="text-sm font-medium text-gray-500">
-                  Responsibilities
-                </dt>
-                <dd
-                  className="mt-1 max-w-prose space-y-5 text-sm text-gray-900"
-                  dangerouslySetInnerHTML={{
-                    __html: job.responsibilities || 'N/A',
-                  }}
-                />
-              </div>
-            )}
-            {job.whyJoin && (
-              <div className="sm:col-span-2">
-                <dt className="text-sm font-medium text-gray-500">
-                  Why you should join {job.companyRef.company}
-                </dt>
-                <dd
-                  className="mt-1 max-w-prose space-y-5 text-sm text-gray-900"
-                  dangerouslySetInnerHTML={{
-                    __html: job.brief || 'N/A',
-                  }}
-                />
-              </div>
-            )}
-            {job.position && (
-              <div key={'position'} className="sm:col-span-1">
-                <dt className="text-sm font-medium text-gray-500">Title</dt>
-                <dd className="mt-1 text-sm text-gray-900">{job.position}</dd>
-              </div>
-            )}
-            {job.link && (
-              <div key={'website'} className="sm:col-span-1">
-                <dt className="text-sm font-medium text-gray-500">Website</dt>
-                <dd className="mt-1 text-sm text-blue-500">
-                  <a href={job.link} target="_blank" rel="noopener noreferrer">
-                    {job.link}
-                  </a>
-                </dd>
-              </div>
-            )}
-            {Object.keys(profile.fields).map((field) => (
-              <div key={field} className="sm:col-span-1">
-                <dt className="text-sm font-medium text-gray-500">{field}</dt>
-                <dd className="mt-1 text-sm text-gray-900">
-                  {profile.fields[field]}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+        <ProfileHeader handlePress={setState} job={job} />
+        <Tabs setState={setState} tabs={tabs} />
+        <Meta job={job} />
       </article>
     </>
   )

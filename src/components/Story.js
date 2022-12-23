@@ -1,9 +1,7 @@
-import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi'
 import { BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs'
-import { GoVerified } from 'react-icons/go'
 
 export default function Story({ post }) {
   const [playing, setPlaying] = useState(false)

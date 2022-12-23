@@ -1,19 +1,21 @@
-import { Fragment } from 'react'
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { useEffect } from 'react'
+import { useSession } from 'next-auth/react'
+import Router from 'next/router'
 
-import { Popover, Transition } from '@headlessui/react'
+import EmptyState from '@/components/EmptyState'
 import Features from '@/components/Features'
 import Testimonials from '@/components/Testimonials'
-import EmptyState from '@/components/EmptyState'
-import { sidebarNav } from '@/utils/navigation'
-import { classNames } from '@/lib/utils'
 import UnLoggedIn from '@/components/UnLoggedIn'
-// import { Bars3Icon, XMarkIcon } from '@heroicons/react/outline'
-import assets from '../images/assets'
-import Image from 'next/image'
+import { classNames } from '@/lib/utils'
 
 export default function Home() {
   const { data: session } = useSession()
+
+  useEffect(() => {
+    if (!JSON.parse(localStorage.getItem('onboarded'))) {
+      Router.push('/onboarding')
+    }
+  }, [])
 
   return (
     <main className="flex-1">

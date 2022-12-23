@@ -38,8 +38,8 @@ export default function Onboarding() {
             values={
               session && {
                 ...session.user,
-                firstName: session.user.name.split(' ')[0],
-                lastName: session.user.name.split(' ')[1],
+                firstName: session.user?.name.split(' ')[0],
+                lastName: session.user?.name.split(' ')[1],
               }
             }
             onChange={onChange}
@@ -62,6 +62,7 @@ export default function Onboarding() {
             inputs={inputs.how}
             title={'How did you find out about the opportunity portal?'}
             values={values}
+            onChange={onChange}
           />
         )}
         {activeStep === 3 && <Card />}

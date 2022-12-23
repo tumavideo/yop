@@ -13,7 +13,9 @@ export default function Home() {
 
   useEffect(() => {
     if (!JSON.parse(localStorage.getItem('onboarded'))) {
-      Router.push('/onboarding')
+      if (session) {
+        Router.push('/onboarding')
+      }
     }
   }, [])
 

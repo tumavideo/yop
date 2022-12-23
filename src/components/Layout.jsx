@@ -29,7 +29,10 @@ export default function Layout({ children }) {
           name="description"
           content="Youth Opportunities Portal - Your one-stop platform for accessing skills, job opportunities, market access, funding, and business and career development services."
         />
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-5LMZGHJKTJ" />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-5LMZGHJKTJ"
+          strategy="afterInteractive"
+        />
         <Script
           id="google-analytics"
           dangerouslySetInnerHTML={{
@@ -41,6 +44,7 @@ export default function Layout({ children }) {
           gtag('config', 'G-5LMZGHJKTJ');
         `,
           }}
+          strategy="afterInteractive"
         ></Script>
       </Head>
       <div>

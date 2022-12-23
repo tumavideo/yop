@@ -1,32 +1,10 @@
-import { useState } from 'react'
-import { useSession } from 'next-auth/react'
-
-import OppApplication from '@/components/OppApplication'
-import JobInfo from '@/components/JobInfo'
-import CompanyInfo from '@/components/CompanyInfo'
+import Listing from '@/components/Listing'
 import { client } from '@/lib/client'
 
-export default function Listing({ career }) {
-  const [state, setState] = useState('Opportunity')
-  const { data: session } = useSession()
-
+export default function Career({ career }) {
   return (
     <>
-      <div className="relative grid max-w-7xl grid-cols-1 gap-x-16 lg:grid-cols-1 lg:px-8 xl:gap-x-12">
-        {state === 'Opportunity' && (
-          <JobInfo job={career} setState={setState} />
-        )}
-        {state === 'Application' && (
-          <OppApplication
-            opportunity={career}
-            user={session.user}
-            setState={setState}
-          />
-        )}
-        {state === 'Company' && (
-          <CompanyInfo company={career.companyRef} setState={setState} />
-        )}
-      </div>
+      <Listing opportunity={career} />
     </>
   )
 }

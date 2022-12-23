@@ -5,12 +5,11 @@ export default function Cards() {
   const { opportunities, setOpportunities } = useStateContext()
 
   const handleSelect = (init) => {
-    setOpportunities(
-      opportunities.map((opp) => {
-        return opp.initials === init ? { ...opp, selected: !opp.selected } : opp
-      })
-    )
-    localStorage.setItem('sidebarNav', JSON.stringify(opportunities))
+    const selectedOpps = opportunities.map((opp) => {
+      return opp.initials === init ? { ...opp, selected: !opp.selected } : opp
+    })
+    setOpportunities(selectedOpps)
+    localStorage.setItem('sidebarNav', JSON.stringify(selectedOpps))
   }
 
   return (

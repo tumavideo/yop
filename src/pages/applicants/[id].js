@@ -15,7 +15,7 @@ const user = {
     'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
 }
 const breadcrumbs = [
-  { name: 'Jobs', href: '#', current: false },
+  { name: 'Opportunities', href: '#', current: false },
   { name: 'Front End Developer', href: '#', current: false },
   { name: 'Applicants', href: '#', current: true },
 ]

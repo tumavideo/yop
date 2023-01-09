@@ -19,7 +19,7 @@ import { BsEnvelope } from 'react-icons/bs'
 import Router from 'next/router'
 
 const breadcrumbs = [
-  { name: 'Jobs', href: '#', current: false },
+  { name: 'Opportunities', href: '#', current: false },
   { name: 'Engineering', href: '#', current: false },
 ]
 

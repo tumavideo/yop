@@ -285,7 +285,7 @@ export function CreateFinance({ onChange }) {
   )
 }
 
-export function CreateJob({ onChange }) {
+export default function CreateJob({ onChange }) {
   return (
     <>
       <div>

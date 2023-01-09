@@ -3,13 +3,13 @@ import { RadioGroup } from '@headlessui/react'
 import { classNames } from '@/lib/utils'
 import { postSanityObject } from '@/lib/client'
 import Breadcrumb from '@/components/Breadcrumb'
-import {
-  CreateCareer,
-  CreateFinance,
-  CreateJob,
-  CreateMarket,
-  CreateSkill,
-} from '@/pages/job/functions'
+
+import CreateCareer from '@/pages/job/functions'
+import CreateFinance from '@/pages/job/functions'
+import CreateJob from '@/pages/job/functions'
+import CreateMarket from '@/pages/job/functions'
+import CreateSkill from '@/pages/job/functions'
+
 import Router from 'next/router'
 import { useStateContext } from '@/context/StateContext'
 
@@ -33,7 +33,7 @@ const settings = [
   },
 ]
 
-export default function Example() {
+export default function Create() {
   const [state, setState] = useState('Jobs')
   const [selected, setSelected] = useState(settings[0])
   const [overlay, setOverlay] = useState(false)

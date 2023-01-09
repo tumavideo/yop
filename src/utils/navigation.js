@@ -2,16 +2,16 @@ import assets from '../images/assets'
 
 export const sidebarNav = [
   {
-    name: 'Skills',
-    alt: 'Acquire Skills',
-    initials: 'AS',
-    members: '16 skill development opportunities',
+    name: 'Careers',
+    alt: 'Business & Career Development',
+    initials: 'BCDS',
+    members: '8 career opportunities',
     description:
-      'Once a skill gap has been identifed, develop and hone these skills',
-    href: '/education',
-    icon: assets.Skills,
-    altIcon: assets.SkillsWhite,
-    iconColor: 'bg-yellow-500',
+      'Provide business support to start-up’s and established MSMEs in form of capacity building and training, on-the-job coaching, mentorship and hands-on advisory services.',
+    href: '/careers',
+    icon: assets.Vector,
+    altIcon: assets.VectorWhite,
+    iconColor: 'bg-green-500',
     current: false,
   },
   {
@@ -28,16 +28,16 @@ export const sidebarNav = [
     current: false,
   },
   {
-    name: 'Careers',
-    alt: 'Business & Career Development',
-    initials: 'BCDS',
-    members: '8 career opportunities',
+    name: 'Jobs',
+    alt: 'Jobs',
+    initials: 'J',
+    members: '12 jobs',
     description:
-      'Provide business support to start-up’s and established MSMEs in form of capacity building and training, on-the-job coaching, mentorship and hands-on advisory services.',
-    href: '/careers',
-    icon: assets.Vector,
-    altIcon: assets.VectorWhite,
-    iconColor: 'bg-green-500',
+      'Find jobs and employees. Match interests, work values and skills with the world of work, as well as, hire people that fit your criteria.',
+    href: '/jobs',
+    icon: assets.Jobs,
+    altIcon: assets.JobsWhite,
+    iconColor: 'bg-blue-500',
     current: false,
   },
   {
@@ -53,32 +53,23 @@ export const sidebarNav = [
     current: false,
   },
   {
-    name: 'Jobs',
-    alt: 'Jobs',
-    initials: 'J',
-    members: '12 jobs',
+    name: 'Skills',
+    alt: 'Acquire Skills',
+    initials: 'AS',
+    members: '16 skill development opportunities',
     description:
-      'Find jobs and employees. Match interests, work values and skills with the world of work, as well as, hire people that fit your criteria.',
-    href: '/jobs',
-    icon: assets.Jobs,
-    altIcon: assets.JobsWhite,
-    iconColor: 'bg-blue-500',
+      'Once a skill gap has been identifed, develop and hone these skills',
+    href: '/education',
+    icon: assets.Skills,
+    altIcon: assets.SkillsWhite,
+    iconColor: 'bg-yellow-500',
     current: false,
   },
-  {
-    name: 'Success Stories',
-    alt: 'Testimonials',
-    initials: 'SS',
-    description: 'Hear from others, about their experience with our platform.',
-    href: '/success-stories',
-    icon: assets.Company,
-    altIcon: assets.CompanyWhite,
-    iconColor: 'bg-blue-500',
-    current: false,
-  },
-  // { name: 'Profile', href: '/settings', icon: assets.CogIcon, current: false },
 ]
 
 export const secondaryNavigation = [
-  { name: 'Help', href: '#', icon: assets.QuestionMarkCircleIcon },
+  {
+    name: 'Settings',
+    href: '/settings',
+  },
 ]

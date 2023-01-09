@@ -10,7 +10,7 @@ export default function Tabs({ setState, tabs }) {
             <nav className="-mb-px flex space-x-8" aria-label="Tabs">
               {tabs.map((tab) => (
                 <a
-                  onClick={() => setState(tab.name)}
+                  onClick={() => setState(tab.alt || tab.name)}
                   key={tab.name}
                   href={tab.href}
                   className={classNames(

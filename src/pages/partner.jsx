@@ -2,6 +2,7 @@ import Modal from '@/components/Modal'
 import Thanks from '@/components/Thanks'
 import { postSanityObject } from '@/lib/client'
 import { useSession } from 'next-auth/react'
+import Router from 'next/router'
 import { useState } from 'react'
 
 export default function Partner() {
@@ -16,6 +17,8 @@ export default function Partner() {
     setOverlay(true)
 
     const { company, phone, companySize, howHear, howHelp } = values
+
+    if (howHear === 'secret') Router.push('/opportunities')
 
     let mutations = [
       {

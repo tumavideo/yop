@@ -1,7 +1,5 @@
 import Header from '@/components/Header'
 import TwoColwAvatar from '@/components/TwoColwAvatar'
-import { client } from '@/lib/client'
-import { getFunding } from '@/utils/queries'
 import React from 'react'
 
 export default function Opportunities({

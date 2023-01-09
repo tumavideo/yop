@@ -4,13 +4,13 @@ import { classNames } from '@/lib/utils'
 import { sidebarNav } from '@/utils/navigation'
 import { postSanityObject } from '@/lib/client'
 import Breadcrumb from '@/components/Breadcrumb'
-import {
-  CreateCareer,
-  CreateFinance,
-  CreateJob,
-  CreateMarket,
-  CreateSkill,
-} from '@/pages/job/functions'
+
+import CreateCareer from '@/pages/job/functions'
+import CreateFinance from '@/pages/job/functions'
+import CreateJob from '@/pages/job/functions'
+import CreateMarket from '@/pages/job/functions'
+import CreateSkill from '@/pages/job/functions'
+
 import Router from 'next/router'
 
 const breadcrumbs = [

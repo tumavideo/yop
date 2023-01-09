@@ -285,7 +285,7 @@ export default function Example() {
 
         <main className="pt-8 pb-16">
           <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <Tabs setState={() => {}} tabs={tabs} />
+            <Tabs opportunity={{ _id: 1 }} setState={() => {}} tabs={tabs} />
 
             {/* Stacked list */}
             <ul

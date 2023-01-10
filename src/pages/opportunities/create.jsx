@@ -4,14 +4,17 @@ import { classNames } from '@/lib/utils'
 import { postSanityObject } from '@/lib/client'
 import Breadcrumb from '@/components/Breadcrumb'
 
-import CreateCareer from '@/pages/job/functions'
-import CreateFinance from '@/pages/job/functions'
-import CreateJob from '@/pages/job/functions'
-import CreateMarket from '@/pages/job/functions'
-import CreateSkill from '@/pages/job/functions'
+import {
+  CreateCareer,
+  CreateFinance,
+  CreateJob,
+  CreateMarket,
+  CreateSkill,
+} from '@/pages/job/functions'
 
 import Router from 'next/router'
 import { useStateContext } from '@/context/StateContext'
+import Modal from '@/components/Modal'
 
 const breadcrumbs = [
   { name: 'Opportunities', href: '/opportunities', current: false },
@@ -34,26 +37,27 @@ const settings = [
 ]
 
 export default function Create() {
-  const [state, setState] = useState('Jobs')
-  const [selected, setSelected] = useState(settings[0])
   const [overlay, setOverlay] = useState(false)
   const [values, setValues] = useState({})
-  const { opportunities, setOpportunities } = useStateContext()
+  const {
+    opportunities,
+    selectedOpportunity,
+    setOpportunities,
+    setSelectedOpportunity,
+  } = useStateContext()
 
   const handleSubmit = (e) => {
-    console.log(values)
-    const types = opportunities.map((n) => n.name)
-    console.log(types)
     e.preventDefault()
-    return false
-
     setOverlay(true)
+    const oppType = selected.name.toLowerCase()
 
     const mutations = [
       {
         createOrReplace: {
           ...values,
-          _type: 'user',
+          position: values.role,
+          _draft: true,
+          _type: oppType.slice(-1) === 's' ? oppType.slice(0, -1) : oppType,
         },
       },
     ]
@@ -72,8 +76,20 @@ export default function Create() {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
 
+  const handleChange = (opportunity) => {
+    setSelectedOpportunity(opportunity)
+  }
+
   return (
     <>
+      {overlay && (
+        <Modal
+          body={
+            'Your opportunity has been submitted to our moderation team. Expect to see your listing in the next 5 minutes. If not, someone from our support staff will be in touch.'
+          }
+          title={'Opportunity drafted'}
+        />
+      )}
       <Breadcrumb breadcrumbs={breadcrumbs} />
       <div className="min-h-full">
         <main className="py-10">
@@ -84,11 +100,21 @@ export default function Create() {
             <div className="space-y-6 lg:col-span-2 lg:col-start-1">
               <form onSubmit={handleSubmit}>
                 <div className="space-y-6">
-                  {state === 'Careers' && <CreateCareer onChange={onChange} />}
-                  {state === 'Finance' && <CreateFinance onChange={onChange} />}
-                  {state === 'Jobs' && <CreateJob onChange={onChange} />}
-                  {state === 'Market' && <CreateMarket onChange={onChange} />}
-                  {state === 'Skills' && <CreateSkill onChange={onChange} />}
+                  {selectedOpportunity.name === 'Careers' && (
+                    <CreateCareer onChange={onChange} />
+                  )}
+                  {selectedOpportunity.name === 'Finance' && (
+                    <CreateFinance onChange={onChange} />
+                  )}
+                  {selectedOpportunity.name === 'Jobs' && (
+                    <CreateJob onChange={onChange} />
+                  )}
+                  {selectedOpportunity.name === 'Market' && (
+                    <CreateMarket onChange={onChange} />
+                  )}
+                  {selectedOpportunity.name === 'Skills' && (
+                    <CreateSkill onChange={onChange} />
+                  )}
 
                   <div>
                     <label
@@ -128,7 +154,7 @@ export default function Create() {
               aria-labelledby="timeline-title"
               className="lg:col-span-1 lg:col-start-3"
             >
-              <RadioGroup value={selected} onChange={setSelected}>
+              <RadioGroup value={selectedOpportunity} onChange={handleChange}>
                 <RadioGroup.Label className="text-sm font-medium text-gray-900">
                   Opportunity Type
                 </RadioGroup.Label>
@@ -140,7 +166,6 @@ export default function Create() {
                       <RadioGroup.Option
                         key={setting.name}
                         value={setting}
-                        onClick={() => setState(setting.name)}
                         className={({ checked }) =>
                           classNames(
                             settingIdx === 0
@@ -202,7 +227,6 @@ export default function Create() {
           </div>
         </main>
       </div>
-      <main className="mx-auto max-w-lg px-4 pt-10 pb-12 lg:pb-16"></main>
     </>
   )
 }

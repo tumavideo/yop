@@ -6,6 +6,9 @@ const Context = createContext()
 export const StateContext = ({ children }) => {
   const [onboarded, setOnboarded] = useState(false)
   const [opportunities, setOpportunities] = useState(sidebarNav)
+  const [selectedOpportunity, setSelectedOpportunity] = useState(
+    opportunities[0]
+  )
 
   useEffect(() => {
     setOpportunities(
@@ -18,6 +21,8 @@ export const StateContext = ({ children }) => {
       value={{
         onboarded,
         opportunities,
+        selectedOpportunity,
+        setSelectedOpportunity,
         setOnboarded,
         setOpportunities,
       }}

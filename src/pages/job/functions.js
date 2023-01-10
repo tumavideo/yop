@@ -1,6 +1,6 @@
 import { PaperClipIcon } from '@heroicons/react/solid'
 
-export function CreateCareer({ onChange }) {
+function CreateCareer({ onChange }) {
   return (
     <>
       <div>
@@ -96,7 +96,7 @@ export function CreateCareer({ onChange }) {
   )
 }
 
-export function CreateFinance({ onChange }) {
+function CreateFinance({ onChange }) {
   return (
     <>
       <div>
@@ -111,7 +111,7 @@ export function CreateFinance({ onChange }) {
 
       <div>
         <label
-          htmlFor="role"
+          htmlFor="title"
           className="block text-sm font-medium text-gray-700"
         >
           Title
@@ -119,8 +119,8 @@ export function CreateFinance({ onChange }) {
         <div className="mt-1">
           <input
             type="text"
-            name="role"
-            id="role"
+            name="title"
+            id="title"
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             defaultValue=""
             onChange={onChange}
@@ -285,7 +285,7 @@ export function CreateFinance({ onChange }) {
   )
 }
 
-export default function CreateJob({ onChange }) {
+function CreateJob({ onChange }) {
   return (
     <>
       <div>
@@ -340,7 +340,7 @@ export default function CreateJob({ onChange }) {
 
       <div>
         <label
-          htmlFor="link"
+          htmlFor="company"
           className="block text-sm font-medium text-gray-700"
         >
           Company
@@ -352,6 +352,26 @@ export default function CreateJob({ onChange }) {
             id="company"
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             defaultValue="Crowdsource Creators"
+            onChange={onChange}
+            required={true}
+          />
+        </div>
+      </div>
+
+      <div>
+        <label
+          htmlFor="location"
+          className="block text-sm font-medium text-gray-700"
+        >
+          Location
+        </label>
+        <div className="mt-1">
+          <input
+            type="text"
+            name="location"
+            id="location"
+            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            defaultValue="Lusaka"
             onChange={onChange}
             required={true}
           />
@@ -421,7 +441,7 @@ export default function CreateJob({ onChange }) {
   )
 }
 
-export function CreateMarket({ onChange }) {
+function CreateMarket({ onChange }) {
   return (
     <>
       <div>
@@ -436,7 +456,7 @@ export function CreateMarket({ onChange }) {
 
       <div>
         <label
-          htmlFor="role"
+          htmlFor="title"
           className="block text-sm font-medium text-gray-700"
         >
           Title
@@ -444,8 +464,8 @@ export function CreateMarket({ onChange }) {
         <div className="mt-1">
           <input
             type="text"
-            name="role"
-            id="role"
+            name="title"
+            id="title"
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             defaultValue=""
             onChange={onChange}
@@ -517,7 +537,7 @@ export function CreateMarket({ onChange }) {
   )
 }
 
-export function CreateSkill({ onChange }) {
+function CreateSkill({ onChange }) {
   return (
     <>
       <div>
@@ -532,7 +552,7 @@ export function CreateSkill({ onChange }) {
 
       <div>
         <label
-          htmlFor="role"
+          htmlFor="title"
           className="block text-sm font-medium text-gray-700"
         >
           Title
@@ -540,8 +560,8 @@ export function CreateSkill({ onChange }) {
         <div className="mt-1">
           <input
             type="text"
-            name="role"
-            id="role"
+            name="title"
+            id="title"
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             defaultValue=""
             onChange={onChange}
@@ -612,3 +632,5 @@ export function CreateSkill({ onChange }) {
     </>
   )
 }
+
+export { CreateCareer, CreateFinance, CreateJob, CreateMarket, CreateSkill }

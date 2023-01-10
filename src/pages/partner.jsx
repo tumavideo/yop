@@ -18,7 +18,10 @@ export default function Partner() {
 
     const { company, phone, companySize, howHear, howHelp } = values
 
-    if (howHear === 'secret') Router.push('/opportunities')
+    if (howHear === 'secret') {
+      Router.push('/opportunities')
+      return false
+    }
 
     let mutations = [
       {

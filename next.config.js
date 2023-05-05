@@ -1,22 +1,11 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    images: {
-      allowFutureImage: true,
-    },
-    newNextLinkBehavior: true,
-    scrollRestoration: true,
-  },
+module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'lh3.googleusercontent.com',
+        protocol: "https",
+        hostname: "cloudinary.zedbrains.com",
+        port: "",
       },
     ],
   },
-}
-
-module.exports = nextConfig
+};

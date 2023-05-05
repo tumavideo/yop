@@ -1,11 +1,11 @@
 const products = [
   {
     id: 1,
-    name: 'Opportunity Name',
-    description: 'Opportunity description.',
-    href: '#',
+    name: "Opportunity Name",
+    description: "Opportunity description.",
+    href: "#",
   },
-]
+];
 
 export default function Thanks({ opportunity, user }) {
   return (
@@ -72,7 +72,7 @@ export default function Thanks({ opportunity, user }) {
                 <dd className="mt-2 text-gray-700">
                   <address className="not-italic">
                     <span className="block">
-                      {user.name || `${user.firstName + ' ' + user.lastName}`}
+                      {user.name || `${user.firstName + " " + user.lastName}`}
                     </span>
                     <span className="block">{user.email}</span>
                     <span className="block">
@@ -90,5 +90,5 @@ export default function Thanks({ opportunity, user }) {
         </section>
       </div>
     </main>
-  )
+  );
 }

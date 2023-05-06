@@ -285,9 +285,9 @@ export const getServerSideProps = async () => {
 
   const jobs = await client.fetch(query);
 
-  const post = await axios.get(POST_URL(0))
-  const testimony = await axios.get(TESTIMONY_URL(0))
-  const banner = await axios.get(BANNER_URL)
+  const post = (await axios.get(POST_URL(0))).data.payload
+  const testimony = (await axios.get(TESTIMONY_URL(0))).data.payload
+  const banner = (await axios.get(BANNER_URL)).data.payload
 
   return {
     props: { banner, jobs, post, testimony },

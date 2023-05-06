@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import Header from "../components/layout/Header";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Footer from "../components/layout/Footer";
 import Subscribe from "../components/layout/Subscribe";
 import { InfinitySpin } from "react-loader-spinner";
@@ -10,24 +10,11 @@ import { truncate } from "../utils/truncate";
 import moment from "moment";
 import { encodeQueryParameter } from "../utils/url";
 import { client, urlFor } from "../lib/client";
+import { BANNER_URL, POST_URL, TESTIMONY_URL } from "../api";
+import axios from "axios";
 
-export default function Home({ jobs }) {
-  const [loading, setLoading] = useState(true);
-
-  const [post, setPost] = useState([]);
-  const [banner, setBanner] = useState([]);
-  const [testimony, setTestimony] = useState([]);
-
-  useEffect(() => {
-    getGlobal(0).then((response) => {
-      if (!response.error) {
-        setPost(response.payload.post);
-        setBanner(response.payload.banner);
-        setTestimony(response.payload.testimony);
-        setLoading(false);
-      }
-    });
-  }, []);
+export default function Home({ banner, jobs, post, testimony }) {
+  const [loading, setLoading] = useState(false);
 
   return loading ? (
     <div className="container">
@@ -187,7 +174,7 @@ export default function Home({ jobs }) {
                   <img
                     style={{ height: 120 }}
                     className="img-fluid"
-                    src={urlFor(job.companyRef?.logo?.asset)}
+                    src={urlFor(job.companyRef?.logo?.asset).url()}
                     alt="govt-1"
                   />
                 )}
@@ -298,7 +285,11 @@ export const getServerSideProps = async () => {
 
   const jobs = await client.fetch(query);
 
+  const post = await axios.get(POST_URL(0))
+  const testimony = await axios.get(TESTIMONY_URL(0))
+  const banner = await axios.get(BANNER_URL)
+
   return {
-    props: { jobs },
+    props: { banner, jobs, post, testimony },
   };
 };

@@ -4,8 +4,8 @@ import Header from "../components/layout/Header";
 import React, { useState } from "react";
 import Footer from "../components/layout/Footer";
 import Subscribe from "../components/layout/Subscribe";
+import Successes from "../components/Successes";
 import { InfinitySpin } from "react-loader-spinner";
-import { getGlobal } from "../api/web";
 import { truncate } from "../utils/truncate";
 import moment from "moment";
 import { encodeQueryParameter } from "../utils/url";
@@ -198,7 +198,17 @@ export default function Home({ banner, jobs, post, testimony }) {
         </div>
       </section>
 
-      {testimony.length > 0 ? (
+      <section id="stories">
+        <div className="container">
+          <div className="flag-badge d-flex mb-5">
+            <img src="assets/images/__flag.svg" alt="zambia rise logo" />
+            <h1 className="my-auto">Success Stories</h1>
+          </div>
+          <Successes />
+        </div>
+      </section>
+
+      {testimony.length < 0 ? (
         <section id="stories">
           <div id="stories-bg">
             <div className="container">
@@ -285,9 +295,9 @@ export const getServerSideProps = async () => {
 
   const jobs = await client.fetch(query);
 
-  const post = (await axios.get(POST_URL(0))).data.payload
-  const testimony = (await axios.get(TESTIMONY_URL(0))).data.payload
-  const banner = (await axios.get(BANNER_URL)).data.payload
+  const post = (await axios.get(POST_URL(0))).data.payload;
+  const testimony = (await axios.get(TESTIMONY_URL(0))).data.payload;
+  const banner = (await axios.get(BANNER_URL)).data.payload;
 
   return {
     props: { banner, jobs, post, testimony },

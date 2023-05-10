@@ -1,45 +1,49 @@
-import axios from 'axios'
-import { useRouter } from 'next/router'
-import React, { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
-import { SUBSCRIBE_URL } from '../api'
+import axios from "axios";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap";
+import { JOB_APP } from "../api";
 
 export default function Application({ user = {} }) {
-  const [validated, setValidated] = useState(false)
+  const [validated, setValidated] = useState(false);
 
   const [values, setValues] = useState({
-    firstName: '',
-    lastName: '',
-    mobile: '',
-    email: '',
-    about: '',
-    resume: '',
-  })
+    firstName: "",
+    lastName: "",
+    mobile: "",
+    email: "",
+    about: "",
+    resume: "",
+  });
 
-  const router = useRouter()
+  const router = useRouter();
 
-  const { jobId } = router.query
+  const { jobId } = router.query;
 
   const handleSubmit = (event) => {
-    const form = event.currentTarget
+    const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
     }
-    setValidated(true)
+    setValidated(true);
 
     axios
-      .post(SUBSCRIBE_URL, values)
+      .post(JOB_APP, {
+        ...values,
+        name: values.firstName + " " + values.lastName,
+        jobId: jobId,
+      })
       .then(async (response) => {
-        console.log(response)
+        console.log(response);
       })
       .catch((e) => console.log(e))
-      .finally(() => console.log('done'))
-  }
+      .finally(() => console.log("done"));
+  };
 
   const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value })
-  }
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
 
   return (
     <div className="container">
@@ -57,7 +61,8 @@ export default function Application({ user = {} }) {
                 required
                 type="text"
                 placeholder="Enter first name"
-                value={values['firstName']}
+                name="firstName"
+                value={values["firstName"]}
                 onChange={onChange}
               />
               <Form.Control.Feedback type="invalid">
@@ -70,7 +75,8 @@ export default function Application({ user = {} }) {
                 required
                 type="text"
                 placeholder="Enter last name"
-                value={values['lastName']}
+                name="lastName"
+                value={values["lastName"]}
                 onChange={onChange}
               />
               <Form.Control.Feedback type="invalid">
@@ -83,7 +89,8 @@ export default function Application({ user = {} }) {
                 required
                 type="tel"
                 placeholder="Enter phone number"
-                value={values['mobile']}
+                name="mobile"
+                value={values["mobile"]}
                 onChange={onChange}
               />
               <Form.Control.Feedback type="invalid">
@@ -96,7 +103,8 @@ export default function Application({ user = {} }) {
                 required
                 type="email"
                 placeholder="Enter email"
-                value={values['email']}
+                name="email"
+                value={values["email"]}
                 onChange={onChange}
               />
               <Form.Control.Feedback type="invalid">
@@ -110,7 +118,8 @@ export default function Application({ user = {} }) {
                 rows={3}
                 maxLength={250}
                 placeholder="Tell us about yourself"
-                value={values['about']}
+                name="about"
+                value={values["about"]}
                 onChange={onChange}
               />
             </Form.Group>
@@ -129,7 +138,6 @@ export default function Application({ user = {} }) {
             <Button className="mt-4" variant="primary" type="submit">
               Submit
             </Button>
-            <input id="jobId" name="jobId" type="hidden" value={jobId} />
           </Form>
         </div>
         <div className="col-md-6">
@@ -140,5 +148,5 @@ export default function Application({ user = {} }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

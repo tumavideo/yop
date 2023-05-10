@@ -176,6 +176,19 @@
   margin-top: -9%;
 }
 
+#stories a {
+  text-decoration: none!important;
+}
+
+#stories h6 {
+  font-family: "Source Sans Pro", serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
+  margin-top: 10px;
+  text-align: left;
+}
+
 #blog #success {
   margin-top: 50px;
 }
@@ -334,6 +347,14 @@ footer p {
 
 #intro {
   margin-top: 100px;
+}
+
+.video-info {
+  color: black;
+}
+
+.video-info img {
+  margin-right: 6%;
 }
 
 @media (min-width: 992px) {

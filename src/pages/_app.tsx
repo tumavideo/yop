@@ -1,5 +1,6 @@
 import "../styles/theme.css";
 import "bootstrap/dist/css/bootstrap.css";
+import "../styles/modal.css";
 
 import type { AppProps } from "next/app";
 import { useEffect } from "react";

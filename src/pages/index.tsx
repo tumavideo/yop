@@ -4,7 +4,7 @@ import Header from "../components/layout/Header";
 import React, { useState } from "react";
 import Footer from "../components/layout/Footer";
 import Subscribe from "../components/layout/Subscribe";
-import Successes from "../components/Successes";
+import Testimony from "../components/Testimony";
 import { InfinitySpin } from "react-loader-spinner";
 import { truncate } from "../utils/truncate";
 import moment from "moment";
@@ -15,6 +15,16 @@ import axios from "axios";
 
 export default function Home({ banner, jobs, post, testimony }) {
   const [loading, setLoading] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [videoLoading, setVideoLoading] = useState(true);
+
+  const spinner = () => {
+    setVideoLoading(!videoLoading);
+  };
+
+  const openModal = () => {
+    setModal(!modal);
+  };
 
   return loading ? (
     <div className="container">
@@ -114,10 +124,10 @@ export default function Home({ banner, jobs, post, testimony }) {
                   alt="govt-1"
                 />
               </a>
-              <a href="https://www.ceec.org.zm/">
+              <a href="https://www.napsa.co.zm/" target="_blank">
                 <img
                   className="mt-3 img-fluid w-50"
-                  src="assets/images/pro-logo-1.png"
+                  src="assets/images/pro-logo-2.png"
                   alt="pro-1"
                 />
               </a>
@@ -131,10 +141,10 @@ export default function Home({ banner, jobs, post, testimony }) {
                   alt="govt-1"
                 />
               </a>
-              <a href="https://www.napsa.co.zm/" target="_blank">
+              <a href="https://www.ceec.org.zm/">
                 <img
                   className="mt-3 img-fluid w-50"
-                  src="assets/images/pro-logo-2.png"
+                  src="assets/images/pro-logo-1.png"
                   alt="pro-1"
                 />
               </a>
@@ -172,7 +182,7 @@ export default function Home({ banner, jobs, post, testimony }) {
               <div className="col-md-2 col-6 text-center">
                 {job.companyRef?.logo && (
                   <img
-                    style={{ height: 120 }}
+                    style={{ height: 60 }}
                     className="img-fluid"
                     src={urlFor(job.companyRef?.logo?.asset).url()}
                     alt="govt-1"
@@ -198,48 +208,27 @@ export default function Home({ banner, jobs, post, testimony }) {
         </div>
       </section>
 
-      <section id="stories">
-        <div className="container">
-          <div className="flag-badge d-flex mb-5">
-            <img src="assets/images/__flag.svg" alt="zambia rise logo" />
-            <h1 className="my-auto">Success Stories</h1>
-          </div>
-          <Successes />
-        </div>
-      </section>
-
-      {testimony.length < 0 ? (
+      {post.length > 0 ? (
         <section id="stories">
-          <div id="stories-bg">
-            <div className="container">
-              <div
-                className="flag-badge d-flex float-end"
-                style={{ marginTop: "9%" }}
-              >
-                <img src="assets/images/__flag.svg" alt="zambia rise logo" />
-                <h1 className="my-auto">Success Stories</h1>
-              </div>
+          <div className="container">
+            <div className="flag-badge d-flex mb-5">
+              <img src="assets/images/__flag.svg" alt="zambia rise logo" />
+              <h1 className="my-auto">Success Stories</h1>
             </div>
-          </div>
-
-          <div id="success" className="text-center">
-            <div className="circle mx-auto text-center">
-              <img src={testimony[0].img} alt="client" className="mt-3" />
+            <div className="row">
+              {testimony.slice(0, 3).map((item) => {
+                return (
+                  <Testimony
+                    modal={modal}
+                    openModal={openModal}
+                    setModal={setModal}
+                    spinner={spinner}
+                    video={item}
+                    videoLoading={videoLoading}
+                  />
+                );
+              })}
             </div>
-
-            <h3>{testimony[0].name}</h3>
-            <div className="d-flex align-items-center justify-content-center">
-              <p className="align-self-center">{testimony[0].message}</p>
-            </div>
-          </div>
-
-          <div className="d-flex justify-content-center">
-            <Link
-              href="/testimony"
-              className="button btn-primary mt-3 align-items-center _button"
-            >
-              View More
-            </Link>
           </div>
         </section>
       ) : null}

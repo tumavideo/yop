@@ -6,12 +6,19 @@ import { InfinitySpin } from "react-loader-spinner";
 import { getTestimony } from "../api/web";
 import { truncate } from "../utils/truncate";
 import Link from "next/link";
+import Testimony from "../components/Testimony";
 
 export default function Blog({ testimonies }) {
   const [loading, setLoading] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [videoLoading, setVideoLoading] = useState(true);
 
-  const showModal = (data) => {
-    return false;
+  const spinner = () => {
+    setVideoLoading(!videoLoading);
+  };
+
+  const openModal = () => {
+    setModal(!modal);
   };
 
   return (
@@ -35,23 +42,14 @@ export default function Blog({ testimonies }) {
             ) : (
               testimonies.map((item) => {
                 return (
-                  <div className="col-md-4">
-                    <div id="success" className="text-center">
-                      <div className="circle mx-auto text-center">
-                        <img src={item.img} alt="client" className="mt-3" />
-                      </div>
-
-                      <h3>{item.name}</h3>
-                      <div className="d-flex align-items-center justify-content-center">
-                        <p className="align-self-center w-100">
-                          {truncate(item.message, 100)}
-                        </p>
-                      </div>
-                      <Link href="#" onClick={showModal.bind(null, item)}>
-                        View Full Story
-                      </Link>
-                    </div>
-                  </div>
+                  <Testimony
+                    modal={modal}
+                    openModal={openModal}
+                    setModal={setModal}
+                    spinner={spinner}
+                    video={item}
+                    videoLoading={videoLoading}
+                  />
                 );
               })
             )}

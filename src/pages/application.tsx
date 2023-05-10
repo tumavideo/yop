@@ -35,9 +35,11 @@ export default function Application({ user = {} }) {
         jobId: jobId,
       })
       .then(async (response) => {
-        console.log(response);
+        alert(response.data.payload);
       })
-      .catch((e) => console.log(e))
+      .catch((e) => {
+        alert(e.response.data["error"]);
+      })
       .finally(() => console.log("done"));
   };
 

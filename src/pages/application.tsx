@@ -25,6 +25,8 @@ export default function Application({ user = {} }) {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+      setValidated(true);
+      return false;
     }
     setValidated(true);
 
@@ -35,10 +37,10 @@ export default function Application({ user = {} }) {
         jobId: jobId,
       })
       .then(async (response) => {
-        alert(response.data.payload);
+        console.log(response.data.payload);
       })
       .catch((e) => {
-        alert(e.response.data["error"]);
+        console.log(e.response.data.message);
       })
       .finally(() => console.log("done"));
   };

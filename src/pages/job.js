@@ -100,7 +100,12 @@ export default function Job({ jobs }) {
                 )}
                 <h2>{opp.company}</h2>
                 <h3>{opp.position}</h3>
-                <a href={`/application?jobId=${opp._id}`} target="_blank">
+                <a
+                  href={`/application?${
+                    selectedOption === "Finance" ? "loanId" : "jobId"
+                  }=${opp._id}`}
+                  target="_blank"
+                >
                   Apply Now
                 </a>
               </div>

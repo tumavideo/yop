@@ -218,14 +218,16 @@ export default function Home({ banner, jobs, post, testimony }) {
             <div className="row">
               {testimony.slice(0, 3).map((item) => {
                 return (
-                  <Testimony
-                    modal={modal}
-                    openModal={openModal}
-                    setModal={setModal}
-                    spinner={spinner}
-                    video={item}
-                    videoLoading={videoLoading}
-                  />
+                  <div className="col-md-4">
+                    <Testimony
+                      modal={modal}
+                      openModal={openModal}
+                      setModal={setModal}
+                      spinner={spinner}
+                      video={item}
+                      videoLoading={videoLoading}
+                    />
+                  </div>
                 );
               })}
             </div>

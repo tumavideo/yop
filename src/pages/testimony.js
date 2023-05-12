@@ -42,14 +42,16 @@ export default function Blog({ testimonies }) {
             ) : (
               testimonies.map((item) => {
                 return (
-                  <Testimony
-                    modal={modal}
-                    openModal={openModal}
-                    setModal={setModal}
-                    spinner={spinner}
-                    video={item}
-                    videoLoading={videoLoading}
-                  />
+                  <div className="col-md-4">
+                    <Testimony
+                      modal={modal}
+                      openModal={openModal}
+                      setModal={setModal}
+                      spinner={spinner}
+                      video={item}
+                      videoLoading={videoLoading}
+                    />
+                  </div>
                 );
               })
             )}

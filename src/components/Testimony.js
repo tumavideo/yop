@@ -13,14 +13,14 @@ export default function Testimony({
 }) {
   return (
     <div onClick={openModal}>
-      <div className="col-md-4 mb-5">
+      <>
         <img
           src={video.img_src}
           className="img-fluid cover-image"
           alt="image-1"
         />
         <h4 className="text-black">{video.title}</h4>
-      </div>
+      </>
       {modal ? (
         <section className="modal__bg">
           <div className="modal__align">

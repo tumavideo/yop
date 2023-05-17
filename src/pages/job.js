@@ -1,116 +1,59 @@
-import React, { useState } from "react";
 import Header from "../components/layout/Header";
 import Subscribe from "../components/layout/Subscribe";
 import Footer from "../components/layout/Footer";
-import {
-  findJobs,
-  findMarketplace,
-  getCareers,
-  getEducation,
-  getFunding,
-} from "../lib/queries";
+import { findOpportunities } from "../lib/queries";
 import { client, urlFor } from "../lib/client";
+import Title from "../components/Title";
 
-let opportunityTypes = ["Job", "Finance", "Career", "Market", "Skills"];
+const Opportunity = ({ opps, title, loan = false }) => (
+  <>
+    <Title text={title} />
 
-export default function Job({ jobs }) {
-  const [selectedOption, setSelectedOption] = useState("All Opportunities");
-  const [opportunities, setOpportunities] = useState(jobs);
+    <div className="row">
+      {opps.map((opp) => (
+        <div key={opp._id} className="col-md-2 col-6 text-center mb-5">
+          {opp.companyRef?.logo && (
+            <img
+              style={{ height: 60 }}
+              className="img-fluid"
+              src={urlFor(opp.companyRef?.logo?.asset).url()}
+              alt="govt-1"
+            />
+          )}
+          <h2>{opp.companyRef.company}</h2>
+          <h3>{opp.position || opp.title}</h3>
+          <a
+            href={`/application?${loan ? "loanId" : "jobId"}=${opp._id}`}
+            target="_blank"
+          >
+            Apply Now
+          </a>
+        </div>
+      ))}
+    </div>
+  </>
+);
 
-  const onSelectedItem = async (item) => {
-    let query = "";
-
-    setSelectedOption(item);
-    switch (item) {
-      case "Job":
-        query = findJobs();
-        setOpportunities(await client.fetch(query));
-        break;
-      case "Finance":
-        query = getFunding();
-        setOpportunities(await client.fetch(query));
-        break;
-      case "Career":
-        query = getCareers();
-        setOpportunities(await client.fetch(query));
-        break;
-      case "Market":
-        query = findMarketplace();
-        setOpportunities(await client.fetch(query));
-        break;
-      case "Skills":
-        query = getEducation();
-        setOpportunities(await client.fetch(query));
-        break;
-      default:
-        break;
-    }
-  };
-
+export default function Job({ opportunities }) {
   return (
     <div>
       <Header />
 
       <section id="opportunities">
         <div className="container">
-          <div className="d-flex justify-content-between">
-            <div className="flag-badge d-flex mb-5">
-              <img src="assets/images/__flag.svg" alt="zambia rise logo" />
-              <h1 className="my-auto">Opportunities</h1>
-            </div>
-            <div className="dropdown">
-              <button
-                className="btn btn-success dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {selectedOption}
-              </button>
-              <ul
-                className="dropdown-menu"
-                aria-labelledby="dropdownMenuButton1"
-              >
-                {opportunityTypes.map((opp) => (
-                  <li>
-                    <a
-                      className="dropdown-item"
-                      href="javascript:void(0)"
-                      onClick={onSelectedItem.bind(null, opp)}
-                    >
-                      {opp}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="row">
-            {opportunities.map((opp) => (
-              <div className="col-md-2 col-6 text-center mb-5">
-                {opp.companyRef?.logo && (
-                  <img
-                    style={{ height: 60 }}
-                    className="img-fluid"
-                    src={urlFor(opp.companyRef?.logo?.asset)}
-                    alt="govt-1"
-                  />
-                )}
-                <h2>{opp.company}</h2>
-                <h3>{opp.position}</h3>
-                <a
-                  href={`/application?${
-                    selectedOption === "Finance" ? "loanId" : "jobId"
-                  }=${opp._id}`}
-                  target="_blank"
-                >
-                  Apply Now
-                </a>
-              </div>
-            ))}
-          </div>
+          {opportunities.job.length > 0 && (
+            <Opportunity title="Jobs" opps={opportunities.job} />
+          )}
+          {opportunities.finance.length > 0 && (
+            <Opportunity
+              title="Funding"
+              opps={opportunities.finance}
+              loan={true}
+            />
+          )}
+          {opportunities.skill.length > 0 && (
+            <Opportunity title="Skills" opps={opportunities.skill} />
+          )}
         </div>
       </section>
 
@@ -121,10 +64,10 @@ export default function Job({ jobs }) {
 }
 
 export const getServerSideProps = async () => {
-  const query = findJobs();
-  const jobs = await client.fetch(query);
+  const query = findOpportunities();
+  const opportunities = await client.fetch(query);
 
   return {
-    props: { jobs },
+    props: { opportunities },
   };
 };

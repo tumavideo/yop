@@ -33,7 +33,7 @@ export default function Blog({ posts }) {
             ) : (
               posts.map((item) => {
                 return (
-                  <div className="col-md-4 mb-5">
+                  <div key={item.id} className="col-md-4 mb-5">
                     <a href={`#/blog-detail/${encodeQueryParameter(item)}`}>
                       <Image
                         width={600}

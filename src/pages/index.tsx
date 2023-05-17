@@ -12,6 +12,7 @@ import { encodeQueryParameter } from "../utils/url";
 import { client, urlFor } from "../lib/client";
 import { BANNER_URL, POST_URL, TESTIMONY_URL } from "../api";
 import axios from "axios";
+import { findJobs } from "../lib/queries";
 
 export default function Home({ banner, jobs, post, testimony }) {
   const [loading, setLoading] = useState(false);
@@ -55,6 +56,7 @@ export default function Home({ banner, jobs, post, testimony }) {
               {banner.map((item, index) => {
                 return (
                   <button
+                    key={index}
                     type="button"
                     data-bs-target="#carouselIndicators"
                     data-bs-slide-to={index}
@@ -69,6 +71,7 @@ export default function Home({ banner, jobs, post, testimony }) {
               {banner.map((item, index) => {
                 return (
                   <div
+                    key={index}
                     className={`carousel-item ${index === 0 ? "active" : ""}`}
                   >
                     <img
@@ -117,7 +120,7 @@ export default function Home({ banner, jobs, post, testimony }) {
 
           <div className="row">
             <div className="col-md-4">
-              <a href="https://www.ceec.org.zm/" target="_blank">
+              <a href="https://www.napsa.co.zm/" target="_blank">
                 <img
                   className="img-fluid"
                   src="assets/images/pro-1.jpg"
@@ -134,7 +137,7 @@ export default function Home({ banner, jobs, post, testimony }) {
             </div>
 
             <div className="col-md-4">
-              <a href="https://www.napsa.co.zm/" target="_blank">
+              <a href="https://www.ceec.org.zm/" target="_blank">
                 <img
                   className="img-fluid"
                   src="assets/images/pro-2.jpg"
@@ -179,7 +182,7 @@ export default function Home({ banner, jobs, post, testimony }) {
 
           <div className="row">
             {jobs.map((job) => (
-              <div className="col-md-2 col-6 text-center">
+              <div key={job._id} className="col-md-2 col-6 text-center">
                 {job.companyRef?.logo && (
                   <img
                     style={{ height: 60 }}
@@ -218,7 +221,7 @@ export default function Home({ banner, jobs, post, testimony }) {
             <div className="row">
               {testimony.slice(0, 3).map((item) => {
                 return (
-                  <div className="col-md-4">
+                  <div key={item.id} className="col-md-4">
                     <Testimony
                       modal={modal}
                       openModal={openModal}
@@ -246,7 +249,7 @@ export default function Home({ banner, jobs, post, testimony }) {
             <div className="row">
               {post.slice(0, 3).map((item) => {
                 return (
-                  <div className="col-md-4">
+                  <div key={item.id} className="col-md-4">
                     <a href={`#/blog-detail/${encodeQueryParameter(item)}`}>
                       <img className="img-fluid" src={item.img} alt="govt-1" />
                     </a>
@@ -273,17 +276,7 @@ export default function Home({ banner, jobs, post, testimony }) {
 }
 
 export const getServerSideProps = async () => {
-  const query = `*[_type == "job" && !(_id in path('drafts.**'))][0..5]{
-    _id,
-    _createdAt,
-    position,
-    role,
-    slug,
-    title,
-    link,
-    companyRef->{company,logo}
-  }`;
-
+  const query = findJobs();
   const jobs = await client.fetch(query);
 
   const post = (await axios.get(POST_URL(0))).data.payload;

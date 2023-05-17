@@ -4,6 +4,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { BiLoaderAlt } from "react-icons/bi";
 
 export default function Testimony({
+  image,
   modal,
   openModal,
   setModal,
@@ -14,11 +15,7 @@ export default function Testimony({
   return (
     <div onClick={openModal}>
       <>
-        <img
-          src={video.img_src}
-          className="img-fluid cover-image"
-          alt="image-1"
-        />
+        <img src={image} className="img-fluid cover-image" alt="image-1" />
         <h4 className="text-black">{video.title}</h4>
       </>
       {modal ? (
@@ -35,7 +32,7 @@ export default function Testimony({
                   <div className="modal__spinner">
                     <BiLoaderAlt
                       className="modal__spinner-style"
-                      fadeIn="none"
+                      fadein="none"
                     />
                   </div>
                 ) : null}
@@ -47,7 +44,6 @@ export default function Testimony({
                   height="500"
                   src={`https://www.youtube.com/embed/${video.video_id}`}
                   title="YouTube video player"
-                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>

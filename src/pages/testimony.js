@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import Subscribe from "../components/layout/Subscribe";
 import { InfinitySpin } from "react-loader-spinner";
 import { getTestimony } from "../api/web";
-import { truncate } from "../utils/truncate";
-import Link from "next/link";
 import Testimony from "../components/Testimony";
 
 export default function Blog({ testimonies }) {
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
   const [videoLoading, setVideoLoading] = useState(true);
+  const [video, setVideo] = useState({});
 
   const spinner = () => {
     setVideoLoading(!videoLoading);
   };
 
-  const openModal = () => {
+  const openModal = (video) => {
+    setVideo(video);
     setModal(!modal);
   };
 
@@ -44,11 +44,12 @@ export default function Blog({ testimonies }) {
                 return (
                   <div className="col-md-4">
                     <Testimony
+                      image={item.img_src}
                       modal={modal}
-                      openModal={openModal}
+                      openModal={() => openModal(item)}
                       setModal={setModal}
                       spinner={spinner}
-                      video={item}
+                      video={video}
                       videoLoading={videoLoading}
                     />
                   </div>

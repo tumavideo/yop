@@ -18,12 +18,14 @@ export default function Home({ banner, jobs, post, testimony }) {
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
   const [videoLoading, setVideoLoading] = useState(true);
+  const [video, setVideo] = useState({});
 
   const spinner = () => {
     setVideoLoading(!videoLoading);
   };
 
-  const openModal = () => {
+  const openModal = (video) => {
+    setVideo(video);
     setModal(!modal);
   };
 
@@ -223,11 +225,12 @@ export default function Home({ banner, jobs, post, testimony }) {
                 return (
                   <div key={item.id} className="col-md-4">
                     <Testimony
+                      image={item.img_src}
                       modal={modal}
-                      openModal={openModal}
+                      openModal={() => openModal(item)}
                       setModal={setModal}
                       spinner={spinner}
-                      video={item}
+                      video={video}
                       videoLoading={videoLoading}
                     />
                   </div>

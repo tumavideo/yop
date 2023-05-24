@@ -193,8 +193,8 @@ export default function Home({ banner, jobs, post, testimony }) {
                     alt="govt-1"
                   />
                 )}
-                <h2>Lusaka International Community</h2>
-                <h3>Finance Manager</h3>
+                <h2>{job.companyRef?.company}</h2>
+                <h3>{job.position}</h3>
                 <a href={`/application?jobId=${job._id}`} target="_blank">
                   Apply Now
                 </a>

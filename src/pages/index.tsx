@@ -233,6 +233,7 @@ export default function Home({ banner, jobs, post, testimony }) {
                       video={video}
                       videoLoading={videoLoading}
                     />
+                    <h4>{item.title}</h4>
                   </div>
                 );
               })}

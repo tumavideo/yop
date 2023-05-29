@@ -76,11 +76,13 @@ export default function Home({ banner, jobs, post, testimony }) {
                     key={index}
                     className={`carousel-item ${index === 0 ? "active" : ""}`}
                   >
-                    <img
-                      src={item.img}
-                      className="d-block w-100"
-                      alt="zamrise banner"
-                    />
+                    <a href={item.uri} target="_blank">
+                      <img
+                          src={item.img}
+                          className="d-block w-100"
+                          alt="zamrise banner"
+                      />
+                    </a>
                   </div>
                 );
               })}
@@ -184,10 +186,10 @@ export default function Home({ banner, jobs, post, testimony }) {
 
           <div className="row">
             {jobs.map((job) => (
-              <div key={job._id} className="col-md-2 col-6 text-center">
+              <div key={job._id} className="col-md-2 col-6 text-center mt-5">
                 {job.companyRef?.logo && (
                   <img
-                    style={{ height: 60 }}
+                    style={{ height: 50 }}
                     className="img-fluid"
                     src={urlFor(job.companyRef?.logo?.asset).url()}
                     alt="govt-1"

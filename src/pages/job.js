@@ -46,7 +46,7 @@ export default function Job({ opportunities }) {
           )}
           {opportunities.finance.length > 0 && (
             <Opportunity
-              title="Finance"
+              title="Funding"
               opps={opportunities.finance}
               loan={true}
             />

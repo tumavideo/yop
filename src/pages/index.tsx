@@ -13,6 +13,7 @@ import { client, urlFor } from "../lib/client";
 import { BANNER_URL, POST_URL, TESTIMONY_URL } from "../api";
 import axios from "axios";
 import { findJobs } from "../lib/queries";
+import Opportunity from "../components/Opportunity";
 
 export default function Home({ banner, jobs, post, testimony }) {
   const [loading, setLoading] = useState(false);
@@ -78,9 +79,9 @@ export default function Home({ banner, jobs, post, testimony }) {
                   >
                     <a href={item.uri} target="_blank">
                       <img
-                          src={item.img}
-                          className="d-block w-100"
-                          alt="zamrise banner"
+                        src={item.img}
+                        className="d-block w-100"
+                        alt="zamrise banner"
                       />
                     </a>
                   </div>
@@ -179,34 +180,11 @@ export default function Home({ banner, jobs, post, testimony }) {
 
       <section id="opportunities">
         <div className="container">
-          <div className="flag-badge d-flex mb-5">
-            <img src="assets/images/__flag.svg" alt="zambia rise logo" />
-            <h1 className="my-auto">Opportunities</h1>
-          </div>
-
-          <div className="row">
-            {jobs.map((job) => (
-              <div key={job._id} className="col-md-2 col-6 text-center mt-5">
-                {job.companyRef?.logo && (
-                  <img
-                    style={{ height: 50 }}
-                    className="img-fluid"
-                    src={urlFor(job.companyRef?.logo?.asset).url()}
-                    alt="govt-1"
-                  />
-                )}
-                <h2>{job.companyRef?.company}</h2>
-                <h3>{job.position}</h3>
-                <a href={`/application?jobId=${job._id}`} target="_blank">
-                  Apply Now
-                </a>
-              </div>
-            ))}
-          </div>
+          {jobs.length > 0 && <Opportunity title="Opportunities" opps={jobs} />}
 
           <div className="d-flex justify-content-center">
             <Link
-              href="/job"
+              href="/opportunities"
               className="button btn-primary mt-5 align-items-center _button"
             >
               View More
@@ -235,7 +213,6 @@ export default function Home({ banner, jobs, post, testimony }) {
                       video={video}
                       videoLoading={videoLoading}
                     />
-                    <h4>{item.title}</h4>
                   </div>
                 );
               })}

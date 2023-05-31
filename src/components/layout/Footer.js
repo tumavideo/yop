@@ -1,13 +1,15 @@
 import React from "react";
 import Link from "next/link";
 
+import Logo from "@/assets/images/footer-logo.svg";
+
 const Footer = () => {
   return (
     <footer>
       <div className="container">
         <div className="row">
           <div className="col-md-3 my-auto">
-            <img src="assets/images/footer-logo.svg" alt="zambia rise logo" />
+            <img src={Logo.src} alt="zambia rise logo" />
           </div>
 
           <div className="col-md-3">
@@ -17,7 +19,7 @@ const Footer = () => {
                 <Link href="/">Home</Link>
               </li>
               <li>
-                <Link href="/job">Opportunities</Link>
+                <Link href="/opportunities">Opportunities</Link>
               </li>
               <li>
                 <Link href="/blog">News &amp; Update</Link>

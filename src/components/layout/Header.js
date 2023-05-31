@@ -1,5 +1,8 @@
 import Link from "next/link";
 
+import Flag from "@/assets/images/flag.svg";
+import Logo from "@/assets/images/logo.svg";
+
 const Header = () => {
   return (
     <header>
@@ -7,12 +10,12 @@ const Header = () => {
         <img
           id="flag"
           className="d-none d-lg-block"
-          src="assets/images/flag.svg"
+          src={Flag.src}
           alt="zambia rise logo"
         />
         <div className="container">
           <a className="navbar-brand" href="/">
-            <img src="assets/images/logo.svg" alt="zambia rise logo" />
+            <img src={Logo.src} alt="zambia rise logo" />
           </a>
 
           <button

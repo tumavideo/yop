@@ -3,7 +3,12 @@ import { urlFor } from "../lib/client";
 import Modal from "@/components/Modal";
 import Title from "@/components/Title";
 
-export default function Opportunity({ opps, title, loan = false }) {
+export default function Opportunity({
+  opps,
+  title,
+  loan = false,
+  skill = false,
+}) {
   return (
     <>
       <Title text={title} />
@@ -44,7 +49,12 @@ export default function Opportunity({ opps, title, loan = false }) {
                         >
                           Apply
                         </a>
-                        <a href={`/jobs/${opp._id}`} className="px-4">
+                        <a
+                          href={`/${
+                            loan ? `funding` : skill ? `skill` : `jobs`
+                          }/${opp._id}`}
+                          className="px-4"
+                        >
                           See more
                         </a>
                         <Modal />

@@ -47,7 +47,11 @@ export default function Job({ opportunities }) {
           )}
           {opportunities.skill.length > 0 && (
             <>
-              <Opportunity title="Skills" opps={opportunities.skill} />
+              <Opportunity
+                title="Skills"
+                opps={opportunities.skill}
+                skill={true}
+              />
 
               <div className="d-flex justify-content-center">
                 <Link

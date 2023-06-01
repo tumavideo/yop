@@ -134,7 +134,7 @@ export default function Job({ job }) {
 export async function getServerSideProps(context) {
   const { id } = context.query;
 
-  const query = findOpportunities();
+  const query = findOpportunities("30");
   const opportunities = await client.fetch(query);
 
   const job = opportunities.job.find((job) => job._id === id);

@@ -39,22 +39,6 @@ export default function Funding({ finance }) {
               </>
             )}
 
-            <h3>Experience</h3>
-            <p>3+ years of relevant experience.</p>
-
-            <h3>Great Fit</h3>
-            <ul>
-              <li>Strong problem-solving skills</li>
-              <li>Excellent communication abilities</li>
-              <li>Ability to work in a team</li>
-            </ul>
-
-            <h3>Nice to Haves</h3>
-            <ul>
-              <li>Experience with XYZ technology</li>
-              <li>Knowledge of ABC framework</li>
-            </ul>
-
             {finance.qualifications && (
               <>
                 <h3>Qualifications</h3>

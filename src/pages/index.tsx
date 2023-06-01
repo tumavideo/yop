@@ -13,7 +13,7 @@ import Title from "@/components/Title";
 
 import { BANNER_URL, POST_URL, TESTIMONY_URL } from "../api";
 import { client } from "../lib/client";
-import { findJobs } from "../lib/queries";
+import { findOpportunities } from "../lib/queries";
 import { encodeQueryParameter } from "../utils/url";
 import { truncate } from "../utils/truncate";
 import programs from "@/lib/programs";
@@ -221,8 +221,9 @@ export default function Home({ banner, jobs, post, testimony }) {
 }
 
 export const getServerSideProps = async () => {
-  const query = findJobs();
-  const jobs = await client.fetch(query);
+  const query = findOpportunities("20");
+  const data = await client.fetch(query);
+  const jobs = data.job;
 
   const post = (await axios.get(POST_URL(0))).data.payload;
   const testimony = (await axios.get(TESTIMONY_URL(0))).data.payload;

@@ -1,6 +1,6 @@
 import { urlFor } from "../lib/client";
 
-import Dialog from "@/components/Dialog";
+import Modal from "@/components/Modal";
 import Title from "@/components/Title";
 
 export default function Opportunity({ opps, title, loan = false }) {
@@ -39,13 +39,15 @@ export default function Opportunity({ opps, title, loan = false }) {
                             opp._id
                           }`}
                           class="btn btn-success text-white"
-                          target="_blank"
+                          data-bs-toggle="modal"
+                          data-bs-target="#applyModal"
                         >
                           Apply
                         </a>
                         <a href={`/jobs/${opp._id}`} className="px-4">
                           See more
                         </a>
+                        <Modal />
                       </div>
                     </div>
                   </div>

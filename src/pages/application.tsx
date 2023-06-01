@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { JOB_APP } from "../api";
 import Header from "../components/layout/Header";

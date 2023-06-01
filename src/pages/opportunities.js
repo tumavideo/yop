@@ -20,7 +20,7 @@ export default function Job({ opportunities }) {
               <div className="d-flex justify-content-center">
                 <Link
                   href="/jobs"
-                  className="button btn-primary mt-5 align-items-center _button"
+                  className="button btn-primary mt-5 align-items-center _button mb-5"
                 >
                   View More
                 </Link>
@@ -38,7 +38,7 @@ export default function Job({ opportunities }) {
               <div className="d-flex justify-content-center">
                 <Link
                   href="/funding"
-                  className="button btn-primary mt-5 align-items-center _button"
+                  className="button btn-primary mt-5 align-items-center _button mb-5"
                 >
                   View More
                 </Link>
@@ -52,7 +52,7 @@ export default function Job({ opportunities }) {
               <div className="d-flex justify-content-center">
                 <Link
                   href="/skills"
-                  className="button btn-primary mt-5 align-items-center _button"
+                  className="button btn-primary mt-5 align-items-center _button mb-5"
                 >
                   View More
                 </Link>

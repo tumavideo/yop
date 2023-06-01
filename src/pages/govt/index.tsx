@@ -1,27 +1,8 @@
-import React from "react";
-import Header from "../../components/layout/Header";
-import Footer from "../../components/layout/Footer";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
-const programs = [
-  {
-    id: 1,
-    banner: "assets/images/pro-1.jpg",
-    link: "https://www.napsa.co.zm/",
-    logo: "assets/images/pro-logo-2.png",
-  },
-  {
-    id: 2,
-    banner: "assets/images/pro-2.jpg",
-    link: "https://www.ceec.org.zm/",
-    logo: "assets/images/pro-logo-1.png",
-  },
-  {
-    id: 3,
-    banner: "assets/images/pro-3.jpg",
-    link: "https://www.mlgrd.gov.zm/wp-content/uploads/2022/04/CDF-GUIDELINES-2.pdf",
-    logo: "assets/images/pro-logo-3.png",
-  },
-];
+import programs from "@/lib/programs";
+import Title from "@/components/Title";
 
 export default function Govt() {
   return (
@@ -29,10 +10,7 @@ export default function Govt() {
       <Header />
       <section id="programs">
         <div className="container">
-          <div className="flag-badge d-flex mb-5">
-            <img src="assets/images/__flag.svg" alt="zambia rise logo" />
-            <h1 className="my-auto">Govt Programs</h1>
-          </div>
+          <Title text={"Govt Programs"} />
 
           <div className="row">
             {programs.map((program) => (

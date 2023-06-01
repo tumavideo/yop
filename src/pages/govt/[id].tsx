@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import Header from "../../components/layout/Header";
-import Footer from "../../components/layout/Footer";
-import Testimony from "../../components/Testimony";
-import { TESTIMONY_URL } from "../../api";
+import { useState } from "react";
 import axios from "axios";
+
+import Footer from "../../components/layout/Footer";
+import Header from "../../components/layout/Header";
+import Testimony from "../../components/Testimony";
+import Title from "../../components/Title";
+
+import { TESTIMONY_URL } from "../../api";
 
 export default function Detail({ testimony }) {
   const [modal, setModal] = useState(false);
@@ -23,10 +26,7 @@ export default function Detail({ testimony }) {
     <>
       <Header />
       <section className="container mt-5 mb-5">
-        <div className="flag-badge d-flex mb-5">
-          <img src="../assets/images/__flag.svg" alt="zambia rise logo" />
-          <h1 className="my-auto">Govt Program</h1>
-        </div>
+        <Title text={"Govt Program"} />
         <a className="mb-4" href="https://www.napsa.co.zm/" target="_blank">
           <img
             className="mb-3 mt-3 img-fluid"

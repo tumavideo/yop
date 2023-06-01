@@ -4,7 +4,6 @@ import Subscribe from "../components/layout/Subscribe";
 import Footer from "../components/layout/Footer";
 import { findOpportunities } from "../lib/queries";
 import { client } from "../lib/client";
-import Link from "next/link";
 
 export default function Skill({ skill }) {
   return (
@@ -15,7 +14,7 @@ export default function Skill({ skill }) {
         <div className="container">
           {skill.length > 0 && (
             <>
-              <Opportunity title="Skills" opps={skill} loan={true} />
+              <Opportunity title="Skills" opps={skill} />
             </>
           )}
         </div>

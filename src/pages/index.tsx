@@ -1,19 +1,22 @@
-import Link from "next/link";
-
-import Header from "../components/layout/Header";
-import React, { useState } from "react";
-import Footer from "../components/layout/Footer";
-import Subscribe from "../components/layout/Subscribe";
-import Testimony from "../components/Testimony";
-import { InfinitySpin } from "react-loader-spinner";
-import { truncate } from "../utils/truncate";
-import moment from "moment";
-import { encodeQueryParameter } from "../utils/url";
-import { client, urlFor } from "../lib/client";
-import { BANNER_URL, POST_URL, TESTIMONY_URL } from "../api";
+import { useState } from "react";
 import axios from "axios";
+import moment from "moment";
+import Link from "next/link";
+import { InfinitySpin } from "react-loader-spinner";
+
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import Opportunity from "@/components/Opportunity";
+import Subscribe from "@/components/layout/Subscribe";
+import Testimony from "@/components/Testimony";
+import Title from "@/components/Title";
+
+import { BANNER_URL, POST_URL, TESTIMONY_URL } from "../api";
+import { client } from "../lib/client";
 import { findJobs } from "../lib/queries";
-import Opportunity from "../components/Opportunity";
+import { encodeQueryParameter } from "../utils/url";
+import { truncate } from "../utils/truncate";
+import programs from "@/lib/programs";
 
 export default function Home({ banner, jobs, post, testimony }) {
   const [loading, setLoading] = useState(false);
@@ -118,62 +121,27 @@ export default function Home({ banner, jobs, post, testimony }) {
 
       <section id="programs">
         <div className="container">
-          <div className="flag-badge d-flex mb-5">
-            <img src="assets/images/__flag.svg" alt="zambia rise logo" />
-            <h1 className="my-auto">Govt Programs</h1>
-          </div>
+          <Title text={"Govt Programs"} />
 
           <div className="row">
-            <div className="col-md-4">
-              <a href="https://www.napsa.co.zm/" target="_blank">
-                <img
-                  className="img-fluid"
-                  src="assets/images/pro-1.jpg"
-                  alt="govt-1"
-                />
-              </a>
-              <a href="https://www.napsa.co.zm/" target="_blank">
-                <img
-                  className="mt-3 img-fluid w-50"
-                  src="assets/images/pro-logo-2.png"
-                  alt="pro-1"
-                />
-              </a>
-            </div>
-
-            <div className="col-md-4">
-              <a href="https://www.ceec.org.zm/" target="_blank">
-                <img
-                  className="img-fluid"
-                  src="assets/images/pro-2.jpg"
-                  alt="govt-1"
-                />
-              </a>
-              <a href="https://www.ceec.org.zm/">
-                <img
-                  className="mt-3 img-fluid w-50"
-                  src="assets/images/pro-logo-1.png"
-                  alt="pro-1"
-                />
-              </a>
-            </div>
-
-            <div className="col-md-4">
-              <a href="https://www.mlgrd.gov.zm/wp-content/uploads/2022/04/CDF-GUIDELINES-2.pdf">
-                <img
-                  className="img-fluid"
-                  src="assets/images/pro-3.jpg"
-                  alt="govt-1"
-                />
-              </a>
-              <a href="https://www.mlgrd.gov.zm/wp-content/uploads/2022/04/CDF-GUIDELINES-2.pdf">
-                <img
-                  className="mt-3 img-fluid w-50"
-                  src="assets/images/pro-logo-3.png"
-                  alt="pro-1"
-                />
-              </a>
-            </div>
+            {programs.map((program) => (
+              <div className="col-md-4">
+                <a href={`/govt/${program.id}`}>
+                  <img
+                    className="img-fluid"
+                    src={program.banner}
+                    alt="govt-1"
+                  />
+                </a>
+                <a href={`${program.link}`} target="_blank">
+                  <img
+                    className="mt-3 img-fluid w-50"
+                    src={program.logo}
+                    alt={`pro-${program.id}`}
+                  />
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -185,7 +153,7 @@ export default function Home({ banner, jobs, post, testimony }) {
           <div className="d-flex justify-content-center">
             <Link
               href="/opportunities"
-              className="button btn-primary mt-5 align-items-center _button"
+              className="button btn-primary mt-5 align-items-center _button mb-5"
             >
               View More
             </Link>
@@ -196,10 +164,7 @@ export default function Home({ banner, jobs, post, testimony }) {
       {post.length > 0 ? (
         <section id="stories">
           <div className="container">
-            <div className="flag-badge d-flex mb-5">
-              <img src="assets/images/__flag.svg" alt="zambia rise logo" />
-              <h1 className="my-auto">Success Stories</h1>
-            </div>
+            <Title text={"Success Stories"} />
             <div className="row">
               {testimony.slice(0, 3).map((item) => {
                 return (
@@ -224,10 +189,7 @@ export default function Home({ banner, jobs, post, testimony }) {
       {post.length > 0 ? (
         <section id="news">
           <div className="container">
-            <div className="flag-badge d-flex mb-5">
-              <img src="assets/images/__flag.svg" alt="zambia rise logo" />
-              <h1 className="my-auto">News &amp; Updates</h1>
-            </div>
+            <Title text={"News & Updates"} />
 
             <div className="row">
               {post.slice(0, 3).map((item) => {

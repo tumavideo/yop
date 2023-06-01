@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import Header from "../components/layout/Header";
-import Subscribe from "../components/layout/Subscribe";
-import Footer from "../components/layout/Footer";
+import { useState } from "react";
+import Image from "next/image";
+import moment from "moment/moment";
+
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import Subscribe from "@/components/layout/Subscribe";
+import Title from "@/components/Title";
+
 import { getPost } from "../api/web";
 import { InfinitySpin } from "react-loader-spinner";
 import { truncate } from "../utils/truncate";
-import moment from "moment/moment";
 import { encodeQueryParameter } from "../utils/url";
-import Image from "next/image";
 
 export default function Blog({ posts }) {
   const [loading, setLoading] = useState(false);
@@ -17,12 +20,7 @@ export default function Blog({ posts }) {
       <Header />
       <section id="news">
         <div className="container">
-          {!loading ? (
-            <div className="flag-badge d-flex mb-5">
-              <img src="assets/images/__flag.svg" alt="zambia rise logo" />
-              <h1 className="my-auto">News &amp; Updates</h1>
-            </div>
-          ) : null}
+          {!loading ? <Title text={"News & Updates"} /> : null}
 
           <div className="row">
             {loading ? (

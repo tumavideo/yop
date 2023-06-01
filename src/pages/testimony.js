@@ -1,10 +1,13 @@
-import React, { useState } from "react";
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
-import Subscribe from "../components/layout/Subscribe";
+import { useState } from "react";
 import { InfinitySpin } from "react-loader-spinner";
+
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import Subscribe from "@/components/layout/Subscribe";
+import Testimony from "@/components/Testimony";
+import Title from "@/components/Title";
+
 import { getTestimony } from "../api/web";
-import Testimony from "../components/Testimony";
 
 export default function Blog({ testimonies }) {
   const [loading, setLoading] = useState(false);
@@ -26,12 +29,7 @@ export default function Blog({ testimonies }) {
       <Header />
       <section id="stories">
         <div className="container">
-          {!loading ? (
-            <div className="flag-badge d-flex mb-5">
-              <img src="assets/images/__flag.svg" alt="zambia rise logo" />
-              <h1 className="my-auto">Success Stories</h1>
-            </div>
-          ) : null}
+          {!loading ? <Title text={"Success Stories"} /> : null}
 
           <div className="row">
             {loading ? (

@@ -10,7 +10,7 @@ export default function Funding({ finance }) {
       <Header />
 
       <div className="container mt-5">
-        <h1>Funding Title</h1>
+        <h1>{finance.title}</h1>
 
         <ul className="nav nav-tabs mt-4">
           <li className="nav-item">

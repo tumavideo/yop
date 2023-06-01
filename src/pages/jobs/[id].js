@@ -10,7 +10,7 @@ export default function Job({ job }) {
       <Header />
 
       <div class="container mt-5">
-        <h1>Job Title</h1>
+        <h1>{job.title || job.position}</h1>
 
         <ul class="nav nav-tabs mt-4">
           <li class="nav-item">

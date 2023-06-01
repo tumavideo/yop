@@ -10,7 +10,7 @@ export default function Skill({ skill }) {
       <Header />
 
       <div className="container mt-5">
-        <h1>Skill Title</h1>
+        <h1>{skill.title}</h1>
 
         <ul className="nav nav-tabs mt-4">
           <li className="nav-item">

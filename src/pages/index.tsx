@@ -173,6 +173,7 @@ export default function Home({ banner, jobs, post, testimony, program }) {
                       openModal={() => openModal(item)}
                       setModal={setModal}
                       spinner={spinner}
+                      title={item.title}
                       video={video}
                       videoLoading={videoLoading}
                     />

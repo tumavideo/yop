@@ -9,6 +9,7 @@ export default function Testimony({
   openModal,
   setModal,
   spinner,
+  title,
   video,
   videoLoading,
 }) {
@@ -16,7 +17,7 @@ export default function Testimony({
     <div onClick={openModal}>
       <>
         <img src={image} className="img-fluid cover-image" alt="image-1" />
-        <h4 className="text-black">{video.title}</h4>
+        <h4 className="text-black">{title}</h4>
       </>
       {modal ? (
         <section className="modal__bg">

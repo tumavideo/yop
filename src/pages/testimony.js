@@ -47,6 +47,7 @@ export default function Blog({ testimonies }) {
                       openModal={() => openModal(item)}
                       setModal={setModal}
                       spinner={spinner}
+                      title={item.title}
                       video={video}
                       videoLoading={videoLoading}
                     />

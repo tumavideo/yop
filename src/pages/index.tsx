@@ -11,14 +11,14 @@ import Subscribe from "@/components/layout/Subscribe";
 import Testimony from "@/components/Testimony";
 import Title from "@/components/Title";
 
-import { BANNER_URL, POST_URL, TESTIMONY_URL } from "../api";
+import { BANNER_URL, POST_URL, TESTIMONY_URL, PROGRAM_URL } from "../api";
 import { client } from "../lib/client";
 import { findOpportunities } from "../lib/queries";
 import { encodeQueryParameter } from "../utils/url";
 import { truncate } from "../utils/truncate";
 import programs from "@/lib/programs";
 
-export default function Home({ banner, jobs, post, testimony }) {
+export default function Home({ banner, jobs, post, testimony, program }) {
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
   const [videoLoading, setVideoLoading] = useState(true);
@@ -122,22 +122,21 @@ export default function Home({ banner, jobs, post, testimony }) {
       <section id="programs">
         <div className="container">
           <Title text={"Govt Programs"} />
-
           <div className="row">
-            {programs.map((program) => (
-              <div className="col-md-4">
-                <a href={`/govt/${program.id}`}>
+            {program.map((program) => (
+              <div className="col-md-4" key={program._id}>
+                <a href={`/govt/${program._id}`}>
                   <img
                     className="img-fluid"
-                    src={program.banner}
+                    src={program.cover_uri}
                     alt="govt-1"
                   />
                 </a>
-                <a href={`${program.link}`} target="_blank">
+                <a href={`${program.link_uri}`} target="_blank">
                   <img
                     className="mt-3 img-fluid w-50"
-                    src={program.logo}
-                    alt={`pro-${program.id}`}
+                    src={program.logo_uri}
+                    alt={`pro-${program._id}`}
                   />
                 </a>
               </div>
@@ -149,7 +148,6 @@ export default function Home({ banner, jobs, post, testimony }) {
       <section id="opportunities">
         <div className="container">
           {jobs.length > 0 && <Opportunity title="Opportunities" opps={jobs} />}
-
           <div className="d-flex justify-content-center">
             <Link
               href="/opportunities"
@@ -168,7 +166,7 @@ export default function Home({ banner, jobs, post, testimony }) {
             <div className="row">
               {testimony.slice(0, 3).map((item) => {
                 return (
-                  <div key={item.id} className="col-md-4">
+                  <div key={item._id} className="col-md-4">
                     <Testimony
                       image={item.img_src}
                       modal={modal}
@@ -190,12 +188,11 @@ export default function Home({ banner, jobs, post, testimony }) {
         <section id="news">
           <div className="container">
             <Title text={"News & Updates"} />
-
             <div className="row">
               {post.slice(0, 3).map((item) => {
                 return (
-                  <div key={item.id} className="col-md-4">
-                    <a href={`#/blog-detail/${encodeQueryParameter(item)}`}>
+                  <div key={item._id} className="col-md-4">
+                    <a href={`/blog/${item._id}`}>
                       <img className="img-fluid" src={item.img} alt="govt-1" />
                     </a>
                     <h1>{item.title}</h1>
@@ -221,15 +218,16 @@ export default function Home({ banner, jobs, post, testimony }) {
 }
 
 export const getServerSideProps = async () => {
-  const query = findOpportunities("20");
+  const query = findOpportunities("5");
   const data = await client.fetch(query);
   const jobs = data.job;
 
   const post = (await axios.get(POST_URL(0))).data.payload;
   const testimony = (await axios.get(TESTIMONY_URL(0))).data.payload;
   const banner = (await axios.get(BANNER_URL)).data.payload;
+  const program = (await axios.get(PROGRAM_URL(0))).data.payload;
 
   return {
-    props: { banner, jobs, post, testimony },
+    props: { banner, jobs, post, testimony, program },
   };
 };

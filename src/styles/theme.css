@@ -168,6 +168,20 @@
   color: black !important;
 }
 
+.__button {
+  text-decoration: none !important;
+  color: white !important;
+  background-color: #0b7c3c!important;
+  border-color: #0a7137!important;
+}
+
+.__button:hover {
+  text-decoration: none !important;
+  color: white !important;
+  background-color: #0e9f4f !important;
+  border-color: #0e9f4f!important;
+}
+
 #blog-detail {
   margin-top: 100px;
   margin-bottom: 100px;
@@ -421,3 +435,37 @@ footer p {
   -webkit-box-orient: vertical;
 }
 
+#opportunities .card {
+  border-radius: 0;
+}
+
+#opportunities .card-title {
+  font-family: "Source Sans Pro", serif;
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+#opportunities .card-subtitle {
+  font-family: "Source Sans Pro", serif;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+#opportunities .card-text {
+  font-family: "Source Sans Pro", serif;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+#gov-program p {
+  font-family: "Source Sans Pro", serif;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+#gov-program h3 {
+  font-family: "Source Sans Pro", serif;
+  font-weight: 600;
+  font-size: 24px;
+}

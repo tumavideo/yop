@@ -1,7 +1,7 @@
 import StringifySafe from "json-stringify-safe";
 
 export const encodeQueryParameter = (data) => {
-  return encodeURIComponent(StringifySafe(data)); // Use StringifySafe to avoid crash on circular dependencies
+  return encodeURIComponent(JSON.stringify(data)); // Use StringifySafe to avoid crash on circular dependencies
 };
 
 export const decodeQueryParameter = (query) => {

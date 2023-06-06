@@ -14,9 +14,7 @@ import Title from "@/components/Title";
 import { BANNER_URL, POST_URL, TESTIMONY_URL, PROGRAM_URL } from "../api";
 import { client } from "../lib/client";
 import { findOpportunities } from "../lib/queries";
-import { encodeQueryParameter } from "../utils/url";
 import { truncate } from "../utils/truncate";
-import programs from "@/lib/programs";
 
 export default function Home({ banner, jobs, post, testimony, program }) {
   const [loading, setLoading] = useState(false);

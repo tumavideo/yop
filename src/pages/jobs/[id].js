@@ -9,29 +9,29 @@ export default function Job({ job }) {
     <>
       <Header />
 
-      <div class="container mt-5">
+      <div className="container mt-5">
         <h1>{job.title || job.position}</h1>
 
-        <ul class="nav nav-tabs mt-4">
-          <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="tab" href="#job-tab">
+        <ul className="nav nav-tabs mt-4">
+          <li className="nav-item">
+            <a className="nav-link active" data-bs-toggle="tab" href="#job-tab">
               Job
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#company-tab">
+          <li className="nav-item">
+            <a className="nav-link" data-bs-toggle="tab" href="#company-tab">
               Company
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#apply-tab">
+          <li className="nav-item">
+            <a className="nav-link" data-bs-toggle="tab" href="#apply-tab">
               Apply
             </a>
           </li>
         </ul>
 
-        <div class="tab-content mt-3">
-          <div class="tab-pane fade show active" id="job-tab">
+        <div className="tab-content mt-3">
+          <div className="tab-pane fade show active" id="job-tab">
             {job.description && (
               <>
                 <h3>Description</h3>
@@ -54,7 +54,7 @@ export default function Job({ job }) {
             )}
           </div>
 
-          <div class="tab-pane fade" id="company-tab">
+          <div className="tab-pane fade" id="company-tab">
             <img
               style={{ maxWidth: "100%", maxHeight: 240 }}
               className="card-image p-3"
@@ -70,7 +70,7 @@ export default function Job({ job }) {
             )}
           </div>
 
-          <div class="tab-pane fade" id="apply-tab">
+          <div className="tab-pane fade" id="apply-tab">
             <h3>Application Form</h3>
             <Form />
           </div>

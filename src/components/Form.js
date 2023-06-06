@@ -62,14 +62,14 @@ export default function Form({ modal = false }) {
   const renderError = () => <div className="text-danger">{error}</div>;
 
   const renderForm = () => (
-    <div class="modal-body">
+    <div className="modal-body">
       <form
         action="https://formspree.io/f/mgebbgda"
         method="POST"
-        enctype="multipart/form-data"
+        encType="multipart/form-data"
       >
         <div className="mb-3">
-          <label for="firstName" className="form-label">
+          <label htmlFor="firstName" className="form-label">
             First Name:
           </label>
           <input
@@ -81,7 +81,7 @@ export default function Form({ modal = false }) {
           />
         </div>
         <div className="mb-3">
-          <label for="lastName" className="form-label">
+          <label htmlFor="lastName" className="form-label">
             Last Name:
           </label>
           <input
@@ -93,7 +93,7 @@ export default function Form({ modal = false }) {
           />
         </div>
         <div className="mb-3">
-          <label for="phone" className="form-label">
+          <label htmlFor="phone" className="form-label">
             Phone Number:
           </label>
           <input
@@ -105,7 +105,7 @@ export default function Form({ modal = false }) {
           />
         </div>
         <div className="mb-3">
-          <label for="email" className="form-label">
+          <label htmlFor="email" className="form-label">
             Email Address
           </label>
           <input
@@ -117,7 +117,7 @@ export default function Form({ modal = false }) {
           />
         </div>
         <div className="mb-3">
-          <label for="about" className="form-label">
+          <label htmlFor="about" className="form-label">
             About You:
           </label>
           <textarea
@@ -129,7 +129,7 @@ export default function Form({ modal = false }) {
           ></textarea>
         </div>
         <div className="mb-3">
-          <label for="resume" className="form-label">
+          <label htmlFor="resume" className="form-label">
             Your resume (PDF, DOC, DOCX):
           </label>
           <input
@@ -142,17 +142,17 @@ export default function Form({ modal = false }) {
         </div>
         {error && renderError()}
         {progress > 0 && renderProgressBar()}
-        <div class="modal-footer">
+        <div className="modal-footer">
           {modal && (
             <button
               type="button"
-              class="btn btn-secondary mx-3"
+              className="btn btn-secondary mx-3"
               data-bs-dismiss="modal"
             >
               Close
             </button>
           )}
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" className="btn btn-primary">
             Submit
           </button>
         </div>

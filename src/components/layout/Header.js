@@ -47,6 +47,11 @@ const Header = () => {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link className="nav-link" href="/project">
+                  Projects
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link" href="/blog">
                   News &amp; Updates
                 </Link>

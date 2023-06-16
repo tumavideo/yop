@@ -4,7 +4,6 @@ import Subscribe from "../../components/layout/Subscribe";
 import Footer from "../../components/layout/Footer";
 import { findOpportunities } from "../../lib/queries";
 import { client } from "../../lib/client";
-import Link from "next/link";
 
 export default function Funding({ finance }) {
   return (

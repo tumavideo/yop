@@ -55,7 +55,7 @@ export default function Job({ opportunities }) {
 
               <div className="d-flex justify-content-center">
                 <Link
-                  href="/skills"
+                  href="/skill"
                   className="button btn-primary mt-5 align-items-center _button mb-5"
                 >
                   View More

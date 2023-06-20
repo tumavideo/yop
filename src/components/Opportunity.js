@@ -37,6 +37,7 @@ export default function Opportunity({
                       {opp.description || opp.responsibilities}
                     </p>
                     <div className="d-flex justfy-end align-items-center">
+                      {opp.enableApply && 
                       <a
                         href={`/application?${loan ? "loanId" : "jobId"}=${
                           opp._id
@@ -46,7 +47,7 @@ export default function Opportunity({
                         data-bs-target="#applyModal"
                       >
                         Apply
-                      </a>
+                      </a>}
                       <a
                         href={`/${
                           loan ? `funding` : skill ? `skill` : `jobs`

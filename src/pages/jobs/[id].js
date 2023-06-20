@@ -23,11 +23,13 @@ export default function Job({ job }) {
               Company
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" data-bs-toggle="tab" href="#apply-tab">
-              Apply
-            </a>
-          </li>
+          {job.enableApply && 
+            <li className="nav-item">
+              <a className="nav-link" data-bs-toggle="tab" href="#apply-tab">
+                Apply
+              </a>
+            </li>
+          }
         </ul>
 
         <div className="tab-content mt-3">
@@ -65,15 +67,17 @@ export default function Job({ job }) {
             <p>{job.companyRef?.bio}</p>
             {job.link && (
               <p>
-                Visit our website: <a href="#">www.example.com</a>
+                Visit our website: <a href="#">{job.link}</a>
               </p>
             )}
           </div>
 
-          <div className="tab-pane fade" id="apply-tab">
-            <h3>Application Form</h3>
-            <Form />
-          </div>
+          {job.enableApply && 
+            <div className="tab-pane fade" id="apply-tab">
+              <h3>Application Form</h3>
+              <Form />
+            </div>
+          }
         </div>
       </div>
     </>

@@ -23,11 +23,13 @@ export default function Skill({ skill }) {
               Company
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" data-bs-toggle="tab" href="#apply-tab">
-              Apply
-            </a>
-          </li>
+          {skill.enableApply && 
+            <li className="nav-item">
+              <a className="nav-link" data-bs-toggle="tab" href="#apply-tab">
+                Apply
+              </a>
+            </li>
+          }
         </ul>
 
         <div className="tab-content mt-3">
@@ -65,15 +67,16 @@ export default function Skill({ skill }) {
             <p>{skill.companyRef?.bio}</p>
             {skill.link && (
               <p>
-                Visit our website: <a href="#">www.example.com</a>
+                Visit our website: <a href="#">{skill.link}</a>
               </p>
             )}
           </div>
-
-          <div className="tab-pane fade" id="apply-tab">
-            <h3>Application Form</h3>
-            <Form />
-          </div>
+          {skill.enableApply && 
+            <div className="tab-pane fade" id="apply-tab">
+              <h3>Application Form</h3>
+              <Form />
+            </div>
+          }
         </div>
       </div>
     </>

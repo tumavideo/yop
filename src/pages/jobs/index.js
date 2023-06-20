@@ -27,7 +27,7 @@ export default function Funding({ jobs }) {
 }
 
 export const getServerSideProps = async () => {
-  const query = findOpportunities("30");
+  const query = findOpportunities("3000");
   const opportunities = await client.fetch(query);
 
   return {

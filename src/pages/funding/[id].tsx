@@ -87,7 +87,7 @@ export default function Funding({ finance }) {
 export async function getServerSideProps(context) {
   const { id } = context.query;
 
-  const query = findOpportunities("30");
+  const query = findOpportunities("3000");
   const opportunities = await client.fetch(query);
 
   const finance = opportunities.finance.find((f) => f._id === id);

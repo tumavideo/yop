@@ -86,7 +86,7 @@ export default function Skill({ skill }) {
 export async function getServerSideProps(context) {
   const { id } = context.query;
 
-  const query = findOpportunities("30");
+  const query = findOpportunities("3000");
   const opportunities = await client.fetch(query);
 
   const skill = opportunities.skill.find((f) => f._id === id);

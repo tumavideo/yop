@@ -14,7 +14,7 @@ import { client } from "../lib/client";
 import { findOpportunities } from "../lib/queries";
 import { truncate } from "../utils/truncate";
 
-export default function Home({ banner, jobs, post, testimony, program }) {
+export default function Home({ testimony }) {
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
   const [videoLoading, setVideoLoading] = useState(true);
@@ -48,7 +48,7 @@ export default function Home({ banner, jobs, post, testimony, program }) {
     <div>
       <Header />
 
-      {post.length > 0 ? (
+      {testimony.length > 0 ? (
         <section id="stories">
           <div className="container">
             <Title text={"Success Stories"} />

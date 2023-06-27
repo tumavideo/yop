@@ -65,7 +65,7 @@ export default function Skill({ skill }) {
             />
             <h3>{skill.companyRef?.company}</h3>
             <p>{skill.companyRef?.bio}</p>
-            {skill.link && (
+            {skill.companyRef?.website && (
               <p>
                 Visit our website: <a href={skill.link} target="_blank">{skill.link}</a>
               </p>

@@ -94,7 +94,7 @@ export default function Job({ job }) {
             />
             <h3>{job.companyRef?.company}</h3>
             <p>{job.companyRef?.bio}</p>
-            {job.link && (
+            {job.companyRef?.website && (
               <p>
                 Visit our website: <a href={job.link} target="_blank">{job.link}</a>
               </p>

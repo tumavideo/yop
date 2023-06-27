@@ -67,7 +67,7 @@ export default function Skill({ skill }) {
             <p>{skill.companyRef?.bio}</p>
             {skill.link && (
               <p>
-                Visit our website: <a href="#">{skill.link}</a>
+                Visit our website: <a href={skill.link} target="_blank">{skill.link}</a>
               </p>
             )}
           </div>

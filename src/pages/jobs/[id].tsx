@@ -3,6 +3,7 @@ import Form from "@/components/Form";
 
 import { findOpportunities } from "@/lib/queries";
 import { client, urlFor } from "@/lib/client";
+import dayjs from "dayjs";
 
 export default function Job({ job }) {
   return (
@@ -44,15 +45,43 @@ export default function Job({ job }) {
             {job.qualifications && (
               <>
                 <h3>Qualifications</h3>
-                <p>{job.qualifications}</p>
+                <p dangerouslySetInnerHTML={{__html: job.qualifications.replace(/\n/g, "<br>")}}></p>
+              </>
+            )}
+
+            {job.experience && (
+              <>
+                <h3>Experience</h3>
+                <p dangerouslySetInnerHTML={{__html: job.experience.replace(/\n/g, "<br>")}}></p>
               </>
             )}
 
             {job.responsibilities && (
               <>
                 <h3>Responsibilities</h3>
-                <p>{job.responsibilities}</p>
+                <p dangerouslySetInnerHTML={{__html: job.responsibilities.replace(/\n/g, "<br>")}}></p>
               </>
+            )}
+
+
+            {job.location && (
+              <>
+                <h3>Closing Date</h3>
+                <p>{dayjs(job.closingDate).format("MMMM D, YYYY")}</p>
+              </>
+            )}
+
+            {job.location && (
+              <>
+                <h3>Location</h3>
+                <p>{job.location}, Zambia</p>
+              </>
+            )}
+
+            {job.link && (
+              <p>
+                <a className="btn btn-success text-white" href={job.link} target="_blank">Apply on company site</a>
+              </p>
             )}
           </div>
 
@@ -67,7 +96,7 @@ export default function Job({ job }) {
             <p>{job.companyRef?.bio}</p>
             {job.link && (
               <p>
-                Visit our website: <a href="#">{job.link}</a>
+                Visit our website: <a href={job.link} target="_blank">{job.link}</a>
               </p>
             )}
           </div>

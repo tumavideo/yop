@@ -67,7 +67,7 @@ export default function Funding({ finance }) {
             <p>{finance.companyRef?.bio}</p>
             {finance.link && (
               <p>
-                Visit our website: <a href="#">{finance.link}</a>
+                Visit our website: <a href={finance.link} target="_blank">{finance.link}</a>
               </p>
             )}
           </div>

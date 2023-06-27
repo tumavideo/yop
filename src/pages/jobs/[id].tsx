@@ -74,7 +74,7 @@ export default function Job({ job }) {
             {job.location && (
               <>
                 <h3>Location</h3>
-                <p>{job.location}, Zambia</p>
+                <p>{job.location}</p>
               </>
             )}
 

@@ -38,7 +38,7 @@ export default function Job({ job }) {
             {job.description && (
               <>
                 <h3>Description</h3>
-                <p>{job.description}</p>
+                <p dangerouslySetInnerHTML={{__html: job.description.replace(/\n/g, "<br>")}}></p>
               </>
             )}
 
@@ -96,7 +96,7 @@ export default function Job({ job }) {
             <p>{job.companyRef?.bio}</p>
             {job.companyRef?.website && (
               <p>
-                Visit our website: <a href={job.link} target="_blank">{job.link}</a>
+                Visit our website: <a href={job.companyRef?.website} target="_blank">{job.companyRef?.website}</a>
               </p>
             )}
           </div>

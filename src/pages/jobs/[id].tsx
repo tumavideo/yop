@@ -51,7 +51,7 @@ export default function Job({ job }) {
 
             {job.experience && (
               <>
-                <h3>Experience</h3>
+                <h3>Experience and Competencies</h3>
                 <p dangerouslySetInnerHTML={{__html: job.experience.replace(/\n/g, "<br>")}}></p>
               </>
             )}

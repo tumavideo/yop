@@ -35,7 +35,7 @@ export default function Opportunity({
                   <div className="card-body">
                     <h5 className="card-title">{opp.position || opp.title}</h5>
                     <h6 className="card-subtitle mb-2 text-muted">
-                      {opp.companyRef.company}
+                      {opp.companyRef?.company}
                     </h6>
                     <p className="card-text vertical-ellipsis">
                       {opp.description || opp.responsibilities}

@@ -4,6 +4,10 @@ import Form from "@/components/Form";
 import { findOpportunities } from "@/lib/queries";
 import { client, urlFor } from "@/lib/client";
 import dayjs from "dayjs";
+import ReactGA from "react-ga";
+
+const TRACKING_ID = process.env.GA; // OUR_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
 
 export default function Job({ job }) {
   return (
@@ -24,7 +28,7 @@ export default function Job({ job }) {
               Company
             </a>
           </li>
-          {job.enableApply && 
+          {job.enableApply &&
             <li className="nav-item">
               <a className="nav-link" data-bs-toggle="tab" href="#apply-tab">
                 Apply
@@ -80,7 +84,16 @@ export default function Job({ job }) {
 
             {job.link && (
               <p>
-                <a className="btn btn-success text-white" href={job.link} target="_blank">Apply on company site</a>
+                <a className="btn btn-success text-white"
+                   href={job.link}
+                   onClick={() =>
+                     ReactGA.event({
+                       category: "Job Apply",
+                       action: job._id,
+                       label: job.title,
+                     })
+                   }
+                   target="_blank">Apply on company site</a>
               </p>
             )}
           </div>
@@ -101,7 +114,7 @@ export default function Job({ job }) {
             )}
           </div>
 
-          {job.enableApply && 
+          {job.enableApply &&
             <div className="tab-pane fade" id="apply-tab">
               <h3>Application Form</h3>
               <Form />

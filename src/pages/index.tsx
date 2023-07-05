@@ -15,6 +15,10 @@ import { BANNER_URL, POST_URL, TESTIMONY_URL, PROGRAM_URL } from "../api";
 import { client } from "../lib/client";
 import { findOpportunities } from "../lib/queries";
 import { truncate } from "../utils/truncate";
+import ReactGA from "react-ga";
+
+const TRACKING_ID = process.env.GA; // OUR_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
 
 export default function Home({ banner, jobs, post, testimony, program }) {
   const [loading, setLoading] = useState(false);
@@ -123,14 +127,33 @@ export default function Home({ banner, jobs, post, testimony, program }) {
           <div className="row">
             {program.map((program) => (
               <div className="col-md-4" key={program._id}>
-                <a href={`/govt/${program._id}`}>
+                <a
+                  href={`/govt/${program._id}`}
+                  onClick={() =>
+                    ReactGA.event({
+                      category: "government",
+                      action: program._id,
+                      label: program.name,
+                    })
+                  }
+                >
                   <img
                     className="img-fluid"
                     src={program.cover_uri}
                     alt="govt-1"
                   />
                 </a>
-                <a href={`${program.link_uri}`} target="_blank">
+                <a
+                  href={`${program.link_uri}`}
+                  target="_blank"
+                  onClick={() =>
+                    ReactGA.event({
+                      category: "government",
+                      action: program._id,
+                      label: program.name,
+                    })
+                  }
+                >
                   <img
                     className="mt-3 img-fluid w-50"
                     src={program.logo_uri}

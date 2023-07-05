@@ -2,6 +2,10 @@ import { urlFor } from "../lib/client";
 
 import Modal from "@/components/Modal";
 import Title from "@/components/Title";
+import ReactGA from "react-ga";
+
+const TRACKING_ID = process.env.GA; // OUR_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
 
 export default function Opportunity({
   opps,
@@ -37,7 +41,7 @@ export default function Opportunity({
                       {opp.description || opp.responsibilities}
                     </p>
                     <div className="d-flex justfy-end align-items-center">
-                      {opp.enableApply && 
+                      {opp.enableApply &&
                       <a
                         href={`/application?${loan ? "loanId" : "jobId"}=${
                           opp._id
@@ -45,6 +49,13 @@ export default function Opportunity({
                         className="btn btn-success text-white"
                         data-bs-toggle="modal"
                         data-bs-target="#applyModal"
+                        onClick={() =>
+                          ReactGA.event({
+                            category: "job",
+                            action: opp._id,
+                            label: opp.title,
+                          })
+                        }
                       >
                         Apply
                       </a>}
@@ -53,6 +64,13 @@ export default function Opportunity({
                           loan ? `funding` : skill ? `skill` : `jobs`
                         }/${opp._id}`}
                         className="px-4"
+                        onClick={() =>
+                          ReactGA.event({
+                            category: "See More",
+                            action: opp._id,
+                            label: opp.title,
+                          })
+                        }
                       >
                         See more
                       </a>

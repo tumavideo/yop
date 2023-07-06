@@ -46,6 +46,13 @@ export default function Job({ job }) {
               </>
             )}
 
+            {job.responsibilities && (
+              <>
+                <h3>Responsibilities</h3>
+                <p dangerouslySetInnerHTML={{__html: job.responsibilities.replace(/\n/g, "<br>")}}></p>
+              </>
+            )}
+
             {job.qualifications && (
               <>
                 <h3>Qualifications</h3>
@@ -60,15 +67,7 @@ export default function Job({ job }) {
               </>
             )}
 
-            {job.responsibilities && (
-              <>
-                <h3>Responsibilities</h3>
-                <p dangerouslySetInnerHTML={{__html: job.responsibilities.replace(/\n/g, "<br>")}}></p>
-              </>
-            )}
-
-
-            {job.location && (
+            {job.closingDate && (
               <>
                 <h3>Closing Date</h3>
                 <p>{dayjs(job.closingDate).format("MMMM D, YYYY")}</p>

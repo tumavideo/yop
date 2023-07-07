@@ -15,7 +15,7 @@ import { BANNER_URL, POST_URL, TESTIMONY_URL, PROGRAM_URL } from "../api";
 import { client } from "../lib/client";
 import { findOpportunities } from "../lib/queries";
 import { truncate } from "../utils/truncate";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 
 const TRACKING_ID = process.env.GA; // OUR_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
@@ -130,11 +130,7 @@ export default function Home({ banner, jobs, post, testimony, program }) {
                 <a
                   href={`/govt/${program._id}`}
                   onClick={() =>
-                    ReactGA.event({
-                      category: "government",
-                      action: program._id,
-                      label: program.name,
-                    })
+                    ReactGA.send({ hitType: "pageview", page: `/govt/${program._id}`, title: program.name })
                   }
                 >
                   <img
@@ -147,11 +143,7 @@ export default function Home({ banner, jobs, post, testimony, program }) {
                   href={`${program.link_uri}`}
                   target="_blank"
                   onClick={() =>
-                    ReactGA.event({
-                      category: "government",
-                      action: program._id,
-                      label: program.name,
-                    })
+                    ReactGA.send({ hitType: "pageview", page: `/govt/${program._id}`, title: program.name })
                   }
                 >
                   <img

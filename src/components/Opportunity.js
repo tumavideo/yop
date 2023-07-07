@@ -2,7 +2,7 @@ import { urlFor } from "../lib/client";
 
 import Modal from "@/components/Modal";
 import Title from "@/components/Title";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 
 const TRACKING_ID = process.env.GA; // OUR_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
@@ -50,11 +50,7 @@ export default function Opportunity({
                         data-bs-toggle="modal"
                         data-bs-target="#applyModal"
                         onClick={() =>
-                          ReactGA.event({
-                            category: "job",
-                            action: opp._id,
-                            label: opp.title,
-                          })
+                          ReactGA.send({ hitType: "pageview", page: `/job/${opp._id}`, title: opp.title })
                         }
                       >
                         Apply
@@ -65,11 +61,7 @@ export default function Opportunity({
                         }/${opp._id}`}
                         className="px-4"
                         onClick={() =>
-                          ReactGA.event({
-                            category: "See More",
-                            action: opp._id,
-                            label: opp.title,
-                          })
+                          ReactGA.send({ hitType: "pageview", page: `/job/${opp._id}`, title: opp.title })
                         }
                       >
                         See more

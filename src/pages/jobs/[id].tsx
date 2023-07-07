@@ -1,7 +1,7 @@
 import Header from "@/components/layout/Header";
 import Form from "@/components/Form";
 
-import { findOpportunities } from "@/lib/queries";
+import { findJobById } from "@/lib/queries";
 import { client, urlFor } from "@/lib/client";
 import dayjs from "dayjs";
 import ReactGA from "react-ga";
@@ -128,10 +128,8 @@ export default function Job({ job }) {
 export async function getServerSideProps(context) {
   const { id } = context.query;
 
-  const query = findOpportunities("3000");
-  const opportunities = await client.fetch(query);
-
-  const job = opportunities.job.find((job) => job._id === id);
+  const query = findJobById(id);
+  const { job } = await client.fetch(query);  
 
   return {
     props: { job },

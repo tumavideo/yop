@@ -4,7 +4,7 @@ import Form from "@/components/Form";
 import { findJobById } from "@/lib/queries";
 import { client, urlFor } from "@/lib/client";
 import dayjs from "dayjs";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 
 const TRACKING_ID = process.env.GA; // OUR_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);

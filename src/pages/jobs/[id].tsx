@@ -131,6 +131,12 @@ export async function getServerSideProps(context) {
   const query = findJobById(id);
   const { job } = await client.fetch(query);  
 
+  ReactGA.event({
+    category: "government",
+    action: id,
+    label: job.name
+  })
+
   return {
     props: { job },
   };

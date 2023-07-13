@@ -130,7 +130,11 @@ export default function Home({ banner, jobs, post, testimony, program }) {
                 <a
                   href={`/govt/${program._id}`}
                   onClick={() =>
-                    ReactGA.send({ hitType: "pageview", page: `/govt/${program._id}`, title: program.name })
+                    ReactGA.event({
+                      category: "government",
+                      action: program._id,
+                      label: program.name,
+                    })
                   }
                 >
                   <img

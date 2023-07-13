@@ -50,7 +50,11 @@ export default function Opportunity({
                         data-bs-toggle="modal"
                         data-bs-target="#applyModal"
                         onClick={() =>
-                          ReactGA.send({ hitType: "pageview", page: `/job/${opp._id}`, title: opp.title })
+                          ReactGA.event({
+                            category: "job",
+                            action: opp._id,
+                            label: opp.title,
+                          })
                         }
                       >
                         Apply
@@ -61,7 +65,11 @@ export default function Opportunity({
                         }/${opp._id}`}
                         className="px-4"
                         onClick={() =>
-                          ReactGA.send({ hitType: "pageview", page: `/job/${opp._id}`, title: opp.title })
+                          ReactGA.event({
+                            category: "See More",
+                            action: opp._id,
+                            label: opp.title,
+                          })
                         }
                       >
                         See more

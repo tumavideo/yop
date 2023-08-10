@@ -1,17 +1,17 @@
-import { useState } from "react";
 import axios from "axios";
 import moment from "moment";
 import Link from "next/link";
+import { useState } from "react";
 import { InfinitySpin } from "react-loader-spinner";
 
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 import Opportunity from "@/components/Opportunity";
-import Subscribe from "@/components/layout/Subscribe";
 import Testimony from "@/components/Testimony";
 import Title from "@/components/Title";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import Subscribe from "@/components/layout/Subscribe";
 
-import { BANNER_URL, POST_URL, TESTIMONY_URL, PROGRAM_URL } from "../api";
+import { BANNER_URL, POST_URL, PROGRAM_URL, TESTIMONY_URL } from "../api";
 import { client } from "../lib/client";
 import { findOpportunities } from "../lib/queries";
 import { truncate } from "../utils/truncate";
@@ -243,13 +243,20 @@ export const getServerSideProps = async () => {
   const query = findOpportunities("5");
   const data = await client.fetch(query);
   const jobs = data.job;
+  
+  const [bannerData, postData, programData, testimonyData] = await Promise.all([
+    axios.get(BANNER_URL),
+    axios.get(POST_URL(0)),
+    axios.get(PROGRAM_URL(0)),
+    axios.get(TESTIMONY_URL(0)),
+  ]);
 
-  const post = (await axios.get(POST_URL(0))).data.payload;
-  const testimony = (await axios.get(TESTIMONY_URL(0))).data.payload;
-  const banner = (await axios.get(BANNER_URL)).data.payload;
-  const program = (await axios.get(PROGRAM_URL(0))).data.payload;
+  const post = postData.data.payload;
+  const testimony = testimonyData.data.payload;
+  const banner = bannerData.data.payload;
+  const program = programData.data.payload;
 
   return {
-    props: { banner, jobs, post, testimony, program },
+    props: { banner, jobs, post, program, testimony },
   };
 };

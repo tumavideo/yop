@@ -6,7 +6,6 @@ import Title from "../../components/Title";
 import { PROGRAM_DATA_URL } from "../../api";
 import Subscribe from "@/components/layout/Subscribe";
 import Link from "next/link";
-import ReactGA from "react-ga";
 
 export default function Detail({ program }) {
   return (
@@ -46,8 +45,6 @@ export const getServerSideProps = async (context) => {
   const id = context.params.id;
 
   const program = (await axios.get(PROGRAM_DATA_URL(id))).data.payload;
-
-  ReactGA.pageview(`https://www.zambiarise.com/govt/${id}`);
 
   return {
     props: { program },

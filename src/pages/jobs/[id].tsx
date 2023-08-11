@@ -4,10 +4,6 @@ import Form from "@/components/Form";
 import { findJobById } from "@/lib/queries";
 import { client, urlFor } from "@/lib/client";
 import dayjs from "dayjs";
-import ReactGA from "react-ga";
-
-const TRACKING_ID = process.env.GA; // OUR_TRACKING_ID
-ReactGA.initialize(TRACKING_ID);
 
 export default function Job({ job }) {
   return (
@@ -85,13 +81,6 @@ export default function Job({ job }) {
               <p>
                 <a className="btn btn-success text-white"
                    href={job.link}
-                   onClick={() =>
-                     ReactGA.event({
-                       category: "Job Apply",
-                       action: job._id,
-                       label: job.title,
-                     })
-                   }
                    target="_blank">Apply on company site</a>
               </p>
             )}
@@ -129,7 +118,7 @@ export async function getServerSideProps(context) {
   const { id } = context.query;
 
   const query = findJobById(id);
-  const { job } = await client.fetch(query);  
+  const { job } = await client.fetch(query); 
 
   return {
     props: { job },

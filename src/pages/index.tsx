@@ -1,24 +1,20 @@
-import { useState } from "react";
 import axios from "axios";
 import moment from "moment";
 import Link from "next/link";
+import { useState } from "react";
 import { InfinitySpin } from "react-loader-spinner";
 
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 import Opportunity from "@/components/Opportunity";
-import Subscribe from "@/components/layout/Subscribe";
 import Testimony from "@/components/Testimony";
 import Title from "@/components/Title";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import Subscribe from "@/components/layout/Subscribe";
 
-import { BANNER_URL, POST_URL, TESTIMONY_URL, PROGRAM_URL } from "../api";
+import { BANNER_URL, POST_URL, PROGRAM_URL, TESTIMONY_URL } from "../api";
 import { client } from "../lib/client";
 import { findOpportunities } from "../lib/queries";
 import { truncate } from "../utils/truncate";
-import ReactGA from "react-ga4";
-
-const TRACKING_ID = process.env.GA; // OUR_TRACKING_ID
-ReactGA.initialize(TRACKING_ID);
 
 export default function Home({ banner, jobs, post, testimony, program }) {
   const [loading, setLoading] = useState(false);
@@ -129,13 +125,6 @@ export default function Home({ banner, jobs, post, testimony, program }) {
               <div className="col-md-4" key={program._id}>
                 <a
                   href={`/govt/${program._id}`}
-                  onClick={() =>
-                    ReactGA.event({
-                      category: "government",
-                      action: program._id,
-                      label: program.name,
-                    })
-                  }
                 >
                   <img
                     className="img-fluid"
@@ -146,9 +135,6 @@ export default function Home({ banner, jobs, post, testimony, program }) {
                 <a
                   href={`${program.link_uri}`}
                   target="_blank"
-                  onClick={() =>
-                    ReactGA.send({ hitType: "pageview", page: `/govt/${program._id}`, title: program.name })
-                  }
                 >
                   <img
                     className="mt-3 img-fluid w-50"

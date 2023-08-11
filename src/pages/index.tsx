@@ -16,6 +16,19 @@ import { client } from "../lib/client";
 import { findOpportunities } from "../lib/queries";
 import { truncate } from "../utils/truncate";
 
+const ContentNA = () => (<div style={{
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  minHeight: 200,
+  border: '1px solid #ccc',
+  backgroundColor: '#f5f5f5',
+  color: '#777',
+  fontSize: 18,
+  textAlign: 'center'}}>
+  Content not available
+</div>)
+
 export default function Home({ banner, jobs, post, testimony, program }) {
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
@@ -115,13 +128,13 @@ export default function Home({ banner, jobs, post, testimony, program }) {
             </button>
           </div>
         </section>
-      ) : null}
+      ) :  <ContentNA /> }
 
       <section id="programs">
         <div className="container">
           <Title text={"Govt Programs"} />
           <div className="row">
-            {program.map((program) => (
+            {program.length > 0 ? program.map((program) => (
               <div className="col-md-4" key={program._id}>
                 <a
                   href={`/govt/${program._id}`}
@@ -143,7 +156,7 @@ export default function Home({ banner, jobs, post, testimony, program }) {
                   />
                 </a>
               </div>
-            ))}
+            )) :  <ContentNA /> }
           </div>
         </div>
       </section>
@@ -186,7 +199,7 @@ export default function Home({ banner, jobs, post, testimony, program }) {
             </div>
           </div>
         </section>
-      ) : null}
+      ) :  <ContentNA /> }
 
       {post.length > 0 ? (
         <section id="news">
@@ -213,7 +226,7 @@ export default function Home({ banner, jobs, post, testimony, program }) {
             </div>
           </div>
         </section>
-      ) : null}
+      ) :  <ContentNA /> }
 
       <Subscribe />
       <Footer />
@@ -231,12 +244,14 @@ export const getServerSideProps = async () => {
     axios.get(POST_URL(0)),
     axios.get(PROGRAM_URL(0)),
     axios.get(TESTIMONY_URL(0)),
-  ]);
+  ]).catch(error => {
+    return [];
+  })
 
-  const post = postData.data.payload;
-  const testimony = testimonyData.data.payload;
-  const banner = bannerData.data.payload;
-  const program = programData.data.payload;
+  const banner = bannerData?.data?.payload || [];
+  const post = postData?.data?.payload || [];
+  const program = programData?.data?.payload || [];
+  const testimony = testimonyData?.data?.payload || [];
 
   return {
     props: { banner, jobs, post, program, testimony },

@@ -38,21 +38,21 @@ export default async function Skill({ params: { id } }) {
           {skill.description && (
             <>
               <h3>Description</h3>
-              <p>{skill.description}</p>
-            </>
-          )}
-
-          {skill.qualifications && (
-            <>
-              <h3>Qualifications</h3>
-              <p>{skill.qualifications}</p>
+              <p dangerouslySetInnerHTML={{__html: skill.description.replace(/\n/g, "<br>")}}></p>
             </>
           )}
 
           {skill.responsibilities && (
             <>
               <h3>Responsibilities</h3>
-              <p>{skill.responsibilities}</p>
+              <p dangerouslySetInnerHTML={{__html: skill.responsibilities.replace(/\n/g, "<br>")}}></p>
+            </>
+          )}
+
+          {skill.qualifications && (
+            <>
+              <h3>Qualifications</h3>
+              <p dangerouslySetInnerHTML={{__html: skill.qualifications.replace(/\n/g, "<br>")}}></p>
             </>
           )}
         </div>
@@ -68,7 +68,7 @@ export default async function Skill({ params: { id } }) {
           <p>{skill.companyRef?.bio}</p>
           {skill.companyRef?.website && (
             <p>
-              Visit our website: <a href={skill.link} target="_blank">{skill.link}</a>
+              Visit our website: <a href={skill.companyRef?.website} target="_blank">{skill.companyRef?.website}</a>
             </p>
           )}
         </div>

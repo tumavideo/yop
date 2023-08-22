@@ -38,21 +38,21 @@ export default async function Funding({ params: { id } }) {
           {finance.description && (
             <>
               <h3>Description</h3>
-              <p>{finance.description}</p>
-            </>
-          )}
-
-          {finance.qualifications && (
-            <>
-              <h3>Qualifications</h3>
-              <p>{finance.qualifications}</p>
+              <p dangerouslySetInnerHTML={{__html: finance.description.replace(/\n/g, "<br>")}}></p>
             </>
           )}
 
           {finance.responsibilities && (
             <>
               <h3>Responsibilities</h3>
-              <p>{finance.responsibilities}</p>
+              <p dangerouslySetInnerHTML={{__html: finance.responsibilities.replace(/\n/g, "<br>")}}></p>
+            </>
+          )}
+
+          {finance.qualifications && (
+            <>
+              <h3>Qualifications</h3>
+              <p dangerouslySetInnerHTML={{__html: finance.qualifications.replace(/\n/g, "<br>")}}></p>
             </>
           )}
         </div>
@@ -68,7 +68,7 @@ export default async function Funding({ params: { id } }) {
           <p>{finance.companyRef?.bio}</p>
           {finance.companyRef?.website && (
             <p>
-              Visit our website: <a href={finance.link} target="_blank">{finance.link}</a>
+              Visit our website: <a href={finance.companyRef?.website} target="_blank">{finance.companyRef?.website}</a>
             </p>
           )}
         </div>

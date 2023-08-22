@@ -39,24 +39,8 @@ export default async function Home() {
   const post = postData?.data?.payload || [];
   const program = programData?.data?.payload || [];
   const testimony = testimonyData?.data?.payload || [];
-
   const jobs = job;
 
-  let loading = false;
-
-  // const [loading, setLoading] = useState(false);
-  // const [modal, setModal] = useState(false);
-  // const [videoLoading, setVideoLoading] = useState(true);
-  // const [video, setVideo] = useState({});
-
-  // const spinner = () => {
-  //   setVideoLoading(!videoLoading);
-  // };
-
-  // const openModal = (video) => {
-  //   setVideo(video);
-  //   setModal(!modal);
-  // };
   return (
     <>
       {banner.length > 0 ? (

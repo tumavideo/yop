@@ -348,8 +348,9 @@ footer p {
 
 #subscribe {
   background-color: #319c53;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-top: 6rem;
   margin-bottom: 100px;
 }
 

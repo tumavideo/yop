@@ -1,4 +1,3 @@
-import Form from "@/components/Form";
 
 import { client, urlFor } from "@/lib/client";
 import { findOpportunities } from "@/lib/queries";
@@ -61,24 +60,17 @@ export default async function Funding({ params: { id } }) {
           <img
             style={{ maxWidth: "100%", maxHeight: 240 }}
             className="card-image p-3"
-            src={urlFor(finance.companyRef?.logo?.asset).url()}
+              src={urlFor(finance.companyRef?.logo?.asset).url()}
             alt="govt-1"
           />
-          <h3>{finance.companyRef?.company}</h3>
-          <p>{finance.companyRef?.bio}</p>
-          {finance.companyRef?.website && (
+            <h3>{finance.companyRef?.company}</h3>
+            <p>{finance.companyRef?.bio}</p>
+            {finance.companyRef?.website && (
             <p>
-              Visit our website: <a href={finance.companyRef?.website} target="_blank">{finance.companyRef?.website}</a>
+                Visit our website: <a href={finance.companyRef?.website} target="_blank">{finance.companyRef?.website}</a>
             </p>
           )}
         </div>
-
-        {finance.enableApply && 
-          <div className="tab-pane fade" id="apply-tab">
-            <h3>Application Form</h3>
-            <Form />
-          </div>
-        }
       </div>
     </div>
   );

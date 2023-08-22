@@ -1,18 +1,27 @@
-import React from "react";
+"use client"
 
-import { IoCloseOutline } from "react-icons/io5";
+import { useState } from 'react';
+
 import { BiLoaderAlt } from "react-icons/bi";
+import { IoCloseOutline } from "react-icons/io5";
 
 export default function Testimony({
   image,
-  modal,
-  openModal,
-  setModal,
-  spinner,
   title,
-  video,
-  videoLoading,
 }) {
+  const [modal, setModal] = useState(false);
+  const [videoLoading, setVideoLoading] = useState(true);
+  const [video, setVideo] = useState({});
+
+  const spinner = () => {
+    setVideoLoading(!videoLoading);
+  };
+ 
+  const openModal = (video) => {
+    setVideo(video);
+    setModal(!modal);
+  };
+
   return (
     <div onClick={openModal}>
       <>

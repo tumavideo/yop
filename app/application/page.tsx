@@ -82,7 +82,7 @@ const districts = [
   },
 ];
 
-export default function Application({ user = {} }) {
+export default function Application() {
   const [validated, setValidated] = useState(false);
 
   const [values, setValues] = useState({

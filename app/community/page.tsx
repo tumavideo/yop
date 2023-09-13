@@ -91,10 +91,14 @@ export default async function Govt() {
         ))}
         {!session ? (
           <>
-            <Filters />
+            <Filters
+              handleOnChange={() => {
+                console.log("filter");
+              }}
+            />
             <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((service) => (
-                <Opportunity opp={service} service={true} />
+                <Opportunity opp={service} />
               ))}
             </ul>
           </>

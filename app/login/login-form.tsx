@@ -40,7 +40,7 @@ export default function LoginForm({ session }: { session: Session | null }) {
   ) : (
     <>
       <form
-        onSubmit={handleSubmit(async (data) => {
+        onSubmit={handleSubmit(async (data: any) => {
           // await new Promise((resolve) => setTimeout(resolve, 2000));
           const { email, password } = data;
 

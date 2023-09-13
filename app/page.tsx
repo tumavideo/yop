@@ -26,7 +26,7 @@ const ContentNA = () => (
 );
 
 export default async function Home() {
-  const data = await client.fetch(findOpportunities("5"));
+  const data = await client.fetch(findOpportunities(5));
   const topCompanies = await client.fetch(getTopCompanies());
   const { banner, job } = data;
 

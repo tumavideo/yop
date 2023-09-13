@@ -1,9 +1,4 @@
 import { InputHTMLAttributes, forwardRef } from "react";
-import {
-  FieldValues,
-  UseControllerProps,
-  useController,
-} from "react-hook-form";
 
 const ErrorText = ({ children }: { children?: string }) => (
   <>{children && <p className="text-xs text-red-500 pt-1">{children}</p>}</>
@@ -15,23 +10,6 @@ type TextFieldParams = Omit<
 > & {
   label: string;
   error?: string;
-};
-
-export const SelectField = <T extends FieldValues>(
-  props: UseControllerProps<T> & {
-    options: { label: string; value: string }[];
-  }
-) => {
-  const { options, ...controllerProps } = props;
-  const {
-    field: { onChange },
-  } = useController(controllerProps);
-  return (
-    <Select
-      onChange={(newValue) => onChange(newValue?.value)}
-      options={options}
-    />
-  );
 };
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldParams>(

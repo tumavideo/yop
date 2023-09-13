@@ -19,7 +19,7 @@ const features = [
   //   },
 ];
 
-export default function Feature({ flip = false, index, program }) {
+export default function Feature({ flip = 0, index, program }) {
   return (
     <div className="overflow-hidden bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl md:px-6 lg:px-8">

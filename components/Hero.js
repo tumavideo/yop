@@ -92,7 +92,7 @@ export default function Hero() {
                   </div>
                   <div className="relative">
                     <img
-                      src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                      src="https://media.istockphoto.com/id/1461587663/photo/young-woman-welding.jpg?s=2048x2048&w=is&k=20&c=uMikj2PJma5rHZjVItmkgy-LJzZvmVjd1zRo6xTC2wg="
                       alt=""
                       className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
@@ -102,7 +102,7 @@ export default function Hero() {
                 <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                   <div className="relative">
                     <img
-                      src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                      src="https://media.istockphoto.com/id/1200097167/photo/portrait-view-of-happy-attractive-hardworking-professional-female-carpenter.jpg?s=2048x2048&w=is&k=20&c=7IeZWC7gEpKsF6u7DCq0YHK1QNDV77zMkbJYL3XeKMc="
                       alt=""
                       className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
@@ -110,7 +110,7 @@ export default function Hero() {
                   </div>
                   <div className="relative">
                     <img
-                      src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=396&h=528&q=80"
+                      src="https://media.istockphoto.com/id/1303837193/photo/group-of-five-african-college-students.jpg?s=2048x2048&w=is&k=20&c=6mTAW1wIMmepVCFyQOKrtVABXbk-uCqGMhpnGiQ9Tfw="
                       alt=""
                       className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />

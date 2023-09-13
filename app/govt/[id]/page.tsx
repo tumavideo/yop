@@ -7,7 +7,7 @@ export default async function Detail({ params: { id } }) {
   const program = (await axios.get(PROGRAM_DATA_URL(id))).data.payload;
 
   return (
-    <div className="container mx-auto max-w-7xl mt-8">
+    <div className="container mx-auto max-w-7xl my-8">
       <section className="bg-white p-8 rounded-xl shadow-md">
         <a className="mb-4" href="https://www.napsa.co.zm/" target="_blank">
           <img

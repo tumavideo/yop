@@ -1,55 +1,31 @@
-import Title from "@/components/Title";
+import Feature from "@/components/Feature";
+
+const about = [
+  {
+    _id: 0,
+    cover_uri: "assets/images/jump.png",
+    alt: "Inlight Zambia man rising",
+    name: "About Inlight Zambia",
+    description:
+      "We are excited to introduce Inlight Zambia, an informative platform that gives government, private sector and civil society a place to post availabile opportunities, and for young people to access them. Our mission is to inform, inspire, and engage the community by providing up-to-date news, success stories, insightful facts, and in-depth information about various government programs.",
+  },
+  {
+    _id: 1,
+    cover_uri: "assets/images/question.png",
+    alt: "Inlight Zambia man rising",
+    name: "WHY Inlight Zambia",
+    description:
+      "Inlight Zambia seeks to create a pathway for fostering economic growth, social progress, and sustainable development. By raising awareness of the opportunities and initiatives, we aim to increase engagement, improve public perception, and contribute to building a prosperous and thriving future for all those in Zambia.",
+  },
+];
 
 const About = () => {
   return (
-    <section id="intro">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <img
-              className="img-fluid mb-5 mb-md-0"
-              src="assets/images/jump.png"
-              alt="zambia rise man rising"
-            />
-          </div>
-
-          <div className="col-md-6 my-auto">
-            <Title text={"About Zambia Rise"} />
-            <p>
-              We are excited to introduce Zambia Rise, acomprehensive online
-              platform designed to empower Zambians by showcasing
-              opportunities, initiatives, and achievements driven by the New
-              Dawn Government. Our mission is to inform, inspire, and engage
-              citizens by providing up-to-date news, success stories,
-              insightful facts, and in-depth information about various
-              government programs.
-            </p>
-          </div>
-        </div>
-
-        <div className="row mt-5">
-          <div className="col-md-6 my-auto">
-            <Title text={"WHY Zambia Rise"} />
-            <p>
-              Zambia Rise is essential for fostering economic growth, social
-              progress, and sustainable development in our country. By raising
-              awareness of the opportunities and initiatives created by the
-              New Dawn government, we aim to increase citizen engagement,
-              improve public perception, and contribute to building a
-              prosperous and thriving future for all citizens in Zambia.
-            </p>
-          </div>
-
-          <div className="col-md-6">
-            <img
-              className="img-fluid mt-5 mb-md-0"
-              src="assets/images/question.png"
-              alt="zambia rise man rising"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
+    <>
+      {about.map((program, index) => (
+        <Feature flip={index % 2} index={index} program={program} />
+      ))}
+    </>
   );
 };
 

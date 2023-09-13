@@ -2,9 +2,10 @@
 const nextConfig = {
   images: {
     domains: [
-      "cloudinary.zedbrains.com",
+      "cloudinary.zambiarise.com",
+      "images.unsplash.com",
     ],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

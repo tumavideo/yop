@@ -1,70 +1,62 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
 import { urlFor } from "../lib/client";
 
-import Modal from "@/components/Modal";
-import Title from "@/components/Title";
+export default function Opportunity({ opp }) {
+  const searchParams = useSearchParams();
+  const category = searchParams.get("type");
 
-export default function Opportunity({
-  opps,
-  title,
-  loan = false,
-  skill = false,
-}) {
   return (
-    <>
-      <Title text={title} />
-      <div className="row">
-        {opps.map((opp) => (
-          <div key={opp._id} className="col-md-12 col-lg-6">
-            <div className="card mb-3">
-              <div className="row g-0 my-auto">
-                {opp.companyRef?.logo && (
-                  <div className="col-md-4 d-flex justify-content-center align-items-center">
-                    <img
-                      style={{ maxWidth: "100%", maxHeight: 240 }}
-                      className="card-image p-3"
-                      src={urlFor(opp.companyRef?.logo?.asset).url()}
-                      alt="govt-1"
-                    />
-                  </div>
-                )}
-                <div className="col-md-8">
-                  <div className="card-body">
-                    <h5 className="card-title">{opp.position || opp.title}</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">
-                      {opp.companyRef?.company}
-                    </h6>
-                    <p className="card-text vertical-ellipsis">
-                      {opp.description || opp.responsibilities}
-                    </p>
-                    <div className="d-flex justfy-end align-items-center">
-                      {opp.enableApply &&
-                      <a
-                        href={`/application?${loan ? "loanId" : "jobId"}=${
-                          opp._id
-                        }`}
-                        className="btn btn-success text-white"
-                        data-bs-toggle="modal"
-                        data-bs-target="#applyModal"
-                      >
-                        Apply
-                      </a>}
-                      <a
-                        href={`/${
-                          loan ? `funding` : skill ? `skill` : `jobs`
-                        }/${opp._id}`}
-                        className="px-4"
-                      >
-                        See more
-                      </a>
-                      <Modal />
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <div key={opp._id} className="col-span-1 divide-y divide-gray-200">
+      {/* <div className="bg-white shadow-md rounded-lg mb-3"> */}
+      <div className="border border-slate-200 min-h-full rounded-lg shadow-md">
+        <div className="lg:flex lg:items-center">
+          {opp.companyRef?.logo && (
+            <div className="lg:w-4/12 p-4 lg:p-0 flex justify-center items-center">
+              <img
+                style={{ maxWidth: "80%", maxHeight: 240 }}
+                className="w-full h-auto"
+                src={urlFor(opp.companyRef?.logo?.asset).url()}
+                alt="govt-1"
+              />
+            </div>
+          )}
+          <div className="lg:w-8/12 p-4">
+            <div className="mb-2">
+              <h5 className="text-xl font-semibold">
+                {opp.position || opp.title}
+              </h5>
+              <h6 className="text-gray-600">{opp.companyRef?.company}</h6>
+            </div>
+            <p className="text-gray-700 line-clamp-3">
+              {opp.description || opp.responsibilities}
+            </p>
+            <div className="flex justify-end items-center mt-4 space-x-2">
+              {opp.enableApply ||
+                (category === "service" && (
+                  <a
+                    href={`/application?${category}=${opp._id}`}
+                    className="px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600"
+                    data-bs-toggle="modal"
+                    data-bs-target="#applyModal"
+                  >
+                    Apply
+                  </a>
+                ))}
+              {category !== "service" && (
+                <a
+                  href={`/opportunity/${opp._id}?type=${category}`}
+                  className="px-4 py-2 border border-gray-300 rounded-full hover:bg-gray-100"
+                >
+                  See more
+                </a>
+              )}
+              {/* <Modal /> */}
             </div>
           </div>
-        ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 }

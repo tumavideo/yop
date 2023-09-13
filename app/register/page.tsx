@@ -1,0 +1,48 @@
+import RegisterForm from "./register-form";
+
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
+
+import type { Database } from "@/lib/database.types";
+
+export default async function Login() {
+  const supabase = createServerComponentClient<Database>({ cookies });
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  return (
+    <>
+      <div className="bg-white flex min-h-full flex-1">
+        <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24 order-last">
+          <div className="mx-auto w-full max-w-sm lg:w-96">
+            <div>
+              <img
+                className="h-10 w-auto"
+                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                alt="Your Company"
+              />
+              <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                Sign up to start your journey
+              </h2>
+            </div>
+
+            <div className="mt-10">
+              <div>
+                <RegisterForm session={session} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="relative hidden w-0 flex-1 lg:block">
+          <img
+            className="absolute inset-0 h-full w-full object-cover"
+            src="https://images.unsplash.com/photo-1573164574572-cb89e39749b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fGFmcmljYW4lMjBjb21wYW55fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60"
+            alt=""
+          />
+        </div>
+      </div>
+    </>
+  );
+}

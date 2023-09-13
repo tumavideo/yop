@@ -15,8 +15,7 @@ export default function Opportunity({ opp }) {
           {opp.companyRef?.logo && (
             <div className="lg:w-4/12 p-4 lg:p-0 flex justify-center items-center">
               <img
-                style={{ maxWidth: "80%", maxHeight: 240 }}
-                className="w-full h-auto"
+                className="max-h-32 max-w-full pl-4"
                 src={urlFor(opp.companyRef?.logo?.asset).url()}
                 alt="govt-1"
               />
@@ -25,7 +24,7 @@ export default function Opportunity({ opp }) {
           <div className="lg:w-8/12 p-4">
             <div className="mb-2">
               <h5 className="text-xl font-semibold">
-                {opp.position || opp.title}
+                {(opp.position || opp.title).split(/\s+/, 7).join(" ")}
               </h5>
               <h6 className="text-gray-600">{opp.companyRef?.company}</h6>
             </div>

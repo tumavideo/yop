@@ -18,7 +18,7 @@ const navigation = {
       value: "support@zambiarise.com",
     },
     { name: "Cell", href: "tel:+260977971685", value: "+260977971685" },
-    { name: "Work", href: "tel:+260 978 070 847", value: "+260 978 070 847" },
+    { name: "Work", href: "tel:+260978070847", value: "+260978070847" },
   ],
   social: [
     {

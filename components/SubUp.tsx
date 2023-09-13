@@ -6,12 +6,10 @@ export default function SubUp() {
         aria-label="Subscribe to the InZed newsletter"
       >
         <h3 className="mb-3 text-xl font-medium text-gray-900 dark:text-white">
-          Get more updates...
+          Get notified when a new opportunity is added.
         </h3>
         <p className="mb-5 text-sm font-medium text-gray-500 dark:text-gray-300">
-          Do you want to get notified when a new opportunity is added to InZed?
-          Sign up for our newsletter and you'll be among the first to find out
-          about new jobs, skills, funding, and other services.
+          Sign up for our newsletter today!
         </p>
         <form
           action="https://app.convertkit.com/forms/4692392/subscriptions"
@@ -72,7 +70,7 @@ export default function SubUp() {
           </div>
         </form>
         <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-          By subscribing, you agree with InZed's{" "}
+          By subscribing, you agree with InLight's{" "}
           <a
             rel="nofollow"
             href="https://convertkit.com/terms"

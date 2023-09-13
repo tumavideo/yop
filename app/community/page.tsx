@@ -91,6 +91,17 @@ export default async function Govt() {
         ))}
         {!session ? (
           <>
+            <div className="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8">
+              <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+                ZamPortal Services
+              </h1>
+              <p className="mt-4 max-w-xl text-sm text-gray-700">
+                The ZamPortal is a public Governmental resource, representing an
+                electronic services directory that groups in a single place all
+                public services in Zambia, that are provided to citizens in an
+                electronic way, online.
+              </p>
+            </div>
             <Filters handleOnChange={false} />
             <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((service) => (

@@ -14,19 +14,19 @@ import { Fragment, useState } from "react";
 const opportunities = [
   {
     name: "Jobs",
-    description: "Get a better understanding where your traffic is coming from",
+    description: "Search for employment that suits you",
     href: "/opportunity?type=job",
     icon: BriefcaseIcon,
   },
   {
     name: "Skills",
-    description: "Speak directly to your customers with our engagement tool",
+    description: "Find your next career development pathway",
     href: "/opportunity?type=skill",
     icon: AcademicCapIcon,
   },
   {
     name: "Funding",
-    description: "Your customers’ data will be safe and secure",
+    description: "Get approved for financial aid that caters to your needs",
     href: "/opportunity?type=finance",
     icon: BanknotesIcon,
   },

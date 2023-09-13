@@ -137,17 +137,6 @@ export default function Filters({ handleOnChange }) {
         </Dialog>
       </Transition.Root>
 
-      <div className="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8">
-        {category == "services" && (
-          <p className="mt-4 max-w-xl text-sm text-gray-700">
-            The ZamPortal is a public Governmental resource, representing an
-            electronic services directory that groups in a single place all
-            public services in Zambia, that are provided to citizens in an
-            electronic way, online.
-          </p>
-        )}
-      </div>
-
       {/* Filters */}
       <section aria-labelledby="filter-heading">
         <h2 id="filter-heading" className="sr-only">

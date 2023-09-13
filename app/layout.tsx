@@ -10,9 +10,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title:
-    "Zambia Rise | Government Programs, Jobs, Skills Development & Finance Opportunities",
+    "InLight Zambia | Government Programs, Jobs, Skills Development & Finance Opportunities",
   description:
-    "Empower your future with Zambia Rise – Your gateway to discover government initiatives, job openings, skill-building resources, and financial opportunities in Zambia. Unleash your potential today!",
+    "Empower your future with InLight Zambia – Your gateway to discover government initiatives, job openings, skill-building resources, and financial opportunities in Zambia. Unleash your potential today!",
 };
 
 export default function RootLayout({

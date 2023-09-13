@@ -1,4 +1,29 @@
+const images = [
+  "https://images.unsplash.com/photo-1622295023576-e4fb6e9e8ba2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80",
+  "https://images.unsplash.com/photo-1528980917907-8df7f48f6f2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80",
+  "https://plus.unsplash.com/premium_photo-1682148403197-69741357d444?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80",
+  "https://plus.unsplash.com/premium_photo-1664301183594-03188b856b16?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80",
+  "https://plus.unsplash.com/premium_photo-1663013645935-2d019b631704?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+  "https://images.unsplash.com/photo-1655720357761-f18ea9e5e7e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+  "https://images.unsplash.com/photo-1655720357872-ce227e4164ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80",
+  "https://images.unsplash.com/photo-1642257859842-c95f9fa8121d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3336&q=80",
+  "https://images.unsplash.com/photo-1618142134777-233c1c07d32c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+  "https://plus.unsplash.com/premium_photo-1676668706915-0e44fb5826a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+  "https://images.unsplash.com/photo-1509100194014-d49809396daa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80",
+];
+
+function shuffleArray(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap elements
+  }
+  return shuffled;
+}
+
 export default function Hero() {
+  const shuffled = shuffleArray(images);
+
   return (
     <>
       <div className="bg-white relative isolate">
@@ -44,7 +69,7 @@ export default function Hero() {
           />
         </div>
         <div className="overflow-hidden">
-          <div className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
+          <div className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-2">
             <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
               <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
                 <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
@@ -74,7 +99,15 @@ export default function Hero() {
                 <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                   <div className="relative">
                     <img
-                      src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                      src={shuffled[0]}
+                      alt=""
+                      className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                    />
+                    <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                  </div>
+                  <div className="relative">
+                    <img
+                      src={shuffled[1]}
                       alt=""
                       className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
@@ -84,7 +117,7 @@ export default function Hero() {
                 <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                   <div className="relative">
                     <img
-                      src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80"
+                      src={shuffled[2]}
                       alt=""
                       className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
@@ -92,7 +125,15 @@ export default function Hero() {
                   </div>
                   <div className="relative">
                     <img
-                      src="https://media.istockphoto.com/id/1461587663/photo/young-woman-welding.jpg?s=2048x2048&w=is&k=20&c=uMikj2PJma5rHZjVItmkgy-LJzZvmVjd1zRo6xTC2wg="
+                      src={shuffled[3]}
+                      alt=""
+                      className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                    />
+                    <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                  </div>
+                  <div className="relative">
+                    <img
+                      src={shuffled[4]}
                       alt=""
                       className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
@@ -102,7 +143,7 @@ export default function Hero() {
                 <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                   <div className="relative">
                     <img
-                      src="https://media.istockphoto.com/id/1200097167/photo/portrait-view-of-happy-attractive-hardworking-professional-female-carpenter.jpg?s=2048x2048&w=is&k=20&c=7IeZWC7gEpKsF6u7DCq0YHK1QNDV77zMkbJYL3XeKMc="
+                      src={shuffled[5]}
                       alt=""
                       className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
@@ -110,7 +151,15 @@ export default function Hero() {
                   </div>
                   <div className="relative">
                     <img
-                      src="https://media.istockphoto.com/id/1303837193/photo/group-of-five-african-college-students.jpg?s=2048x2048&w=is&k=20&c=6mTAW1wIMmepVCFyQOKrtVABXbk-uCqGMhpnGiQ9Tfw="
+                      src={shuffled[6]}
+                      alt=""
+                      className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                    />
+                    <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                  </div>
+                  <div className="relative">
+                    <img
+                      src={shuffled[7]}
                       alt=""
                       className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />

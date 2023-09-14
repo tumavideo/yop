@@ -26,7 +26,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldParams>(
           <input
             ref={ref}
             {...inputParams}
-            className="block border focus:ring-2 focus:ring-blue-600 focus:ring-inset p-2.5 pl-5 ring-1 ring-inset rounded-lg shadow-sm sm:leading-6 sm:text-sm w-full"
+            className="block border-0 focus:ring-2 focus:ring-blue-600 focus:ring-inset p-2.5 pl-5 ring-1 ring-inset rounded-lg shadow-sm sm:leading-6 sm:text-sm w-full"
           />
         </div>
         <ErrorText>{error}</ErrorText>

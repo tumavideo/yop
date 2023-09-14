@@ -4,7 +4,7 @@ export const sortOptions = [
   { name: "Newest", href: "#", current: false },
 ];
 
-export const filters = [
+export const filterByField = [
   {
     id: "field",
     name: "Field",
@@ -133,6 +133,9 @@ export const filters = [
       },
     ],
   },
+];
+
+export const filterByDepartment = [
   {
     id: "department",
     name: "Department",
@@ -287,14 +290,6 @@ export const filters = [
       },
     ],
   },
-  {
-    id: "ministry",
-    name: "Ministry",
-    options: [
-      { value: "ministry-1", label: "Ministry 1", checked: false },
-      { value: "ministry-2", label: "Ministry 2", checked: false },
-    ],
-  },
 ];
 
 export const activeFilters = [];
@@ -443,4 +438,3 @@ export const testimonials = [
     ],
   ],
 ];
-

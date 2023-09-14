@@ -6,18 +6,16 @@ import { findOpportunities } from "@/lib/queries";
 import Filters from "@/components/Filters";
 import ListItem from "@/components/ListItem";
 import Opportunity from "@/components/Opportunity";
-import { filters } from "@/constants";
-import { useSearchParams } from "next/navigation";
+import { filterByField } from "@/constants";
 import { useState } from "react";
 
-export default async function Funding() {
+export default async function Funding({ searchParams: { type } }) {
   const [listType, setListType] = useState("list");
   const [checkedState, setCheckedState] = useState(
-    new Array(filters[0].options.length).fill(false)
+    new Array(filterByField[0].options.length).fill(false)
   );
-  const searchParams = useSearchParams();
-  const category = searchParams.get("type");
 
+  const category = type;
   const response = await client.fetch(findOpportunities(30));
   const opportunities = [...response[category]];
 
@@ -29,8 +27,6 @@ export default async function Funding() {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     );
-
-    console.log(updatedCheckedState);
 
     setCheckedState(updatedCheckedState);
   };
@@ -56,7 +52,7 @@ export default async function Funding() {
             {category === "services" && "ZamPortal Services"}
           </h1>
         </div>
-        {filterData.length > 0 && <Filters handleOnChange={handleOnChange} />}
+        {filterData.length > 0 && <Filters filters={filterByField} />}
         <ul
           role="list"
           className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"

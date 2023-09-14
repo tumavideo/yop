@@ -13,10 +13,10 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
 
-import { activeFilters, filters, sortOptions } from "@/constants";
-import { classNames } from "@/utils";
+import { activeFilters, departmentOptions, sortOptions } from "@/constants";
+import { classNames, getDepartment } from "@/utils";
 
-export default function Filters({ handleOnChange }) {
+export default function Filters({ filters }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const pathName = usePathname();
@@ -26,6 +26,9 @@ export default function Filters({ handleOnChange }) {
 
   const handleTags = (item) => {
     activeFilters.push(item);
+    const department = getDepartment(departmentOptions, {
+      department: item,
+    });
     router.push(`${pathName}?category=${item}`);
   };
 
@@ -99,7 +102,7 @@ export default function Filters({ handleOnChange }) {
                             <div className="space-y-6">
                               {section.options.map((option, optionIdx) => (
                                 <div
-                                  key={option.value}
+                                  key={optionIdx}
                                   className="flex items-center"
                                 >
                                   <input
@@ -112,7 +115,7 @@ export default function Filters({ handleOnChange }) {
                                     // checked={checkedState[optionIdx]}
                                     onChange={() => {
                                       console.log(option.value);
-                                      // handleTags(option.value);
+                                      handleTags(option.value);
                                     }}
                                     className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                                   />
@@ -232,7 +235,7 @@ export default function Filters({ handleOnChange }) {
                           <form className="space-y-4">
                             {section.options.map((option, optionIdx) => (
                               <div
-                                key={option.value}
+                                key={optionIdx}
                                 className="flex items-center"
                               >
                                 <input
@@ -245,7 +248,7 @@ export default function Filters({ handleOnChange }) {
                                   // checked={checkedState[optionIdx]}
                                   onChange={() => {
                                     console.log(option.value);
-                                    // handleTags(option.value);
+                                    handleTags(option.value);
                                   }}
                                   className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                                 />

@@ -15,7 +15,7 @@ export default function Nothing() {
             type="button"
             className="inline-flex items-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           >
-            {/* <!-- <PlusIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" /> --> */}
+            {/* <PlusIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" /> */}
             Sign In
           </button>
         </div>
@@ -23,3 +23,21 @@ export default function Nothing() {
     </div>
   );
 }
+
+export const ContentNA = () => (
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: 200,
+      border: "1px solid #ccc",
+      backgroundColor: "#f5f5f5",
+      color: "#777",
+      fontSize: 18,
+      textAlign: "center",
+    }}
+  >
+    Content not available
+  </div>
+);

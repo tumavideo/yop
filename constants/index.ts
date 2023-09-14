@@ -298,3 +298,149 @@ export const filters = [
 ];
 
 export const activeFilters = [];
+
+export const departmentOptions = [
+  { title: "Cadastre Department", value: "cadastre.department" },
+  {
+    title: "Competition and Consumer Protection Commission",
+    value: "competition.and.consumer.protection.commission",
+  },
+  { title: "Customs Department", value: "customs.department" },
+  {
+    title: "Department of Agribusiness and Marketing",
+    value: "department.of.agribusiness.and.marketing",
+  },
+  { title: "Department of Fisheries", value: "department.of.fisheries" },
+  { title: "Department of Immigration", value: "department.of.immigration" },
+  {
+    title: "Department of National Parks and Wildlife",
+    value: "department.of.national.parks.and.wildlife",
+  },
+  {
+    title: "Department of Registration and Regulation",
+    value: "department.of.registration.and.regulation",
+  },
+  { title: "Department of Tourism", value: "department.of.tourism" },
+  {
+    title: "Department of Veterinary Services",
+    value: "department.of.veterinary.services",
+  },
+  { title: "Forestry Department", value: "forestry.department" },
+  { title: "Lands and Deeds Department", value: "lands.and.deeds.department" },
+  { title: "Lands Department", value: "lands.department" },
+  {
+    title: "Maritime and Inland Waterways Department",
+    value: "maritime.and.inland.waterways.department",
+  },
+  {
+    title: "National Registration and Citizenship",
+    value: "national.registration.and.citizenship",
+  },
+  {
+    title: "Patents and Companies Registration Agency",
+    value: "patents.and.companies.registration.agency",
+  },
+  {
+    title: "Plant Quarantine and Phytosanitary Service",
+    value: "plant.quarantine.and.phytosanitary.service",
+  },
+  { title: "Registrar of Societies", value: "registrar.of.societies" },
+  {
+    title: "Revenue Monitoring Department",
+    value: "revenue.monitoring.department",
+  },
+  {
+    title: "Road Transport and Safety Agency",
+    value: "road.transport.and.safety.agency",
+  },
+  {
+    title: "Seed Control and Certification Institute",
+    value: "seed.control.and.certification.institute",
+  },
+  { title: "Survey Department", value: "survey.department" },
+  { title: "Tax Department", value: "tax.department" },
+  { title: "Travel Documents", value: "travel.documents" },
+  {
+    title: "Vessel Certification Services",
+    value: "vessel.certification.services",
+  },
+  {
+    title: "Vessel Registration Services",
+    value: "vessel.registration.services",
+  },
+  {
+    title: "Water Resources Management Authority",
+    value: "water.resources.management.authority",
+  },
+  {
+    title: "Zambia Compulsory Standards Agency",
+    value: "zambia.compulsory.standards.agency",
+  },
+  { title: "Zambia Development Agency", value: "zambia.development.agency" },
+  {
+    title: "Zambia Environmental Management Agency",
+    value: "zambia.environmental.management.agency",
+  },
+  { title: "Zambia Police Service", value: "zambia.police.service" },
+  { title: "Zambia Tourism Agency", value: "zambia.tourism.agency" },
+];
+
+export const testimonials = [
+  [
+    [
+      {
+        _id: "6461e1a8483ca9a1d6784c01",
+        title: "CDF Success Story by FEBBY",
+        img_src: "https://i.ytimg.com/vi/d4HxjADnIes/hqdefault.jpg",
+        video_id: "d4HxjADnIes",
+        createdAt: "2023-05-15T07:39:20.726Z",
+        updatedAt: "2023-05-15T07:39:20.726Z",
+      },
+      {
+        _id: "6461e19f483ca9a1d6784bfa",
+        title: "CDF Success Story by MOTA",
+        img_src: "https://i.ytimg.com/vi/LKBZq6PZ2pE/hqdefault.jpg",
+        video_id: "LKBZq6PZ2pE",
+        createdAt: "2023-05-15T07:39:11.019Z",
+        updatedAt: "2023-05-15T07:39:11.019Z",
+      },
+    ],
+    [
+      {
+        _id: "6461e191483ca9a1d6784bf3",
+        title: "Unza Meal Allowance",
+        img_src: "https://i.ytimg.com/vi/HivnhNb50aw/hqdefault.jpg",
+        video_id: "HivnhNb50aw",
+        createdAt: "2023-05-15T07:38:57.076Z",
+        updatedAt: "2023-05-15T07:38:57.076Z",
+      },
+      {
+        _id: "6461e177483ca9a1d6784beb",
+        title: "Warthog Investments",
+        img_src: "https://i.ytimg.com/vi/wBiL5qqnHTs/hqdefault.jpg",
+        video_id: "wBiL5qqnHTs",
+        createdAt: "2023-05-15T07:38:31.020Z",
+        updatedAt: "2023-05-15T07:38:31.020Z",
+      },
+    ],
+  ],
+  [
+    [
+      {
+        _id: "645cb7126540ef3730b91c4d",
+        title: "Marketeer Booster Loan",
+        img_src: "https://i.ytimg.com/vi/8Hc9dpdelZg/hqdefault.jpg",
+        video_id: "8Hc9dpdelZg",
+      },
+      {
+        _id: "645b48a256acc9a18de6c5f0",
+        title: "Delivering on Commitments #ZangenaSeason",
+        img_src: "https://i.ytimg.com/vi/KA8p760H89U/hqdefault.jpg",
+        video_id: "KA8p760H89U",
+        createdAt: "2023-05-10T07:32:50.668Z",
+        updatedAt: "2023-05-10T07:32:50.668Z",
+      },
+    ],
+  ],
+];
+

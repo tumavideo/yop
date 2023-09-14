@@ -3,6 +3,11 @@
 import { useSearchParams } from "next/navigation";
 import { urlFor } from "../lib/client";
 
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
+
 export default function Opportunity({ opp }) {
   const searchParams = useSearchParams();
   const category = searchParams.get("type");
@@ -27,6 +32,9 @@ export default function Opportunity({ opp }) {
                 {(opp.position || opp.title).split(/\s+/, 7).join(" ")}
               </h5>
               <h6 className="text-gray-600">{opp.companyRef?.company}</h6>
+              <h3 className="font-semibold text-gray-600">
+                {dayjs(opp._createdAt).fromNow()}
+              </h3>
             </div>
             <p className="text-gray-700 line-clamp-3">
               {opp.description || opp.responsibilities}

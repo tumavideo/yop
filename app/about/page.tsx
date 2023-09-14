@@ -23,7 +23,7 @@ const About = () => {
   return (
     <>
       {about.map((program, index) => (
-        <Feature flip={index % 2} index={index} program={program} />
+        <Feature flip={index % 2} program={program} />
       ))}
     </>
   );

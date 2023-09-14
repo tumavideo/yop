@@ -1,3 +1,5 @@
+import Logo from "./Logo";
+
 const images = [
   "https://images.unsplash.com/photo-1622295023576-e4fb6e9e8ba2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3000&q=80",
   "https://images.unsplash.com/photo-1528980917907-8df7f48f6f2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80",
@@ -72,7 +74,8 @@ export default function Hero() {
           <div className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-2">
             <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
               <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
-                <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                <Logo />
+                <h1 className="mt-20 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                   Changing the way organizations connect with people.
                 </h1>
                 <p className="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">

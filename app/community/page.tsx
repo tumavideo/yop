@@ -33,7 +33,7 @@ export default async function Govt({ searchParams: { category } }) {
         {!session ? (
           <>
             <div className="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8">
-              <div className="flex">
+              <div className="flex flex-col sm:flex-row gap-y-6 justify-between items-center">
                 <div className="flex flex-col">
                   <h1 className="text-3xl font-bold tracking-tight text-gray-900">
                     ZamPortal Services
@@ -47,7 +47,7 @@ export default async function Govt({ searchParams: { category } }) {
                 </div>
                 <>
                   <a
-                    className="px-5 py-3 text-xl font-medium flex items-center justify-center text-white bg-green-700 rounded-lg cursor-pointer hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    className="px-5 py-3 max-h-16 text-xl font-medium flex items-center justify-center text-white bg-green-700 rounded-lg cursor-pointer hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                     href="/govt/64cd10aa1d8c0f081aa5e8b8"
                   >
                     LEARN how to use ZamPortal

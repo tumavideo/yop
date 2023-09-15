@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 
 import type { Database } from "@/lib/database.types";
 
-export default async function Login() {
+export default async function Login({ searchParams: { type } }) {
   const supabase = createServerComponentClient<Database>({ cookies });
 
   const {
@@ -38,7 +38,11 @@ export default async function Login() {
         <div className="relative hidden w-0 flex-1 lg:block">
           <img
             className="absolute inset-0 h-full w-full object-cover"
-            src="https://images.unsplash.com/photo-1573164574572-cb89e39749b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fGFmcmljYW4lMjBjb21wYW55fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60"
+            src={
+              type === "company"
+                ? "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fGFmcmljYW4lMjBjb21wYW55fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60"
+                : "https://images.unsplash.com/photo-1521790361543-f645cf042ec4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3269&q=80"
+            }
             alt=""
           />
         </div>

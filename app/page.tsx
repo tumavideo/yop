@@ -4,6 +4,7 @@ import Carousel from "@/components/Carousel";
 import Feature from "@/components/Feature";
 import Hero from "@/components/Hero";
 
+import CTA from "@/components/CTA";
 import { client, urlFor } from "@/lib/client";
 import { findOpportunities } from "@/lib/queries";
 import { BANNER_URL, PROGRAM_URL } from "./api";
@@ -25,15 +26,19 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <div className="container mx-auto my-8 max-w-7xl">
+      <div className="mx-auto max-w-5xl">
         <Carousel
           slides={banners
             .map((b) => b.img)
             .concat(urlFor(banner[0].image?.asset).url())}
         />
       </div>
-      {programs.map((program, index) => (
+      {programs.slice(0, 1).map((program, index) => (
         <Feature flip={index % 2} program={program} />
+      ))}
+      <CTA />
+      {programs.slice(2, 3).map((program, index) => (
+        <Feature flip={1} program={program} />
       ))}
     </>
   );

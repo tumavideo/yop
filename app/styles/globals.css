@@ -6,6 +6,10 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  --lineColor: #030617;
+  --step: 3px;
+  --borderWeight: 1px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -14,6 +18,10 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+}
+
+html {
+  background: radial-gradient(ellipse at bottom, #5091dd 0%, #030617 100%);
 }
 
 body {
@@ -25,3 +33,28 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* Functions */
+@function borderShadow($n) {
+  $value: "0px 0px var(--lineColor)";
+  @for $i from 0 through $n {
+    $value: "#{$value} , 0px #{var(--step) * $i} var(--lineColor)";
+  }
+  @return unquote($value);
+}
+
+@function stripeShadow($n) {
+  $value: "0px 0px var(--lineColor)";
+  @for $i from 0 through $n {
+    $value: "#{$value} , #{var(--step) * $i} 0px var(--lineColor)";
+  }
+  @return unquote($value);
+}
+
+/* Styles */
+#grid-pattern {
+  width: 100%;
+  height: var(--borderWeight);
+  box-shadow: borderShadow(1000);
+}
+

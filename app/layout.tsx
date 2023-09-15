@@ -29,7 +29,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body>
+      <body id="grid-pattern">
         <Header />
         {children}
         <Footer />

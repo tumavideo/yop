@@ -9,7 +9,7 @@ import Opportunity from "@/components/Opportunity";
 import { filterByField } from "@/constants";
 import { useState } from "react";
 
-export default async function Funding({ searchParams: { type } }) {
+export default async function Opportunities({ searchParams: { type } }) {
   const [listType, setListType] = useState("list");
   const [checkedState, setCheckedState] = useState(
     new Array(filterByField[0].options.length).fill(false)

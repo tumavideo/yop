@@ -67,13 +67,11 @@ export default async function Govt({ searchParams: { category } }) {
             <Nothing />
           </>
         )}
-        {programs.slice(1).map((program, index) => (
-          <Feature key={index} flip={index % 2} program={program} />
-        ))}
+        <Feature key={0} flip={1} program={programs[1]} />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-1">
           <YTEmbed testimonials={testimonials} />
         </div>
-        <Article />
+        <Feature key={1} flip={0} program={programs[2]} />
       </div>
     </div>
   );

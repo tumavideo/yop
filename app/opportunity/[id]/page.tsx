@@ -84,7 +84,7 @@ export default async function Opportunity({ params: { id } }) {
               )}
             </div>
             <div>
-              <div className="flex justify-center items-center">
+              <div className="flex flex-col justify-start items-center py-4">
                 {opp.companyRef?.logo && (
                   <img
                     className="max-w-full max-h-64 mb-4"

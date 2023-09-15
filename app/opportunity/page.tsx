@@ -45,12 +45,13 @@ export default async function Funding({ searchParams: { type } }) {
     <div className="bg-white px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto">
         <div className="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+          <h1 className="text-6xl md:text-5xl py-5 font-bold tracking-tight text-gray-900">
             {category === "job" && "Jobs"}
             {category === "skill" && "Skills"}
             {category === "finance" && "Funding"}
             {category === "services" && "ZamPortal Services"}
           </h1>
+          <hr className="mb-3" />
         </div>
         {filterData.length > 0 && <Filters filters={filterByField} />}
         <ul

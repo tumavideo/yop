@@ -3,7 +3,7 @@ import Feature from "@/components/Feature";
 const about = [
   {
     _id: 0,
-    cover_uri: "assets/images/jump.png",
+    cover_uri: null,
     alt: "Inlight Zambia man rising",
     name: "About Inlight Zambia",
     description:

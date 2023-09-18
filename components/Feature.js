@@ -43,15 +43,17 @@ export default function Feature({ flip = 0, program }) {
           </div>
           <div className="sm:px-6 lg:px-0">
             <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-              <a href={`/govt/${program._id}`}>
-                <img
-                  src={program.cover_uri}
-                  alt="Product screenshot"
-                  width={500}
-                  height={500}
-                  className="bg-transparent -mb-12 max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
-                />
-              </a>
+              {program.cover_uri && (
+                <a href={`/govt/${program._id}`}>
+                  <img
+                    src={program.cover_uri}
+                    alt="Product screenshot"
+                    width={500}
+                    height={500}
+                    className="bg-transparent -mb-12 max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
+                  />
+                </a>
+              )}
             </div>
             <div
               className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"

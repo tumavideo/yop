@@ -56,7 +56,7 @@ export default function RegisterForm({ session }: { session: Session | null }) {
             email,
             password,
             options: {
-              emailRedirectTo: `${location.origin}/auth/callback`,
+              emailRedirectTo: `https://yop-nsti-git-tailwind-refactor-zyop.vercel.app/auth/callback`,
             },
           });
           router.replace("/register/thanks");

@@ -4,6 +4,7 @@ import logo from "./images/logo.svg";
 import playVideo from "./images/play-video.svg";
 import bulb from "./images/single-bulb.svg";
 import success from "./images/success.jpg";
+import checked from "./images/checked.png";
 
 const social = [
   {
@@ -94,4 +95,5 @@ export default {
   logo,
   playVideo,
   success,
+  checked
 };

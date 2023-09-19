@@ -23,7 +23,7 @@ function shuffleArray(array) {
   return shuffled;
 }
 
-export default function Hero() {
+export default function Hero({ showButtons = false }) {
   const shuffled = shuffleArray(images);
 
   return (
@@ -83,20 +83,22 @@ export default function Hero() {
                   and civil society a place to post availabile opportunities,
                   and for young people to access them.
                 </p>
-                <div className="mt-10 flex items-center gap-x-6">
-                  <a
-                    href="/register?type=company"
-                    className="px-5 py-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg cursor-pointer hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    Post an opportunity
-                  </a>
-                  <a
-                    href="/register?type=seeker"
-                    className="text-sm font-semibold leading-6 text-gray-900"
-                  >
-                    Find an opportunity <span aria-hidden="true">→</span>
-                  </a>
-                </div>
+                {showButtons && (
+                  <div className="mt-10 flex items-center gap-x-6">
+                    <a
+                      href="/register?type=company"
+                      className="px-5 py-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg cursor-pointer hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      Post an opportunity
+                    </a>
+                    <a
+                      href="/register?type=seeker"
+                      className="text-sm font-semibold leading-6 text-gray-900"
+                    >
+                      Find an opportunity <span aria-hidden="true">→</span>
+                    </a>
+                  </div>
+                )}
               </div>
               <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
                 <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">

@@ -189,7 +189,7 @@ export default function Header({ session }: { session: Session | null }) {
           <div className="flex items-center justify-between">
             <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">InLight Zambia</span>
-              <img className="h-8 w-auto" src={assets.logo.src} alt="logo" />
+              <img className="h-14 w-auto" src={assets.logo.src} alt="logo" />
             </a>
             <button
               type="button"
@@ -246,7 +246,7 @@ export default function Header({ session }: { session: Session | null }) {
               </div>
               <div className="py-6">
                 <a
-                  href="#"
+                  href="/login"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Log in

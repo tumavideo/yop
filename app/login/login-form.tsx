@@ -48,7 +48,7 @@ export default function LoginForm({ session }: { session: Session | null }) {
             email,
             password,
           });
-          router.refresh();
+          router.replace("/");
         })}
         className="space-y-6"
         noValidate

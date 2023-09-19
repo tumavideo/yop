@@ -59,7 +59,7 @@ export default function RegisterForm({ session }: { session: Session | null }) {
               emailRedirectTo: `${location.origin}/auth/callback`,
             },
           });
-          router.refresh();
+          router.replace("/register/thanks");
         })}
         className="space-y-6"
         noValidate

@@ -1,7 +1,10 @@
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 
+import { Database } from "@/lib/database.types";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Inter } from "next/font/google";
+import { cookies } from "next/headers";
 import "./styles/globals.css";
 
 export const dynamic = "force-dynamic";
@@ -15,11 +18,17 @@ export const metadata = {
     "Empower your future with InLight Zambia – Your gateway to discover government initiatives, job openings, skill-building resources, and financial opportunities in Zambia. Unleash your potential today!",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const supabase = createServerComponentClient<Database>({ cookies });
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
   return (
     <html lang="en">
       <head>
@@ -30,7 +39,7 @@ export default function RootLayout({
         ></script>
       </head>
       <body id="grid-pattern">
-        <Header />
+        <Header session={session} />
         {children}
         <Footer />
       </body>

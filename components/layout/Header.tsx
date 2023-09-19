@@ -10,6 +10,11 @@ import {
   BriefcaseIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import {
+  Session,
+  createClientComponentClient,
+} from "@supabase/auth-helpers-nextjs";
+import { useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
 
 const opportunities = [
@@ -42,8 +47,16 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Header() {
+export default function Header({ session }: { session: Session | null }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const router = useRouter();
+
+  const supabase = createClientComponentClient();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.refresh();
+  };
 
   return (
     <header className="relative isolate z-10 bg-white">
@@ -54,7 +67,7 @@ export default function Header() {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">InLight Zambia</span>
-            <img className="h-8 w-auto" src={assets.logo.src} alt="logo" />
+            <img className="h-14 w-auto" src={assets.logo.src} alt="logo" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -147,12 +160,22 @@ export default function Header() {
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a
-            href="/login"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+          {session ? (
+            <a
+              href="#"
+              className="text-sm font-semibold leading-6 text-gray-900"
+              onClick={handleSignOut}
+            >
+              Sign Out
+            </a>
+          ) : (
+            <a
+              href="/login"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Log in <span aria-hidden="true">&rarr;</span>
+            </a>
+          )}
         </div>
       </nav>
       <Dialog

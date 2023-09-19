@@ -35,6 +35,10 @@ export default async function Home() {
   return (
     <>
       <Hero showButtons={!session} />
+      <CTA
+        company={true}
+        description="It’s time to showcase your opportunity. Start posting the  right opportunities to empower a brighter future."
+      />
       <div className="mx-auto max-w-5xl">
         <Carousel
           slides={banners

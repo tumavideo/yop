@@ -1,4 +1,8 @@
-export default function CTA() {
+export default function CTA({
+  company = false,
+  title = "Get started today",
+  description = "It’s time to take control of your career. Start finding the right opportunities to build a brighter future.",
+}) {
   return (
     <div>
       <section
@@ -18,15 +22,14 @@ export default function CTA() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
           <div className="mx-auto max-w-lg text-center">
             <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
-              Get started today
+              {title}
             </h2>
             <p className="mt-4 text-lg tracking-tight text-white">
-              It’s time to take control of your career. Start finding the right
-              opportunities to build a brighter future.
+              {description}
             </p>
             <a
               className="group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-white text-slate-900 hover:bg-blue-50 active:bg-blue-200 active:text-slate-600 focus-visible:outline-white mt-10"
-              href="/register?type=seeker"
+              href={`/register?type=${company ? "company" : "seeker"}`}
             >
               Try 1 month free
             </a>

@@ -7,7 +7,7 @@ import Hero from "@/components/Hero";
 import CTA from "@/components/CTA";
 import { client, urlFor } from "@/lib/client";
 import { Database } from "@/lib/database.types";
-import { findOpportunities, getTopCompanies } from "@/lib/queries";
+import { findOpportunities } from "@/lib/queries";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { BANNER_URL, PROGRAM_URL } from "./api";
@@ -39,7 +39,7 @@ export default async function Home() {
         company={true}
         description="It’s time to showcase your opportunity. Start posting the  right opportunities to empower a brighter future."
       />
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-5xl bg-white">
         <Carousel
           slides={banners
             .map((b) => b.img)

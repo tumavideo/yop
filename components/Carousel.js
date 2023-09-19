@@ -32,7 +32,7 @@ const Carousel = ({ slides }) => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative mt-20 mb-40">
       <div className="overflow-hidden">
         <div
           className="w-full flex transition-transform duration-300"

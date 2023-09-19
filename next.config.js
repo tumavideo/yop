@@ -1,14 +1,12 @@
-module.exports = {
-  eslint: {
-    dirs: ["pages", "utils"], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
-  },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cloudinary.zedbrains.com",
-        port: "",
-      },
+    domains: [
+      "cloudinary.zambiarise.com",
+      "media.istockphoto.com",
+      "images.unsplash.com",
     ],
   },
 };
+
+module.exports = nextConfig;

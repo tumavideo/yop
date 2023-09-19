@@ -38,7 +38,7 @@ export default async function RootLayout({
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body>
+      <body className="bg-white">
         <Header session={session} />
         {children}
         <Footer />

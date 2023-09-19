@@ -11,6 +11,7 @@
 .carousel {
   margin-bottom: 4rem;
 }
+
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   bottom: 3rem;
@@ -21,6 +22,7 @@
 .carousel-item {
   height: 32rem;
 }
+
 .carousel-item > img {
   position: absolute;
   top: 0;
@@ -41,12 +43,6 @@
   }
 }
 
-/* .card {
-  box-shadow:
-    -7px -7px 17px rgba(255, 255, 255, 0.6),
-    7px 7px 17px rgba(70, 70, 70, 0.12);
-} */
-
 .vertical-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -54,23 +50,6 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-
-/*
-.card-title {
-  font-weight: 700;
-  font-size: 18px;
-  text-transform: uppercase;
-}
-
-.card-subtitle {
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.card-text {
-  font-weight: 400;
-  font-size: 15px;
-} */
 
 .flag-badge h1 {
   font-size: 28px;

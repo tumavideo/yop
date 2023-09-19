@@ -35,7 +35,7 @@ export default async function Login() {
               href="/register"
               className="font-semibold leading-6 text-blue-600 hover:text-blue-500"
             >
-              Start a 14 day free trial
+              Start a one month free trial
             </a>
           </p>
         </div>

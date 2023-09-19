@@ -38,7 +38,7 @@ export default async function RootLayout({
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body id="grid-pattern">
+      <body>
         <Header session={session} />
         {children}
         <Footer />

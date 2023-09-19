@@ -34,7 +34,7 @@ export default async function Home() {
 
   return (
     <>
-      <Hero />
+      <Hero showButtons={!session} />
       <div className="mx-auto max-w-5xl">
         <Carousel
           slides={banners

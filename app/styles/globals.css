@@ -33,28 +33,3 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
-
-/* Functions */
-@function borderShadow($n) {
-  $value: "0px 0px var(--lineColor)";
-  @for $i from 0 through $n {
-    $value: "#{$value} , 0px #{var(--step) * $i} var(--lineColor)";
-  }
-  @return unquote($value);
-}
-
-@function stripeShadow($n) {
-  $value: "0px 0px var(--lineColor)";
-  @for $i from 0 through $n {
-    $value: "#{$value} , #{var(--step) * $i} 0px var(--lineColor)";
-  }
-  @return unquote($value);
-}
-
-/* Styles */
-#grid-pattern {
-  width: 100%;
-  height: var(--borderWeight);
-  box-shadow: borderShadow(1000);
-}
-

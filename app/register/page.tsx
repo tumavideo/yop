@@ -3,6 +3,7 @@ import RegisterForm from "./register-form";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
+import assets from "@/assets";
 import type { Database } from "@/lib/database.types";
 
 export default async function Login({ searchParams: { type } }) {
@@ -19,9 +20,9 @@ export default async function Login({ searchParams: { type } }) {
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <div>
               <img
-                className="h-10 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600"
-                alt="Your Company"
+                src={assets.logo.src}
+                alt="logo"
+                className="mx-auto h-20 w-auto"
               />
               <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">
                 Sign up to start your journey

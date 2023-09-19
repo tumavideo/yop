@@ -1,5 +1,6 @@
 "use client";
 
+import assets from "@/assets";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import {
@@ -52,12 +53,8 @@ export default function Header() {
       >
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600"
-              alt=""
-            />
+            <span className="sr-only">InLight Zambia</span>
+            <img className="h-8 w-auto" src={assets.logo.src} alt="logo" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -168,12 +165,8 @@ export default function Header() {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600"
-                alt=""
-              />
+              <span className="sr-only">InLight Zambia</span>
+              <img className="h-8 w-auto" src={assets.logo.src} alt="logo" />
             </a>
             <button
               type="button"

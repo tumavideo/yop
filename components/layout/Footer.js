@@ -103,7 +103,7 @@ export default function Footer() {
           </div>
           <div className="mt-10 xl:mt-0">
             <h3 className="text-sm font-semibold leading-6 text-gray-900">
-              Get notified when a new opportunity is added.
+              Get notified when new content is added.
             </h3>
             <p className="mt-2 text-sm leading-6 text-gray-600">
               Sign up for our newsletter today!

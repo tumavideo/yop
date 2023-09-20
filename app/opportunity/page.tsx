@@ -57,7 +57,10 @@ export default async function Opportunities({ searchParams: { type } }) {
         </ul>
         {!session && (
           <>
-            <Nothing color="blue" firstLine={`Want to see more ${type}s?`} />
+            <Nothing
+              color="bg-blue-600"
+              firstLine={`Want to see more ${type}s?`}
+            />
           </>
         )}
       </div>

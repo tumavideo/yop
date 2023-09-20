@@ -42,10 +42,10 @@ export default async function Home() {
         />
       </div>
       <Hero showButtons={!session} />
-      {/* <CTA
+      <CTA
         company={true}
         description="It’s time to showcase your opportunity. Start posting the  right opportunities to empower a brighter future."
-      /> */}
+      />
       {session && (
         <>
           {programs.slice(0, 1).map((program, index) => (
@@ -53,7 +53,7 @@ export default async function Home() {
           ))}
         </>
       )}
-      <CTA />
+      {/* <CTA /> */}
       {session && (
         <>
           {programs.slice(2, 3).map((program, index) => (

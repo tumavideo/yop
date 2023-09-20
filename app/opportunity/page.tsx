@@ -1,35 +1,28 @@
-"use client";
-
-import { client } from "@/lib/client";
-import { findOpportunities } from "@/lib/queries";
-
 import Filters from "@/components/Filters";
-import ListItem from "@/components/ListItem";
+import Nothing from "@/components/Nothing";
 import Opportunity from "@/components/Opportunity";
 import { filterByField } from "@/constants";
-import { useState } from "react";
+import { client } from "@/lib/client";
+import { Database } from "@/lib/database.types";
+import { findOpportunities } from "@/lib/queries";
+
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 
 export default async function Opportunities({ searchParams: { type } }) {
-  const [listType, setListType] = useState("list");
-  const [checkedState, setCheckedState] = useState(
-    new Array(filterByField[0].options.length).fill(false)
-  );
+  const supabase = createServerComponentClient<Database>({ cookies });
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
   const category = type;
-  const response = await client.fetch(findOpportunities(30));
+  const response = await client.fetch(findOpportunities(session ? 30 : 5));
   const opportunities = [...response[category]];
 
   const filterData = opportunities
     .map((j) => j.field)
     .filter((el) => el != null);
-
-  const handleOnChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
-
-    setCheckedState(updatedCheckedState);
-  };
 
   if (opportunities.length === 0) {
     return (
@@ -58,15 +51,19 @@ export default async function Opportunities({ searchParams: { type } }) {
           role="list"
           className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {opportunities.map((project, index) =>
-            listType === "grid" ? (
-              <ListItem project={project} />
-            ) : (
-              // <Card opp={project} />
-              <Opportunity key={index} opp={project} />
-            )
-          )}
+          {opportunities.map((project, index) => (
+            <Opportunity key={index} opp={project} />
+          ))}
         </ul>
+        {!session && (
+          <>
+            <Nothing
+              backgroundColor="bg-blue-100"
+              color="bg-blue-600"
+              firstLine={`Want to see more ${type}s?`}
+            />
+          </>
+        )}
       </div>
     </div>
   );

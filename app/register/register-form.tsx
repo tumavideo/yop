@@ -63,6 +63,10 @@ export default function RegisterForm({
             password,
             options: {
               emailRedirectTo: `https://yop-nsti-git-tailwind-refactor-zyop.vercel.app/auth/callback`,
+              data: {
+                government,
+                name,
+              },
             },
           });
           router.replace("/register/thanks");

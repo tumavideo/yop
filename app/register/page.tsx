@@ -31,7 +31,7 @@ export default async function Login({ searchParams: { type } }) {
 
             <div className="mt-10">
               <div>
-                <RegisterForm session={session} />
+                <RegisterForm session={session} type={type} />
               </div>
             </div>
           </div>

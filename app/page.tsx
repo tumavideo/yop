@@ -34,11 +34,6 @@ export default async function Home() {
 
   return (
     <>
-      <Hero showButtons={!session} />
-      <CTA
-        company={true}
-        description="It’s time to showcase your opportunity. Start posting the  right opportunities to empower a brighter future."
-      />
       <div className="mx-auto max-w-5xl bg-white">
         <Carousel
           slides={banners
@@ -46,6 +41,11 @@ export default async function Home() {
             .concat(urlFor(banner[0].image?.asset).url())}
         />
       </div>
+      <Hero showButtons={!session} />
+      <CTA
+        company={true}
+        description="It’s time to showcase your opportunity. Start posting the  right opportunities to empower a brighter future."
+      />
       {session && (
         <>
           {programs.slice(0, 1).map((program, index) => (
@@ -53,7 +53,7 @@ export default async function Home() {
           ))}
         </>
       )}
-      <CTA />
+      {/* <CTA /> */}
       {session && (
         <>
           {programs.slice(2, 3).map((program, index) => (

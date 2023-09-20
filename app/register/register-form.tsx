@@ -29,6 +29,7 @@ export default function RegisterForm({
   type,
 }: {
   session: Session | null;
+  type: string;
 }) {
   const router = useRouter();
   const supabase = createClientComponentClient();

@@ -1,4 +1,3 @@
-import Article from "@/components/Article";
 import Feature from "@/components/Feature";
 import Filters from "@/components/Filters";
 import Nothing from "@/components/Nothing";
@@ -7,13 +6,13 @@ import YTEmbed from "@/components/YTEmbed";
 
 import { filterByDepartment, testimonials } from "@/constants";
 import { client } from "@/lib/client";
+import { Database } from "@/lib/database.types";
 import { getServicesByCategory } from "@/lib/queries";
 
-import { Database } from "@/lib/database.types";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import axios from "axios";
 import { cookies } from "next/headers";
-import { POST_URL, PROGRAM_URL, TESTIMONY_URL } from "../api";
+import { PROGRAM_URL } from "../api";
 
 export default async function Govt({ searchParams: { category } }) {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -23,14 +22,12 @@ export default async function Govt({ searchParams: { category } }) {
   } = await supabase.auth.getSession();
 
   const programs = (await axios.get(PROGRAM_URL(0))).data.payload.reverse();
-  const posts = (await axios.get(POST_URL(0))).data.payload;
-  const testimonies = (await axios.get(TESTIMONY_URL(0))).data.payload;
   const services = await client.fetch(getServicesByCategory(category));
 
   return (
     <div className="bg-white px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto">
-        {!session ? (
+        {session ? (
           <>
             <div className="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8">
               <div className="flex flex-col sm:flex-row gap-y-6 justify-between items-center">
@@ -67,15 +64,23 @@ export default async function Govt({ searchParams: { category } }) {
             <Nothing />
           </>
         )}
-        {programs.slice(1, 2).map((program, index) => (
-          <Feature flip={1} program={program} />
-        ))}
+        {session && (
+          <>
+            {programs.slice(1, 2).map((program, index) => (
+              <Feature flip={1} program={program} />
+            ))}
+          </>
+        )}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-1">
           <YTEmbed testimonials={testimonials} />
         </div>
-        {programs.slice(2, 3).map((program, index) => (
-          <Feature flip={index % 2} program={program} />
-        ))}
+        {session && (
+          <>
+            {programs.slice(2, 3).map((program, index) => (
+              <Feature flip={index % 2} program={program} />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

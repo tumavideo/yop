@@ -51,7 +51,7 @@ export default function RegisterForm({ session }: { session: Session | null }) {
         onSubmit={handleSubmit(async (data: any) => {
           //   await new Promise((resolve) => setTimeout(resolve, 2000));
           //   console.log(data);
-          const { email, name, password } = data;
+          const { email, government, name, password } = data;
           await supabase.auth.signUp({
             email,
             password,
@@ -69,6 +69,23 @@ export default function RegisterForm({ session }: { session: Session | null }) {
           label="Full name"
           error={errors.name?.message}
         />
+        <div>
+          <label
+            htmlFor="government"
+            className="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Is your organization part of government?
+          </label>
+          <select
+            id="government"
+            name="government"
+            className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            defaultValue="Canada"
+          >
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+        </div>
 
         <TextField
           {...register("email")}

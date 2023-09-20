@@ -1,10 +1,11 @@
 export default function Nothing({
+  backgroundColor = "bg-indigo-100",
   color = "bg-indigo-600",
   firstLine = "Ready to explore our community services?",
   second = "Start your free trial today.",
 }) {
   return (
-    <div className={`${color}`}>
+    <div className={`${backgroundColor}`}>
       <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:justify-between lg:px-8">
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           {firstLine}

@@ -1,15 +1,10 @@
+import assets from "@/assets";
+
 export default function Thanks() {
   return (
     <div className="bg-white p-9">
       <div className="flex flex-col max-w-md my-4 mx-auto items-center">
-        <div
-          className="flex justify-center items-center w-52 h-52"
-          style={{
-            backgroundColor: "rgb(246, 245, 254)",
-          }}
-        >
-          image here
-        </div>
+        <img className="h-28 w-auto" src={assets.checked.src} alt="checked" />
         <div
           className="font-bold text-2xl text-center"
           style={{

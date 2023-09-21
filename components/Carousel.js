@@ -53,13 +53,13 @@ const Carousel = ({ slides }) => {
       <div className="absolute top-1/2 transform -translate-y-1/2 left-0 w-full flex justify-between">
         <button
           onClick={prevSlide}
-          className="p-8 text-4xl text-gray-600 hover:text-gray-900"
+          className="p-8 text-4xl text-gray-600 hover:text-gray-900 absolute -left-20"
         >
           &#8249;
         </button>
         <button
           onClick={nextSlide}
-          className="p-8 text-4xl text-gray-600 hover:text-gray-900"
+          className="p-8 text-4xl text-gray-600 hover:text-gray-900 absolute -right-20"
         >
           &#8250;
         </button>

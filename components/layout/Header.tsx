@@ -145,7 +145,12 @@ export default function Header({ session }: { session: Session | null }) {
               </Popover.Panel>
             </Transition>
           </Popover>
-
+          <a
+            href="/services"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Services
+          </a>
           <a
             href="/community"
             className="text-sm font-semibold leading-6 text-gray-900"

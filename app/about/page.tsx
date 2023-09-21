@@ -7,7 +7,7 @@ const about = [
     alt: "Inlight Zambia man rising",
     name: "About Inlight Zambia",
     description:
-      "We are excited to introduce Inlight Zambia, an informative platform that gives government, private sector and civil society a place highlight opportunities, and for Zambians to access them. We post jobs, skills programs, and leads to financial aid as well as up-to-date news, success stories, insightful facts, and in-depth information about various government programs all under one umbrella.",
+      "We are excited to introduce Inlight Zambia, an informative platform that gives government, private sector and civil society a place to highlight opportunities, and for Zambians to access them. We post jobs, skills programs, and leads to financial aid as well as up-to-date news, success stories, insightful facts, and in-depth information about various government programs all under one umbrella.",
   },
   {
     _id: 2,

@@ -81,8 +81,8 @@ export default function Hero({ showButtons = false }) {
                 <p className="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
                   We are excited to introduce Inlight Zambia, an informative
                   platform that gives government, private sector and civil
-                  society a place highlight opportunities, and for Zambians to
-                  access them.
+                  society a place to highlight opportunities, and for Zambians
+                  to access them.
                 </p>
                 {showButtons && (
                   <div className="mt-10 flex items-center gap-x-6">

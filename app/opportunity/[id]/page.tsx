@@ -1,5 +1,6 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Form from "@/components/Form";
+import { WideSkyScraper } from "@/components/ads";
 import { client, urlFor } from "@/lib/client";
 import { findOpportunities } from "@/lib/queries";
 import { capitalizeFirstLetter } from "@/utils";
@@ -15,7 +16,9 @@ export default async function Opportunity({
 
   const pages = [
     {
-      name: `${type === "finance" ? "Funding" : capitalizeFirstLetter(type) + 's'}`,
+      name: `${
+        type === "finance" ? "Funding" : capitalizeFirstLetter(type) + "s"
+      }`,
       href: `/opportunity?type=${type}`,
       current: false,
     },
@@ -27,6 +30,7 @@ export default async function Opportunity({
       <Breadcrumbs pages={pages} />
       <div className="container mx-auto max-w-6xl">
         <div className="my-6">
+          <WideSkyScraper />
           <div className="bg-white p-10 rounded-xl shadow-md">
             <h1 className="text-4xl font-bold mb-3">
               {opp.title || opp.position}

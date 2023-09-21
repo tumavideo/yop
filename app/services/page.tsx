@@ -2,13 +2,13 @@ import Feature from "@/components/Feature";
 import Filters from "@/components/Filters";
 import Nothing from "@/components/Nothing";
 import Card from "@/components/Service";
-import YTEmbed from "@/components/YTEmbed";
 
-import { filterByDepartment, testimonials } from "@/constants";
+import { filterByDepartment } from "@/constants";
 import { client } from "@/lib/client";
 import { Database } from "@/lib/database.types";
 import { getServicesByCategory } from "@/lib/queries";
 
+import { LargeLeaderboard } from "@/components/ads";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import axios from "axios";
 import { cookies } from "next/headers";
@@ -30,7 +30,8 @@ export default async function Services({ searchParams: { category } }) {
         {session ? (
           <>
             <div className="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8">
-              <div className="flex flex-col sm:flex-row gap-y-6 justify-between items-center">
+              <LargeLeaderboard />
+              <div className="flex flex-col sm:flex-row gap-y-6 mt-4 justify-between items-center">
                 <div className="flex flex-col">
                   <h1 className="text-3xl font-bold tracking-tight text-gray-900">
                     ZamPortal Services
@@ -65,28 +66,28 @@ export default async function Services({ searchParams: { category } }) {
           </>
         )}
 
-      {session && (
-        <>
-          {programs.slice(0, 1).map((program, index) => (
-            <Feature flip={1} program={program} />
-          ))}
-        </>
-      )}
-      {session && (
+        {session && (
+          <>
+            {programs.slice(0, 1).map((program, index) => (
+              <Feature flip={1} program={program} />
+            ))}
+          </>
+        )}
+        {session && (
           <>
             {programs.slice(1, 2).map((program, index) => (
               <Feature flip={index % 2} program={program} />
             ))}
           </>
         )}
-      {/* <CTA /> */}
-      {session && (
-        <>
-          {programs.slice(2, 3).map((program, index) => (
-            <Feature flip={1} program={program} />
-          ))}
-        </>
-      )}
+        {/* <CTA /> */}
+        {session && (
+          <>
+            {programs.slice(2, 3).map((program, index) => (
+              <Feature flip={1} program={program} />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import Filters from "@/components/Filters";
 import Nothing from "@/components/Nothing";
 import Opportunity from "@/components/Opportunity";
+import { LargeLeaderboard } from "@/components/ads";
 import { filterByField } from "@/constants";
 import { client } from "@/lib/client";
 import { Database } from "@/lib/database.types";
@@ -37,6 +38,7 @@ export default async function Opportunities({ searchParams: { type } }) {
   return (
     <div className="bg-white px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto">
+        <LargeLeaderboard />
         <div className="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8">
           <h1 className="text-6xl md:text-5xl py-5 font-bold tracking-tight text-gray-900">
             {category === "job" && "Jobs"}

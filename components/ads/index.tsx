@@ -1,11 +1,19 @@
-export const LargeLeaderboard = () => {
-  return <div className="bg-blue-400 h-24 min-w-full text-white">&nbsp;</div>;
+export const LargeLeaderboard = ({
+  height = "h-[90px] mx-auto",
+  width = "w-[970px]",
+}) => {
+  return (
+    <div className={`bg-blue-400 ${height} ${width} text-white`}>&nbsp;</div>
+  );
 };
 
-export const WideSkyScraper = () => {
+export const WideSkyScraper = ({
+  height = "h-[600px]",
+  width = "w-[160px]",
+}) => {
   return (
     <div
-      className="bg-blue-400 w-[150px] h-[800px] absolute left-20 text-white hidden 2xl:block"
+      className={`bg-blue-400 ${width} ${height} absolute left-20 text-white hidden 2xl:block`}
       style={{
         writingMode: "vertical-lr",
         textAlign: "center",

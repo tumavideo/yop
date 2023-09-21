@@ -2,7 +2,9 @@ import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 
 import { Database } from "@/lib/database.types";
+
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 import "./styles/globals.css";
@@ -41,6 +43,7 @@ export default async function RootLayout({
       <body className="bg-white">
         <Header session={session} />
         {children}
+        <Analytics />
         <Footer />
       </body>
     </html>

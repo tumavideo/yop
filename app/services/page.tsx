@@ -2,9 +2,8 @@ import Feature from "@/components/Feature";
 import Filters from "@/components/Filters";
 import Nothing from "@/components/Nothing";
 import Card from "@/components/Service";
-import YTEmbed from "@/components/YTEmbed";
 
-import { filterByDepartment, testimonials } from "@/constants";
+import { filterByDepartment } from "@/constants";
 import { client } from "@/lib/client";
 import { Database } from "@/lib/database.types";
 import { getServicesByCategory } from "@/lib/queries";
@@ -14,7 +13,7 @@ import axios from "axios";
 import { cookies } from "next/headers";
 import { PROGRAM_URL } from "../api";
 
-export default async function Services({ searchParams: { category } }) {
+export default async function Services({ searchParams: { field } }) {
   const supabase = createServerComponentClient<Database>({ cookies });
 
   const {
@@ -22,7 +21,8 @@ export default async function Services({ searchParams: { category } }) {
   } = await supabase.auth.getSession();
 
   const programs = (await axios.get(PROGRAM_URL(0))).data.payload.reverse();
-  const services = await client.fetch(getServicesByCategory(category));
+  const services = await client.fetch(getServicesByCategory(field));
+
 
   return (
     <div className="bg-white px-4 py-12 sm:px-6 lg:px-8">
@@ -65,28 +65,27 @@ export default async function Services({ searchParams: { category } }) {
           </>
         )}
 
-      {session && (
-        <>
-          {programs.slice(0, 1).map((program, index) => (
-            <Feature flip={1} program={program} />
-          ))}
-        </>
-      )}
-      {session && (
+        {session && (
+          <>
+            {programs.slice(0, 1).map((program, index) => (
+              <Feature flip={1} program={program} />
+            ))}
+          </>
+        )}
+        {session && (
           <>
             {programs.slice(1, 2).map((program, index) => (
               <Feature flip={index % 2} program={program} />
             ))}
           </>
         )}
-      {/* <CTA /> */}
-      {session && (
-        <>
-          {programs.slice(2, 3).map((program, index) => (
-            <Feature flip={1} program={program} />
-          ))}
-        </>
-      )}
+        {session && (
+          <>
+            {programs.slice(2, 3).map((program, index) => (
+              <Feature flip={1} program={program} />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

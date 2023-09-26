@@ -126,9 +126,9 @@ export default function Filters({ filters }) {
                                     id={`filter-mobile-${section.id}-${optionIdx}`}
                                     name={`${section.id}[]`}
                                     defaultValue={option.value}
-                                    defaultChecked={option.checked}
-                                    // value={option.value}
-                                    // checked={checkedState[optionIdx]}
+                                    defaultChecked={
+                                      option.value === searchParams.get("field")
+                                    }
                                     onChange={() => {
                                       handleTags(option);
                                     }}
@@ -248,9 +248,9 @@ export default function Filters({ filters }) {
                                   id={`filter-mobile-${section.id}-${optionIdx}`}
                                   name={`${section.id}[]`}
                                   defaultValue={option.value}
-                                  defaultChecked={option.checked}
-                                  // value={option.value}
-                                  // checked={checkedState[optionIdx]}
+                                  defaultChecked={
+                                    option.value === searchParams.get("field")
+                                  }
                                   onChange={() => {
                                     handleTags(option);
                                   }}

@@ -29,7 +29,7 @@ export default function Filters({ filters }) {
     const department = getDepartment(departmentOptions, {
       department: item,
     });
-    router.push(`${pathName}?category=${item}`);
+    router.push(`${pathName}?type=${category}&field=${item}`);
   };
 
   return (
@@ -149,16 +149,6 @@ export default function Filters({ filters }) {
         <div className="border-b border-gray-200 bg-white pb-4">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
             <Menu as="div" className="relative inline-block text-left">
-              <div>
-                <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                  Sort
-                  <ChevronDownIcon
-                    className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                    aria-hidden="true"
-                  />
-                </Menu.Button>
-              </div>
-
               <Transition
                 as={Fragment}
                 enter="transition ease-out duration-100"

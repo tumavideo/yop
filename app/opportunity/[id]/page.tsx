@@ -15,7 +15,9 @@ export default async function Opportunity({
 
   const pages = [
     {
-      name: `${type === "finance" ? "Funding" : capitalizeFirstLetter(type) + 's'}`,
+      name: `${
+        type === "finance" ? "Funding" : capitalizeFirstLetter(type) + "s"
+      }`,
       href: `/opportunity?type=${type}`,
       current: false,
     },
@@ -42,6 +44,13 @@ export default async function Opportunity({
                         __html: opp.description.replace(/\n/g, "<br>"),
                       }}
                     ></p>
+                  </div>
+                )}
+
+                {opp.location && (
+                  <div className="mt-3">
+                    <h3 className="text-xl font-bold">Location</h3>
+                    <p>{opp.location}</p>
                   </div>
                 )}
 
@@ -84,13 +93,6 @@ export default async function Opportunity({
                         __html: opp.experience.replace(/\n/g, "<br>"),
                       }}
                     ></p>
-                  </div>
-                )}
-
-                {opp.location && (
-                  <div className="mt-3">
-                    <h3 className="text-xl font-bold">Location</h3>
-                    <p>{opp.location}</p>
                   </div>
                 )}
               </div>

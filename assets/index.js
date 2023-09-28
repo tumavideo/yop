@@ -2,6 +2,7 @@ import flag from "./images/__flag.svg";
 import footerLogo from "./images/footer-logo.svg";
 import logo from "./images/logo.svg";
 import logoWhite from "./images/logo-w.png";
+import officialLogo from "./images/logo-c.png";
 import question from "./images/question.png";
 import jumper from "./images/jumper.png";
 import adsense from "./images/adsense.png";
@@ -98,6 +99,7 @@ export default {
   footerLogo,
   logo,
   logoWhite,
+  officialLogo,
   playVideo,
   question,
   adsense,

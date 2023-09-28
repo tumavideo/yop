@@ -67,7 +67,7 @@ export default function Header({ session }: { session: Session | null }) {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">InLight Zambia</span>
-            <img className="h-14 w-auto" src={assets.logo.src} alt="logo" />
+            <img className="h-14 w-auto" src={assets.officialLogo.src} alt="logo" />
           </a>
         </div>
         <div className="flex lg:hidden">

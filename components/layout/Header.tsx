@@ -174,11 +174,8 @@ export default function Header({ session }: { session: Session | null }) {
               Sign Out
             </a>
           ) : (
-            <a
-              href="/login"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Log in <span aria-hidden="true">&rarr;</span>
+            <a href="/register?type=seeker" className="bg-red-600 rounded-[3px] hover:bg-red-700 text-white px-6 py-2 text-sm font-semibold leading-6 hover:text-white">
+            Sign in <span aria-hidden="true">&rarr;</span>
             </a>
           )}
         </div>

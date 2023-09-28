@@ -8,6 +8,8 @@ import { findOpportunities } from "@/lib/queries";
 
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import Adsense from "@/components/Adsense";
+import assets from "@/assets";
 
 export default async function Opportunities({ searchParams: { type } }) {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -35,34 +37,38 @@ export default async function Opportunities({ searchParams: { type } }) {
   }
 
   return (
-    <div className="bg-white px-4 py-12 sm:px-6 lg:px-8">
-      <div className="mx-auto">
-        <div className="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8">
-          <h1 className="text-6xl md:text-5xl py-5 font-bold tracking-tight text-gray-900">
-            {category === "job" && "Jobs"}
-            {category === "skill" && "Skills"}
-            {category === "finance" && "Funding"}
-            {category === "services" && "ZamPortal Services"}
-          </h1>
-          <hr className="mb-3" />
+    <div className="bg-white">
+      <div className="container px-4 pb-20 mx-auto space-y-12 md:space-y-0 md:flex-row max-w-7xl">
+        <div className="mt-5">
+          <Adsense/>
+        </div>
+        <div className="max-w-xl text-center" style={{marginTop: 65}}>
+          <div className="flex my-auto">
+            <img className="w-auto align-middle" src={assets.flag.src} alt="logo"/>
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+              {category === "job" && "Jobs"}
+              {category === "skill" && "Skills"}
+              {category === "finance" && "Funding"}
+              {category === "services" && "ZamPortal Services"}</h1>
+          </div>
         </div>
         {filterData.length > 0 && <Filters filters={filterByField} />}
         <ul
           role="list"
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 pb-5 pt-5"
         >
           {opportunities.map((project, index) => (
             <Opportunity key={index} opp={project} />
           ))}
         </ul>
         {!session && (
-          <>
-            <Nothing
-              backgroundColor="bg-blue-100"
-              color="bg-blue-600"
-              firstLine={`Want to see more ${type}s?`}
-            />
-          </>
+          <div className="flex pt-10">
+            <a href="/register?type=seeker"
+               className="mx-auto justify-center border-black hover:border-green-600 border-2 hover:bg-green-600 rounded-md bg-white px-6 py-3 text-sm font-semibold leading-6 text-black shadow-sm hover:text-white"
+            >
+              Sign in to see more Opportunity
+            </a>
+          </div>
         )}
       </div>
     </div>

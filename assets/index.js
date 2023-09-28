@@ -1,6 +1,10 @@
 import flag from "./images/__flag.svg";
 import footerLogo from "./images/footer-logo.svg";
 import logo from "./images/logo.svg";
+import logoWhite from "./images/logo-w.png";
+import question from "./images/question.png";
+import jumper from "./images/jumper.png";
+import adsense from "./images/adsense.png";
 import playVideo from "./images/play-video.svg";
 import bulb from "./images/single-bulb.svg";
 import success from "./images/success.jpg";
@@ -93,7 +97,11 @@ export default {
   flag,
   footerLogo,
   logo,
+  logoWhite,
   playVideo,
+  question,
+  adsense,
+  jumper,
   success,
   checked
 };

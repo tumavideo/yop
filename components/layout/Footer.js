@@ -1,5 +1,6 @@
 "use client";
 
+import assets from "@/assets";
 const navigation = {
   solutions: [
     { name: "Home", href: "/" },
@@ -58,16 +59,17 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-white" aria-labelledby="footer-heading">
+    <footer style={{backgroundColor: "#CB2229"}} aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-20 sm:pt-24 lg:px-8 lg:pt-32">
+      <div className="mx-auto max-w-7xl px-6 pt-10 sm:pt-24 lg:px-8">
+        <img className="h-14 w-auto" src={assets.logoWhite.src} alt="logo" style={{marginBottom: 30}}/>
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="grid grid-cols-2 gap-8 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                <h3 className="text-xl font-semibold leading-6 text-white">
                   Solutions
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -75,7 +77,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <a
                         href={item.href}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                        className="text-sm leading-6 text-white hover:underline"
                       >
                         {item.name}
                       </a>
@@ -84,7 +86,7 @@ export default function Footer() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                <h3 className="text-xl font-semibold leading-6 text-white">
                   Contact Info
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -92,7 +94,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <a
                         href={item.href}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                        className="text-sm leading-6 text-white hover:underline"
                       >
                         {item.name}: {item.value}
                       </a>
@@ -103,10 +105,10 @@ export default function Footer() {
             </div>
           </div>
           <div className="mt-10 xl:mt-0">
-            <h3 className="text-sm font-semibold leading-6 text-gray-900">
+            <h3 className="text-xl font-semibold leading-6 text-white">
               Get notified when new content is added.
             </h3>
-            <p className="mt-2 text-sm leading-6 text-gray-600">
+            <p className="mt-2 text-sm leading-6 text-white">
               Sign up for our newsletter today!
             </p>
             <form
@@ -116,7 +118,7 @@ export default function Footer() {
               <div className="mt-4 sm:mt-0 sm:flex-shrink-0">
                 <button
                   type="submit"
-                  className="flex w-full items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                  className="flex border-r-0 w-full items-center justify-center bg-white px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                 >
                   Subscribe
                 </button>
@@ -124,23 +126,25 @@ export default function Footer() {
             </form>
           </div>
         </div>
-        <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
-          <div className="flex space-x-6 md:order-2">
-            {navigation.social.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-gray-400 hover:text-gray-500"
-              >
-                <span className="sr-only">{item.name}</span>
-                <item.icon className="h-6 w-6" aria-hidden="true" />
-              </a>
-            ))}
-          </div>
-          <p className="mt-8 text-xs leading-5 text-gray-500 md:order-1 md:mt-0">
-            &copy; 2023 Criterion Technologies, Ltd. All rights reserved.
-          </p>
-        </div>
+      </div>
+      <div className="border-gray-900/10 pt-8 pb-8 sm:mt-20 lg:mt-24" style={{backgroundColor: "#B80F16"}}>
+         <div className="md:flex md:items-center md:justify-between container max-w-7xl mx-auto">
+            <div className="space-x-6 md:order-2 flex">
+              {navigation.social.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-white hover:text-gray-400"
+                >
+                  <span className="sr-only">{item.name}</span>
+                  <item.icon className="h-6 w-6" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+            <p className="mt-8 text-xs leading-5 text-white md:order-1 md:mt-0">
+              &copy; 2023 Criterion Technologies, Ltd. All rights reserved.
+            </p>
+         </div>
       </div>
     </footer>
   );

@@ -55,14 +55,12 @@ export default function RegisterForm({
     <>
       <form
         onSubmit={handleSubmit(async (data: any) => {
-          //   await new Promise((resolve) => setTimeout(resolve, 2000));
-          //   console.log(data);
           const { email, government, name, password } = data;
           await supabase.auth.signUp({
             email,
             password,
             options: {
-              emailRedirectTo: `https://yop-gilt.vercel.app/auth/callback`,
+              emailRedirectTo: `https://inlightzambia.com/auth/callback`,
               data: {
                 government,
                 name,

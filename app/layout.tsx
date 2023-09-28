@@ -40,7 +40,7 @@ export default async function RootLayout({
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body className="bg-white">
+      <body className="bg-gray-100">
         <Header session={session} />
         {children}
         <Analytics />

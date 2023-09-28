@@ -11,7 +11,7 @@ import {
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Fragment, useState } from "react";
+import { Fragment, useCallback, useState } from "react";
 
 import { activeFilters, departmentOptions, sortOptions } from "@/constants";
 import { classNames, getDepartment } from "@/utils";
@@ -19,17 +19,33 @@ import { classNames, getDepartment } from "@/utils";
 export default function Filters({ filters }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const pathName = usePathname();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const category = searchParams.get("type");
+  let category = searchParams.get("type");
+
+  // Get a new searchParams string by merging the current
+  // searchParams with a provided key/value pair
+  const createQueryString = useCallback(
+    (name, value) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
 
   const handleTags = (item) => {
+    activeFilters.length > 0 && activeFilters.pop();
     activeFilters.push(item);
     const department = getDepartment(departmentOptions, {
       department: item,
     });
-    router.push(`${pathName}?category=${item}`);
+    if (category) {
+      router.push(pathname + "?" + createQueryString("type", `${category}`));
+    }
+    router.push(pathname + "?" + createQueryString("field", `${item.value}`));
   };
 
   return (
@@ -106,16 +122,15 @@ export default function Filters({ filters }) {
                                   className="flex items-center"
                                 >
                                   <input
-                                    type="checkbox"
+                                    type="radio"
                                     id={`filter-mobile-${section.id}-${optionIdx}`}
                                     name={`${section.id}[]`}
                                     defaultValue={option.value}
-                                    defaultChecked={option.checked}
-                                    // value={option.value}
-                                    // checked={checkedState[optionIdx]}
+                                    defaultChecked={
+                                      option.value === searchParams.get("field")
+                                    }
                                     onChange={() => {
-                                      console.log(option.value);
-                                      handleTags(option.value);
+                                      handleTags(option);
                                     }}
                                     className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                                   />
@@ -149,16 +164,6 @@ export default function Filters({ filters }) {
         <div className="border-b border-gray-200 bg-white pb-4">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
             <Menu as="div" className="relative inline-block text-left">
-              <div>
-                <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                  Sort
-                  <ChevronDownIcon
-                    className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                    aria-hidden="true"
-                  />
-                </Menu.Button>
-              </div>
-
               <Transition
                 as={Fragment}
                 enter="transition ease-out duration-100"
@@ -239,16 +244,15 @@ export default function Filters({ filters }) {
                                 className="flex items-center"
                               >
                                 <input
-                                  type="checkbox"
+                                  type="radio"
                                   id={`filter-mobile-${section.id}-${optionIdx}`}
                                   name={`${section.id}[]`}
                                   defaultValue={option.value}
-                                  defaultChecked={option.checked}
-                                  // value={option.value}
-                                  // checked={checkedState[optionIdx]}
+                                  defaultChecked={
+                                    option.value === searchParams.get("field")
+                                  }
                                   onChange={() => {
-                                    console.log(option.value);
-                                    handleTags(option.value);
+                                    handleTags(option);
                                   }}
                                   className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                                 />
@@ -286,13 +290,16 @@ export default function Filters({ filters }) {
 
             <div className="mt-2 sm:ml-4 sm:mt-0">
               <div className="-m-1 flex flex-wrap items-center">
-                {activeFilters.map((activeFilter) => (
+                {activeFilters.map((activeFilter, idx) => (
                   <span
-                    key={activeFilter.value}
+                    key={idx}
                     className="m-1 inline-flex items-center rounded-full border border-gray-200 bg-white py-1.5 pl-3 pr-2 text-sm font-medium text-gray-900"
                   >
                     <span>{activeFilter.label}</span>
                     <button
+                      onClick={() => {
+                        activeFilters.pop();
+                      }}
                       type="button"
                       className="ml-1 inline-flex h-4 w-4 flex-shrink-0 rounded-full p-1 text-gray-400 hover:bg-gray-200 hover:text-gray-500"
                     >

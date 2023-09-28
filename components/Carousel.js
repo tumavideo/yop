@@ -32,7 +32,7 @@ const Carousel = ({ slides }) => {
   };
 
   return (
-    <div className="relative mt-20 mb-40">
+    <div className="relative pt-6 mb-40">
       <div className="overflow-hidden">
         <div
           className="w-full flex transition-transform duration-300"
@@ -43,7 +43,7 @@ const Carousel = ({ slides }) => {
               <img
                 src={slide}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-auto"
+                className="w-full h-auto rounded-md"
               />
             </div>
           ))}

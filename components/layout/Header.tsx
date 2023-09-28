@@ -174,7 +174,7 @@ export default function Header({ session }: { session: Session | null }) {
               Sign Out
             </a>
           ) : (
-            <a href="/register?type=seeker" className="bg-red-600 rounded-[3px] hover:bg-red-700 text-white px-6 py-2 text-sm font-semibold leading-6 hover:text-white">
+            <a href="/login" className="bg-red-600 rounded-[3px] hover:bg-red-700 text-white px-6 py-2 text-sm font-semibold leading-6 hover:text-white">
             Sign in <span aria-hidden="true">&rarr;</span>
             </a>
           )}

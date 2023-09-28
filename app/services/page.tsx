@@ -23,7 +23,6 @@ export default async function Services({ searchParams: { field } }) {
   const programs = (await axios.get(PROGRAM_URL(0))).data.payload.reverse();
   const services = await client.fetch(getServicesByCategory(field));
 
-
   return (
     <div className="bg-white px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto">

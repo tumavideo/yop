@@ -38,7 +38,8 @@ export default async function Home() {
         <Carousel
           slides={banners
             .map((b) => b.img)
-            .concat(urlFor(banner[0].image?.asset).url())}
+            .concat(urlFor(banner[0].image?.asset).url())
+            .reverse()}
         />
       </div>
       <Hero showButtons={!session} />

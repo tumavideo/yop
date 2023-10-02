@@ -17,7 +17,7 @@ export default function CTA({
           decoding="async"
           data-nimg="1"
           className="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2"
-          src="https://salient.tailwindui.com/_next/static/media/background-call-to-action.6a5a5672.jpg"
+          src="https://images.unsplash.com/photo-1611242320536-f12d3541249b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80"
         />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
           <div className="mx-auto max-w-lg text-center">

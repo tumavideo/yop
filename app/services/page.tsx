@@ -8,6 +8,7 @@ import { client } from "@/lib/client";
 import { Database } from "@/lib/database.types";
 import { getServicesByCategory } from "@/lib/queries";
 
+import Adsense from "@/components/Adsense";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import axios from "axios";
 import { cookies } from "next/headers";
@@ -26,6 +27,7 @@ export default async function Services({ searchParams: { field } }) {
   return (
     <div className="bg-white px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto">
+        <Adsense />
         {session ? (
           <>
             <div className="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8">

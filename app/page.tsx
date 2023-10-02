@@ -34,7 +34,7 @@ export default async function Home() {
 
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-5xl">
         <Carousel
           slides={banners
             .map((b) => b.img)

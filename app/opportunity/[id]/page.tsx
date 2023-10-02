@@ -4,7 +4,6 @@ import { client, urlFor } from "@/lib/client";
 import { findOpportunities } from "@/lib/queries";
 import { capitalizeFirstLetter } from "@/utils";
 
-import assets from "@/assets";
 import Adsense from "@/components/Adsense";
 import dayjs from "dayjs";
 
@@ -39,16 +38,11 @@ export default async function Opportunity({
           <div className="my-6">
             <div className="bg-white p-8 rounded-xl shadow-md">
               <div className="flex my-auto mb-5">
-                <img
-                  className="w-auto align-middle"
-                  src={assets.flag.src}
-                  alt="logo"
-                />
                 <h1 className="text-3xl font-bold tracking-tight text-gray-900">
                   {opp.title || opp.position}
                 </h1>
               </div>
-              <div className="grid sm:grid-cols-2 grid-cols-1">
+              <div className="grid grid-cols-1">
                 <div>
                   {opp.description && (
                     <div>

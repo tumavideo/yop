@@ -20,8 +20,7 @@ const About = () => {
             highlight opportunities, and for Zambians to access them. We post
             jobs, skills programs, and leads to financial aid as well as
             up-to-date news, success stories, insightful facts, and in-depth
-            information about various government programs all under one
-            umbrella.
+            information about various Zambian programs all under one umbrella.
           </p>
         </div>
       </div>

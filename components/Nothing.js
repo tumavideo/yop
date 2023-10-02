@@ -1,3 +1,4 @@
+// hello
 export default function Nothing({
   backgroundColor = "bg-red-100",
   color = "bg-red-600",

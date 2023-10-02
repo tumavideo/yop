@@ -129,7 +129,7 @@ export default function RegisterForm({
               id="remember-me"
               name="remember-me"
               type="checkbox"
-              className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+              className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-600"
             />
             <label
               htmlFor="remember-me"
@@ -142,7 +142,7 @@ export default function RegisterForm({
           <div className="text-sm leading-6">
             <a
               href="#"
-              className="font-semibold text-blue-600 hover:text-blue-500"
+              className="font-semibold text-red-600 hover:text-red-500"
             >
               Forgot password?
             </a>
@@ -152,7 +152,7 @@ export default function RegisterForm({
         <div>
           <button
             type="submit"
-            className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-75"
+            className="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:opacity-75"
             disabled={isSubmitting}
           >
             Sign up

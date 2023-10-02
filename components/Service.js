@@ -18,7 +18,7 @@ export default function Service({ service }) {
           </div>
         )} */}
         <div>
-          <span className="text-purple-800 text-sm">{department.title}</span>
+          <span className="text-red-600 text-sm">{department.title}</span>
           <h3 className="font-bold mt-px">{service.title}</h3>
           <span className="line-clamp-4 sm:line-clamp-2 text-gray-900">
             {service.description}
@@ -27,7 +27,7 @@ export default function Service({ service }) {
         <div>
           <a
             href={`${service.link}`}
-            className="bg-purple-900 text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center"
+            className="bg-red-600 text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center"
             target="_blank"
           >
             Apply{" "}

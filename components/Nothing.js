@@ -1,6 +1,6 @@
 export default function Nothing({
-  backgroundColor = "bg-indigo-100",
-  color = "bg-indigo-600",
+  backgroundColor = "bg-red-100",
+  color = "bg-red-600",
   firstLine = "Ready to explore community services?",
   second = "Start your free trial today.",
 }) {

@@ -21,7 +21,7 @@ const navigation = {
   social: [
     {
       name: "Facebook",
-      href: "#",
+      href: "https://m.facebook.com/p/InLight-Zambia-61551672758990/",
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -34,7 +34,7 @@ const navigation = {
     },
     {
       name: "Instagram",
-      href: "#",
+      href: "https://instagram.com/inlightzambia",
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path

@@ -52,7 +52,7 @@ export default async function Opportunity({
                 <div>
                   {opp.description && (
                     <div>
-                      <h3 className="text-xl font-bold text-orange-400">
+                      <h3 className="text-xl font-bold text-black">
                         Description
                       </h3>
                       <p
@@ -65,16 +65,14 @@ export default async function Opportunity({
 
                   {opp.location && (
                     <div className="mt-10">
-                      <h3 className="text-xl font-bold text-orange-400">
-                        Location
-                      </h3>
+                      <h3 className="text-xl font-bold text-black">Location</h3>
                       <p>{opp.location}</p>
                     </div>
                   )}
 
                   {opp.closingDate && (
                     <div className="mt-10">
-                      <h3 className="text-xl font-bold text-orange-400">
+                      <h3 className="text-xl font-bold text-black">
                         Closing Date
                       </h3>
                       <p>{dayjs(opp.closingDate).format("MMMM D, YYYY")}</p>
@@ -83,7 +81,7 @@ export default async function Opportunity({
 
                   {opp.responsibilities && (
                     <div className="mt-10">
-                      <h3 className="text-xl font-bold text-orange-400">
+                      <h3 className="text-xl font-bold text-black">
                         Responsibilities
                       </h3>
                       <p
@@ -96,7 +94,7 @@ export default async function Opportunity({
 
                   {opp.qualifications && (
                     <div className="mt-10">
-                      <h3 className="text-xl font-bold text-orange-400">
+                      <h3 className="text-xl font-bold text-black">
                         Qualifications
                       </h3>
                       <p
@@ -109,7 +107,7 @@ export default async function Opportunity({
 
                   {opp.experience && (
                     <div className="mt-10">
-                      <h3 className="text-xl font-bold text-orange-400">
+                      <h3 className="text-xl font-bold text-black">
                         Experience and Competencies
                       </h3>
                       <p
@@ -123,7 +121,7 @@ export default async function Opportunity({
                   {opp.link && (
                     <div className="mt-10">
                       <a
-                        className="px-5 py-3 text-sm font-medium text-center text-white bg-green-700 rounded-lg cursor-pointer hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                        className="px-5 py-3 text-sm font-medium text-center text-white bg-red-700 rounded-lg cursor-pointer hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                         href={opp.link}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -182,7 +180,7 @@ export default async function Opportunity({
               </div>
               {opp === "apply" && opp.enableApply && (
                 <>
-                  <h3 className="text-xl font-bold text-orange-500">
+                  <h3 className="text-xl font-bold text-black">
                     Application Form
                   </h3>
                   <Form />

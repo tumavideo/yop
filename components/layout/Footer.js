@@ -4,7 +4,7 @@ import assets from "@/assets";
 const navigation = {
   solutions: [
     { name: "Home", href: "/" },
-    { name: "Opportunities", href: "/opportunities" },
+    { name: "Opportunities", href: "/opportunity?type=job" },
     { name: "Services", href: "/services" },
     { name: "Community", href: "/community" },
     { name: "About", href: "/about" },
@@ -59,12 +59,20 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer style={{backgroundColor: "#CB2229"}} aria-labelledby="footer-heading">
+    <footer
+      style={{ backgroundColor: "#CB2229" }}
+      aria-labelledby="footer-heading"
+    >
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
       <div className="mx-auto max-w-7xl px-6 pt-10 sm:pt-24 lg:px-8">
-        <img className="h-14 w-auto" src={assets.logoWhite.src} alt="logo" style={{marginBottom: 30}}/>
+        <img
+          className="h-14 w-auto"
+          src={assets.logoWhite.src}
+          alt="logo"
+          style={{ marginBottom: 30 }}
+        />
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="grid grid-cols-2 gap-8 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
@@ -127,24 +135,27 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-gray-900/10 pt-8 pb-8 sm:mt-20 lg:mt-24" style={{backgroundColor: "#B80F16"}}>
-         <div className="md:flex md:items-center md:justify-between container max-w-7xl mx-auto">
-            <div className="space-x-6 md:order-2 flex">
-              {navigation.social.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-white hover:text-gray-400"
-                >
-                  <span className="sr-only">{item.name}</span>
-                  <item.icon className="h-6 w-6" aria-hidden="true" />
-                </a>
-              ))}
-            </div>
-            <p className="mt-8 text-xs leading-5 text-white md:order-1 md:mt-0">
-              &copy; 2023 Criterion Technologies, Ltd. All rights reserved.
-            </p>
-         </div>
+      <div
+        className="border-gray-900/10 pt-8 pb-8 sm:mt-20 lg:mt-24"
+        style={{ backgroundColor: "#B80F16" }}
+      >
+        <div className="md:flex md:items-center md:justify-between container max-w-7xl mx-auto">
+          <div className="space-x-6 md:order-2 flex">
+            {navigation.social.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-white hover:text-gray-400"
+              >
+                <span className="sr-only">{item.name}</span>
+                <item.icon className="h-6 w-6" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+          <p className="mt-8 text-xs leading-5 text-white md:order-1 md:mt-0">
+            &copy; 2023 Criterion Technologies, Ltd. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
   );

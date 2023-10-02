@@ -33,12 +33,13 @@ export default async function Home() {
   const programs = programData?.data?.payload || [];
 
   return (
-    <>
-      <div className="mx-auto max-w-5xl bg-white">
+    <div className="bg-white">
+      <div className="mx-auto max-w-5xl">
         <Carousel
           slides={banners
             .map((b) => b.img)
-            .concat(urlFor(banner[0].image?.asset).url())}
+            .concat(urlFor(banner[0].image?.asset).url())
+            .reverse()}
         />
       </div>
       <Hero showButtons={!session} />
@@ -61,6 +62,6 @@ export default async function Home() {
           ))}
         </>
       )}
-    </>
+    </div>
   );
 }

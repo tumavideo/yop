@@ -88,15 +88,16 @@ export default function Hero({ showButtons = false }) {
                   <div className="mt-10 flex items-center gap-x-6">
                     <a
                       href="/register?type=company"
-                      className="px-5 py-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg cursor-pointer hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      className="px-5 py-3 text-sm font-medium text-center text-white bg-red-500 rounded-lg cursor-pointer hover:bg-red-600 focus:ring-4 focus:ring-red-500 dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-600"
                     >
                       Post an opportunity
                     </a>
                     <a
                       href="/register?type=seeker"
-                      className="text-sm font-semibold leading-6 text-gray-900"
+                      className="border-black hover:border-red-600 border-2 px-5 py-2 rounded-md bg-white text-sm font-semibold leading-6 text-black shadow-sm hover:text-red-600"
+                      // className="text-sm font-semibold leading-6 text-gray-900"
                     >
-                      Find an opportunity <span aria-hidden="true">→</span>
+                      Find an opportunity
                     </a>
                   </div>
                 )}

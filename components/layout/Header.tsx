@@ -67,7 +67,7 @@ export default function Header({ session }: { session: Session | null }) {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">InLight Zambia</span>
-            <img className="h-14 w-auto" src={assets.logo.src} alt="logo" />
+            <img className="h-14 w-auto" src={assets.officialLogo.src} alt="logo" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -174,11 +174,8 @@ export default function Header({ session }: { session: Session | null }) {
               Sign Out
             </a>
           ) : (
-            <a
-              href="/login"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Log in <span aria-hidden="true">&rarr;</span>
+            <a href="/login" className="bg-red-600 rounded-[3px] hover:bg-red-700 text-white px-6 py-2 text-sm font-semibold leading-6 hover:text-white">
+            Sign in <span aria-hidden="true">&rarr;</span>
             </a>
           )}
         </div>

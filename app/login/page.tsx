@@ -33,7 +33,7 @@ export default async function Login() {
             Not a member?{" "}
             <a
               href="/register"
-              className="font-semibold leading-6 text-blue-600 hover:text-blue-500"
+              className="font-semibold leading-6 text-red-600 hover:text-red-500"
             >
               Start a one month free trial
             </a>

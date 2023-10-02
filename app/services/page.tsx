@@ -8,6 +8,7 @@ import { client } from "@/lib/client";
 import { Database } from "@/lib/database.types";
 import { getServicesByCategory } from "@/lib/queries";
 
+import Adsense from "@/components/Adsense";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import axios from "axios";
 import { cookies } from "next/headers";
@@ -26,6 +27,7 @@ export default async function Services({ searchParams: { field } }) {
   return (
     <div className="bg-white px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto">
+        <Adsense />
         {session ? (
           <>
             <div className="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8">
@@ -43,7 +45,7 @@ export default async function Services({ searchParams: { field } }) {
                 </div>
                 <>
                   <a
-                    className="px-5 py-3 max-h-16 text-xl font-medium flex items-center justify-center text-white bg-green-700 rounded-lg cursor-pointer hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    className="px-5 py-3 max-h-16 text-xl font-medium flex items-center justify-center text-white bg-red-700 rounded-lg cursor-pointer hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                     href="/govt/64cd10aa1d8c0f081aa5e8b8"
                   >
                     LEARN how to use ZamPortal

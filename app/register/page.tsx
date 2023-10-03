@@ -20,7 +20,7 @@ export default async function Login({ searchParams: { type } }) {
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <div>
               <img
-                src={assets.logo.src}
+                src={assets.officialLogo.src}
                 alt="logo"
                 className="mx-auto h-20 w-auto"
               />

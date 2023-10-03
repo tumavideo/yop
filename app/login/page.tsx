@@ -17,7 +17,7 @@ export default async function Login() {
       <div className="bg-white flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            src={assets.logo.src}
+            src={assets.officialLogo.src}
             alt="logo"
             className="mx-auto h-20 w-auto"
           />

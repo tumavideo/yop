@@ -15,7 +15,7 @@ export default async function Community() {
         <CTA
             title="Get Loan today"
             company={false}
-            description="It’s time to showcase your opportunity. Start posting the  right opportunities to empower a brighter future."
+            description="Apply today for financing tailored to your needs."
         />
       </div>
     </div>

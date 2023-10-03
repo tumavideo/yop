@@ -7,6 +7,8 @@ import question from "./images/question.png";
 import jumper from "./images/jumper.png";
 import adsense from "./images/adsense.png";
 import playVideo from "./images/play-video.svg";
+import man_job from "./images/man-job.png";
+import wow_job from "./images/wow-job.png";
 import bulb from "./images/single-bulb.svg";
 import success from "./images/success.jpg";
 import checked from "./images/checked.png";
@@ -96,6 +98,8 @@ export const WhatsApp = social[3].icon;
 export default {
   bulb,
   flag,
+  man_job,
+  wow_job,
   footerLogo,
   logo,
   logoWhite,

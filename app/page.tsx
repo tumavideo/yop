@@ -43,10 +43,16 @@ export default async function Home() {
         />
       </div>
       <Hero showButtons={!session} />
-      <CTA
-        company={true}
-        description="It’s time to showcase your opportunity. Start posting the  right opportunities to empower a brighter future."
-      />
+
+      {!session && (
+          <div className="mx-auto max-w-7xl pb-0 md:pb-32">
+            <CTA
+                company={true}
+                description="It’s time to showcase your opportunity. Start posting the  right opportunities to empower a brighter future."
+            />
+          </div>
+      )}
+
       {session && (
         <>
           {programs.slice(0, 1).map((program, index) => (

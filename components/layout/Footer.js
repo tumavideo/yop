@@ -139,7 +139,7 @@ export default function Footer() {
         className="border-gray-900/10 pt-8 pb-8 sm:mt-20 lg:mt-24"
         style={{ backgroundColor: "#B80F16" }}
       >
-        <div className="md:flex md:items-center md:justify-between container max-w-7xl mx-auto">
+        <div className="md:flex mx-5 md:mx-auto md:items-center md:justify-between container max-w-7xl">
           <div className="space-x-6 md:order-2 flex">
             {navigation.social.map((item) => (
               <a

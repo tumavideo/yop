@@ -299,6 +299,7 @@ export default function Filters({ filters }) {
                     <button
                       onClick={() => {
                         activeFilters.pop();
+                        router.replace("/services");
                       }}
                       type="button"
                       className="ml-1 inline-flex h-4 w-4 flex-shrink-0 rounded-full p-1 text-gray-400 hover:bg-gray-200 hover:text-gray-500"

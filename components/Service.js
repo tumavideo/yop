@@ -1,5 +1,5 @@
 import { departmentOptions } from "@/constants";
-import { getDepartment } from "@/utils";
+import { classNames, getDepartment } from "@/utils";
 
 export default function Service({ service }) {
   const department = getDepartment(departmentOptions, service);
@@ -26,9 +26,14 @@ export default function Service({ service }) {
         </div>
         <div>
           <a
-            href={`${service.link}`}
-            className="bg-red-600 text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center"
-            target="_blank"
+            href={`${service.link || "#"}`}
+            className={classNames(
+              service.link
+                ? "bg-red-600 text-white font-medium"
+                : "bg-gray-300 text-gray-500 font-medium cursor-not-allowed opacity-50",
+              "px-4 py-2 rounded-md flex gap-1 items-center"
+            )}
+            target={service.link ? "_blank" : "_self"}
           >
             Apply{" "}
             <svg

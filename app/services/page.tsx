@@ -31,7 +31,7 @@ export default async function Services({ searchParams: { field } }) {
             <Adsense />
             {session ? (
                 <>
-                  <div className="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8 mt-10">
+                  <div className="mx-auto max-w-7xl py-2 mt-10">
                     <div className="flex flex-col sm:flex-row gap-y-6 justify-between items-center">
                       <div className="flex flex-col">
                         <h1 className="text-3xl font-bold tracking-tight text-gray-900">

@@ -18,7 +18,9 @@ export default function Service({ service }) {
           </div>
         )} */}
         <div>
-          <span className="text-red-600 text-sm">{department.title}</span>
+          <span className="text-red-600 text-sm">
+            {department?.title || ""}
+          </span>
           <h3 className="font-bold mt-px">{service.title}</h3>
           <span className="line-clamp-4 sm:line-clamp-2 text-gray-900">
             {service.description}

@@ -1,6 +1,5 @@
 import YTEmbed from "@/components/YTEmbed";
 import { testimonials } from "@/constants";
-import Adsense from "@/components/Adsense";
 
 export default async function Community() {
   return (

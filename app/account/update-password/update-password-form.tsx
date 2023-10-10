@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { TextField } from "@/app/auth/input";
 import type { Session } from "@supabase/auth-helpers-nextjs";
-import { TextField } from "../auth/input";
 
 const loginValueSchema = z.object({
   password: z.string().min(6).max(50),

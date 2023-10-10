@@ -65,7 +65,7 @@ export default function Hero({ showButtons = false }) {
                     </a>
                     <a
                       href="/register?type=seeker"
-                      className="border-black hover:border-red-600 border-2 px-5 py-2 rounded-md bg-white text-sm font-semibold leading-6 text-black shadow-sm hover:text-red-600"
+                      className="border-black hover:border-red-600 border-2 px-5 py-2 rounded-md bg-white text-sm font-semibold leading-6 text-black shadow-sm hover:text-red-600 text-center"
                       // className="text-sm font-semibold leading-6 text-gray-900"
                     >
                       Find an opportunity

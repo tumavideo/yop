@@ -12,11 +12,11 @@ const navigation = {
   contact: [
     {
       name: "Email",
-      href: "mailto:support@zambiarise.com",
-      value: "support@zambiarise.com",
+      href: "mailto:support@inlightzambia.com",
+      value: "support@inlightzambia.com",
     },
-    { name: "Cell", href: "tel:+260977971685", value: "+260977971685" },
-    { name: "Work", href: "tel:+260978070847", value: "+260978070847" },
+    { name: "Cell", href: "tel:+260970394705", value: "+260970394705" },
+    { name: "Work", href: "tel:+260977971685", value: "+260977971685" },
   ],
   social: [
     {

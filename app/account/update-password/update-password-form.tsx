@@ -10,13 +10,16 @@ import type { Session } from "@supabase/auth-helpers-nextjs";
 import { TextField } from "../auth/input";
 
 const loginValueSchema = z.object({
-  email: z.string().email(),
   password: z.string().min(6).max(50),
 });
 
 type LoginValues = z.infer<typeof loginValueSchema>;
 
-export default function LoginForm({ session }: { session: Session | null }) {
+export default function UpdatePasswordForm({
+  session,
+}: {
+  session: Session | null;
+}) {
   const router = useRouter();
   const supabase = createClientComponentClient();
 
@@ -41,24 +44,15 @@ export default function LoginForm({ session }: { session: Session | null }) {
     <>
       <form
         onSubmit={handleSubmit(async (data: any) => {
-          // await new Promise((resolve) => setTimeout(resolve, 2000));
-          const { email, password } = data;
+          const { password } = data;
 
-          await supabase.auth.signInWithPassword({
-            email,
-            password,
-          });
+          await supabase.auth.updateUser({ password: password });
+
           router.replace("/");
         })}
         className="space-y-6"
         noValidate
       >
-        <TextField
-          {...register("email")}
-          label="Email address"
-          error={errors.email?.message}
-        />
-
         <TextField
           {...register("password")}
           type="password"
@@ -66,39 +60,13 @@ export default function LoginForm({ session }: { session: Session | null }) {
           error={errors.password?.message}
         />
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <input
-              id="remember-me"
-              name="remember-me"
-              type="checkbox"
-              className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-600"
-            />
-            <label
-              htmlFor="remember-me"
-              className="ml-3 block text-sm leading-6 text-gray-700"
-            >
-              Remember me
-            </label>
-          </div>
-
-          <div className="text-sm leading-6">
-            <a
-              href="/login/forgot-password"
-              className="font-semibold text-red-600 hover:text-red-500"
-            >
-              Forgot password?
-            </a>
-          </div>
-        </div>
-
         <div>
           <button
             type="submit"
             className="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:opacity-75"
             disabled={isSubmitting}
           >
-            Sign in
+            Reset password
           </button>
         </div>
       </form>

@@ -33,12 +33,16 @@ export default async function UpdateProfileForm({ user }: { user: User }) {
   async function uploadFile(file) {
     const { data, error } = await supabase.storage
       .from("resumes")
-      .upload(`${id}/resume.pdf`, file);
+      .upload(`${id}/resume.pdf`, file, {
+        cacheControl: "3600",
+        upsert: true,
+      });
     if (error) {
       // Handle error
       console.log(error);
     } else {
       // Handle success
+      router.refresh();
       console.log(data);
     }
   }
@@ -83,6 +87,22 @@ export default async function UpdateProfileForm({ user }: { user: User }) {
 
     return () => {};
   }, []);
+
+  const downloadResume = async () => {
+    const { data } = supabase.storage
+      .from("resumes")
+      .getPublicUrl(`${id}/resume.pdf`, {
+        download: true,
+      });
+    const url = data.publicUrl;
+    window.open(url);
+
+    await supabase.auth.updateUser({
+      data: {
+        resume: url,
+      },
+    });
+  };
 
   return (
     <form
@@ -147,7 +167,11 @@ export default async function UpdateProfileForm({ user }: { user: User }) {
             <ul>
               {resumes.map((r) => (
                 <li className="p-4 border-2 border-dotted">
-                  <a href="http://" className="text-red-400 cursor-pointer">
+                  <a
+                    href="#"
+                    onClick={downloadResume}
+                    className="text-red-400 cursor-pointer"
+                  >
                     {r.name}
                   </a>
                 </li>

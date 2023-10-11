@@ -1,6 +1,5 @@
 "use client";
 
-import { generateTimestampedFilename } from "@/utils";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -8,7 +7,7 @@ import {
   createClientComponentClient,
 } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { TextField } from "../auth/input";
@@ -24,6 +23,7 @@ type ProfileValues = z.infer<typeof profileSchema>;
 
 export default async function UpdateProfileForm({ user }: { user: User }) {
   const router = useRouter();
+  const [resumes, setResumes] = useState([]);
   const supabase = createClientComponentClient();
 
   const { id, email } = user;
@@ -33,7 +33,7 @@ export default async function UpdateProfileForm({ user }: { user: User }) {
   async function uploadFile(file) {
     const { data, error } = await supabase.storage
       .from("resumes")
-      .upload(`${id}_${generateTimestampedFilename(file.name)}`, file);
+      .upload(`${id}/resume.pdf`, file);
     if (error) {
       // Handle error
       console.log(error);
@@ -69,11 +69,24 @@ export default async function UpdateProfileForm({ user }: { user: User }) {
     resolver: zodResolver(profileSchema),
   });
 
+  useEffect(() => {
+    const getResumes = async () => {
+      const { data, error } = await supabase.storage.from("resumes").list(id, {
+        limit: 100,
+        offset: 0,
+        sortBy: { column: "name", order: "asc" },
+      });
+      setResumes(data);
+    };
+
+    getResumes();
+
+    return () => {};
+  }, []);
+
   return (
     <form
       onSubmit={handleSubmit(async (formData: any) => {
-        console.log(formData, "formData");
-
         const { firstName, lastName, email, phone, resume } = formData;
         const { data, error } = await supabase.auth.updateUser({
           email,
@@ -131,6 +144,17 @@ export default async function UpdateProfileForm({ user }: { user: User }) {
       <div className="px-4 py-6 sm:p-8">
         <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="col-span-full">
+            <ul>
+              {resumes.map((r) => (
+                <li className="p-4 border-2 border-dotted">
+                  <a href="http://" className="text-red-400 cursor-pointer">
+                    {r.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="col-span-full">
             <label
               htmlFor="cover-photo"
               className="block text-sm font-medium leading-6 text-gray-900"
@@ -153,7 +177,7 @@ export default async function UpdateProfileForm({ user }: { user: User }) {
                       id="file-upload"
                       name="file-upload"
                       type="file"
-                      accept=".pdf, .docx"
+                      accept=".pdf"
                       className="sr-only"
                       ref={fileInputRef}
                       onChange={handleFileSelect}

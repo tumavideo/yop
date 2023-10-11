@@ -1,4 +1,4 @@
-import { Database } from "@/lib/database.types";
+import { Database } from "@/lib/schema";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import UpdateProfile from "./update-profile-form";

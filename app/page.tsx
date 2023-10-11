@@ -5,12 +5,13 @@ import Feature from "@/components/Feature";
 import Hero from "@/components/Hero";
 
 import CTA from "@/components/CTA";
+import { programs } from "@/constants/programs";
 import { client, urlFor } from "@/lib/client";
 import { Database } from "@/lib/database.types";
 import { findOpportunities } from "@/lib/queries";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import { BANNER_URL, PROGRAM_URL } from "./api";
+import { BANNER_URL } from "./api";
 
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -24,13 +25,11 @@ export default async function Home() {
 
   const [bannerData, programData] = await Promise.all([
     axios.get(BANNER_URL),
-    axios.get(PROGRAM_URL(0)),
   ]).catch((error) => {
     return [];
   });
 
   const banners = bannerData?.data?.payload || [];
-  const programs = programData?.data?.payload || [];
 
   return (
     <div className="bg-white">
@@ -45,12 +44,12 @@ export default async function Home() {
       <Hero showButtons={!session} />
 
       {!session && (
-          <div className="mx-auto max-w-7xl pb-0 md:pb-32">
-            <CTA
-                company={true}
-                description="It’s time to showcase your opportunity. Start posting the  right opportunities to empower a brighter future."
-            />
-          </div>
+        <div className="mx-auto max-w-7xl pb-0 md:pb-32">
+          <CTA
+            company={true}
+            description="It’s time to showcase your opportunity. Start posting the  right opportunities to empower a brighter future."
+          />
+        </div>
       )}
 
       {session && (

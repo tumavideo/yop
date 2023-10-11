@@ -8,6 +8,8 @@ import { Database } from "@/lib/database.types";
 import { getServicesByCategory } from "@/lib/queries";
 
 import Adsense from "@/components/Adsense";
+import Feature from "@/components/Feature";
+import { programs } from "@/constants/programs";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
@@ -70,6 +72,27 @@ export default async function Services({ searchParams: { field } }) {
           ) : (
             <>
               <Nothing />
+            </>
+          )}
+          {session && (
+            <>
+              {programs.slice(0, 1).map((program, index) => (
+                <Feature flip={1} program={program} />
+              ))}
+            </>
+          )}
+          {session && (
+            <>
+              {programs.slice(1, 2).map((program, index) => (
+                <Feature flip={index % 2} program={program} />
+              ))}
+            </>
+          )}
+          {session && (
+            <>
+              {programs.slice(2, 3).map((program, index) => (
+                <Feature flip={1} program={program} />
+              ))}
             </>
           )}
         </div>

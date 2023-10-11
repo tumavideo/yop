@@ -146,7 +146,7 @@ export default async function Opportunity({
                     {opp.companyRef?.logo && (
                       <img
                         className="w-full object-contain min-h-0 h-full"
-                        src={urlFor(opp.companyRef?.logo?.asset).url()}
+                        src={urlFor(opp.companyRef?.logo?.asset)}
                         alt="Company Logo"
                       />
                     )}

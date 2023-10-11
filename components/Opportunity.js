@@ -21,7 +21,7 @@ export default function Opportunity({ opp }) {
             {opp.companyRef?.logo && (
               <img
                 className="w-full object-contain min-h-0 h-full"
-                src={urlFor(opp.companyRef?.logo?.asset).url()}
+                src={urlFor(opp.companyRef?.logo?.asset)}
                 alt="govt-1"
               />
             )}
@@ -30,7 +30,9 @@ export default function Opportunity({ opp }) {
             <h5 className="text-xl font-semibold line-clamp-1">
               {(opp.position || opp.title).split(/\s+/, 7).join(" ")}
             </h5>
-            <h6 className="text-gray-600 line-clamp-1">{(opp.companyRef?.company)}</h6>
+            <h6 className="text-gray-600 line-clamp-1">
+              {opp.companyRef?.company}
+            </h6>
           </div>
         </div>
         <p className="text-gray-700 line-clamp-4 mt-3">

@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import Carousel from "@/components/Carousel";
 import Feature from "@/components/Feature";
 import Hero from "@/components/Hero";
@@ -11,7 +9,6 @@ import { Database } from "@/lib/database.types";
 import { findOpportunities } from "@/lib/queries";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import { BANNER_URL } from "./api";
 
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -23,22 +20,11 @@ export default async function Home() {
   const data = await client.fetch(findOpportunities(5));
   const { banner } = data;
 
-  const [bannerData, programData] = await Promise.all([
-    axios.get(BANNER_URL),
-  ]).catch((error) => {
-    return [];
-  });
-
-  const banners = bannerData?.data?.payload || [];
-
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-5xl">
         <Carousel
-          slides={banners
-            .map((b) => b.img)
-            .concat(urlFor(banner[0].image?.asset).url())
-            .reverse()}
+          slides={banner.map((b) => urlFor(b.image?.asset)).reverse()}
         />
       </div>
       <Hero showButtons={!session} />

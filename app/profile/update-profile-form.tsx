@@ -21,7 +21,7 @@ const profileSchema = z.object({
 
 type ProfileValues = z.infer<typeof profileSchema>;
 
-export default async function UpdateProfileForm({ user }: { user: User }) {
+export default function UpdateProfileForm({ user }: { user: User }) {
   const router = useRouter();
   const [resumes, setResumes] = useState([]);
   const supabase = createClientComponentClient();

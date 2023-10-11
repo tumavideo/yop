@@ -1,4 +1,3 @@
-import Feature from "@/components/Feature";
 import Filters from "@/components/Filters";
 import Nothing from "@/components/Nothing";
 import Card from "@/components/Service";
@@ -10,9 +9,7 @@ import { getServicesByCategory } from "@/lib/queries";
 
 import Adsense from "@/components/Adsense";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import axios from "axios";
 import { cookies } from "next/headers";
-import { PROGRAM_URL } from "../api";
 
 export default async function Services({ searchParams: { field } }) {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -21,7 +18,6 @@ export default async function Services({ searchParams: { field } }) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  const programs = (await axios.get(PROGRAM_URL(0))).data.payload.reverse();
   const services = await client.fetch(getServicesByCategory(field));
 
   return (
@@ -74,27 +70,6 @@ export default async function Services({ searchParams: { field } }) {
           ) : (
             <>
               <Nothing />
-            </>
-          )}
-          {session && (
-            <>
-              {programs.slice(0, 1).map((program, index) => (
-                <Feature flip={1} program={program} />
-              ))}
-            </>
-          )}
-          {session && (
-            <>
-              {programs.slice(1, 2).map((program, index) => (
-                <Feature flip={index % 2} program={program} />
-              ))}
-            </>
-          )}
-          {session && (
-            <>
-              {programs.slice(2, 3).map((program, index) => (
-                <Feature flip={1} program={program} />
-              ))}
             </>
           )}
         </div>

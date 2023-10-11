@@ -9,9 +9,15 @@ import { z } from "zod";
 import { TextField } from "@/app/auth/input";
 import type { Session } from "@supabase/auth-helpers-nextjs";
 
-const loginValueSchema = z.object({
-  password: z.string().min(6).max(50),
-});
+const loginValueSchema = z
+  .object({
+    password: z.string().min(6).max(50),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
 
 type LoginValues = z.infer<typeof loginValueSchema>;
 
@@ -23,11 +29,6 @@ export default function UpdatePasswordForm({
   const router = useRouter();
   const supabase = createClientComponentClient();
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    router.refresh();
-  };
-
   const {
     register,
     handleSubmit,
@@ -36,11 +37,7 @@ export default function UpdatePasswordForm({
     resolver: zodResolver(loginValueSchema),
   });
 
-  // for the `session` to be available on first SSR render, it must be
-  // fetched in a Server Component and passed down as a prop
-  return session ? (
-    <button onClick={handleSignOut}>Sign out</button>
-  ) : (
+  return (
     <>
       <form
         onSubmit={handleSubmit(async (data: any) => {
@@ -58,6 +55,13 @@ export default function UpdatePasswordForm({
           type="password"
           label="Password"
           error={errors.password?.message}
+        />
+
+        <TextField
+          {...register("confirmPassword")}
+          type="password"
+          label="Confirm Password"
+          error={errors.confirmPassword?.message}
         />
 
         <div>

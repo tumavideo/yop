@@ -45,8 +45,7 @@ export default function LoginForm({ session }: { session: Session | null }) {
           console.log(data);
 
           await supabase.auth.resetPasswordForEmail(email, {
-            redirectTo:
-              "https://inlightzambia.com/auth/callback?next=/account/update-password",
+            redirectTo: "https://inlightzambia.com/account/update-password",
           });
 
           router.replace("/login/thanks");

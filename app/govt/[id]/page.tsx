@@ -2,8 +2,7 @@ import { programs } from "@/constants/programs";
 import Link from "next/link";
 
 export default async function Detail({ params: { id } }) {
-  const program = programs.filter((program) => program._id === id)[0];
-
+  const program = programs.find((program) => program._id === id);
 
   return (
     <div className="container mx-auto max-w-7xl my-8">

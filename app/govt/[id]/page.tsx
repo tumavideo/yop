@@ -1,10 +1,9 @@
-import axios from "axios";
-
+import { programs } from "@/constants/programs";
 import Link from "next/link";
-import { PROGRAM_DATA_URL } from "../../api";
 
 export default async function Detail({ params: { id } }) {
-  const program = (await axios.get(PROGRAM_DATA_URL(id))).data.payload;
+  const program = programs.filter((program) => program._id === id)[0];
+
 
   return (
     <div className="container mx-auto max-w-7xl my-8">

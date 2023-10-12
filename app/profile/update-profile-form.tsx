@@ -42,7 +42,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
       console.log(error);
     } else {
       // Handle success
-      router.refresh();
+      router.replace("/profile");
     }
   }
 
@@ -74,7 +74,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
   useEffect(() => {
     const getResumes = async () => {
       const { data, error } = await supabase.storage.from("resumes").list(id, {
-        limit: 100,
+        limit: 10,
         offset: 0,
         sortBy: { column: "name", order: "asc" },
       });

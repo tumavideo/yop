@@ -5,11 +5,10 @@ import Card from "@/components/Service";
 import { filterByDepartment } from "@/constants";
 import { client } from "@/lib/client";
 import { Database } from "@/lib/database.types";
-import { getServicesByCategory } from "@/lib/queries";
+import { getPrograms, getServicesByCategory } from "@/lib/queries";
 
 import Adsense from "@/components/Adsense";
 import Feature from "@/components/Feature";
-import { programs } from "@/constants/programs";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
@@ -20,6 +19,7 @@ export default async function Services({ searchParams: { field } }) {
     data: { session },
   } = await supabase.auth.getSession();
 
+  const programs = await client.fetch(getPrograms());
   const services = await client.fetch(getServicesByCategory(field));
 
   return (

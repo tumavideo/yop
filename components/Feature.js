@@ -1,3 +1,5 @@
+import { urlFor } from "@/lib/client";
+
 const features = [];
 
 export default function Feature({ flip = 0, program }) {
@@ -9,11 +11,11 @@ export default function Feature({ flip = 0, program }) {
             className={`px-6 lg:px-0 lg:pr-4 lg:pt-4 ${flip && "order-last"}`}
           >
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-              {program.logo_uri ? (
+              {program.logo ? (
                 <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                   <img
                     className="mt-3 img-fluid w-50"
-                    src={program.logo_uri}
+                    src={urlFor(program.logo)}
                     alt={`pro-${program._id}`}
                   />
                 </p>
@@ -44,10 +46,10 @@ export default function Feature({ flip = 0, program }) {
           </div>
           <div className="sm:px-6 lg:px-0">
             <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-              {program.cover_uri && (
+              {program.banner && (
                 <a href={`/govt/${program._id}`}>
                   <img
-                    src={program.cover_uri}
+                    src={urlFor(program.banner)}
                     alt="Product screenshot"
                     width={500}
                     height={500}

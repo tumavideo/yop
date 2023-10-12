@@ -3,10 +3,9 @@ import Feature from "@/components/Feature";
 import Hero from "@/components/Hero";
 
 import CTA from "@/components/CTA";
-import { programs } from "@/constants/programs";
 import { client, urlFor } from "@/lib/client";
 import { Database } from "@/lib/database.types";
-import { findOpportunities } from "@/lib/queries";
+import { findOpportunities, getPrograms } from "@/lib/queries";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
@@ -18,6 +17,7 @@ export default async function Home() {
   } = await supabase.auth.getSession();
 
   const data = await client.fetch(findOpportunities(5));
+  const programs = await client.fetch(getPrograms());
   const { banner } = data;
 
   return (

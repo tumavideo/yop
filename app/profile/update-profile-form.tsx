@@ -43,7 +43,6 @@ export default function UpdateProfileForm({ user }: { user: User }) {
     } else {
       // Handle success
       router.refresh();
-      console.log(data);
     }
   }
 
@@ -60,7 +59,6 @@ export default function UpdateProfileForm({ user }: { user: User }) {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
       // You can perform actions with the selected file here
-      console.log("Selected file:", selectedFile);
       uploadFile(selectedFile);
     }
   };
@@ -166,7 +164,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
           <div className="col-span-full">
             <ul>
               {resumes.map((r) => (
-                <li className="p-4 border-2 border-dotted">
+                <li className="p-4 border-2 border-dotted rounded-lg">
                   <a
                     href="#"
                     onClick={downloadResume}

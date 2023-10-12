@@ -6,6 +6,7 @@ import { capitalizeFirstLetter } from "@/utils";
 
 import Adsense from "@/components/Adsense";
 import dayjs from "dayjs";
+import { ApplyNow } from "./apply-now";
 
 export default async function Opportunity({
   params: { id },
@@ -112,7 +113,9 @@ export default async function Opportunity({
                     </div>
                   )}
 
-                  {opp.link && (
+                  {!opp.enableApply ? (
+                    <ApplyNow opp={opp} />
+                  ) : (
                     <div className="mt-10">
                       <a
                         className="px-5 py-3 text-sm font-medium text-center text-white bg-red-700 rounded-lg cursor-pointer hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"

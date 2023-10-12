@@ -55,7 +55,7 @@ export function generateTimestampedFilename(suffix) {
   const seconds = String(now.getSeconds()).padStart(2, "0");
 
   const timestamp = `${year}${month}${day}_${hours}${minutes}${seconds}`;
-  const filename = `${timestamp}_${suffix}`;
+  const filename = `${timestamp}-${suffix}`;
 
   return filename;
 }

@@ -45,7 +45,7 @@ export default async function Services({ searchParams: { field } }) {
                   <>
                     <a
                       className="px-5 py-3 max-h-16 text-xl font-medium flex items-center justify-center text-white bg-red-700 rounded-lg cursor-pointer hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-                      href="/govt/64cd10aa1d8c0f081aa5e8b8"
+                      href="/govt/24e0ca35-e140-42c6-b500-84e693d273b8"
                     >
                       LEARN how to access ZamPortal
                     </a>

@@ -113,7 +113,7 @@ export default async function Opportunity({
                     </div>
                   )}
 
-                  {!opp.enableApply ? (
+                  {opp.enableApply ? (
                     <ApplyNow opp={opp} />
                   ) : (
                     <div className="mt-10">

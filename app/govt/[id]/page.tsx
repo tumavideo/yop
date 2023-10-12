@@ -9,16 +9,24 @@ export default async function Detail({ params: { id } }) {
     <div className="container mx-auto max-w-7xl my-8">
       <section className="bg-white p-8 rounded-xl shadow-md">
         <a className="mb-4" href="https://www.napsa.co.zm/" target="_blank">
-          <img
-            className="mb-3 mt-3 img-fluid"
-            src={urlFor(program.logo?.asset)}
-            alt="pro-1"
-            width={300}
-          />
+          {program.logo?.asset && (
+            <img
+              className="mb-3 mt-3 img-fluid"
+              src={urlFor(program.logo?.asset)}
+              alt="pro-1"
+              width={300}
+            />
+          )}
         </a>
         <div className="sm:columns-2 columns-1">
           <div>
-            <video src={urlFor(program.video?.asset)} controls width={"100%"} />
+            {program.video?.asset && (
+              <video
+                src={urlFor(program.video?.asset)}
+                controls
+                width={"100%"}
+              />
+            )}
             <h3 className="text-4xl font-bold my-4">How To Access</h3>
             <p className="">{program.description}</p>
           </div>

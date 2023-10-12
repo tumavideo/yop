@@ -22,7 +22,9 @@ export default async function Detail({ params: { id } }) {
           <div>
             {program.video?.asset && (
               <video
-                src={urlFor(program.video?.asset)}
+                src={`https://cdn.sanity.io/files/d9p0l1rj/production/${program.video?.asset?._ref.split(
+                  "-"
+                )[1]}.mp4`}
                 controls
                 width={"100%"}
               />

@@ -126,7 +126,7 @@ export default function Footer() {
               <div className="mt-4 sm:mt-0 sm:flex-shrink-0">
                 <button
                   type="submit"
-                  className="flex border-r-0 w-full items-center justify-center bg-white px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                  className="px-5 py-2 rounded-md bg-white text-sm font-semibold leading-6 text-black shadow-sm hover:text-red-600 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                 >
                   Subscribe
                 </button>

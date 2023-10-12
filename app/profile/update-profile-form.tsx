@@ -21,7 +21,7 @@ const profileSchema = z.object({
 
 type ProfileValues = z.infer<typeof profileSchema>;
 
-export default async function UpdateProfileForm({ user }: { user: User }) {
+export default function UpdateProfileForm({ user }: { user: User }) {
   const router = useRouter();
   const [resumes, setResumes] = useState([]);
   const supabase = createClientComponentClient();
@@ -33,13 +33,16 @@ export default async function UpdateProfileForm({ user }: { user: User }) {
   async function uploadFile(file) {
     const { data, error } = await supabase.storage
       .from("resumes")
-      .upload(`${id}/resume.pdf`, file);
+      .upload(`${id}/resume.pdf`, file, {
+        cacheControl: "3600",
+        upsert: true,
+      });
     if (error) {
       // Handle error
       console.log(error);
     } else {
       // Handle success
-      console.log(data);
+      router.replace("/profile");
     }
   }
 
@@ -56,7 +59,6 @@ export default async function UpdateProfileForm({ user }: { user: User }) {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
       // You can perform actions with the selected file here
-      console.log("Selected file:", selectedFile);
       uploadFile(selectedFile);
     }
   };
@@ -72,7 +74,7 @@ export default async function UpdateProfileForm({ user }: { user: User }) {
   useEffect(() => {
     const getResumes = async () => {
       const { data, error } = await supabase.storage.from("resumes").list(id, {
-        limit: 100,
+        limit: 10,
         offset: 0,
         sortBy: { column: "name", order: "asc" },
       });
@@ -83,6 +85,22 @@ export default async function UpdateProfileForm({ user }: { user: User }) {
 
     return () => {};
   }, []);
+
+  const downloadResume = async () => {
+    const { data } = supabase.storage
+      .from("resumes")
+      .getPublicUrl(`${id}/resume.pdf`, {
+        download: true,
+      });
+    const url = data.publicUrl;
+    window.open(url);
+
+    await supabase.auth.updateUser({
+      data: {
+        resume: url,
+      },
+    });
+  };
 
   return (
     <form
@@ -146,8 +164,12 @@ export default async function UpdateProfileForm({ user }: { user: User }) {
           <div className="col-span-full">
             <ul>
               {resumes.map((r) => (
-                <li className="p-4 border-2 border-dotted">
-                  <a href="http://" className="text-red-400 cursor-pointer">
+                <li className="p-4 border-2 border-dotted rounded-lg">
+                  <a
+                    href="#"
+                    onClick={downloadResume}
+                    className="text-red-400 cursor-pointer"
+                  >
                     {r.name}
                   </a>
                 </li>

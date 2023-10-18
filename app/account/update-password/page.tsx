@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 import assets from "@/assets";
 import type { Database } from "@/lib/database.types";
-import LoginForm from "./login-form";
+import UpdatePasswordForm from "./update-password-form";
 
 export default async function Login() {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -22,12 +22,12 @@ export default async function Login() {
             className="mx-auto h-20 w-auto"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
+            Change your password
           </h2>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <LoginForm session={session} />
+          <UpdatePasswordForm session={session} />
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{" "}

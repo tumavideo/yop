@@ -1,11 +1,9 @@
+import { Database } from "@/lib/database.types";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import LoginForm from "./forgot-password-form";
 
-import assets from "@/assets";
-import type { Database } from "@/lib/database.types";
-import LoginForm from "./login-form";
-
-export default async function Login() {
+export default async function ForgotPassword() {
   const supabase = createServerComponentClient<Database>({ cookies });
 
   const {
@@ -13,16 +11,11 @@ export default async function Login() {
   } = await supabase.auth.getSession();
 
   return (
-    <>
+    <div>
       <div className="bg-white flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            src={assets.officialLogo.src}
-            alt="logo"
-            className="mx-auto h-20 w-auto"
-          />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
+            Recover your password
           </h2>
         </div>
 
@@ -40,6 +33,6 @@ export default async function Login() {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }

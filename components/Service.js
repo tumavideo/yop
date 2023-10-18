@@ -1,5 +1,5 @@
 import { departmentOptions } from "@/constants";
-import { getDepartment } from "@/utils";
+import { classNames, getDepartment } from "@/utils";
 
 export default function Service({ service }) {
   const department = getDepartment(departmentOptions, service);
@@ -18,7 +18,9 @@ export default function Service({ service }) {
           </div>
         )} */}
         <div>
-          <span className="text-purple-800 text-sm">{department.title}</span>
+          <span className="text-red-600 text-sm">
+            {department?.title || ""}
+          </span>
           <h3 className="font-bold mt-px">{service.title}</h3>
           <span className="line-clamp-4 sm:line-clamp-2 text-gray-900">
             {service.description}
@@ -26,9 +28,14 @@ export default function Service({ service }) {
         </div>
         <div>
           <a
-            href={`${service.link}`}
-            className="bg-purple-900 text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center"
-            target="_blank"
+            href={`${service.link || "#"}`}
+            className={classNames(
+              service.link
+                ? "bg-red-600 text-white font-medium"
+                : "bg-gray-300 text-gray-500 font-medium cursor-not-allowed opacity-50",
+              "px-4 py-2 rounded-md flex gap-1 items-center"
+            )}
+            target={service.link ? "_blank" : "_self"}
           >
             Apply{" "}
             <svg

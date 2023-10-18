@@ -1,7 +1,13 @@
 "use client";
 
 import assets from "@/assets";
-import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
+import {
+  Dialog,
+  Disclosure,
+  Menu,
+  Popover,
+  Transition,
+} from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import {
   AcademicCapIcon,
@@ -67,7 +73,11 @@ export default function Header({ session }: { session: Session | null }) {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">InLight Zambia</span>
-            <img className="h-14 w-auto" src={assets.logo.src} alt="logo" />
+            <img
+              className="h-14 w-auto"
+              src={assets.officialLogo.src}
+              alt="logo"
+            />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -166,19 +176,67 @@ export default function Header({ session }: { session: Session | null }) {
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {session ? (
-            <a
-              href="#"
-              className="text-sm font-semibold leading-6 text-gray-900"
-              onClick={handleSignOut}
-            >
-              Sign Out
-            </a>
+            <>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                {/* Profile dropdown */}
+                <Menu as="div" className="relative ml-3">
+                  <div>
+                    <Menu.Button className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                      <span className="absolute -inset-1.5" />
+                      <span className="sr-only">Open user menu</span>
+                      <img
+                        className="h-8 w-8 rounded-full"
+                        src="https://images.unsplash.com/photo-1645378999013-95abebf5f3c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhY2UlMjBhdmF0YXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        // src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        alt=""
+                      />
+                    </Menu.Button>
+                  </div>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-200"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/profile"
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            Your Profile
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className="block px-4 py-2 text-sm text-gray-700"
+                            onClick={handleSignOut}
+                          >
+                            Sign Out
+                          </a>
+                        )}
+                      </Menu.Item>
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
+              </div>
+            </>
           ) : (
             <a
               href="/login"
-              className="text-sm font-semibold leading-6 text-gray-900"
+              className="bg-red-600 rounded-[3px] hover:bg-red-700 text-white px-6 py-2 text-sm font-semibold leading-6 hover:text-white"
             >
-              Log in <span aria-hidden="true">&rarr;</span>
+              Sign in <span aria-hidden="true">&rarr;</span>
             </a>
           )}
         </div>
@@ -256,12 +314,23 @@ export default function Header({ session }: { session: Session | null }) {
                 </a>
               </div>
               <div className="py-6">
-                <a
-                  href="/login"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </a>
+                {session && (
+                  <a
+                    href="#"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    onClick={handleSignOut}
+                  >
+                    Sign Out
+                  </a>
+                )}
+                {!session && (
+                  <a
+                    href="/login"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Log in
+                  </a>
+                )}
               </div>
             </div>
           </div>

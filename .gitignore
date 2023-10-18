@@ -12,6 +12,12 @@
 /.next/
 /out/
 
+idea
+.idea
+
+Environment Variable
+.env
+
 # production
 /build
 

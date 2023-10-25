@@ -17,10 +17,11 @@ const About = () => {
           <p className="font-normal text-[18px] text-gray-500 leading-8 text-center">
             We are excited to introduce InLight Zambia, an informative platform
             that gives government, private sector and civil society a place
-            highlight opportunities, and for Zambians to access them. We post
-            jobs, skills programs, and leads to financial aid as well as
-            up-to-date news, success stories, insightful facts, and in-depth
-            information about various Zambian programs all under one umbrella.
+            highlight jobs, skills and funding opportunities, and for Zambians
+            to access them. We post jobs, skills programs, and leads to
+            financial aid as well as up-to-date news, success stories,
+            insightful facts, and in-depth information about various Zambian
+            programs all under one umbrella.
           </p>
         </div>
       </div>

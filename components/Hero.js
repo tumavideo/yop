@@ -50,7 +50,7 @@ export default function Hero({ showButtons = false }) {
                   Changing the way organizations connect with people.
                 </h1>
                 <p className="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
-                  We are excited to introduce Inlight Zambia, an informative
+                  We are excited to introduce InLight Zambia, an informative
                   platform that gives government, private sector and civil
                   society a place to highlight opportunities, and for Zambians
                   to access them.

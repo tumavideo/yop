@@ -6,6 +6,8 @@ import officialLogo from "./images/logo-c.png";
 import question from "./images/question.png";
 import jumper from "./images/jumper.png";
 import adsense from "./images/adsense.png";
+import sidebar from "./images/sidebar.jpg";
+import leaderboard from "./images/leaderboard-1.jpg";
 import playVideo from "./images/play-video.svg";
 import man_job from "./images/man-job.png";
 import wow_job from "./images/wow-job.png";
@@ -109,5 +111,7 @@ export default {
   adsense,
   jumper,
   success,
-  checked
+  checked,
+  sidebar,
+  leaderboard
 };

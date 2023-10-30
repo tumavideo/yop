@@ -185,6 +185,7 @@ export default async function Opportunity({
               )}
             </div>
           </div>
+          <Adsense type="sidebar" />
         </div>
       </div>
     </div>

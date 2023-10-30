@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import assets from "@/assets";
 import type { Database } from "@/lib/database.types";
 import LoginForm from "./login-form";
+import Adsense from "@/components/Adsense";
 
 export default async function Login() {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -38,6 +39,10 @@ export default async function Login() {
               Start a one month free trial
             </a>
           </p>
+        </div>
+
+        <div className="mt-10 md:w-1/3 container mx-auto">
+          <Adsense type="leaderboard-1"/>
         </div>
       </div>
     </>

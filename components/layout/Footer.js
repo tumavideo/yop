@@ -117,39 +117,35 @@ export default function Footer() {
               Get notified when new content is added.
             </h3>
             <p className="mt-2 text-sm leading-6 text-white">
-              Sign up for our newsletter today!
+              Don't miss out, follow our channel today
             </p>
-            <form
-              action="https://tally.so/r/wQebAg"
-              className="mt-6 sm:flex sm:max-w-md"
-            >
+            <div className="flex mt-5">
               <div className="mt-4 sm:mt-0 sm:flex-shrink-0">
-                <button
-                  type="submit"
-                  className="px-5 py-2 rounded-md bg-white text-sm font-semibold leading-6 text-black shadow-sm hover:text-red-600 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                >
-                  Subscribe
-                </button>
+                <a href="https://whatsapp.com/channel/0029VaDupntDjiOgFHNmuO0u" target="_blank">
+                  <button className="px-5 py-2 rounded-md bg-white text-sm font-semibold leading-6 text-black shadow-sm hover:text-red-600 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+                    Follow Whatsapp Channel
+                  </button>
+                </a>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
       <div
-        className="border-gray-900/10 pt-8 pb-8 sm:mt-20 lg:mt-24"
-        style={{ backgroundColor: "#B80F16" }}
+          className="border-gray-900/10 pt-8 pb-8 sm:mt-20 lg:mt-24"
+          style={{backgroundColor: "#B80F16"}}
       >
         <div className="md:flex mx-5 md:mx-auto md:items-center md:justify-between container max-w-7xl">
           <div className="space-x-6 md:order-2 flex">
             {navigation.social.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-white hover:text-gray-400"
-              >
-                <span className="sr-only">{item.name}</span>
-                <item.icon className="h-6 w-6" aria-hidden="true" />
-              </a>
+                <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-white hover:text-gray-400"
+                >
+                  <span className="sr-only">{item.name}</span>
+                  <item.icon className="h-6 w-6" aria-hidden="true"/>
+                </a>
             ))}
           </div>
           <p className="mt-8 text-xs leading-5 text-white md:order-1 md:mt-0">

@@ -185,7 +185,7 @@ export default async function Opportunity({
               )}
             </div>
           </div>
-          <Adsense type="sidebar" />
+          <Adsense type={type === "job" ? "sidebar" : "sidebar-2"} />
         </div>
       </div>
     </div>

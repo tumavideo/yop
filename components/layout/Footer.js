@@ -120,24 +120,10 @@ export default function Footer() {
               Don't miss out, follow our channel today
             </p>
             <div className="flex mt-5">
-              <form
-                  action="https://tally.so/r/wQebAg"
-              >
-                <div className="mt-4 sm:mt-0 sm:flex-shrink-0">
-                  <button
-                      type="submit"
-                      className="px-5 py-2 rounded-md bg-white text-sm font-semibold leading-6 text-black shadow-sm hover:text-red-600 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                  >
-                    Subscribe Email
-                  </button>
-                </div>
-              </form>
-              <div className="mt-4 sm:mt-0 sm:flex-shrink-0 ml-5">
+              <div className="mt-4 sm:mt-0 sm:flex-shrink-0">
                 <a href="https://whatsapp.com/channel/0029VaDupntDjiOgFHNmuO0u" target="_blank">
-                  <button
-                      className="px-5 py-2 rounded-md bg-green-600 text-sm font-semibold leading-6 text-white shadow-sm hover:text-white-600 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                  >
-                    Join Whatsapp Channel
+                  <button className="px-5 py-2 rounded-md bg-white text-sm font-semibold leading-6 text-black shadow-sm hover:text-red-600 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+                    Follow Whatsapp Channel
                   </button>
                 </a>
               </div>

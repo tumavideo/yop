@@ -323,13 +323,21 @@ export default function Header({ session }: { session: Session | null }) {
               </div>
               <div className="py-6">
                 {session && (
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    onClick={handleSignOut}
-                  >
-                    Sign Out
-                  </a>
+                  <>
+                    <a
+                      href="/profile"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      Your Profile
+                    </a>
+                    <a
+                      href="#"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      onClick={handleSignOut}
+                    >
+                      Sign Out
+                    </a>
+                  </>
                 )}
                 {!session && (
                   <a

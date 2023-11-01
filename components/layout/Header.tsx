@@ -38,7 +38,7 @@ const opportunities = [
   },
   {
     name: "Funding",
-    description: "Get approved for financial aid that caters to your needs",
+    description: "Seek various funding avenues",
     href: "/opportunity?type=finance",
     icon: BanknotesIcon,
   },

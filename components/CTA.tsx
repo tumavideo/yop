@@ -51,7 +51,7 @@ export default function CTA({
             className="group inline-flex align-self-center items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-white text-slate-900 hover:bg-red-50 active:bg-red-200 active:text-slate-600 focus-visible:outline-white mt-10"
             href={`/services`}
           >
-            Click to services
+            Browse Services
           </a>
         </div>
       </div>

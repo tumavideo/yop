@@ -20,8 +20,7 @@ export default async function Profile() {
                 Profile
               </h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">
-                This information will be displayed publicly so be careful what
-                you share.
+                Creating a profile is free and easy.
               </p>
             </div>
             <UpdateProfile user={user} />

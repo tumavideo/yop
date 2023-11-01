@@ -12,7 +12,8 @@ import { TextField } from "../auth/input";
 
 const signUpValueSchema = z
   .object({
-    name: z.string().min(3).max(255),
+    firstName: z.string().min(3).max(255),
+    lastName: z.string().min(3).max(255),
     email: z.string().email(),
     password: z.string().min(6).max(50),
     confirmPassword: z.string(),
@@ -55,7 +56,7 @@ export default function RegisterForm({
     <>
       <form
         onSubmit={handleSubmit(async (data: any) => {
-          const { email, government, name, password } = data;
+          const { email, government, firstName, lastName, password } = data;
           await supabase.auth.signUp({
             email,
             password,
@@ -63,7 +64,8 @@ export default function RegisterForm({
               emailRedirectTo: `https://inlightzambia.com/auth/callback`,
               data: {
                 government,
-                name,
+                firstName,
+                lastName,
               },
             },
           });
@@ -73,9 +75,15 @@ export default function RegisterForm({
         noValidate
       >
         <TextField
-          {...register("name")}
-          label="Full name"
-          error={errors.name?.message}
+          {...register("firstName")}
+          label="First name"
+          error={errors.firstName?.message}
+        />
+
+        <TextField
+          {...register("lastName")}
+          label="Last name"
+          error={errors.lastName?.message}
         />
 
         <div>
@@ -123,31 +131,7 @@ export default function RegisterForm({
           error={errors.confirmPassword?.message}
         />
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <input
-              id="remember-me"
-              name="remember-me"
-              type="checkbox"
-              className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-600"
-            />
-            <label
-              htmlFor="remember-me"
-              className="ml-3 block text-sm leading-6 text-gray-700"
-            >
-              Remember me
-            </label>
-          </div>
-
-          <div className="text-sm leading-6">
-            <a
-              href="#"
-              className="font-semibold text-red-600 hover:text-red-500"
-            >
-              Forgot password?
-            </a>
-          </div>
-        </div>
+        <div className="flex items-center justify-between"></div>
 
         <div>
           <button

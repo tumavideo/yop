@@ -2,7 +2,7 @@ export default function Nothing({
   backgroundColor = "bg-red-100",
   color = "bg-red-600",
   firstLine = "Ready to explore community services?",
-  second = "Start your free trial today.",
+  second = "Get started today.",
 }) {
   return (
     <div className={`${backgroundColor} mt-6`}>
@@ -17,7 +17,7 @@ export default function Nothing({
             href="/register?type=seeker"
             className={`rounded-md ${color} px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:${color} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-${color}`}
           >
-            Get started
+            Sign Up
           </a>
           <a
             href="/about"

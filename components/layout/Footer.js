@@ -114,10 +114,10 @@ export default function Footer() {
           </div>
           <div className="mt-10 xl:mt-0">
             <h3 className="text-xl font-semibold leading-6 text-white">
-              Get notified when new content is added.
+              Get Notified
             </h3>
             <p className="mt-2 text-sm leading-6 text-white">
-              Don't miss out, follow our channel today
+              Follow and get up-to-date content
             </p>
             <div className="flex mt-5">
               <div className="mt-4 sm:mt-0 sm:flex-shrink-0">
@@ -126,7 +126,7 @@ export default function Footer() {
                   target="_blank"
                 >
                   <button className="px-5 py-2 rounded-md bg-white text-sm font-semibold leading-6 text-black shadow-sm hover:text-red-600 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
-                    Follow Our WhatsApp Channel
+                    Follow WhatsApp Channel
                   </button>
                 </a>
               </div>

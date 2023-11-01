@@ -117,7 +117,7 @@ export default function Footer() {
               Get Notified
             </h3>
             <p className="mt-2 text-sm leading-6 text-white">
-              Follow and get the up-to-date new content
+              Follow and get up-to-date content
             </p>
             <div className="flex mt-5">
               <div className="mt-4 sm:mt-0 sm:flex-shrink-0">

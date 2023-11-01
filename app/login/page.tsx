@@ -2,9 +2,24 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
 import assets from "@/assets";
+import Adsense from "@/components/Adsense";
 import type { Database } from "@/lib/database.types";
 import LoginForm from "./login-form";
-import Adsense from "@/components/Adsense";
+
+const Header = ({ title = "Sign in to your account", link = "" }) => (
+  <>
+    <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+      <img
+        src={assets.officialLogo.src}
+        alt="logo"
+        className="mx-auto h-20 w-auto"
+      />
+      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        {link && <a href={link}>{title}</a>}
+      </h2>
+    </div>
+  </>
+);
 
 export default async function Login() {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -36,13 +51,13 @@ export default async function Login() {
               href="/register"
               className="font-semibold leading-6 text-red-600 hover:text-red-500"
             >
-              Start a one month free trial
+              Join now
             </a>
           </p>
         </div>
 
         <div className="mt-10 md:w-1/3 container mx-auto">
-          <Adsense type="leaderboard-1"/>
+          <Adsense type="leaderboard-1" />
         </div>
       </div>
     </>

@@ -33,22 +33,37 @@ export default function LoginForm({ session }: { session: Session | null }) {
     resolver: zodResolver(loginValueSchema),
   });
 
+  const pushReferrer = () => {
+    const origin = document.location.origin;
+    const referrer = document.referrer;
+    let route = "/";
+    if (referrer.startsWith(origin)) {
+      route = referrer.replace(origin, "");
+      router.push(route);
+    } else {
+      router.push(route);
+    }
+  };
+
   // for the `session` to be available on first SSR render, it must be
   // fetched in a Server Component and passed down as a prop
   return session ? (
-    <button onClick={handleSignOut}>Sign out</button>
+    <button
+      className="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:opacity-75"
+      onClick={handleSignOut}
+    >
+      Sign out
+    </button>
   ) : (
     <>
       <form
         onSubmit={handleSubmit(async (data: any) => {
-          // await new Promise((resolve) => setTimeout(resolve, 2000));
           const { email, password } = data;
-
           await supabase.auth.signInWithPassword({
             email,
             password,
           });
-          router.replace("/");
+          pushReferrer();
         })}
         className="space-y-6"
         noValidate

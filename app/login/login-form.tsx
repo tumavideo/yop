@@ -38,6 +38,7 @@ export default function LoginForm({ session }: { session: Session | null }) {
     const referrer = document.referrer;
     const route = referrer.replace(origin, "");
     router.replace(route);
+    router.refresh();
   };
 
   // for the `session` to be available on first SSR render, it must be

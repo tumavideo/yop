@@ -15,8 +15,8 @@ function shuffleArray(array) {
 export default function Collage() {
   return (
     <>
-      <div className="hidden mt-14 lg:flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
-        <div className="ml-auto w-60 flex-none space-y-8 pt-48 sm:ml-0 sm:pt-80 lg:order-last lg:pt-48 xl:order-none xl:pt-80">
+      <div className="hidden mt-14 lg:flex justify-end gap-8 lg:mt-0 lg:pl-0">
+        <div className="ml-auto w-60 flex-none space-y-8 order-none pt-80">
           <div className="relative">
             <img
               src={images[0]}

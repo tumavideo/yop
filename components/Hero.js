@@ -1,3 +1,5 @@
+import Collage from "./Collage";
+
 export default function Hero({ showButtons = false }) {
   return (
     <>
@@ -55,7 +57,7 @@ export default function Hero({ showButtons = false }) {
                   </div>
                 )}
               </div>
-              {/* <Collage /> */}
+              <Collage />
             </div>
           </div>
         </div>

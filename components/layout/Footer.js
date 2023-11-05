@@ -114,24 +114,23 @@ export default function Footer() {
           </div>
           <div className="mt-10 xl:mt-0">
             <h3 className="text-xl font-semibold leading-6 text-white">
-              Get notified when new content is added.
+              Get Notified
             </h3>
             <p className="mt-2 text-sm leading-6 text-white">
-              Sign up for our newsletter today!
+              Follow and get up-to-date content
             </p>
-            <form
-              action="https://tally.so/r/wQebAg"
-              className="mt-6 sm:flex sm:max-w-md"
-            >
+            <div className="flex mt-5">
               <div className="mt-4 sm:mt-0 sm:flex-shrink-0">
-                <button
-                  type="submit"
-                  className="px-5 py-2 rounded-md bg-white text-sm font-semibold leading-6 text-black shadow-sm hover:text-red-600 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                <a
+                  href="https://whatsapp.com/channel/0029VaDupntDjiOgFHNmuO0u"
+                  target="_blank"
                 >
-                  Subscribe
-                </button>
+                  <button className="px-5 py-2 rounded-md bg-white text-sm font-semibold leading-6 text-black shadow-sm hover:text-red-600 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+                    Follow WhatsApp Channel
+                  </button>
+                </a>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>

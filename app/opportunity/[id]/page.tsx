@@ -6,6 +6,7 @@ import { capitalizeFirstLetter } from "@/utils";
 
 import Adsense from "@/components/Adsense";
 import dayjs from "dayjs";
+import { JobPosting, WithContext } from "schema-dts";
 import { ApplyNow } from "./apply-now";
 
 export default async function Opportunity({
@@ -14,6 +15,34 @@ export default async function Opportunity({
 }) {
   let opp = await client.fetch(findOpportunities(3000));
   opp = opp[type].find((f) => f._id === id);
+  const jsonLd: WithContext<JobPosting> = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: opp.title,
+    description: `<p>${opp.description.replace(/\n/g, " ")}</p>`,
+    identifier: {
+      "@type": "PropertyValue",
+      name: opp.companyRef?.name,
+      value: opp._id,
+    },
+    datePosted: dayjs(opp.closingDate).format("YYYY-MM-DD"),
+    validThrough: dayjs("2017-03-18T00:00").format("YYYY-MM-DDTHH:mm"),
+    employmentType: "CONTRACTOR",
+    hiringOrganization: {
+      "@type": "Organization",
+      name: opp.companyRef?.name,
+      sameAs: opp.companyRef?.website,
+      logo: urlFor(opp.companyRef?.logo?.asset),
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: opp.location,
+        addressCountry: "ZM",
+      },
+    },
+  };
 
   const pages = [
     {
@@ -28,6 +57,12 @@ export default async function Opportunity({
 
   return (
     <div className="bg-gray-100 pb-10">
+      <section>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </section>
       <div className="bg-white pb-5">
         <div className="mx-auto max-w-6xl">
           <Adsense />

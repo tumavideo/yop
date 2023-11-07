@@ -5,19 +5,23 @@ import { Database } from "@/lib/database.types";
 
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Analytics } from "@vercel/analytics/react";
+import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 import "./styles/globals.css";
-
 export const dynamic = "force-dynamic";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata = {
-  title:
-    "InLight Zambia | Government Programs, Jobs, Skills Development & Finance Opportunities",
+export const metadata: Metadata = {
+  title: "InLight Zambia",
   description:
-    "Empower your future with InLight Zambia – Your gateway to discover government initiatives, job openings, skill-building resources, and financial opportunities in Zambia. Unleash your potential today!",
+    "Government Programs, Jobs, Skills Development & Finance Opportunities",
+  openGraph: {
+    type: "website",
+    title: "InLight Zambia",
+    description:
+      "Government Programs, Jobs, Skills Development & Finance Opportunities",
+  },
 };
 
 export default async function RootLayout({

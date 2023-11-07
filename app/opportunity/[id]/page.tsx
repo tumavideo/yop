@@ -9,6 +9,30 @@ import dayjs from "dayjs";
 import { JobPosting, WithContext } from "schema-dts";
 import { ApplyNow } from "./apply-now";
 
+import type { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { id: string };
+  searchParams: { type: string };
+};
+
+export async function generateMetadata(
+  { params: { id }, searchParams: { type } }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  let opp = await client.fetch(findOpportunities(3000));
+  opp = opp[type].find((f) => f._id === id);
+  return {
+    title: opp.title,
+    description: `Apply for the ${opp.title} role at ${opp.companyRef.company}`,
+    openGraph: {
+      title: opp.title,
+      description: `Apply for the ${opp.title} role at ${opp.companyRef.company}`,
+      url: `https://inlightzambia.com/opportunity/${opp._id}?type=${type}`
+    }
+  };
+}
+
 export default async function Opportunity({
   params: { id },
   searchParams: { type },
@@ -27,7 +51,6 @@ export default async function Opportunity({
     },
     datePosted: dayjs(opp.closingDate).format("YYYY-MM-DD"),
     validThrough: dayjs("2017-03-18T00:00").format("YYYY-MM-DDTHH:mm"),
-    employmentType: "CONTRACTOR",
     hiringOrganization: {
       "@type": "Organization",
       name: opp.companyRef?.name,

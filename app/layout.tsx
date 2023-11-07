@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     title: "InLight Zambia",
     description:
       "Government Programs, Jobs, Skills Development & Finance Opportunities",
+    url: "https://www.inlightzambia.com",
   },
 };
 

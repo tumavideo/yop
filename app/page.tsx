@@ -11,7 +11,6 @@ import { cookies } from "next/headers";
 
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
-  const jsonLd = homeJsonLd;
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -23,7 +22,7 @@ export default async function Home() {
       <section>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
         />
       </section>
       <Hero showButtons={!session} />

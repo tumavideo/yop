@@ -6,9 +6,9 @@ import { capitalizeFirstLetter } from "@/utils";
 
 import Adsense from "@/components/Adsense";
 import dayjs from "dayjs";
-import { JobPosting, WithContext } from "schema-dts";
 import { ApplyNow } from "./apply-now";
 
+import { jobJsonLd, jobSeo } from "@/seo";
 import type { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
@@ -22,23 +22,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   let opp = await client.fetch(findOpportunities(3000));
   opp = opp[type].find((f) => f._id === id);
-  return {
-    title: `Inlight Zambia | ${opp.title || opp.position}`,
-    description: `Apply for the ${opp.position} role on Inlight Zambia`,
-    openGraph: {
-      title: opp.position,
-      description: `Apply for the ${opp.position} role  on Inlight Zambia`,
-      url: `https://inlightzambia.com/opportunity/${opp._id}?type=${type}`,
-      images:
-        "https://inlightzambia.com/_next/static/media/logo-c.4b129f3c.png",
-    },
-    twitter: {
-      title: opp.position,
-      description: `Apply for the ${opp.position} role on Inlight Zambia!`,
-      images:
-        "https://inlightzambia.com/_next/static/media/logo-c.4b129f3c.png",
-    },
-  };
+  return jobSeo(opp);
 }
 
 export default async function Opportunity({
@@ -47,33 +31,8 @@ export default async function Opportunity({
 }) {
   let opp = await client.fetch(findOpportunities(3000));
   opp = opp[type].find((f) => f._id === id);
-  const jsonLd: WithContext<JobPosting> = {
-    "@context": "https://schema.org",
-    "@type": "JobPosting",
-    title: opp.title || opp.position,
-    description: `<p>${opp.description.replace(/\n/g, " ")}</p>`,
-    identifier: {
-      "@type": "PropertyValue",
-      name: opp.companyRef?.name,
-      value: opp._id,
-    },
-    datePosted: dayjs(opp.closingDate).format("YYYY-MM-DD"),
-    validThrough: dayjs("2017-03-18T00:00").format("YYYY-MM-DDTHH:mm"),
-    hiringOrganization: {
-      "@type": "Organization",
-      name: opp.companyRef?.name,
-      sameAs: opp.companyRef?.website,
-      logo: urlFor(opp.companyRef?.logo?.asset),
-    },
-    jobLocation: {
-      "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: opp.location,
-        addressCountry: "ZM",
-      },
-    },
-  };
+
+  const jsonLd = jobJsonLd(opp);
 
   const pages = [
     {

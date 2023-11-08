@@ -3,27 +3,18 @@ import Header from "@/components/layout/Header";
 
 import { Database } from "@/lib/database.types";
 
+import { layoutSeo } from "@/seo";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Analytics } from "@vercel/analytics/react";
-import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 import "./styles/globals.css";
+
 export const dynamic = "force-dynamic";
 
 const inter = Inter({ subsets: ["latin"] });
-export const metadata: Metadata = {
-  title: "InLight Zambia",
-  description:
-    "Government Programs, Jobs, Skills Development & Finance Opportunities",
-  openGraph: {
-    type: "website",
-    title: "InLight Zambia",
-    description:
-      "Government Programs, Jobs, Skills Development & Finance Opportunities",
-    url: "https://www.inlightzambia.com",
-  },
-};
+
+export const metadata = { ...layoutSeo };
 
 export default async function RootLayout({
   children,

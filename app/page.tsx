@@ -5,43 +5,13 @@ import CTA from "@/components/CTA";
 import { client } from "@/lib/client";
 import { Database } from "@/lib/database.types";
 import { getPrograms } from "@/lib/queries";
+import { homeJsonLd } from "@/seo";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import { WebPage, WithContext } from "schema-dts";
-
-const jsonLd: WithContext<WebPage> = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  name: "InLight Zambia | Government Programs, Jobs, Skills Development & Finance Opportunities",
-  description:
-    "Empower your future with InLight Zambia – Your gateway to discover government initiatives, job openings, skill-building resources, and financial opportunities in Zambia. Unleash your potential today!",
-  url: "https://inlightzambia.com",
-  image: "https://inlightzambia.com/_next/static/media/logo-c.4b129f3c.png",
-  breadcrumb: [
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://inlightzambia.com",
-      url: "https://inlightzambia.com",
-      name: "Home",
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://inlightzambia.com/opportunities?type=job",
-      name: "Jobs",
-      url: "https://inlightzambia.com/opportunities?type=job",
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://inlightzambia.com/opportunities?type=job",
-      name: "About",
-      url: "https://inlightzambia.com/about",
-    },
-  ],
-};
 
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
-
+  const jsonLd = homeJsonLd;
   const {
     data: { session },
   } = await supabase.auth.getSession();

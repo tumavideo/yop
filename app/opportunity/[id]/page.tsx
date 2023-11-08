@@ -8,12 +8,31 @@ import Adsense from "@/components/Adsense";
 import dayjs from "dayjs";
 import { ApplyNow } from "./apply-now";
 
+import { jobJsonLd, jobSeo } from "@/seo";
+import type { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { id: string };
+  searchParams: { type: string };
+};
+
+export async function generateMetadata(
+  { params: { id }, searchParams: { type } }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  let opp = await client.fetch(findOpportunities(3000));
+  opp = opp[type].find((f) => f._id === id);
+  return jobSeo(opp);
+}
+
 export default async function Opportunity({
   params: { id },
   searchParams: { type },
 }) {
   let opp = await client.fetch(findOpportunities(3000));
   opp = opp[type].find((f) => f._id === id);
+
+  const jsonLd = jobJsonLd(opp);
 
   const pages = [
     {
@@ -28,6 +47,12 @@ export default async function Opportunity({
 
   return (
     <div className="bg-gray-100 pb-10">
+      <section>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </section>
       <div className="bg-white pb-5">
         <div className="mx-auto max-w-6xl">
           <Adsense />

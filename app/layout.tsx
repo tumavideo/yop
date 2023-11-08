@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 
 import { Database } from "@/lib/database.types";
 
+import { layoutSeo } from "@/seo";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
@@ -13,12 +14,7 @@ export const dynamic = "force-dynamic";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title:
-    "InLight Zambia | Government Programs, Jobs, Skills Development & Finance Opportunities",
-  description:
-    "Empower your future with InLight Zambia – Your gateway to discover government initiatives, job openings, skill-building resources, and financial opportunities in Zambia. Unleash your potential today!",
-};
+export const metadata = { ...layoutSeo };
 
 export default async function RootLayout({
   children,

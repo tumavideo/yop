@@ -5,12 +5,12 @@ import CTA from "@/components/CTA";
 import { client } from "@/lib/client";
 import { Database } from "@/lib/database.types";
 import { getPrograms } from "@/lib/queries";
+import { homeJsonLd } from "@/seo";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
-
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -19,6 +19,12 @@ export default async function Home() {
 
   return (
     <div className="bg-white">
+      <section>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
+        />
+      </section>
       <Hero showButtons={!session} />
       {!session && (
         <div className="mx-auto max-w-7xl pb-0 md:pb-32">

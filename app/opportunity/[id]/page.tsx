@@ -24,21 +24,19 @@ export async function generateMetadata(
   opp = opp[type].find((f) => f._id === id);
   return {
     title: `Inlight Zambia | ${opp.title || opp.position}`,
-    description: `Apply for the ${
-      opp.title || opp.position
-    } role on Inlight Zambia`,
+    description: `Apply for the ${opp.position} role on Inlight Zambia`,
     openGraph: {
-      title: opp.title || opp.position,
-      description: `Apply for the ${
-        opp.title || opp.position
-      } role  on Inlight Zambia`,
+      title: opp.position,
+      description: `Apply for the ${opp.position} role  on Inlight Zambia`,
       url: `https://inlightzambia.com/opportunity/${opp._id}?type=${type}`,
+      images:
+        "https://inlightzambia.com/_next/static/media/logo-c.4b129f3c.png",
     },
     twitter: {
-      title: opp.title || opp.position,
-      description: `Apply for the ${
-        opp.title || opp.position
-      } role on Inlight Zambia!`,
+      title: opp.position,
+      description: `Apply for the ${opp.position} role on Inlight Zambia!`,
+      images:
+        "https://inlightzambia.com/_next/static/media/logo-c.4b129f3c.png",
     },
   };
 }

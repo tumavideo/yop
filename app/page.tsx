@@ -1,4 +1,3 @@
-import assets from "@/assets";
 import Feature from "@/components/Feature";
 import Hero from "@/components/Hero";
 
@@ -17,7 +16,7 @@ const jsonLd: WithContext<WebPage> = {
   description:
     "Empower your future with InLight Zambia – Your gateway to discover government initiatives, job openings, skill-building resources, and financial opportunities in Zambia. Unleash your potential today!",
   url: "https://inlightzambia.com",
-  image: assets.officialLogo.src,
+  image: "https://inlightzambia.com/_next/static/media/logo-c.4b129f3c.png",
   breadcrumb: [
     {
       "@type": "BreadcrumbList",

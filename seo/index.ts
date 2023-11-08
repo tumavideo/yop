@@ -2,73 +2,72 @@ import { urlFor } from "@/lib/client";
 import dayjs from "dayjs";
 import { Metadata } from "next";
 import { JobPosting, WebPage, WithContext } from "schema-dts";
-
-export const layoutSeo: Metadata = {
-  metadataBase: new URL("https://inlightzambia.com"),
+const seoVariables = {
   title: "InLight Zambia",
   description:
     "Government Programs, Jobs, Skills Development & Finance Opportunities",
+  url: "https://www.inlightzambia.com",
+  image: "https://inlightzambia.com/_next/static/media/logo-c.4b129f3c.png",
+};
+export const layoutSeo: Metadata = {
+  metadataBase: new URL(seoVariables.url),
+  title: seoVariables.title,
+  description: seoVariables.description,
   openGraph: {
     type: "website",
-    title: "InLight Zambia",
-    description:
-      "Government Programs, Jobs, Skills Development & Finance Opportunities",
-    url: "https://www.inlightzambia.com",
+    title: seoVariables.title,
+    description: seoVariables.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "InLight Zambia",
-    description:
-      "Government Programs, Jobs, Skills Development & Finance Opportunities",
+    title: seoVariables.title,
+    description: seoVariables.description,
   },
 };
 
 export const homeJsonLd: WithContext<WebPage> = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "InLight Zambia | Government Programs, Jobs, Skills Development & Finance Opportunities",
-  description:
-    "Empower your future with InLight Zambia – Your gateway to discover government initiatives, job openings, skill-building resources, and financial opportunities in Zambia. Unleash your potential today!",
-  url: "https://inlightzambia.com",
-  image: "https://inlightzambia.com/_next/static/media/logo-c.4b129f3c.png",
+  name: seoVariables.title,
+  description: seoVariables.description,
+  url: seoVariables.url,
+  image: seoVariables.image,
   breadcrumb: [
     {
       "@type": "BreadcrumbList",
-      "@id": "https://inlightzambia.com",
-      url: "https://inlightzambia.com",
+      "@id": seoVariables.url,
+      url: seoVariables.url,
       name: "Home",
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://inlightzambia.com/opportunities?type=job",
+      "@id": `${seoVariables.url}/opportunities?type=job`,
       name: "Jobs",
-      url: "https://inlightzambia.com/opportunities?type=job",
+      url: `${seoVariables.url}/opportunities?type=job`,
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://inlightzambia.com/opportunities?type=job",
+      "@id": `${seoVariables.url}/about`,
       name: "About",
-      url: "https://inlightzambia.com/about",
+      url: `${seoVariables.url}/about`,
     },
   ],
 };
 
 export const jobSeo = (opp): Metadata => {
   return {
-    title: `Inlight Zambia | ${opp.title || opp.position}`,
-    description: `Apply for the ${opp.position} role on Inlight Zambia`,
+    title: `${seoVariables.title} | ${opp.title || opp.position}`,
+    description: `Apply for the ${opp.position} role on ${seoVariables.title}!`,
     openGraph: {
       title: opp.position,
-      description: `Apply for the ${opp.position} role  on Inlight Zambia`,
-      url: `https://inlightzambia.com/opportunity/${opp._id}?type=job`,
-      images:
-        "https://inlightzambia.com/_next/static/media/logo-c.4b129f3c.png",
+      description: `Apply for the ${opp.position} role  on ${seoVariables.title}!`,
+      url: `${seoVariables.url}/opportunity/${opp._id}?type=job`,
+      images: seoVariables.image,
     },
     twitter: {
       title: opp.position,
-      description: `Apply for the ${opp.position} role on Inlight Zambia!`,
-      images:
-        "https://inlightzambia.com/_next/static/media/logo-c.4b129f3c.png",
+      description: `Apply for the ${opp.position} role on ${seoVariables.title}!`,
+      images: seoVariables.image,
     },
   };
 };
@@ -77,15 +76,15 @@ export const jobJsonLd = (opp): WithContext<JobPosting> => {
   return {
     "@context": "https://schema.org",
     "@type": "JobPosting",
-    title: opp.title || opp.position,
+    title: opp.position,
     description: `<p>${opp.description.replace(/\n/g, " ")}</p>`,
     identifier: {
       "@type": "PropertyValue",
       name: opp.companyRef?.name,
       value: opp._id,
     },
-    datePosted: dayjs(opp.closingDate).format("YYYY-MM-DD"),
-    validThrough: dayjs("2017-03-18T00:00").format("YYYY-MM-DDTHH:mm"),
+    datePosted: dayjs(opp._createdAt).format("YYYY-MM-DD"),
+    validThrough: dayjs(opp.closingDate).format("YYYY-MM-DDTHH:mm"),
     hiringOrganization: {
       "@type": "Organization",
       name: opp.companyRef?.name,

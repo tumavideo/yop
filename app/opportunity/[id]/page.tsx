@@ -23,13 +23,23 @@ export async function generateMetadata(
   let opp = await client.fetch(findOpportunities(3000));
   opp = opp[type].find((f) => f._id === id);
   return {
-    title: opp.title,
-    description: `Apply for the ${opp.title} role at ${opp.companyRef.company}`,
+    title: `Inlight Zambia | ${opp.title || opp.position}`,
+    description: `Apply for the ${
+      opp.title || opp.position
+    } role on Inlight Zambia`,
     openGraph: {
-      title: opp.title,
-      description: `Apply for the ${opp.title} role at ${opp.companyRef.company}`,
-      url: `https://inlightzambia.com/opportunity/${opp._id}?type=${type}`
-    }
+      title: opp.title || opp.position,
+      description: `Apply for the ${
+        opp.title || opp.position
+      } role  on Inlight Zambia`,
+      url: `https://inlightzambia.com/opportunity/${opp._id}?type=${type}`,
+    },
+    twitter: {
+      title: opp.title || opp.position,
+      description: `Apply for the ${
+        opp.title || opp.position
+      } role on Inlight Zambia!`,
+    },
   };
 }
 
@@ -42,7 +52,7 @@ export default async function Opportunity({
   const jsonLd: WithContext<JobPosting> = {
     "@context": "https://schema.org",
     "@type": "JobPosting",
-    title: opp.title,
+    title: opp.title || opp.position,
     description: `<p>${opp.description.replace(/\n/g, " ")}</p>`,
     identifier: {
       "@type": "PropertyValue",

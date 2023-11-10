@@ -26,10 +26,8 @@ export default function UpdateProfileForm({ user }: { user: User }) {
   const [resumes, setResumes] = useState([]);
   const supabase = createClientComponentClient();
 
-  const { id, email } = user || {};
-  const { firstName, lastName, company, phone } = user
-    ? user?.user_metadata
-    : {};
+  const { id, email } = user;
+  const { firstName, lastName, company, phone } = user?.user_metadata;
 
   // Upload file using standard upload
   async function uploadFile(file) {
@@ -74,8 +72,6 @@ export default function UpdateProfileForm({ user }: { user: User }) {
   });
 
   useEffect(() => {
-    console.log(user);
-    if (!user) router.replace("/");
     const getResumes = async () => {
       const { data, error } = await supabase.storage.from("resumes").list(id, {
         limit: 10,

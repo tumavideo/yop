@@ -1,7 +1,6 @@
 import { Database } from "@/lib/database.types";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import { redirect, RedirectType } from "next/navigation";
 import UpdateProfile from "./update-profile-form";
 
 export default async function Profile() {
@@ -10,11 +9,6 @@ export default async function Profile() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const updateProfile = (user) => {
-    if (user) {
-      return <UpdateProfile user={user} />;
-    } else redirect("/", RedirectType.replace);
-  };
   return (
     <div className="bg-gray-50">
       <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
@@ -28,7 +22,7 @@ export default async function Profile() {
                 Creating a profile is free and easy.
               </p>
             </div>
-            {updateProfile(user)}
+            <UpdateProfile user={user} />
           </div>
         </div>
       </div>

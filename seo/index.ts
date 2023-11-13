@@ -35,25 +35,29 @@ export const homeJsonLd: WithContext<WebPage> = {
   breadcrumb: [
     {
       "@type": "BreadcrumbList",
-      "@id": seoVariables.url,
-      url: seoVariables.url,
-      name: "Home",
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": `${seoVariables.url}/opportunities?type=job`,
-      name: "Jobs",
-      url: `${seoVariables.url}/opportunities?type=job`,
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": `${seoVariables.url}/about`,
-      name: "About",
-      url: `${seoVariables.url}/about`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: seoVariables.url,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Jobs",
+          item: `${seoVariables.url}/opportunities?type=job`,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "About",
+          item: `${seoVariables.url}/about`,
+        },
+      ],
     },
   ],
 };
-
 export const jobSeo = (opp): Metadata => {
   return {
     title: `${seoVariables.title} | ${opp.title || opp.position}`,
@@ -87,7 +91,7 @@ export const jobJsonLd = (opp): WithContext<JobPosting> => {
     validThrough: dayjs(opp.closingDate).format("YYYY-MM-DDTHH:mm"),
     hiringOrganization: {
       "@type": "Organization",
-      name: opp.companyRef?.name,
+      name: opp.companyRef?.company,
       sameAs: opp.companyRef?.website,
       logo: urlFor(opp.companyRef?.logo?.asset),
     },

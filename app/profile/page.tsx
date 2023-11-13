@@ -5,7 +5,6 @@ import UpdateProfile from "./update-profile-form";
 
 export default async function Profile() {
   const supabase = createServerComponentClient<Database>({ cookies });
-
   const {
     data: { user },
   } = await supabase.auth.getUser();

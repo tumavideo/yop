@@ -26,8 +26,13 @@ export default function UpdateProfileForm({ user }: { user: User }) {
   const [resumes, setResumes] = useState([]);
   const supabase = createClientComponentClient();
 
-  const { id, email } = user;
-  const { firstName, lastName, company, phone } = user.user_metadata;
+  const { id, email } = user || {};
+  const {
+    firstName = "",
+    lastName = "",
+    company = "",
+    phone = "",
+  } = user ? user?.user_metadata : {};
 
   // Upload file using standard upload
   async function uploadFile(file) {

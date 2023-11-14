@@ -41,7 +41,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
     phone = "",
     occupation = "",
     industry = "",
-    how = "",
+    howHelp = "",
   } = user ? user?.user_metadata : {};
 
   const onChange = (e) => {
@@ -52,7 +52,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
     setValues({
       occupation,
       industry,
-      how,
+      howHelp,
     });
 
     return () => {};
@@ -123,7 +123,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
       <form
         onSubmit={handleSubmit(async (formData: any) => {
           const { firstName, lastName, email, phone, resume } = formData;
-          const { occupation, industry, how } = values;
+          const { occupation, industry, howHelp } = values;
           const { data, error } = await supabase.auth.updateUser({
             email,
             data: {
@@ -134,7 +134,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
               type: "seeker",
               occupation,
               industry,
-              how,
+              howHelp,
             },
           });
           if (error) {

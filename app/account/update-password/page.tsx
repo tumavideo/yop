@@ -27,7 +27,7 @@ export default async function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <UpdatePasswordForm session={session} />
+          <UpdatePasswordForm />
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{" "}

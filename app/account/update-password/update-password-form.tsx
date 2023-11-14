@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { TextField } from "@/app/auth/input";
-import type { Session } from "@supabase/auth-helpers-nextjs";
 
 const loginValueSchema = z
   .object({
@@ -21,11 +20,7 @@ const loginValueSchema = z
 
 type LoginValues = z.infer<typeof loginValueSchema>;
 
-export default function UpdatePasswordForm({
-  session,
-}: {
-  session: Session | null;
-}) {
+export default function UpdatePasswordForm() {
   const router = useRouter();
   const supabase = createClientComponentClient();
 

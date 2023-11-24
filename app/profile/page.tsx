@@ -9,6 +9,11 @@ export default async function Profile() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  const { data, error } = await supabase
+    .from("referral")
+    .select(`referral_code`)
+    .eq("user_id", user?.id)
+    .single();
 
   return (
     <div className="bg-gray-50">
@@ -25,7 +30,7 @@ export default async function Profile() {
             </div>
             <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 pb-4">
               <UpdateProfile user={user} />
-              <ReferralSection user={user} />
+              <ReferralSection user={user} data={data} />
             </div>
           </div>
         </div>

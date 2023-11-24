@@ -22,25 +22,42 @@ export const ApplyNow = ({ opp, link = false }) => {
     const {
       data: { user },
     } = await supabase.auth.getUser();
+    const { data: refData, error: refError } = await supabase
+      .from("referral")
+      .select(`referral_code`)
+      .eq("user_id", user?.id)
+      .single();
 
-    if (!user.user_metadata?.resume) {
-      setErrorMessage([
-        "Please go to your profile via the button below",
-        "You need to upload a up-to-date version of your resume.",
-      ]);
-      setSubmitFail(true);
-      return;
+    if (!refError) {
+      const { data: refCountData, error: refCountError } = await supabase
+        .from("referral")
+        .select("*")
+        .eq("referrer_code", refData?.referral_code);
+      if (refCountError) {
+        console.error("Error fetching referral count:", refCountError);
+        return;
+      }
+
+      if (!user.user_metadata?.resume) {
+        setErrorMessage([
+          "Please go to your profile via the button below",
+          "You need to upload a up-to-date version of your resume.",
+        ]);
+        setSubmitFail(true);
+        return;
+      }
+
+      if (user.user_metadata?.applied > 2 && refCountData.length < 4) {
+        setErrorMessage([
+          "You have exceeded your limit for the day",
+          "Consider signing up for a paid account.",
+        ]);
+        setSubmitFail(true);
+        return;
+      }
+    } else {
+      console.log(refError);
     }
-
-    if (user.user_metadata?.applied > 2) {
-      setErrorMessage([
-        "You have exceeded your limit for the day",
-        "Consider signing up for a paid account.",
-      ]);
-      setSubmitFail(true);
-      return;
-    }
-
     try {
       const applied = user.user_metadata?.applied || 0;
 
@@ -52,7 +69,6 @@ export const ApplyNow = ({ opp, link = false }) => {
     } catch (error) {
       console.log(error);
     }
-
 
     const { error } = await supabase.from("application").insert<Application>({
       opportunity_id: opp._id,

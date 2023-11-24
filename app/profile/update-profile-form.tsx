@@ -1,6 +1,11 @@
 "use client";
 
-import { PhotoIcon } from "@heroicons/react/24/solid";
+import { showToast } from "@/utils/toast";
+import {
+  FolderArrowDownIcon,
+  PhotoIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   User,
@@ -24,8 +29,9 @@ type ProfileValues = z.infer<typeof profileSchema>;
 export default function UpdateProfileForm({ user }: { user: User }) {
   const router = useRouter();
   const [resumes, setResumes] = useState([]);
+  const [loading, setLoading] = useState(false);
   const supabase = createClientComponentClient();
-
+  const [resume, setResume] = useState(null);
   const { id, email } = user || {};
   const {
     firstName = "",
@@ -35,20 +41,38 @@ export default function UpdateProfileForm({ user }: { user: User }) {
   } = user ? user?.user_metadata : {};
 
   // Upload file using standard upload
-  async function uploadFile(file) {
+  async function uploadFile(file: File) {
+    setLoading(true);
     const { data, error } = await supabase.storage
       .from("resumes")
-      .upload(`${id}/resume.pdf`, file, {
+      .upload(`${id}/${file.name}`, file, {
         cacheControl: "3600",
-        upsert: true,
       });
     if (error) {
-      // Handle error
+      router.refresh();
       console.log(error);
     } else {
       // Handle success
-      router.replace("/profile");
+      setResume(data.path);
+      showToast("Successfully uploaded resume", "");
     }
+    setLoading(false);
+  }
+
+  // Upload file using standard upload
+  async function removeFile() {
+    setLoading(true);
+    const { data, error } = await supabase.storage
+      .from("resumes")
+      .remove([resume]);
+    if (error) {
+      console.log(error);
+      router.refresh();
+    } else {
+      setResume(null);
+      showToast("File Removed", "");
+    }
+    setLoading(false);
   }
 
   // Create a ref to the file input element
@@ -79,11 +103,18 @@ export default function UpdateProfileForm({ user }: { user: User }) {
   useEffect(() => {
     const getResumes = async () => {
       const { data, error } = await supabase.storage.from("resumes").list(id, {
-        limit: 10,
+        limit: 100,
         offset: 0,
-        sortBy: { column: "name", order: "asc" },
       });
-      setResumes(data);
+      setResumes(() => {
+        return data
+          .sort((a, b) => {
+            const aModified = new Date(a.created_at).getTime(); // Convert to milliseconds
+            const bModified = new Date(b.created_at).getTime();
+            return bModified - aModified;
+          })
+          .slice(0, 3);
+      });
     };
 
     getResumes();
@@ -91,26 +122,26 @@ export default function UpdateProfileForm({ user }: { user: User }) {
     return () => {};
   }, []);
 
-  const downloadResume = async () => {
+  const downloadResume = async (fileName) => {
     const { data } = supabase.storage
       .from("resumes")
-      .getPublicUrl(`${id}/resume.pdf`, {
+      .getPublicUrl(`${id}/${fileName}`, {
         download: true,
       });
     const url = data.publicUrl;
     window.open(url);
-
-    await supabase.auth.updateUser({
-      data: {
-        resume: url,
-      },
-    });
+    console.log(data.publicUrl);
+    // await supabase.auth.updateUser({
+    //   data: {
+    //     resume: url,
+    //   },
+    // });
   };
 
   return (
     <form
       onSubmit={handleSubmit(async (formData: any) => {
-        const { firstName, lastName, email, phone, resume } = formData;
+        const { firstName, lastName, email, phone } = formData;
         const { data, error } = await supabase.auth.updateUser({
           email,
           data: {
@@ -121,7 +152,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
             type: "seeker",
           },
         });
-        router.refresh();
+        showToast("Successfully updated profile", "");
       })}
     >
       <div className="px-4 py-6 sm:p-8">
@@ -165,22 +196,27 @@ export default function UpdateProfileForm({ user }: { user: User }) {
       </div>
       <div className="px-4 py-6 sm:p-8">
         <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-          <div className="col-span-full">
-            <ul>
-              {resumes.map((r) => (
-                <li className="p-4 border-2 border-dotted rounded-lg">
-                  <a
-                    href="#"
-                    onClick={downloadResume}
-                    className="text-red-400 cursor-pointer"
-                  >
-                    {r.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="col-span-full">
+          {resumes.length !== 0 && (
+            <div className="col-span-full">
+              <label className="block text-sm font-medium leading-6 text-gray-900 mb-4 ">
+                My Resumes
+              </label>
+              <ul>
+                {resumes.map((r) => (
+                  <li className="p-4 border-2 border-dotted rounded-lg">
+                    <a
+                      href="#"
+                      onClick={() => downloadResume(r.name)}
+                      className="text-red-400 cursor-pointer"
+                    >
+                      {r.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <div className="col-span-full relative">
             <label
               htmlFor="cover-photo"
               className="block text-sm font-medium leading-6 text-gray-900"
@@ -188,33 +224,74 @@ export default function UpdateProfileForm({ user }: { user: User }) {
               Resume
             </label>
             <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-              <div id="drag-drop" className="text-center">
-                <PhotoIcon
-                  className="mx-auto h-12 w-12 text-gray-300"
-                  aria-hidden="true"
-                />
-                <div className="mt-4 flex text-sm leading-6 text-gray-600">
+              {!resume ? (
+                <div id="drag-drop" className="text-center">
+                  <PhotoIcon
+                    className="mx-auto h-12 w-12 text-gray-300"
+                    aria-hidden="true"
+                  />
+
+                  <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                    <label
+                      htmlFor="file-upload"
+                      className={`relative cursor-pointer rounded-md bg-white font-semibold  focus-within:outline-none focus-within:ring-2 focus-within:ring-red-600 ${
+                        loading
+                          ? "text-slate-300"
+                          : "text-red-600 hover:text-red-500"
+                      } focus-within:ring-offset-2 `}
+                    >
+                      <span>Upload a file</span>
+                      <input
+                        id="file-upload"
+                        name="file-upload"
+                        type="file"
+                        accept=".pdf"
+                        className="sr-only"
+                        ref={fileInputRef}
+                        onChange={handleFileSelect}
+                        disabled={loading}
+                      />
+                    </label>
+                    <p className="pl-1">or drag and drop</p>
+                  </div>
+                  <p className="text-xs leading-5 text-gray-600">
+                    PDF, DOCX up to 10MB
+                  </p>
+                </div>
+              ) : (
+                <div className="mt-2 flex justify-center space-x-4 rounded-lg px-6 py-10 items-center">
+                  <FolderArrowDownIcon
+                    height={100}
+                    width={100}
+                    className="cursor-pointer lg:hidden text-red-600 text-xl focus-within:outline-none focus-within:ring-2 focus-within:ring-red-600 focus-within:ring-offset-2 hover:text-red-500"
+                    onClick={() => downloadResume(resume)}
+                  />
                   <label
                     htmlFor="file-upload"
-                    className="relative cursor-pointer rounded-md bg-white font-semibold text-red-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-red-600 focus-within:ring-offset-2 hover:text-red-500"
+                    className="hidden lg:flex relative  cursor-pointer rounded-md bg-white font-semibold text-red-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-red-600 focus-within:ring-offset-2 hover:text-red-500"
+                    onClick={() => downloadResume(resume)}
                   >
-                    <span>Upload a file</span>
-                    <input
-                      id="file-upload"
-                      name="file-upload"
-                      type="file"
-                      accept=".pdf"
-                      className="sr-only"
-                      ref={fileInputRef}
-                      onChange={handleFileSelect}
-                    />
+                    <span className="text-ellipsis line-clamp-1">
+                      {resume.split("/")[1]}
+                    </span>
                   </label>
-                  <p className="pl-1">or drag and drop</p>
+                  <div
+                    onClick={() => {
+                      if (!loading) removeFile();
+                    }}
+                    className={`cursor-pointer text-lg font-bold ${
+                      loading ? "text-grey-600" : "text-red-600"
+                    } h-8 w-8 items-center flex rounded-full justify-center`}
+                  >
+                    <XMarkIcon />
+                  </div>
                 </div>
-                <p className="text-xs leading-5 text-gray-600">
-                  PDF, DOCX up to 10MB
-                </p>
-              </div>
+              )}
+              {loading && (
+                <div className="absolute top-12 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-tr from-red-500 to-pink-200 animate-spin">
+                  <div className="h-4 w-4 rounded-full bg-white"></div>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -1,12 +1,13 @@
 "use client";
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { Referral } from "@/lib/database.types";
 import type { Session } from "@supabase/auth-helpers-nextjs";
 import { TextField } from "../auth/input";
 
@@ -24,7 +25,6 @@ const signUpValueSchema = z
   });
 
 type SignUpValues = z.infer<typeof signUpValueSchema>;
-
 export default function RegisterForm({
   session,
   type,
@@ -34,6 +34,8 @@ export default function RegisterForm({
 }) {
   const router = useRouter();
   const supabase = createClientComponentClient();
+  const searchParams = useSearchParams;
+  const ref = searchParams().get("ref");
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -48,8 +50,6 @@ export default function RegisterForm({
     resolver: zodResolver(signUpValueSchema),
   });
 
-  // for the `session` to be available on first SSR render, it must be
-  // fetched in a Server Component and passed down as a prop
   return session ? (
     <button onClick={handleSignOut}>Sign out</button>
   ) : (
@@ -57,18 +57,34 @@ export default function RegisterForm({
       <form
         onSubmit={handleSubmit(async (data: any) => {
           const { email, government, firstName, lastName, password } = data;
-          await supabase.auth.signUp({
-            email,
-            password,
-            options: {
-              emailRedirectTo: `https://inlightzambia.com/auth/callback`,
-              data: {
-                government,
-                firstName,
-                lastName,
+          const { data: response, error: signUpError } =
+            await supabase.auth.signUp({
+              email,
+              password,
+              options: {
+                emailRedirectTo: `https://inlightzambia.com/auth/callback`,
+                data: {
+                  government,
+                  firstName,
+                  lastName,
+                },
               },
-            },
-          });
+            });
+          if (!signUpError) {
+            const {
+              data: res,
+              error: err,
+              status,
+            } = await supabase.from("referral").insert<Referral>({
+              referral_code: Math.random()
+                .toString(36)
+                .slice(2, 6)
+                .toUpperCase(),
+              referrer_code: ref,
+              user_id: response.user.id,
+            });
+          }
+
           router.replace("/register/thanks");
         })}
         className="space-y-6"
@@ -79,13 +95,11 @@ export default function RegisterForm({
           label="First name"
           error={errors.firstName?.message}
         />
-
         <TextField
           {...register("lastName")}
           label="Last name"
           error={errors.lastName?.message}
         />
-
         <div>
           <label
             htmlFor="government"
@@ -108,31 +122,25 @@ export default function RegisterForm({
             <option value="yes">Yes</option>
           </select>
         </div>
-
         <input type="hidden" name="persona" value={type} />
-
         <TextField
           {...register("email")}
           label="Email address"
           error={errors.email?.message}
         />
-
         <TextField
           {...register("password")}
           type="password"
           label="Password"
           error={errors.password?.message}
         />
-
         <TextField
           {...register("confirmPassword")}
           type="password"
           label="Confirm Password"
           error={errors.confirmPassword?.message}
         />
-
         <div className="flex items-center justify-between"></div>
-
         <div>
           <button
             type="submit"

@@ -1,5 +1,6 @@
 "use client";
 
+import { Application } from "@/lib/database.types";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useState } from "react";
 import FailModal from "./fail-modal";
@@ -52,7 +53,8 @@ export const ApplyNow = ({ opp, link = false }) => {
       console.log(error);
     }
 
-    const { error } = await supabase.from("application").insert({
+
+    const { error } = await supabase.from("application").insert<Application>({
       opportunity_id: opp._id,
       opportunity: opp.title,
       company_id: opp.companyRef?._id,
@@ -90,8 +92,8 @@ export const ApplyNow = ({ opp, link = false }) => {
       {submitSuccess
         ? renderThanks()
         : submitFail
-        ? renderFail()
-        : renderButton()}
+          ? renderFail()
+          : renderButton()}
     </>
   );
 };

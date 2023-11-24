@@ -6,6 +6,21 @@ export type Json =
   | { [key: string]: Json }
   | Json[];
 
+export interface Application {
+  opportunity_id: string;
+  opportunity: string;
+  company_id: string;
+  company_name: string;
+  user_id: string;
+  user_name: string;
+  resume: string;
+}
+
+export interface Referral {
+  referral_code: string;
+  referrer_code: string;
+  user_id: string;
+}
 export interface Database {
   public: {
     Tables: {

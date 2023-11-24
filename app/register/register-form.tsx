@@ -7,14 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { Referral } from "@/lib/database.types";
 import type { Session } from "@supabase/auth-helpers-nextjs";
 import { TextField } from "../auth/input";
 
-interface Referral {
-  referral_code: string;
-  referrer_code: string | string[];
-  user_id: string;
-}
 const signUpValueSchema = z
   .object({
     firstName: z.string().min(3).max(255),

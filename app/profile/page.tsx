@@ -9,6 +9,14 @@ export default async function Profile() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  const {
+    data: { referral_code },
+  } = await supabase
+    .from("referral")
+    .select(`referral_code`)
+    .eq("user_id", user?.id)
+    .single();
+
   return (
     <div className="bg-gray-50">
       <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">

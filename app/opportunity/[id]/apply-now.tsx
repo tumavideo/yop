@@ -33,7 +33,7 @@ export const ApplyNow = ({ opp, link = false }) => {
 
     if (user.user_metadata?.applied > 2) {
       setErrorMessage([
-        "You have exceeded your quota for the day",
+        "You have exceeded your limit for the day",
         "Consider signing up for a paid account.",
       ]);
       setSubmitFail(true);

@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
 
-export default function FailModal() {
+export default function FailModal({ error }) {
   const [open, setOpen] = useState(true);
 
   return (
@@ -44,12 +44,10 @@ export default function FailModal() {
                       as="h3"
                       className="text-base font-semibold leading-6 text-gray-900"
                     >
-                      Please go to your profile via the button below
+                      {error[0]}
                     </Dialog.Title>
                     <div className="mt-2">
-                      <p className="text-sm text-gray-500">
-                        You need to upload a up-to-date version of your resume.
-                      </p>
+                      <p className="text-sm text-gray-500">{error[1]}</p>
                     </div>
                   </div>
                 </div>

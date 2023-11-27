@@ -74,7 +74,10 @@ export default function UpdateProfileForm({ user }: { user: User }) {
     }
     setLoading(false);
   }
-
+  async function handleCancel() {
+    if (resume) await removeFile();
+    router.refresh();
+  }
   // Create a ref to the file input element
   const fileInputRef = useRef(null);
 
@@ -141,18 +144,25 @@ export default function UpdateProfileForm({ user }: { user: User }) {
   return (
     <form
       onSubmit={handleSubmit(async (formData: any) => {
-        const { firstName, lastName, email, phone } = formData;
+        const userMetadata: any = {
+          firstName: formData?.firstName,
+          lastName: formData?.lastName,
+          email: formData?.email,
+          phone: formData?.phone,
+          type: "seeker",
+        };
+        resume && (userMetadata.resume = resume);
         const { data, error } = await supabase.auth.updateUser({
           email,
           data: {
-            firstName,
-            lastName,
-            phone,
-            resume,
-            type: "seeker",
+            ...userMetadata,
           },
         });
         showToast("Successfully updated profile", "");
+        setResumes((prev) => {
+          return [{ name: resume.split("/")[1] }, ...prev];
+        });
+        setResume(null);
       })}
     >
       <div className="px-4 py-6 sm:p-8">
@@ -264,12 +274,12 @@ export default function UpdateProfileForm({ user }: { user: User }) {
                     height={100}
                     width={100}
                     className="cursor-pointer lg:hidden text-red-600 text-xl focus-within:outline-none focus-within:ring-2 focus-within:ring-red-600 focus-within:ring-offset-2 hover:text-red-500"
-                    onClick={() => downloadResume(resume)}
+                    onClick={() => downloadResume(resume.split("/")[1])}
                   />
                   <label
                     htmlFor="file-upload"
                     className="hidden lg:flex relative  cursor-pointer rounded-md bg-white font-semibold text-red-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-red-600 focus-within:ring-offset-2 hover:text-red-500"
-                    onClick={() => downloadResume(resume)}
+                    onClick={() => downloadResume(resume.split("/")[1])}
                   >
                     <span className="text-ellipsis line-clamp-1">
                       {resume.split("/")[1]}
@@ -300,6 +310,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
         <button
           type="button"
           className="text-sm font-semibold leading-6 text-gray-900"
+          onClick={() => handleCancel()}
         >
           Cancel
         </button>

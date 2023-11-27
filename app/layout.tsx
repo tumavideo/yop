@@ -8,6 +8,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
+import "./styles/animations.css";
 import "./styles/globals.css";
 
 export const dynamic = "force-dynamic";

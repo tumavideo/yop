@@ -3,32 +3,32 @@ import { findOpportunities } from "@/lib/queries";
 import { ISitemapField, getServerSideSitemap } from "next-sitemap";
 
 export async function GET(request: Request) {
-  const response = await client.fetch(findOpportunities(10));
+  const response = await client.fetch(findOpportunities(100));
 
   // href={`/opportunity/${opp._id}?type=${category}`}
   // console.log(response.map((x) => x["id"]));
   const jobSiteMap = response["job"].map((job: any): ISitemapField => {
     return {
-      loc: `${process.env.SITE_URL}/opportunity/${job._id}?type=job`,
+      loc: `https://inlightzambia.com/opportunity/${job._id}?type=job`,
       lastmod: new Date().toISOString(),
-      changefreq: "daily",
+      changefreq: "hourly",
       priority: 1,
     };
   });
   const skillSiteMap = response["skill"].map((skill: any): ISitemapField => {
     return {
-      loc: `${process.env.SITE_URL}/opportunity/${skill._id}?type=skill`,
+      loc: `https://inlightzambia.com/opportunity/${skill._id}?type=skill`,
       lastmod: new Date().toISOString(),
-      changefreq: "daily",
+      changefreq: "hourly",
       priority: 1,
     };
   });
   const financeSiteMap = response["finance"].map(
     (finance: any): ISitemapField => {
       return {
-        loc: `${process.env.SITE_URL}/opportunity/${finance._id}?type=finance`,
+        loc: `https://inlightzambia.com/opportunity/${finance._id}?type=finance`,
         lastmod: new Date().toISOString(),
-        changefreq: "daily",
+        changefreq: "hourly",
         priority: 1,
       };
     }

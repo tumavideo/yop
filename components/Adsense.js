@@ -3,6 +3,8 @@ import assets from "@/assets";
 
 const Adsense = (props) => {
 
+    return <></>
+
     if(props.type === "sidebar") {
         return (
             <a href="https://crowdsourcecreators.com" target="_blank">

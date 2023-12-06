@@ -112,7 +112,7 @@ export const ApplyNow = ({ opp, link = false }) => {
               ></path>
             </svg>
           ) : null}
-          {!loading ? (
+          {loading ? (
             <span className="align-middle px-2">Loading...</span>
           ) : (
             "Apply Now"

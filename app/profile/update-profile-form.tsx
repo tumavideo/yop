@@ -16,6 +16,7 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { TextField } from "../auth/input";
+import dayjs from "dayjs";
 
 const profileSchema = z.object({
   firstName: z.string().min(3).max(255),
@@ -26,12 +27,45 @@ const profileSchema = z.object({
 
 type ProfileValues = z.infer<typeof profileSchema>;
 
+type Record<K extends keyof any, T> = {
+  [P in K]: T;
+};
+
+export interface Bucket {
+  id: string;
+  name: string;
+  owner: string;
+  file_size_limit?: number;
+  allowed_mime_types?: string[];
+  created_at: string;
+  updated_at: string;
+  public: boolean;
+}
+
+export interface FileObject {
+  name: string;
+  bucket_id?: string;
+  owner?: string;
+  id?: string;
+  updated_at?: string;
+  created_at?: string;
+  last_accessed_at?: string;
+  metadata?: Record<string, any>;
+  buckets?: Bucket;
+}
+
+const displayName = (name: string) => {
+  return name.split("/")[0];
+};
+
+type ResumeFileObject = FileObject;
 export default function UpdateProfileForm({ user }: { user: User }) {
   const router = useRouter();
-  const [resumes, setResumes] = useState([]);
+
   const [loading, setLoading] = useState(false);
+  const [resumes, setResumes] = useState<ResumeFileObject[]>([]);
+  const [resume, setResume] = useState<string>(null);
   const supabase = createClientComponentClient();
-  const [resume, setResume] = useState(null);
   const { id, email } = user || {};
   const {
     firstName = "",
@@ -40,57 +74,50 @@ export default function UpdateProfileForm({ user }: { user: User }) {
     phone = "",
   } = user ? user?.user_metadata : {};
 
-  // Upload file using standard upload
   async function uploadFile(file: File) {
     setLoading(true);
+    const r = dayjs().unix();
+    const fileURL = `${id}/${file.name}_inlight_${r}`;
     const { data, error } = await supabase.storage
       .from("resumes")
-      .upload(`${id}/${file.name}`, file, {
+      .upload(fileURL, file, {
         cacheControl: "3600",
       });
     if (error) {
-      router.refresh();
-      console.log(error);
+      showToast(error.name || "Error", error.message, "error");
     } else {
-      // Handle success
       setResume(data.path);
       showToast("Successfully uploaded resume", "");
     }
     setLoading(false);
   }
 
-  // Upload file using standard upload
   async function removeFile() {
     setLoading(true);
-    const { data, error } = await supabase.storage
-      .from("resumes")
-      .remove([resume]);
+    const { error } = await supabase.storage.from("resumes").remove([resume]);
     if (error) {
-      console.log(error);
-      router.refresh();
+      showToast("Error", error.message);
     } else {
       setResume(null);
-      showToast("File Removed", "");
+      showToast("File Removed");
     }
     setLoading(false);
   }
+
   async function handleCancel() {
     if (resume) await removeFile();
     router.refresh();
   }
-  // Create a ref to the file input element
+
   const fileInputRef = useRef(null);
 
-  // Function to open the file input dialog when the button is clicked
   const openFileInput = () => {
     fileInputRef?.current?.click();
   };
 
-  // Function to handle file selection
   const handleFileSelect = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
-      // You can perform actions with the selected file here
       uploadFile(selectedFile);
     }
   };
@@ -109,36 +136,42 @@ export default function UpdateProfileForm({ user }: { user: User }) {
         limit: 100,
         offset: 0,
       });
-      setResumes(() => {
-        return data
-          .sort((a, b) => {
-            const aModified = new Date(a.created_at).getTime(); // Convert to milliseconds
-            const bModified = new Date(b.created_at).getTime();
-            return bModified - aModified;
-          })
-          .slice(0, 3);
-      });
+      if (!error) {
+        setResumes(() => {
+          return data
+            .toSorted((a, b) => {
+              const aModified = new Date(a.created_at).getTime();
+              const bModified = new Date(b.created_at).getTime();
+              return bModified - aModified;
+            })
+            .toSpliced(0, 3);
+        });
+      } else {
+        showToast(error.name || "Error", error.message, "error");
+      }
     };
-
     getResumes();
-
     return () => {};
   }, []);
 
   const downloadResume = async (fileName) => {
-    const { data } = supabase.storage
-      .from("resumes")
-      .getPublicUrl(`${id}/${fileName}`, {
-        download: true,
-      });
-    const url = data.publicUrl;
-    window.open(url);
-    console.log(data.publicUrl);
-    // await supabase.auth.updateUser({
-    //   data: {
-    //     resume: url,
-    //   },
-    // });
+    try {
+      const { data } = await supabase.storage
+        .from("resumes")
+        .getPublicUrl(`${id}/${fileName}`, {
+          download: true,
+        });
+
+      const response = await fetch(data.publicUrl);
+      const blob = await response.blob();
+
+      const downloadLink = document.createElement("a");
+      downloadLink.href = window.URL.createObjectURL(blob);
+      downloadLink.download = fileName;
+      downloadLink.click();
+    } catch (error) {
+      showToast("Error", error, "error");
+    }
   };
 
   return (
@@ -160,7 +193,10 @@ export default function UpdateProfileForm({ user }: { user: User }) {
         });
         showToast("Successfully updated profile", "");
         setResumes((prev) => {
-          return [{ name: resume.split("/")[1] }, ...prev];
+          const newFile: ResumeFileObject = {
+            name: displayName(resume),
+          };
+          return [newFile, ...prev];
         });
         setResume(null);
       })}
@@ -215,11 +251,11 @@ export default function UpdateProfileForm({ user }: { user: User }) {
                 {resumes.map((r) => (
                   <li className="p-4 border-2 border-dotted rounded-lg">
                     <a
-                      href="#"
+                      href="#/"
                       onClick={() => downloadResume(r.name)}
                       className="text-red-400 cursor-pointer"
                     >
-                      {r.name}
+                      {r.name.split("_inlight_")[0]}
                     </a>
                   </li>
                 ))}
@@ -274,15 +310,15 @@ export default function UpdateProfileForm({ user }: { user: User }) {
                     height={100}
                     width={100}
                     className="cursor-pointer lg:hidden text-red-600 text-xl focus-within:outline-none focus-within:ring-2 focus-within:ring-red-600 focus-within:ring-offset-2 hover:text-red-500"
-                    onClick={() => downloadResume(resume.split("/")[1])}
+                    onClick={() => downloadResume(displayName(resume))}
                   />
                   <label
                     htmlFor="file-upload"
                     className="hidden lg:flex relative  cursor-pointer rounded-md bg-white font-semibold text-red-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-red-600 focus-within:ring-offset-2 hover:text-red-500"
-                    onClick={() => downloadResume(resume.split("/")[1])}
+                    onClick={() => downloadResume(displayName(resume))}
                   >
                     <span className="text-ellipsis line-clamp-1">
-                      {resume.split("/")[1]}
+                      {displayName(resume).split("_inlight_")[0]}
                     </span>
                   </label>
                   <div

@@ -1,0 +1,23 @@
+.toast {
+  animation:
+    slideIn 0.5s forwards,
+    slideOut 0.5s forwards 4.5s;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translate(0, 100%);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(0, 100%);
+  }
+}

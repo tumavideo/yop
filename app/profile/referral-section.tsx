@@ -46,7 +46,7 @@ export default function ReferralSection({
   return data ? (
     <div className="px-8 mb-4">
       <h6 className="block text-xl font-semibold leading-6 text-gray-900">
-        🎉 Share the love, earn referral points 💃
+        Share the love, earn referral points 💡
       </h6>
       <div className="icons mt-4 flex justify-start items-center space-x-2">
         <FacebookShareButton {...props}>
@@ -63,7 +63,7 @@ export default function ReferralSection({
         </WhatsappShareButton>
       </div>
       <h6 className="block mt-4 text-lg font-semibold leading-6 text-gray-900">
-        Or copy the link 🤓...
+        Or copy the link...
       </h6>
       <div className="flex space-x-3">
         <p

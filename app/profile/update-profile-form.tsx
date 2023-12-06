@@ -63,6 +63,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
+  const [loadingResumes, setLoadingResumes] = useState(false);
   const [resumes, setResumes] = useState<ResumeFileObject[]>([]);
   const [resume, setResume] = useState<string>(null);
   const supabase = createClientComponentClient();
@@ -132,6 +133,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
 
   useEffect(() => {
     const getResumes = async () => {
+      setLoadingResumes(true);
       const { data, error } = await supabase.storage.from("resumes").list(id, {
         limit: 100,
         offset: 0,
@@ -139,16 +141,17 @@ export default function UpdateProfileForm({ user }: { user: User }) {
       if (!error) {
         setResumes(() => {
           return data
-            .toSorted((a, b) => {
+            .sort((a, b) => {
               const aModified = new Date(a.created_at).getTime();
               const bModified = new Date(b.created_at).getTime();
               return bModified - aModified;
             })
-            .toSpliced(0, 3);
+            .slice(0, 3);
         });
       } else {
         showToast(error.name || "Error", error.message, "error");
       }
+      setLoadingResumes(false);
     };
     getResumes();
     return () => {};
@@ -192,13 +195,15 @@ export default function UpdateProfileForm({ user }: { user: User }) {
           },
         });
         showToast("Successfully updated profile", "");
-        setResumes((prev) => {
-          const newFile: ResumeFileObject = {
-            name: displayName(resume),
-          };
-          return [newFile, ...prev];
-        });
-        setResume(null);
+        if (resume) {
+          setResumes((prev) => {
+            const newFile: ResumeFileObject = {
+              name: displayName(resume),
+            };
+            return [newFile, ...prev];
+          });
+          setResume(null);
+        }
       })}
     >
       <div className="px-4 py-6 sm:p-8">
@@ -260,6 +265,13 @@ export default function UpdateProfileForm({ user }: { user: User }) {
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+          {loadingResumes && (
+            <div className="space-y-2 col-span-full flex-col-reverse">
+              <div className="rounded-lg col-span-full p-3 animate-pulse h-8 bg-slate-200"></div>
+              <div className="rounded-lg col-span-full p-3 animate-pulse h-8 bg-slate-200"></div>
+              <div className="rounded-lg col-span-full p-3 animate-pulse h-8 bg-slate-200"></div>
             </div>
           )}
           <div className="col-span-full relative">

@@ -15,7 +15,7 @@ export const ApplyNow = ({ opp, link = false }) => {
   const applyForOpp = async (e) => {
     e.preventDefault();
 
-    if (!link) {
+    if (link) {
       window.location.assign(opp.link);
     }
 
@@ -47,7 +47,7 @@ export const ApplyNow = ({ opp, link = false }) => {
         return;
       }
 
-      if (user.user_metadata?.applied > 2 && refCountData.length < 4) {
+      if (user.user_metadata?.applied > 2 && refCountData.length < 4 && !link) {
         setErrorMessage([
           "You have exceeded your limit for the day",
           "Consider signing up for a paid account.",

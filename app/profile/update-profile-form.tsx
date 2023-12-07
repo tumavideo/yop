@@ -17,12 +17,17 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { TextField } from "../auth/input";
 import dayjs from "dayjs";
-
+const phoneRegex = new RegExp(/^(\+?26)?0[79][567]\d{7}$/);
 const profileSchema = z.object({
   firstName: z.string().min(3).max(255),
   lastName: z.string().min(3).max(255),
   email: z.string().email(),
-  phone: z.string().min(3).max(255),
+  phone: z
+    .string()
+    .regex(
+      phoneRegex,
+      "Please enter a valid zambian phone number (MTN, Airtel, Zamtel)"
+    ),
 });
 
 type ProfileValues = z.infer<typeof profileSchema>;

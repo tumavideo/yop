@@ -60,17 +60,17 @@ export const homeJsonLd: WithContext<WebPage> = {
 };
 export const jobSeo = (opp): Metadata => {
   return {
-    title: `${seoVariables.title} | ${opp.title || opp.position}`,
-    description: `Apply for the ${opp.position} role on ${seoVariables.title}!`,
+    title: `${seoVariables.title} | ${opp?.title || opp?.position}`,
+    description: `Apply for the ${opp?.position} role on ${seoVariables.title}!`,
     openGraph: {
-      title: opp.position,
-      description: `Apply for the ${opp.position} role  on ${seoVariables.title}!`,
-      url: `${seoVariables.url}/opportunity/${opp._id}?type=job`,
+      title: opp?.position,
+      description: `Apply for the ${opp?.position} role  on ${seoVariables.title}!`,
+      url: `${seoVariables.url}/opportunity/${opp?._id}?type=job`,
       images: seoVariables.image,
     },
     twitter: {
-      title: opp.position,
-      description: `Apply for the ${opp.position} role on ${seoVariables.title}!`,
+      title: opp?.position,
+      description: `Apply for the ${opp?.position} role on ${seoVariables.title}!`,
       images: seoVariables.image,
     },
   };
@@ -80,26 +80,26 @@ export const jobJsonLd = (opp): WithContext<JobPosting> => {
   return {
     "@context": "https://schema.org",
     "@type": "JobPosting",
-    title: opp.position,
-    description: `<p>${opp.description.replace(/\n/g, " ")}</p>`,
+    title: opp?.position,
+    description: `<p>${opp?.description.replace(/\n/g, " ")}</p>`,
     identifier: {
       "@type": "PropertyValue",
-      name: opp.companyRef?.name,
-      value: opp._id,
+      name: opp?.companyRef?.name,
+      value: opp?._id,
     },
-    datePosted: dayjs(opp._createdAt).format("YYYY-MM-DD"),
-    validThrough: dayjs(opp.closingDate).format("YYYY-MM-DDTHH:mm"),
+    datePosted: dayjs(opp?._createdAt).format("YYYY-MM-DD"),
+    validThrough: dayjs(opp?.closingDate).format("YYYY-MM-DDTHH:mm"),
     hiringOrganization: {
       "@type": "Organization",
-      name: opp.companyRef?.company,
-      sameAs: opp.companyRef?.website,
-      logo: urlFor(opp.companyRef?.logo?.asset),
+      name: opp?.companyRef?.company,
+      sameAs: opp?.companyRef?.website,
+      logo: urlFor(opp?.companyRef?.logo?.asset),
     },
     jobLocation: {
       "@type": "Place",
       address: {
         "@type": "PostalAddress",
-        streetAddress: opp.location,
+        streetAddress: opp?.location,
         addressCountry: "ZM",
       },
     },

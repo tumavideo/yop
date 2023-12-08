@@ -84,7 +84,7 @@ export default async function Opportunities({ searchParams: { field, type } }) {
           {!session && (
             <div className="flex pt-10">
               <a
-                href="/register?type=seeker"
+                href="/login"
                 className="mx-auto justify-center border-black hover:border-red-600 border-2 rounded-md bg-white px-6 py-3 text-sm font-semibold leading-6 text-black shadow-sm hover:text-red-600"
               >
                 Sign in to see more opportunities

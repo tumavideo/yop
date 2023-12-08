@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, forwardRef } from "react";
 
-const ErrorText = ({ children }: { children?: string }) => (
+export const ErrorText = ({ children }: { children?: string }) => (
   <>{children && <p className="text-xs text-red-500 pt-1">{children}</p>}</>
 );
 

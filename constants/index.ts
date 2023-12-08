@@ -7,7 +7,7 @@ export const sortOptions = [
 export const filterByField = [
   {
     id: "field",
-    name: "Field",
+    name: "Filter by",
     options: [
       {
         checked: false,
@@ -109,6 +109,7 @@ export const filterByField = [
         label: "Nonprofit and volunteer",
         value: "nonprofit.and.volunteer",
       },
+      { checked: false, label: "Other", value: "other" },
       { checked: false, label: "Real estate", value: "real.estate" },
       { checked: false, label: "Retail and sales", value: "retail.and.sales" },
       {

@@ -7,7 +7,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import type { Session } from "@supabase/auth-helpers-nextjs";
-import { TextField } from "../auth/input";
+import { ErrorText, TextField } from "../auth/input";
+import { useState } from "react";
+import ButtonText from "@/components/ButtonText";
 
 const loginValueSchema = z.object({
   email: z.string().email(),
@@ -17,6 +19,7 @@ const loginValueSchema = z.object({
 type LoginValues = z.infer<typeof loginValueSchema>;
 
 export default function LoginForm({ session }: { session: Session | null }) {
+  const [loginError, setLoginError] = useState(null);
   const router = useRouter();
   const supabase = createClientComponentClient();
 
@@ -54,12 +57,14 @@ export default function LoginForm({ session }: { session: Session | null }) {
     <>
       <form
         onSubmit={handleSubmit(async (data: any) => {
+          setLoginError(null);
           const { email, password } = data;
-          await supabase.auth.signInWithPassword({
+          const { error } = await supabase.auth.signInWithPassword({
             email,
             password,
           });
-          pushReferrer();
+          if (!error) pushReferrer();
+          else setLoginError(error);
         })}
         className="space-y-6"
         noValidate
@@ -106,11 +111,16 @@ export default function LoginForm({ session }: { session: Session | null }) {
         <div>
           <button
             type="submit"
-            className="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:opacity-75"
+            className="flex items-center w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:opacity-75"
             disabled={isSubmitting}
           >
-            Sign in
+            <ButtonText displayText={"Sign In"} loading={isSubmitting} />
           </button>
+          {loginError && (
+            <div className="text-center">
+              <ErrorText>{loginError.message}</ErrorText>
+            </div>
+          )}
         </div>
       </form>
     </>

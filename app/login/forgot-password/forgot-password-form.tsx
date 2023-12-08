@@ -8,6 +8,7 @@ import { z } from "zod";
 
 import { TextField } from "@/app/auth/input";
 import type { Session } from "@supabase/auth-helpers-nextjs";
+import ButtonText from "@/components/ButtonText";
 
 const loginValueSchema = z.object({
   email: z.string().email(),
@@ -18,7 +19,6 @@ type LoginValues = z.infer<typeof loginValueSchema>;
 export default function LoginForm({ session }: { session: Session | null }) {
   const router = useRouter();
   const supabase = createClientComponentClient();
-
   const handleSignOut = async () => {
     await supabase.auth.signOut();
     router.refresh();
@@ -41,13 +41,9 @@ export default function LoginForm({ session }: { session: Session | null }) {
       <form
         onSubmit={handleSubmit(async (data: any) => {
           const { email } = data;
-
-          console.log(data);
-
           await supabase.auth.resetPasswordForEmail(email, {
-            redirectTo: "https://inlightzambia.com/account/update-password",
+            redirectTo: `${location.origin}/account/update-password`,
           });
-
           router.replace("/login/thanks");
         })}
         className="space-y-6"
@@ -62,10 +58,10 @@ export default function LoginForm({ session }: { session: Session | null }) {
         <div>
           <button
             type="submit"
-            className="flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:opacity-75"
+            className="flex w-full items-center justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:opacity-75"
             disabled={isSubmitting}
           >
-            Reset password
+            <ButtonText displayText="Reset password" loading={isSubmitting} />
           </button>
         </div>
       </form>

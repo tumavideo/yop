@@ -15,8 +15,8 @@ const navigation = {
       href: "mailto:support@inlightzambia.com",
       value: "support@inlightzambia.com",
     },
-    { name: "Cell", href: "tel:+260970394705", value: "+260970394705" },
-    { name: "Work", href: "tel:+260977971685", value: "+260977971685" },
+    // { name: "Cell", href: "tel:+260970394705", value: "+260970394705" },
+    // { name: "Work", href: "tel:+260977971685", value: "+260977971685" },
   ],
   social: [
     {

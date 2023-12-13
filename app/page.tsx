@@ -45,7 +45,7 @@ export default async function Home() {
                 </h1>
                 <div className="mt-6 text-lg leading-8 text-gray-600">
                   <p>
-                    Starting on 12th December, InLight Zambia will be offering
+                    InLight Zambia will be offering
                     12 days of giveaways! That’s 12 days of unlimited access to
                     opportunities, 12 days of insightful information shared by
                     our team, and a chance to win an InLight Zambia branded tie
@@ -63,7 +63,7 @@ export default async function Home() {
                     <li>Refer friends!</li>
                   </ul>
                   <p className="mt-4">
-                    <strong>Closing Date:</strong> 24th December, 2023.
+                    <strong>Closing Date:</strong> 25th December, 2023.
                   </p>
                 </div>
               </div>

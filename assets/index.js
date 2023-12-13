@@ -6,6 +6,7 @@ import officialLogo from "./images/logo-c.png";
 import question from "./images/question.png";
 import jumper from "./images/jumper.png";
 import adsense from "./images/adsense.png";
+import christmas from "./images/christmas.jpeg";
 import sidebar from "./images/sidebar.jpg";
 import sidebar_1 from "./images/sidebar_1.png";
 import sidebar_2 from "./images/sidebar_2.png";
@@ -114,8 +115,9 @@ export default {
   jumper,
   success,
   checked,
+  christmas,
   sidebar,
   sidebar_1,
   sidebar_2,
-  leaderboard
+  leaderboard,
 };

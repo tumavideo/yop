@@ -5,7 +5,6 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useState } from "react";
 import FailModal from "./fail-modal";
 import ThanksModal from "./thanks-modal";
-import { CurrencyPoundIcon } from "@heroicons/react/20/solid";
 import ButtonText from "@/components/ButtonText";
 
 export const ApplyNow = ({ opp, link = false }) => {
@@ -26,6 +25,16 @@ export const ApplyNow = ({ opp, link = false }) => {
     const {
       data: { user },
     } = await supabase.auth.getUser();
+
+    if (!user.user_metadata?.resume) {
+      setErrorMessage([
+        "Please go to your profile via the button below",
+        "You need to upload an up-to-date version of your resume.",
+      ]);
+      setSubmitFail(true);
+      return;
+    }
+
     const { data: refData, error: refError } = await supabase
       .from("referral")
       .select(`referral_code`)
@@ -42,15 +51,6 @@ export const ApplyNow = ({ opp, link = false }) => {
         return;
       }
 
-      if (!user.user_metadata?.resume) {
-        setErrorMessage([
-          "Please go to your profile via the button below",
-          "You need to upload a up-to-date version of your resume.",
-        ]);
-        setSubmitFail(true);
-        return;
-      }
-
       if (user.user_metadata?.applied > 2 && refCountData.length < 4 && !link) {
         setErrorMessage([
           "You have exceeded your limit for the day",
@@ -60,7 +60,6 @@ export const ApplyNow = ({ opp, link = false }) => {
         return;
       }
     } else {
-      console.log(refError);
     }
     try {
       const applied = user.user_metadata?.applied || 0;
@@ -106,12 +105,13 @@ export const ApplyNow = ({ opp, link = false }) => {
   );
 
   const renderFail = () => <FailModal error={errorMessage} />;
-  const renderThanks = () => <ThanksModal />;
+
+  const renderThanks = (link) => <ThanksModal link={link} />;
 
   return (
     <>
       {submitSuccess
-        ? renderThanks()
+        ? renderThanks(link)
         : submitFail
           ? renderFail()
           : renderButton()}

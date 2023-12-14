@@ -18,38 +18,45 @@ export default async function Home() {
   const programs = await client.fetch(getPrograms());
 
   return (
-    <div className="bg-white">
-      <section>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
-        />
-      </section>
-      <Hero showButtons={!session} />
-      {!session && (
-        <div className="mx-auto max-w-7xl pb-0 md:pb-32">
-          <CTA
-            company={true}
-            description="It’s time to showcase your opportunity. Start posting the  right opportunities to empower a brighter future."
+      <div className="bg-white">
+        <section>
+          <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{__html: JSON.stringify(homeJsonLd)}}
           />
+        </section>
+        <Hero showButtons={!session}/>
+        <div className="mx-auto max-w-7xl pb-28">
+          <iframe width="100%" height="768"
+                  src="https://www.youtube-nocookie.com/embed/pbxG0Y9RMxY?si=fplV0Khbp8mj5llK&amp;controls=0"
+                  title="YouTube video player" frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen></iframe>
         </div>
-      )}
+        {!session && (
+            <div className="mx-auto max-w-7xl pb-0 md:pb-32">
+              <CTA
+                  company={true}
+                  description="It’s time to showcase your opportunity. Start posting the  right opportunities to empower a brighter future."
+              />
+            </div>
+        )}
 
-      {session && (
-        <>
-          {programs.slice(0, 1).map((program, index) => (
-            <Feature flip={index % 2} program={program} />
-          ))}
-        </>
-      )}
-      {/* <CTA /> */}
-      {session && (
-        <>
-          {programs.slice(2, 3).map((program, index) => (
-            <Feature flip={1} program={program} />
-          ))}
-        </>
-      )}
-    </div>
+        {session && (
+            <>
+              {programs.slice(0, 1).map((program, index) => (
+                  <Feature flip={index % 2} program={program}/>
+              ))}
+            </>
+        )}
+        {/* <CTA /> */}
+        {session && (
+            <>
+              {programs.slice(2, 3).map((program, index) => (
+                  <Feature flip={1} program={program}/>
+              ))}
+            </>
+        )}
+      </div>
   );
 }

@@ -79,7 +79,7 @@ export default function UploadResume({ id, removeFile, addFile }) {
     <>
       {uppy && (
         <Dashboard
-          className="sm:w-86"
+          className="uploader sm:w-86"
           uppy={uppy}
           showRemoveButtonAfterComplete
           proudlyDisplayPoweredByUppy={false}

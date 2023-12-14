@@ -137,12 +137,7 @@ export default async function Opportunity({
                       ></p>
                     </div>
                   )}
-
-                  {opp.enableApply ? (
-                    <ApplyNow opp={opp} />
-                  ) : (
-                    <ApplyNow opp={opp} link={true} />
-                  )}
+                  {opp?.link && <ApplyNow opp={opp} link={true} />}
                 </div>
               </div>
 

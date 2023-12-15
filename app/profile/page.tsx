@@ -3,12 +3,14 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import ReferralSection from "./referral-section";
 import UpdateProfile from "./update-profile-form";
+import { redirect } from "next/navigation";
 
 export default async function Profile() {
   const supabase = createServerComponentClient<Database>({ cookies });
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  if (!user) redirect("/login");
   const { data, error } = await supabase
     .from("referral")
     .select(`referral_code`)

@@ -9,7 +9,7 @@ import { homeJsonLd } from "@/seo";
 import assets from "@/assets";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import { ReferralModalTrigger } from "./ReferralModalTrigger";
+import ReferralModalTrigger from "@/components/ReferralModalTrigger";
 
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -30,7 +30,7 @@ export default async function Home() {
 
   return (
     <div className="bg-white">
-      <div className="w-full  font-sans py-5 flex justify-center items-center space-x-2 bg-gradient-to-r from-orange-600 via-red-500 to-red-600">
+      <div className="background-animate w-full  font-sans py-5 flex justify-center items-center space-x-2 bg-gradient-to-r from-orange-600 via-red-500 to-red-600">
         <h3 className="text-white font-semibold text-lg">
           🎄 12 days of Christmas Giveaway! 👉
         </h3>

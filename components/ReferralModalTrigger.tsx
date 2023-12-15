@@ -1,5 +1,5 @@
 "use client";
-import ReferralSection from "./profile/referral-section";
+import ReferralSection from "../app/profile/referral-section";
 
 import { Dialog, Transition } from "@headlessui/react";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
@@ -82,7 +82,7 @@ export function ReferralModal({ onClose, open, session, data, user }) {
   );
 }
 
-export function ReferralModalTrigger({ children, ...props }) {
+export default function ReferralModalTrigger({ children, ...props }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   function onClose() {

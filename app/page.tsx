@@ -9,6 +9,8 @@ import { homeJsonLd } from "@/seo";
 import assets from "@/assets";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { ReferralModalTrigger } from "./ReferralModalTrigger";
+
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
   const {
@@ -17,8 +19,28 @@ export default async function Home() {
 
   const programs = await client.fetch(getPrograms());
 
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const { data, error } = await supabase
+    .from("referral")
+    .select(`referral_code`)
+    .eq("user_id", user?.id)
+    .single();
+
   return (
     <div className="bg-white">
+      <div className="w-full  font-sans py-5 flex justify-center items-center space-x-2 bg-gradient-to-r from-orange-600 via-red-500 to-red-600">
+        <h3 className="text-white font-semibold text-lg">
+          🎄 12 days of Christmas Giveaway! 👉
+        </h3>
+        <ReferralModalTrigger session={session} data={data} user={user}>
+          <button className="text-amber-900 px-3 py-2 font-bold font-mono rounded-full bg-amber-300 hover:bg-amber-400">
+            Unlock!
+          </button>
+        </ReferralModalTrigger>
+      </div>
+
       <section>
         <script
           type="application/ld+json"
@@ -35,7 +57,7 @@ export default async function Home() {
         </div>
       )}
 
-      <div className="overflow-hidden bg-white py-24 sm:py-32">
+      <div className="self-center overflow-hidden bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
             <div className={`px-6 lg:px-0 lg:pr-4 lg:pt-4 order-last`}>
@@ -43,42 +65,48 @@ export default async function Home() {
                 <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                   12 Days of Christmas Giveaways!
                 </h1>
-                <div className="mt-6 text-lg leading-8 text-gray-600">
+                <div className="mt-2 text-lg leading-8 text-gray-600">
                   <p>
-                    InLight Zambia will be offering
-                    12 days of giveaways! That’s 12 days of unlimited access to
-                    opportunities, 12 days of insightful information shared by
-                    our team, and a chance to win an InLight Zambia branded tie
-                    dye shirt, followed by a K250 and K500 voucher to Shoprite.
-                    The more you refer, the better chance you have at winning!
+                    InLight Zambia will be offering 12 days of giveaways! That’s
+                    12 days of unlimited access to opportunities, 12 days of
+                    insightful information shared by our team, and a chance to
+                    win an InLight Zambia branded tie dye shirt, followed by a
+                    K250 and K500 voucher to Shoprite. The more you refer, the
+                    better chance you have at winning!
                   </p>
-                  <p className="mt-4">
+                  <p className="mt-2">
                     <strong>Entry Requirements:</strong>
                   </p>
-                  <ul className="list-disc pl-6 mt-2">
+                  <ul className="list-disc pl-6 mt-1">
                     <li>Sign Up on InLight Zambia and confirm your email.</li>
                     <li>
                       Navigate to your profile to access your referral code.
                     </li>
                     <li>Refer friends!</li>
                   </ul>
-                  <p className="mt-4">
-                    <strong>Closing Date:</strong> 25th December, 2023.
-                  </p>
+                  <ReferralModalTrigger
+                    session={session}
+                    data={data}
+                    user={user}
+                  >
+                    <button className="text-center mt-2 text-amber-900 px-3 py-2 font-bold font-mono rounded-full bg-amber-300 hover:bg-amber-400">
+                      Enter the Giveaway!
+                    </button>
+                  </ReferralModalTrigger>
                 </div>
               </div>
             </div>
             <div className="sm:px-6 lg:px-0">
               <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-                <a href="#/">
+                <ReferralModalTrigger session={session} data={data} user={user}>
                   <img
                     src={assets.christmas.src}
                     alt="Christmas Banner"
                     width={500}
                     height={500}
-                    className="bg-transparent -mb-12 max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
+                    className="bg-transparent -mb-12 max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10 cursor-pointer"
                   />
-                </a>
+                </ReferralModalTrigger>
               </div>
               <div
                 className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"

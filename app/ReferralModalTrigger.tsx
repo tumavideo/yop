@@ -56,7 +56,8 @@ export function ReferralModal({ onClose, open, session, data, user }) {
                       <ReferralSection user={user} data={data} />
                     ) : (
                       <p className="text-sm text-gray-500">
-                        You'll need tobe logged in to access your referral code!
+                        You'll need to be logged in to access your referral
+                        code!
                       </p>
                     )}
                   </div>

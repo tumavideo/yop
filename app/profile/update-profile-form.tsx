@@ -162,6 +162,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
             industry: values?.industry,
             howHelp: values?.howHelp,
           };
+          console.log('Resume from the form', resume)
           resume && (userMetadata.resume = resume);
           const { error } = await supabase.auth.updateUser({
             email,
@@ -171,6 +172,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
             showToast("Sorry 😥, an unexpected error", error.message, "error");
           } else {
             showToast("Congrats", "Your profile is now up to date.");
+            location.reload();
           }
         })}
       >

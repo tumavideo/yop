@@ -61,11 +61,21 @@ export default function UploadResume({ id, removeFile, addFile }) {
       addFile(file.meta?.objectName);
     });
 
-    uppyInstance.on("complete", (result) => {
+    uppyInstance.on("complete", async (result) => {
+      console.log("Resume from the result", result);
+      if(result.successful){
       showToast(
         "Upload complete!",
         `We’ve uploaded these files: ${result.successful[0].name}`
       );
+    }
+    else {
+        showToast(
+          "Upload failed!",
+          `Failed to upload files: ${result.successful[0].name}`
+          ,"error"
+        );
+      }
     });
     uppyInstance.on("file-removed", (file, reason) => {
       if (reason === "removed-by-user") {
@@ -79,9 +89,10 @@ export default function UploadResume({ id, removeFile, addFile }) {
     <>
       {uppy && (
         <Dashboard
-          className="sm:w-86"
+          className="uploader sm:w-86"
           uppy={uppy}
           showRemoveButtonAfterComplete
+          doneButtonHandler={null}
           proudlyDisplayPoweredByUppy={false}
           metaFields={[{ id: "name", name: "Name", placeholder: "File name" }]}
         />

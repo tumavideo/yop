@@ -85,11 +85,9 @@ export default async function Home() {
               <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
                 <a href="#/">
                   <img
+                    className="h-2/3 object-cover md:h-full ring-1 ring-white/10 rounded-tl-xl"
                     src={assets.christmas.src}
                     alt="Christmas Banner"
-                    width={500}
-                    height={500}
-                    className="bg-transparent -mb-12 max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
                   />
                 </a>
               </div>

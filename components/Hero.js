@@ -17,7 +17,7 @@ export default function Hero({ showButtons = false }) {
           />
         </div>
         <div className="overflow-hidden">
-          <div className="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-2">
+          <div className="mx-auto max-w-7xl px-6 pb-32 sm:pt-15 lg:px-8 lg:pt-2">
             <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
               <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
                 <h1 className="mt-20 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
@@ -40,7 +40,6 @@ export default function Hero({ showButtons = false }) {
                     <a
                       href="/register?type=seeker"
                       className="border-black hover:border-red-600 border-2 px-5 py-2 rounded-md bg-white text-sm font-semibold leading-6 text-black shadow-sm hover:text-red-600 text-center"
-                      // className="text-sm font-semibold leading-6 text-gray-900"
                     >
                       Find an opportunity
                     </a>
@@ -50,7 +49,6 @@ export default function Hero({ showButtons = false }) {
                     <a
                       href="/opportunity"
                       className="border-black hover:border-red-600 border-2 px-5 py-2 rounded-md bg-white text-sm font-semibold leading-6 text-black shadow-sm hover:text-red-600 text-center"
-                      // className="text-sm font-semibold leading-6 text-gray-900"
                     >
                       Find an opportunity
                     </a>

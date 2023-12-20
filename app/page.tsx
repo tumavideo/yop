@@ -70,7 +70,8 @@ export default async function Home() {
                   <ul className="list-disc pl-6 mt-2">
                     <li>Sign Up on InLight Zambia and confirm your email.</li>
                     <li>
-                      Navigate to your profile to access your referral code.
+                      Navigate to your profile and upload a resume to access
+                      your referral code.
                     </li>
                     <li>Refer friends!</li>
                   </ul>

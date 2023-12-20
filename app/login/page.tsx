@@ -4,8 +4,9 @@ import { cookies } from "next/headers";
 import assets from "@/assets";
 import Adsense from "@/components/Adsense";
 import type { Database } from "@/lib/database.types";
-import LoginForm from "./login-form";
 import { redirect } from "next/navigation";
+import GoogleLoginButton from "./google-login-button";
+import LoginForm from "./login-form";
 
 const Header = ({ title = "Sign in to your account", link = "" }) => (
   <>
@@ -24,12 +25,14 @@ const Header = ({ title = "Sign in to your account", link = "" }) => (
 
 export default async function Login() {
   const supabase = createServerComponentClient<Database>({ cookies });
+
   const {
     data: { session },
   } = await supabase.auth.getSession();
   if (session) redirect("/");
   return (
     <>
+
       <div className="bg-white flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -41,7 +44,7 @@ export default async function Login() {
             Sign in to your account
           </h2>
         </div>
-
+          
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <LoginForm session={session} />
 
@@ -54,6 +57,9 @@ export default async function Login() {
               Sign Up
             </a>
           </p>
+          <div className="mt-4 flex justify-center">
+            <GoogleLoginButton />
+          </div>
         </div>
 
         <div className="mt-10 md:w-1/3 container mx-auto">

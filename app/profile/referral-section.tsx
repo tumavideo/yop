@@ -1,4 +1,6 @@
 "use client";
+import { Dialog, Transition } from "@headlessui/react";
+import { DocumentArrowUpIcon } from "@heroicons/react/24/outline";
 import { User } from "@supabase/auth-helpers-nextjs";
 import {
   FacebookIcon,
@@ -10,9 +12,7 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "next-share";
-import { Dialog, Transition } from "@headlessui/react";
-import { DocumentArrowUpIcon } from "@heroicons/react/24/outline";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 
 import { showToast } from "@/utils/toast";
 import { useRouter } from "next/navigation";
@@ -143,7 +143,7 @@ export default function ReferralSection({
   return data ? (
     <div className="px-8 mb-4">
       <h6 className="block text-xl font-semibold leading-6 text-gray-900">
-        Share the love, earn referral points 💡
+      Share, it’s all just a click away 💡
       </h6>
       <div
         className={`icons mt-4 flex justify-${
@@ -163,10 +163,7 @@ export default function ReferralSection({
           <WhatsappIcon size={32} round />
         </WhatsappShareButton>
       </div>
-      <h6 className="block mt-4 text-lg font-semibold leading-6 text-gray-900">
-        Or copy the link...
-      </h6>
-      <div className="flex space-x-3">
+      <div className="mt-4 flex space-x-3">
         <p
           onClick={() => handleCopy(props.url)}
           className={`mt-2 block border-0 focus:ring-2 focus:ring-blue-600 focus:ring-inset p-2.5 pl-5 ring-1 ring-inset rounded-lg shadow-sm sm:leading-6 sm:text-sm cursor-pointer`}

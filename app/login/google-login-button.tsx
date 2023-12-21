@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 
-function GoogleLoginButton() {
+function GoogleLoginButton({children, ...props}) {
     const supabase = createClientComponentClient();
     const searchParams = useSearchParams()
     const [IsSubmitting, setIsSubmitting] = useState(false)
@@ -68,7 +68,7 @@ function GoogleLoginButton() {
         </svg>
       </div>
       <span className="text-sm text-white tracking-wider">
-        <ButtonText displayText={"Sign In with Google"} loading={IsSubmitting} />
+        <ButtonText displayText={children} loading={IsSubmitting} />
       </span>
     </button>
       );

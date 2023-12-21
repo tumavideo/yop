@@ -7,10 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import ButtonText from "@/components/ButtonText";
 import { Referral } from "@/lib/database.types";
 import type { Session } from "@supabase/auth-helpers-nextjs";
 import { TextField } from "../auth/input";
-import ButtonText from "@/components/ButtonText";
 
 const signUpValueSchema = z
   .object({
@@ -72,6 +72,12 @@ export default function RegisterForm({
               },
             });
           if (!signUpError) {
+            const { data: refData, error: refError } = await supabase
+            .from("referral")
+            .select(`referral_code`)
+            .eq("user_id", response.user?.id)
+            .single();
+            if(!refData){
             const {
               data: res,
               error: err,
@@ -83,7 +89,7 @@ export default function RegisterForm({
                 .toUpperCase(),
               referrer_code: ref,
               user_id: response.user.id,
-            });
+            });}
           }
 
           router.replace("/register/thanks");

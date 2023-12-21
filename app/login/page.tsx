@@ -40,12 +40,17 @@ export default async function Login() {
             alt="logo"
             className="mx-auto h-20 w-auto"
           />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className="mt-10 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
         </div>
-          
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="mt-10 flex justify-center">
+        <GoogleLoginButton>
+            Sign in with Google
+        </GoogleLoginButton >
+        </div>
+            <p className="my-5 font-bold text-slate-500 text-center">or</p>
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <LoginForm session={session} />
 
           <p className="mt-10 text-center text-sm text-gray-500">
@@ -57,9 +62,7 @@ export default async function Login() {
               Sign Up
             </a>
           </p>
-          <div className="mt-4 flex justify-center">
-            <GoogleLoginButton />
-          </div>
+         
         </div>
 
         <div className="mt-10 md:w-1/3 container mx-auto">

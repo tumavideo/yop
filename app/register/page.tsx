@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 
 import assets from "@/assets";
 import type { Database } from "@/lib/database.types";
+import GoogleLoginButton from "../login/google-login-button";
 
 export default async function Login({ searchParams: { type } }) {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -24,11 +25,16 @@ export default async function Login({ searchParams: { type } }) {
                 alt="logo"
                 className="mx-auto h-20 w-auto"
               />
-              <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">
+              <h2 className="mt-10 text-3xl text-center font-bold leading-9 tracking-tight text-gray-900">
                 Sign up to start your journey
               </h2>
             </div>
-
+            <div className="mt-10 flex justify-center">
+            <GoogleLoginButton>
+                Sign up with Google
+            </GoogleLoginButton >
+            </div>
+            <p className="my-5 font-bold text-slate-500 text-center">or</p>
             <div className="mt-10">
               <div>
                 <RegisterForm session={session} type={type} />

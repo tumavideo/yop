@@ -14,7 +14,7 @@ export default function Feature({ flip = 0, program }) {
               {program.logo ? (
                 <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                   <img
-                    className="mt-3 img-fluid w-50"
+                    className="h-1/3 object-cover md:h-full ring-1 ring-white/10 rounded-tl-xl man-w-full"
                     src={urlFor(program.logo)}
                     alt={`pro-${program._id}`}
                   />
@@ -56,7 +56,7 @@ export default function Feature({ flip = 0, program }) {
                     alt="Product screenshot"
                     width={500}
                     height={500}
-                    className="bg-transparent -mb-12 max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
+                    className="h-1/3 object-cover md:h-full ring-1 ring-white/10 rounded-tl-xl man-w-full"
                   />
                 </a>
               )}

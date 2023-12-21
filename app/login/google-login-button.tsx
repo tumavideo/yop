@@ -3,16 +3,33 @@
 import ButtonText from "@/components/ButtonText";
 import { showToast } from "@/utils/toast";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { deleteCookie, setCookie } from 'cookies-next';
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
+
 
 function GoogleLoginButton() {
     const supabase = createClientComponentClient();
+    const searchParams = useSearchParams()
     const [IsSubmitting, setIsSubmitting] = useState(false)
     const handleGoogleLogin = async () => {
+        deleteCookie("ref")
+        deleteCookie("provider")
         setIsSubmitting(true)
+        searchParams.get("ref") && setCookie("ref", searchParams.get("ref"))
+        setCookie("provider", "google")
+        
         const {data, error} = await supabase.auth.signInWithOAuth({
             provider: "google",
+            options: {
+                redirectTo: `${process.env.NEXT_PUBLIC_AUTH_URL}/auth/callback`,
+                queryParams: {
+                  access_type: "offline",
+                  prompt: "consent",
+                },
+            }
         })
+        console.log(data)
         if(error){
             showToast("Error", error.message, "error")
             setIsSubmitting(false)

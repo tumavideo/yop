@@ -57,13 +57,17 @@ export default function RegisterForm({
     <>
       <form
         onSubmit={handleSubmit(async (data: any) => {
+          let url = "";
+          if (typeof location !== "undefined") {
+            url = `${location.origin}/auth/callback`;
+          }
           const { email, government, firstName, lastName, password } = data;
           const { data: response, error: signUpError } =
             await supabase.auth.signUp({
               email,
               password,
               options: {
-                emailRedirectTo: `https://inlightzambia.com/auth/callback`,
+                emailRedirectTo: `${url}`,
                 data: {
                   government,
                   firstName,
@@ -73,23 +77,24 @@ export default function RegisterForm({
             });
           if (!signUpError) {
             const { data: refData, error: refError } = await supabase
-            .from("referral")
-            .select(`referral_code`)
-            .eq("user_id", response.user?.id)
-            .single();
-            if(!refData){
-            const {
-              data: res,
-              error: err,
-              status,
-            } = await supabase.from("referral").insert<Referral>({
-              referral_code: Math.random()
-                .toString(36)
-                .slice(2, 6)
-                .toUpperCase(),
-              referrer_code: ref,
-              user_id: response.user.id,
-            });}
+              .from("referral")
+              .select(`referral_code`)
+              .eq("user_id", response.user?.id)
+              .single();
+            if (!refData) {
+              const {
+                data: res,
+                error: err,
+                status,
+              } = await supabase.from("referral").insert<Referral>({
+                referral_code: Math.random()
+                  .toString(36)
+                  .slice(2, 6)
+                  .toUpperCase(),
+                referrer_code: ref,
+                user_id: response.user.id,
+              });
+            }
           }
 
           router.replace("/register/thanks");

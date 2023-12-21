@@ -1,9 +1,11 @@
 "use client";
 
+import ButtonText from "@/components/ButtonText";
+import Form from "@/components/form/Form";
+import { FileObject } from "@/lib/database.types";
+import { inputs } from "@/utils/inputs";
 import { showToast } from "@/utils/toast";
 import { DocumentIcon } from "@heroicons/react/20/solid";
-import Form from "@/components/form/Form";
-import { inputs } from "@/utils/inputs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   User,
@@ -15,8 +17,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { TextField } from "../auth/input";
 import UploadResume from "./upload-resume";
-import ButtonText from "@/components/ButtonText";
-import { FileObject } from "@/lib/database.types";
 
 const phoneRegex = new RegExp(/^(\+?26)?0[79][567]\d{7}$/);
 const profileSchema = z.object({
@@ -162,7 +162,6 @@ export default function UpdateProfileForm({ user }: { user: User }) {
             industry: values?.industry,
             howHelp: values?.howHelp,
           };
-          console.log('Resume from the form', resume)
           resume && (userMetadata.resume = resume);
           const { error } = await supabase.auth.updateUser({
             email,
@@ -258,7 +257,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
                     >
                       <div className="flex justify-start lg:justify-between px-2 items-center w-full">
                         <span className="flex justify-start space-x-6 md:space-x-0 text-ellipsis line-clamp-1">
-                          <DocumentIcon className="h-6 w-6 mr-4" />
+                          <DocumentIcon className="h-6 w-6 mr-4 flex-shrink-0" />
                           {r.name.split("_inlight_")[0]}
                         </span>
                         <span className="hidden lg:flex items-center text-white text-center bg-red-500 w-36 px-1 py-2 rounded-md justify-center space-x-6 md:space-x-0 text-ellipsis line-clamp-1">

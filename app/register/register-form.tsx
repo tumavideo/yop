@@ -7,17 +7,26 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import ButtonText from "@/components/ButtonText";
 import { Referral } from "@/lib/database.types";
 import type { Session } from "@supabase/auth-helpers-nextjs";
 import { TextField } from "../auth/input";
-import ButtonText from "@/components/ButtonText";
 
 const signUpValueSchema = z
   .object({
-    firstName: z.string().min(3).max(255),
-    lastName: z.string().min(3).max(255),
+    firstName: z
+      .string()
+      .min(3, { message: "Must be at least 3 characters long" })
+      .max(50, { message: "Cannot exceed 50 characters" }),
+    lastName: z
+      .string()
+      .min(3, { message: "Must be at least 3 characters long" })
+      .max(50, { message: "Cannot exceed 50 characters" }),
     email: z.string().email(),
-    password: z.string().min(6).max(50),
+    password: z
+      .string()
+      .min(6, { message: "Must be at least 6 characters long" })
+      .max(50, { message: "Cannot exceed 50 characters" }),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {

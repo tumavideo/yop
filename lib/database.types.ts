@@ -18,7 +18,7 @@ export interface Application {
 
 export interface Referral {
   referral_code: string;
-  referrer_code: string;
+  referrer_code?: string;
   user_id: string;
 }
 export interface Database {

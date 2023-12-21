@@ -6,10 +6,10 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import type { Session } from "@supabase/auth-helpers-nextjs";
-import { ErrorText, TextField } from "../auth/input";
-import { useState } from "react";
 import ButtonText from "@/components/ButtonText";
+import type { Session } from "@supabase/auth-helpers-nextjs";
+import { useState } from "react";
+import { ErrorText, TextField } from "../auth/input";
 
 const loginValueSchema = z.object({
   email: z.string().email(),

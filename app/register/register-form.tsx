@@ -23,7 +23,10 @@ const signUpValueSchema = z
       .min(3, { message: "Must be at least 3 characters long" })
       .max(50, { message: "Cannot exceed 50 characters" }),
     email: z.string().email(),
-    password: z.string().min(6).max(50),
+    password: z
+      .string()
+      .min(6, { message: "Must be at least 6 characters long" })
+      .max(50, { message: "Cannot exceed 50 characters" }),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {

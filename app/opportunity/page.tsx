@@ -11,6 +11,15 @@ import Adsense from "@/components/Adsense";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
+const EndOfFeedIndicator = () => {
+  return (
+    <div className="bg-gray-100 border-t border-gray-200 text-center py-4">
+      <p className="text-gray-600 font-semibold">You've reached the end!</p>
+      <small className="text-gray-500">No more opportunities to explore.</small>
+    </div>
+  );
+};
+
 export default async function Opportunities({ searchParams: { field, type } }) {
   const supabase = createServerComponentClient<Database>({ cookies });
 
@@ -18,7 +27,7 @@ export default async function Opportunities({ searchParams: { field, type } }) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  const response = await client.fetch(findOpportunities(session ? 30 : 5));
+  const response = await client.fetch(findOpportunities(session ? 300 : 5));
 
   let filtered = [];
   let opportunities = [];
@@ -81,7 +90,7 @@ export default async function Opportunities({ searchParams: { field, type } }) {
               <Opportunity key={index} opp={project} />
             ))}
           </ul>
-          {!session && (
+          {!session ? (
             <div className="flex pt-10">
               <a
                 href="/login"
@@ -90,6 +99,8 @@ export default async function Opportunities({ searchParams: { field, type } }) {
                 Sign in to see more opportunities
               </a>
             </div>
+          ) : (
+            <EndOfFeedIndicator />
           )}
         </div>
       </div>

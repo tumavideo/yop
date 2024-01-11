@@ -61,10 +61,6 @@ export default function Feature({ flip = 0, program }) {
                 </a>
               )}
             </div>
-            <div
-              className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
-              aria-hidden="true"
-            />
           </div>
         </div>
       </div>

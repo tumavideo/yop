@@ -81,10 +81,10 @@ export default function OnboardingForm({
             onSubmit={handleSubmit(async (formData: any) => {
               if (parseInt(step) === 2) {
                 router.push("/profile");
+                setLoading(true);
                 return;
               }
 
-              setLoading(true);
               if (!formData?.resume) {
                 showToast(
                   "Sorry 😥, please upload a resume",
@@ -94,6 +94,7 @@ export default function OnboardingForm({
                 return;
               }
 
+              setLoading(true);
               const userMetadata: any = {
                 type: "seeker",
                 resume: formData?.resume,
@@ -116,7 +117,7 @@ export default function OnboardingForm({
           >
             {step === "1" && (
               <div className="px-4 py-6 sm:p-2">
-                {!loading && (
+                {!loading ? (
                   <div className="flex justify-center">
                     <UploadResume
                       id={id}
@@ -124,23 +125,13 @@ export default function OnboardingForm({
                       addFile={setResume}
                     />
                   </div>
+                ) : (
+                  <div className="flex justify-center">
+                    <div className="h-32 w-56 md:h-80 md:w-96 relative">
+                      <div className="absolute top-0 right-0 left-0 bottom-0 h-28 w-56 md:h-72 md:w-96 background-animate bg-gradient-to-r from-slate-300 via-slate-100 to-slate-300 rounded-xl"></div>
+                    </div>
+                  </div>
                 )}
-              </div>
-            )}
-            {loading && (
-              <div className="flex justify-center text-center my-4">
-                <svg
-                  className="animate-spin h-6 w-6 text-red-400 inline-block align-stary m-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
               </div>
             )}
             {step === "2" && (
@@ -150,18 +141,16 @@ export default function OnboardingForm({
             )}
 
             <div className="flex items-center justify-center gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-              {!loading && (
-                <button
-                  type="submit"
-                  className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
-                  disabled={isSubmitting}
-                >
-                  <ButtonText
-                    displayText={step === "1" ? "Next" : "Finish"}
-                    loading={loading}
-                  />
-                </button>
-              )}
+              <button
+                type="submit"
+                className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                disabled={isSubmitting || loading}
+              >
+                <ButtonText
+                  displayText={step === "1" ? "Next" : "Finish"}
+                  loading={loading}
+                />
+              </button>
             </div>
           </form>
         </div>

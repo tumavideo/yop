@@ -1,43 +1,42 @@
-
 "use client";
 import ButtonText from "@/components/ButtonText";
 import { showToast } from "@/utils/toast";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { deleteCookie, setCookie } from 'cookies-next';
+import { deleteCookie, setCookie } from "cookies-next";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
+function GoogleLoginButton({ children, ...props }) {
+  const supabase = createClientComponentClient();
+  const searchParams = useSearchParams();
+  const [IsSubmitting, setIsSubmitting] = useState(false);
+  const handleGoogleLogin = async () => {
+    deleteCookie("ref");
+    deleteCookie("provider");
+    setIsSubmitting(true);
+    searchParams.get("ref") && setCookie("ref", searchParams.get("ref"));
+    setCookie("provider", "google");
 
-function GoogleLoginButton({children, ...props}) {
-    const supabase = createClientComponentClient();
-    const searchParams = useSearchParams()
-    const [IsSubmitting, setIsSubmitting] = useState(false)
-    const handleGoogleLogin = async () => {
-        deleteCookie("ref")
-        deleteCookie("provider")
-        setIsSubmitting(true)
-        searchParams.get("ref") && setCookie("ref", searchParams.get("ref"))
-        setCookie("provider", "google")
-        
-        const {data, error} = await supabase.auth.signInWithOAuth({
-            provider: "google",
-            options: {
-                redirectTo: `${process.env.NEXT_PUBLIC_AUTH_URL}/auth/callback`,
-                queryParams: {
-                  access_type: "offline",
-                  prompt: "consent",
-                },
-            }
-        })
-        console.log(data)
-        if(error){
-            showToast("Error", error.message, "error")
-            setIsSubmitting(false)
-        }
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${location.origin}/auth/callback`,
+        queryParams: {
+          access_type: "offline",
+          prompt: "consent",
+        },
+      },
+    });
+    console.log(data);
+    if (error) {
+      showToast("Error", error.message, "error");
+      setIsSubmitting(false);
     }
-    
-    return (
-        <button onClick={handleGoogleLogin}
+  };
+
+  return (
+    <button
+      onClick={handleGoogleLogin}
       aria-label="Sign in with Google"
       className="flex items-center gap-3 bg-google-button-blue rounded-md p-0.5 pr-3 transition-colors duration-300 hover:bg-google-button-blue-hover"
     >
@@ -71,8 +70,7 @@ function GoogleLoginButton({children, ...props}) {
         <ButtonText displayText={children} loading={IsSubmitting} />
       </span>
     </button>
-      );
-    }
-
+  );
+}
 
 export default GoogleLoginButton;

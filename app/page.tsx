@@ -39,7 +39,7 @@ export default async function Home() {
         <div className="mx-auto max-w-7xl pb-0 md:pb-32">
           <CTA
             company={true}
-            description="It’s time to showcase your opportunity. Start posting the  right opportunities to empower a brighter future."
+            description="Discover a variety of opportunities from jobs, skills and funding avenues. It's all just one click away!"
           />
         </div>
       )}

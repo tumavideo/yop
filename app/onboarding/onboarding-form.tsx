@@ -79,19 +79,18 @@ export default function OnboardingForm({
         <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 pb-4">
           <form
             onSubmit={handleSubmit(async (formData: any) => {
+              if (parseInt(step) === 2) {
+                router.push("/profile");
+                return;
+              }
+
+              setLoading(true);
               if (!formData?.resume) {
                 showToast(
                   "Sorry 😥, please upload a resume",
                   "Please upload a resume",
                   "error"
                 );
-                return;
-              }
-
-              setLoading(true);
-
-              if (parseInt(step) === 2) {
-                router.push("/profile");
                 return;
               }
 

@@ -90,7 +90,7 @@ export default function UploadResume({ id, removeFile, addFile }) {
   return (
     <>
       <div className="h-32 w-56 md:h-80 md:w-96 relative">
-        <div className="absolute top-0 right-0 left-0 bottom-0 h-28 w-56 md:h-72 md:w-96 bg-slate-300 animate-pulse rounded-xl"></div>
+        <div className="absolute top-0 right-0 left-0 bottom-0 h-28 w-56 md:h-72 md:w-96 background-animate bg-gradient-to-r from-slate-300 via-slate-100 to-slate-300 rounded-xl"></div>
         <Dashboard
           className="uploader w-56 md:w-96"
           uppy={uppy}

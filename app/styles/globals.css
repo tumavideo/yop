@@ -37,3 +37,25 @@
     background-position: 100% 50%;
   }
 }
+.uppy-Dashboard .uppy-Dashboard-inner {
+  height: 100% !important;
+  min-height: 120px !important;
+}
+/* Default styles for the Uppy uploader */
+@media (max-width: 767px) {
+  .uppy-Dashboard .uppy-Dashboard-inner {
+    min-height: 120px !important;
+  }
+}
+
+/* Media query for larger viewports (e.g., desktops) */
+@media (min-width: 768px) {
+  .uppy-Dashboard .uppy-Dashboard-inner {
+    width: 500px !important;
+    min-height: 320px !important;
+  }
+}
+
+.w-126 {
+  width: 500px;
+}

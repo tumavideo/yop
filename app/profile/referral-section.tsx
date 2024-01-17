@@ -142,8 +142,8 @@ export default function ReferralSection({
 
   return data ? (
     <div className="px-8 mb-4">
-      <h6 className="block text-xl font-semibold leading-6 text-gray-900">
-      Share, it’s all just a click away 💡
+      <h6 className="text-base block md:text-xl font-semibold leading-6 text-gray-900">
+        Share, it’s all just a click away 💡
       </h6>
       <div
         className={`icons mt-4 flex justify-${

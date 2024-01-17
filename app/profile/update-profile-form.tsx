@@ -292,11 +292,13 @@ export default function UpdateProfileForm({ user }: { user: User }) {
               <p className="text-xs leading-5 text-gray-600 mb-4">
                 PDF, DOCX up to 10MB
               </p>
-              <UploadResume
-                id={id}
-                removeFile={removeFile}
-                addFile={setResume}
-              />
+              <div className="flex justify-center">
+                <UploadResume
+                  id={id}
+                  removeFile={removeFile}
+                  addFile={setResume}
+                />
+              </div>
             </div>
           </div>
         </div>

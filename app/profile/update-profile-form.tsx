@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { TextField } from "../auth/input";
+import DeleteModal from "./delete-modal";
 import UploadResume from "./upload-resume";
 
 const phoneRegex = new RegExp(/^(\+?26)?0[79][567]\d{7}$/);
@@ -47,6 +48,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
 
   const [loading, setLoading] = useState(null);
   const [loadingResumes, setLoadingResumes] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
   const [resumes, setResumes] = useState<ResumeFileObject[]>([]);
   const [resume, setResume] = useState<string>(null);
 
@@ -150,8 +152,26 @@ export default function UpdateProfileForm({ user }: { user: User }) {
     }
   };
 
+  async function handleDelete() {
+    setShowDelete(false);
+
+    const { data, error } = await supabase.auth.updateUser({
+      data: {
+        deleted: true,
+      },
+    });
+
+    if (!error) {
+      await supabase.auth.signOut();
+      router.refresh();
+    }
+  }
+
+  const renderDelete = () => <DeleteModal onDelete={handleDelete} />;
+
   return (
     <>
+      {showDelete && renderDelete()}
       <form
         onSubmit={handleSubmit(async (formData: any) => {
           const userMetadata: any = {
@@ -306,6 +326,13 @@ export default function UpdateProfileForm({ user }: { user: User }) {
         </div>
 
         <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+          <button
+            type="button"
+            className="text-sm font-semibold leading-6 text-red-600"
+            onClick={() => setShowDelete(true)}
+          >
+            Delete Account
+          </button>
           <button
             type="button"
             className="text-sm font-semibold leading-6 text-gray-900"

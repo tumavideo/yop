@@ -32,7 +32,7 @@ export default async function Services({ searchParams: { field } }) {
               <div className="mx-auto max-w-7xl py-2 mt-10">
                 <div className="flex flex-col sm:flex-row gap-y-6 justify-between items-center">
                   <div className="flex flex-col">
-                    <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+                    <h1 className="text-3xl font-bold tracking-tight text-gray-900 mt-10">
                       ZamPortal Services
                     </h1>
                     <p className="mt-4 max-w-xl text-sm text-gray-700">
@@ -72,13 +72,6 @@ export default async function Services({ searchParams: { field } }) {
           ) : (
             <>
               <Nothing />
-            </>
-          )}
-          {session && (
-            <>
-              {programs.slice(0, 1).map((program, index) => (
-                <Feature flip={1} program={program} />
-              ))}
             </>
           )}
           {session && (

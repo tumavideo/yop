@@ -24,10 +24,14 @@ export default function Feature({ flip = 0, program }) {
                   {program.name}
                 </p>
               )}
-              <p
-                className="mt-6 text-lg leading-8 text-gray-600"
-                dangerouslySetInnerHTML={{ __html: program.description }}
-              ></p>
+              <p className="mt-6 text-lg leading-8 text-gray-600">
+                {program.description.split("\n").map((line, index) => (
+                  <>
+                    {line}
+                    <br />
+                  </>
+                ))}
+              </p>
               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                 {features.map((feature, index) => (
                   <div

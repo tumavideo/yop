@@ -8,6 +8,7 @@ import { compareArrays, unique } from "@/utils";
 
 import assets from "@/assets";
 import Adsense from "@/components/Adsense";
+import ScrollToTopButton from "@/components/ScrollToTop";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
@@ -90,6 +91,7 @@ export default async function Opportunities({ searchParams: { field, type } }) {
               <Opportunity key={index} opp={project} />
             ))}
           </ul>
+          <ScrollToTopButton />
           {!session ? (
             <div className="flex pt-10">
               <a

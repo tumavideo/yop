@@ -35,6 +35,8 @@ type ProfileValues = z.infer<typeof profileSchema>;
 
 type ResumeFileObject = FileObject;
 
+const NUM_RESUMES = 1;
+
 export default function UpdateProfileForm({ user }: { user: User }) {
   const router = useRouter();
   const [values, setValues] = useState<{
@@ -112,7 +114,7 @@ export default function UpdateProfileForm({ user }: { user: User }) {
               const bModified = new Date(b.created_at).getTime();
               return bModified - aModified;
             })
-            .slice(0, 3);
+            .slice(0, NUM_RESUMES);
         });
       } else {
         showToast(

@@ -152,18 +152,20 @@ export default function UpdateProfileForm({ user }: { user: User }) {
     }
   };
 
-  async function handleDelete() {
-    setShowDelete(false);
+  async function handleDelete(deleteMe) {
+    setShowDelete(deleteMe);
 
-    const { data, error } = await supabase.auth.updateUser({
-      data: {
-        deleted: true,
-      },
-    });
+    if (deleteMe) {
+      const { data, error } = await supabase.auth.updateUser({
+        data: {
+          deleted: true,
+        },
+      });
 
-    if (!error) {
-      await supabase.auth.signOut();
-      router.refresh();
+      if (!error) {
+        await supabase.auth.signOut();
+        router.refresh();
+      }
     }
   }
 
@@ -298,8 +300,6 @@ export default function UpdateProfileForm({ user }: { user: User }) {
             {loadingResumes && (
               <div className="space-y-2 col-span-full flex-col-reverse">
                 <div className="rounded-lg col-span-full p-3 animate-pulse h-8 bg-slate-200"></div>
-                <div className="rounded-lg col-span-full p-3 animate-pulse h-8 bg-slate-200"></div>
-                <div className="rounded-lg col-span-full p-3 animate-pulse h-8 bg-slate-200"></div>
               </div>
             )}
           </div>
@@ -329,7 +329,9 @@ export default function UpdateProfileForm({ user }: { user: User }) {
           <button
             type="button"
             className="text-sm font-semibold leading-6 text-red-600"
-            onClick={() => setShowDelete(true)}
+            onClick={() => {
+              setShowDelete(true);
+            }}
           >
             Delete Account
           </button>

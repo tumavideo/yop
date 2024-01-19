@@ -57,14 +57,14 @@ export default function DeleteModal({ onDelete }) {
                   <button
                     type="button"
                     className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 mb-3"
-                    onClick={() => setOpen(false)}
+                    onClick={() => onDelete(false)}
                   >
                     No, I still haven't found a job
                   </button>
                   <button
                     type="button"
                     className="inline-flex w-full justify-center text-sm font-semibold leading-6 text-red-600"
-                    onClick={() => onDelete()}
+                    onClick={() => onDelete(true)}
                   >
                     Yes, I don't need a job
                   </button>

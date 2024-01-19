@@ -1,6 +1,8 @@
 import { Database } from "@/lib/database.types";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
 import OnboardingForm from "./onboarding-form";
 
 export default async function Profile() {
@@ -13,6 +15,11 @@ export default async function Profile() {
     .select("referral_code")
     .eq("user_id", user?.id)
     .single();
+
+  if (!user) {
+    await supabase.auth.signOut();
+    redirect("login");
+  }
 
   return (
     <div className="bg-gray-50">

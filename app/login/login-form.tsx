@@ -10,6 +10,7 @@ import ButtonText from "@/components/ButtonText";
 import type { Session } from "@supabase/auth-helpers-nextjs";
 import { useState } from "react";
 import { ErrorText, TextField } from "../auth/input";
+import AlertModal from "../common/alert-modal";
 
 const loginValueSchema = z.object({
   email: z.string().email(),
@@ -19,6 +20,7 @@ const loginValueSchema = z.object({
 type LoginValues = z.infer<typeof loginValueSchema>;
 
 export default function LoginForm({ session }: { session: Session | null }) {
+  const [showDenied, setShowDenied] = useState(false);
   const [loginError, setLoginError] = useState(null);
   const router = useRouter();
   const supabase = createClientComponentClient();
@@ -35,6 +37,15 @@ export default function LoginForm({ session }: { session: Session | null }) {
   } = useForm<LoginValues>({
     resolver: zodResolver(loginValueSchema),
   });
+
+  const LoginDenied = () => (
+    <AlertModal
+      title={"Invalid Account"}
+      description={
+        "Sorry, you deactivated your account. Please contact to support@inlightzambia.com for recovery."
+      }
+    />
+  );
 
   const pushReferrer = () => {
     const origin = document.location.origin;
@@ -55,16 +66,28 @@ export default function LoginForm({ session }: { session: Session | null }) {
     </button>
   ) : (
     <>
+      {showDenied && <LoginDenied />}
       <form
         onSubmit={handleSubmit(async (data: any) => {
           setLoginError(null);
           const { email, password } = data;
-          const { error } = await supabase.auth.signInWithPassword({
+          const {
+            error,
+            data: { user },
+          } = await supabase.auth.signInWithPassword({
             email,
             password,
           });
-          if (!error) pushReferrer();
-          else setLoginError(error);
+          if (!error) {
+            if (user.user_metadata?.deleted) {
+              setShowDenied(true);
+              await supabase.auth.signOut();
+              return;
+            }
+            pushReferrer();
+          } else {
+            setLoginError(error);
+          }
         })}
         className="space-y-6"
         noValidate

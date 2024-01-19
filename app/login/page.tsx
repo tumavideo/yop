@@ -32,7 +32,6 @@ export default async function Login() {
   if (session) redirect("/");
   return (
     <>
-
       <div className="bg-white flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -45,11 +44,9 @@ export default async function Login() {
           </h2>
         </div>
         <div className="mt-10 flex justify-center">
-        <GoogleLoginButton>
-            Sign in with Google
-        </GoogleLoginButton >
+          <GoogleLoginButton>Sign in with Google</GoogleLoginButton>
         </div>
-            <p className="my-5 font-bold text-slate-500 text-center">or</p>
+        <p className="my-5 font-bold text-slate-500 text-center">or</p>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <LoginForm session={session} />
 
@@ -62,7 +59,6 @@ export default async function Login() {
               Sign Up
             </a>
           </p>
-         
         </div>
 
         <div className="mt-10 md:w-1/3 container mx-auto">

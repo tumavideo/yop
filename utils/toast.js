@@ -20,7 +20,7 @@ const toastTypes = {
   error: crossSVG,
 };
 
-export const showToast = (title, message, type = "success") => {
+export const showToast = (title, message, type = "success", timeout = 2000) => {
   const toastElement = document.createElement("div");
 
   toastElement.className =
@@ -44,9 +44,15 @@ export const showToast = (title, message, type = "success") => {
       </div>
     `;
 
+  const closeToast = () => document.body.removeChild(toastElement);
+
+  toastElement.addEventListener("click", closeToast.bind());
+
   document.body.appendChild(toastElement);
 
-  setTimeout(() => {
-    document.body.removeChild(toastElement);
-  }, 2000);
+  if (timeout) {
+    setTimeout(() => {
+      closeToast();
+    }, timeout);
+  }
 };

@@ -11,6 +11,9 @@ import "@uppy/progress-bar/dist/style.css";
 import { Dashboard } from "@uppy/react";
 import Tus from "@uppy/tus";
 import { useMemo } from "react";
+
+const SMALLEST_ALLOWED = 13000;
+
 export default function UploadResume({ id, removeFile, addFile }) {
   const uppy = useMemo(() => {
     const uppyInstance = new Uppy({
@@ -66,6 +69,17 @@ export default function UploadResume({ id, removeFile, addFile }) {
 
     uppyInstance.on("complete", async (result) => {
       console.log("Resume from the result", result);
+
+      if (result.successful[0].size < SMALLEST_ALLOWED) {
+        showToast(
+          "Upload problem",
+          "Please check the contents of your file, it appears to be empty.",
+          "error",
+          null
+        );
+        return;
+      }
+
       if (result.successful) {
         showToast(
           "Upload complete!",

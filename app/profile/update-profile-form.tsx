@@ -169,11 +169,13 @@ export default function UpdateProfileForm({ user }: { user: User }) {
     }
   }
 
-  const renderDelete = () => <DeleteModal onDelete={handleDelete} />;
+  const renderDelete = () => (
+    <DeleteModal onDelete={handleDelete} setModalOpen={showDelete} />
+  );
 
   return (
     <>
-      {showDelete && renderDelete()}
+      {renderDelete()}
       <form
         onSubmit={handleSubmit(async (formData: any) => {
           const userMetadata: any = {

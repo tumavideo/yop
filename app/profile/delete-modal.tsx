@@ -2,11 +2,11 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
 
-export default function DeleteModal({ onDelete }) {
+export default function DeleteModal({ onDelete, setModalOpen }) {
   const [open, setOpen] = useState(true);
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+      <Dialog as="div" className="relative z-10" onClose={setModalOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

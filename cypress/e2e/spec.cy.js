@@ -2,7 +2,7 @@
 const site = 'http://localhost:3000';
 const Width = 1280 
 const height = 720
-describe('Checks if pages are available', () => {
+describe('visit if pages are available without sign up', () => {
   it('displays the expected title', () => {
     cy.viewport(Width, height);
     cy.visit(site)
@@ -13,48 +13,65 @@ describe('Checks if pages are available', () => {
   
   })
 
-  it('checks sign up page', () => {
+  it('visit sign up page', () => {
     cy.viewport(Width, height);
     cy.visit('http://localhost:3000/register?type=seeker')
     cy.contains('Sign up to start your journey')
     })
 
-  it('checks services page', () => {
+  it('visit services page', () => {
     cy.viewport(Width, height);
     cy.visit('http://localhost:3000/services')
     cy.contains('Ready to explore community services?')
     })
 
-  it('checks community page', () => {
+  it('visit community page', () => {
     cy.viewport(Width, height);
     cy.visit('http://localhost:3000/community')
     cy.contains('Success Stories')
     })
     
-  it('checks about page', () => {
+  it('visit about page', () => {
     cy.viewport(Width, height);
     cy.visit('http://localhost:3000/about')
     cy.contains('Why InLight Zambia?')
     })
 
-  it('checks jobs page', () => {
+  it('visit jobs page', () => {
     cy.viewport(Width, height);
     cy.visit('http://localhost:3000/opportunity?type=job')
     cy.contains('Sign in to see more opportunities')
     })
   
-  it('checks skills page', () => {
+  it('visit skills page', () => {
     cy.viewport(Width, height);
     cy.visit('http://localhost:3000/opportunity?type=skill')
     cy.contains('Sign in to see more opportunities')
     })
-  it('checks funding page', () => {
+  it('visit funding page', () => {
 
-  cy.viewport(Width, height);
-  cy.visit('http://localhost:3000/opportunity?type=finance')
-  cy.contains('Sign in to see more opportunities')
+    cy.viewport(Width, height);
+    cy.visit('http://localhost:3000/opportunity?type=finance')
+    cy.contains('Sign in to see more opportunities')
 
 })
+  it('visit login page', () => {
+
+    cy.viewport(Width, height);
+    cy.visit('http://localhost:3000/login')
+    cy.contains('Sign in to your account')
+
+})
+
+
+  it('visit forgot password', () => {
+
+    cy.viewport(Width, height);
+    cy.visit('http://localhost:3000/login/forgot-password')
+    cy.contains('Recover your password')
+
+  })
+
 })
 
 describe('visit Inlight and click find an opportunity', () => {
